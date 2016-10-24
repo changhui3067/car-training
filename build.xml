@@ -196,8 +196,7 @@
 	        		copy.setTofile(tofile);
 					copy.setPreserveLastModified(true);
 					copy.setOverwrite(true);
-	        		if(file.exists() && (!tofile.exists() || file.length() != tofile.length()))
-	        			copy.perform();
+					copy.perform();
 				}
 				for(var i=0;i<replacement.length;i+=2){
 					var replace = project.createTask("replace");
