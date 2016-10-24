@@ -1,6 +1,6 @@
- package com.car.training.action.backend;
+package com.car.training.action.backend;
 
- import java.io.ByteArrayInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.car.training.utils.FileUploaderUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
@@ -39,360 +40,333 @@ import com.car.training.service.TrainerService;
 @AutoConfig
 public class TrainerCompleteResumeAction extends BaseAction {
 
-	private static final long serialVersionUID = 4839883380537115435L;
-	@Autowired
-	public FileStorage fileStorage;
-	@Value("${upload.filepath:/car/training/upload/}")
-	public static String CARTRAINING_UPLOAD_FILEPATH = "/car/training/upload/";
-	@Autowired
-	private TrainerService trainerService;
-	@Autowired
-	private transient EntityManager<Region> entityManager;
+    private static final long serialVersionUID = 4839883380537115435L;
+    @Autowired
+    public FileStorage fileStorage;
+    @Value("${upload.filepath:/car/training/upload/}")
+    public static String CARTRAINING_UPLOAD_FILEPATH = "/car/training/upload/";
+    @Autowired
+    private TrainerService trainerService;
+    @Autowired
+    private transient EntityManager<Region> entityManager;
+    @Autowired
+    private FileUploaderUtil fileUploaderUtil;
+    /**
+     * 培训师
+     */
+    private Trainer trainer;
 
-	/** 培训师 */
-	private Trainer  trainer;
-	
-	private List<Region> provinces;
-	
-	private List<Region> cities;
-	
-	private Object data;
-	
-	private Long parentId;
-	private String uheadLogo = "";
-	private String upersonalType = "";
-	private String tid = "";
-	private String uid = "";
-	private String uname = "";
-	private String ubirthday = "";
-	private String uemail = "";
-	private String uregionId = "";
-	private String umarryStatus = "";
-	private String umobile = "";
-	private String autoYears = "";
-	private String education = "";
-	private String intro = "";
-	private String mainCourse = "";
-	private String businessCategory = "";
-	private String executionCategory = "";
-	private String vedioURL1 = "";
-	private String vedioURL2 = "";
-	
-	public List<Region> getProvinces() {
-		return provinces;
-	}
+    private List<Region> provinces;
 
-	public void setProvinces(List<Region> provinces) {
-		this.provinces = provinces;
-	}
+    private List<Region> cities;
 
-	public List<Region> getCities() {
-		return cities;
-	}
+    private Object data;
 
-	public void setCities(List<Region> cities) {
-		this.cities = cities;
-	}
+    private Long parentId;
+    private String uheadLogo = "";
+    private String upersonalType = "";
+    private String tid = "";
+    private String uid = "";
+    private String uname = "";
+    private String ubirthday = "";
+    private String uemail = "";
+    private String uregionId = "";
+    private String umarryStatus = "";
+    private String umobile = "";
+    private String autoYears = "";
+    private String education = "";
+    private String intro = "";
+    private String mainCourse = "";
+    private String businessCategory = "";
+    private String executionCategory = "";
+    private String vedioURL1 = "";
+    private String vedioURL2 = "";
 
-	public Long getParentId() {
-		return parentId;
-	}
+    public List<Region> getProvinces() {
+        return provinces;
+    }
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
-	}
+    public void setProvinces(List<Region> provinces) {
+        this.provinces = provinces;
+    }
 
-	@Override
-	public String execute() throws Exception {
-		HttpServletRequest request = ServletActionContext.getRequest();
-		UserCenter uc = new UserCenter();
-		uc = (UserCenter) request.getSession().getAttribute("userDetails");
-		if (uc != null) {
-			trainer = trainerService.findByUserCenter(uc.getId());
-		}
-		
-		entityManager.setEntityClass(Region.class);
-		DetachedCriteria dc = entityManager.detachedCriteria();
-		dc.add(Restrictions.isNull("parent"));
-		dc.addOrder(Order.asc("displayOrder"));
-		dc.addOrder(Order.asc("name"));
-		provinces = entityManager.findListByCriteria(dc);
-		return SUCCESS;
-	}
-	
-	@JsonConfig(root = "data")
-	public String getcities(){
-		Map<String,Object> map = new HashMap<>();
-		Region region = new Region();
-		entityManager.setEntityClass(Region.class);
-		if (parentId != null && parentId > 0) {
-			region = entityManager.get(parentId);
-		} else {
-			DetachedCriteria dc = entityManager.detachedCriteria();
-			dc.add(Restrictions.isNull("parent"));
-			dc.addOrder(Order.asc("displayOrder"));
-			dc.addOrder(Order.asc("name"));
-			region.setChildren(entityManager.findListByCriteria(dc));
-		}
-		cities = (List<Region>) region.getChildren();
-		map.put("code", "200");
-		map.put("cities", cities);
-		setData(map);
-		return JSON;
-	}
-	
-	@JsonConfig(root = "data")
-	public String save() throws Exception{
-		HttpServletRequest request = ServletActionContext.getRequest();
-		UserCenter uc = new UserCenter();
-		uc = (UserCenter) request.getSession().getAttribute("userDetails");
-		if (uc != null) {
-			trainer = trainerService.findByUserCenter(uc.getId());
-		}
-		if(trainer != null){
-			trainer.setId(tid);
-			trainer.setAutoYears(new Integer(autoYears));
-			if (StringUtils.isNotBlank(businessCategory)) {
-				Set<String> setStr = new HashSet<String>();
-				String[] arr = businessCategory.split(",");
-				if (arr != null && arr.length > 0) {
-					for (String s : arr) {
-						setStr.add(s);
-					}
-					trainer.setBusinessCategory(setStr);
-				}
-			}
-			if (StringUtils.isNotBlank(executionCategory)) {
-				Set<String> setStr = new HashSet<String>();
-				String[] arr = executionCategory.split(",");
-				if (arr != null && arr.length > 0) {
-					for (String s : arr) {
-						setStr.add(s);
-					}
-					trainer.setExecutionCategory(setStr);
-				}
-			}
-			trainer.setEducation(Enum.valueOf(Education.class, education));
-			trainer.setMainCourse(mainCourse);
-			uc.setActiveDate(new Date());
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			uc.setBirthday(sdf.parse(ubirthday));
-			uc.setEmail(uemail);
-			uc.setEnabled(true);
-			uc.setIntro(intro);
-			uc.setMarryStatus(Enum.valueOf(MarryStatus.class,umarryStatus));
-			uc.setMobile(umobile);
-			uc.setName(uname);
-			uc.setPersonalType(Enum.valueOf(PersonalType.class,upersonalType));
-			if (StringUtils.isNotBlank(uregionId)) {
-				Region region = new Region();
-				region.setId(Long.valueOf(uregionId));
-				uc.setRegion(region);
-			}
-			if (StringUtils.isNotBlank(uheadLogo) && !uheadLogo.startsWith("http")) {
-				String headLogo = uploadFile(uheadLogo);
-				uc.setHeadLogo(headLogo);
-			}
-			trainer.setVedioURL1(vedioURL1);
-			trainer.setVedioURL2(vedioURL2);
-			trainer.setUserCenter(uc);
-			trainerService.update(trainer);
-		}
-		Map<String,Object> map = new HashMap<>();
-		map.put("code", "200");
-		map.put("msg", "保存成功");
-		data = map;
-		return JSON;
-	}
+    public List<Region> getCities() {
+        return cities;
+    }
 
-	public String uploadFile(String imgData) {
-		if (imgData == null ) {
-			throw RestStatus.valueOf(RestStatus.CODE_FIELD_INVALID, "参数有误");
-		}
+    public void setCities(List<Region> cities) {
+        this.cities = cities;
+    }
 
-		String returnUrl ="",imgPath="";
-		// 使用BASE64对图片文件数据进行解码操作
-			if (imgData != null) {
-				try {
-					// 通过Base64解密，将图片数据解密成字节数组
-					byte[] bytes = Base64.getDecoder().decode(imgData.split(",")[1]);
-					for (int j = 0; j < bytes.length; ++j) {
-						if (bytes[j] < 0) {// 调整异常数据
-							bytes[j] += 256;
-						}
-					}
-					imgPath = String.valueOf(System.currentTimeMillis()+"."+imgData.substring(imgData.indexOf("/")+1,imgData.indexOf(";")));
-					InputStream in = new ByteArrayInputStream(bytes);
-					fileStorage.write(in, CARTRAINING_UPLOAD_FILEPATH.concat(imgPath));
-					String fileUrl = fileStorage.getFileUrl(CARTRAINING_UPLOAD_FILEPATH.concat(imgPath));
+    public Long getParentId() {
+        return parentId;
+    }
 
-					returnUrl = fileUrl;
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		return returnUrl ;
-	}
-	
-	public Trainer getTrainer() {
-		return trainer;
-	}
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    @Override
+    public String execute() throws Exception {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        UserCenter uc = (UserCenter) request.getSession().getAttribute("userDetails");
+        if (uc != null) {
+            trainer = trainerService.findByUserCenter(uc.getId());
+        }
+
+        entityManager.setEntityClass(Region.class);
+        DetachedCriteria dc = entityManager.detachedCriteria();
+        dc.add(Restrictions.isNull("parent"));
+        dc.addOrder(Order.asc("displayOrder"));
+        dc.addOrder(Order.asc("name"));
+        provinces = entityManager.findListByCriteria(dc);
+        return SUCCESS;
+    }
+
+    @JsonConfig(root = "data")
+    public String getcities() {
+        Map<String, Object> map = new HashMap<>();
+        Region region = new Region();
+        entityManager.setEntityClass(Region.class);
+        if (parentId != null && parentId > 0) {
+            region = entityManager.get(parentId);
+        } else {
+            DetachedCriteria dc = entityManager.detachedCriteria();
+            dc.add(Restrictions.isNull("parent"));
+            dc.addOrder(Order.asc("displayOrder"));
+            dc.addOrder(Order.asc("name"));
+            region.setChildren(entityManager.findListByCriteria(dc));
+        }
+        cities = (List<Region>) region.getChildren();
+        map.put("code", "200");
+        map.put("cities", cities);
+        setData(map);
+        return JSON;
+    }
+
+    @JsonConfig(root = "data")
+    public String save() throws Exception {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        UserCenter uc = new UserCenter();
+        uc = (UserCenter) request.getSession().getAttribute("userDetails");
+        if (uc != null) {
+            trainer = trainerService.findByUserCenter(uc.getId());
+        }
+        if (trainer != null) {
+            trainer.setId(tid);
+            trainer.setAutoYears(new Integer(autoYears));
+            if (StringUtils.isNotBlank(businessCategory)) {
+                Set<String> setStr = new HashSet<String>();
+                String[] arr = businessCategory.split(",");
+                if (arr != null && arr.length > 0) {
+                    for (String s : arr) {
+                        setStr.add(s);
+                    }
+                    trainer.setBusinessCategory(setStr);
+                }
+            }
+            if (StringUtils.isNotBlank(executionCategory)) {
+                Set<String> setStr = new HashSet<String>();
+                String[] arr = executionCategory.split(",");
+                if (arr != null && arr.length > 0) {
+                    for (String s : arr) {
+                        setStr.add(s);
+                    }
+                    trainer.setExecutionCategory(setStr);
+                }
+            }
+            trainer.setEducation(Enum.valueOf(Education.class, education));
+            trainer.setMainCourse(mainCourse);
+            uc.setActiveDate(new Date());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            uc.setBirthday(sdf.parse(ubirthday));
+            uc.setEmail(uemail);
+            uc.setEnabled(true);
+            uc.setIntro(intro);
+            uc.setMarryStatus(Enum.valueOf(MarryStatus.class, umarryStatus));
+            uc.setMobile(umobile);
+            uc.setName(uname);
+            uc.setPersonalType(Enum.valueOf(PersonalType.class, upersonalType));
+            if (StringUtils.isNotBlank(uregionId)) {
+                Region region = new Region();
+                region.setId(Long.valueOf(uregionId));
+                uc.setRegion(region);
+            }
+            if (StringUtils.isNotBlank(uheadLogo) && !uheadLogo.startsWith("http")) {
+                String headLogo = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH,uheadLogo);
+                uc.setHeadLogo(headLogo);
+            }
+            trainer.setVedioURL1(vedioURL1);
+            trainer.setVedioURL2(vedioURL2);
+            trainer.setUserCenter(uc);
+            trainerService.update(trainer);
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", "200");
+        map.put("msg", "保存成功");
+        data = map;
+        return JSON;
+    }
+
+    public Trainer getTrainer() {
+        return trainer;
+    }
 
 
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
-	}
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
 
-	public Object getData() {
-		return data;
-	}
+    public Object getData() {
+        return data;
+    }
 
-	public void setData(Object data) {
-		this.data = data;
-	}
+    public void setData(Object data) {
+        this.data = data;
+    }
 
-	public String getUheadLogo() {
-		return uheadLogo;
-	}
+    public String getUheadLogo() {
+        return uheadLogo;
+    }
 
-	public void setUheadLogo(String uheadLogo) {
-		this.uheadLogo = uheadLogo;
-	}
+    public void setUheadLogo(String uheadLogo) {
+        this.uheadLogo = uheadLogo;
+    }
 
-	public String getUpersonalType() {
-		return upersonalType;
-	}
+    public String getUpersonalType() {
+        return upersonalType;
+    }
 
-	public void setUpersonalType(String upersonalType) {
-		this.upersonalType = upersonalType;
-	}
+    public void setUpersonalType(String upersonalType) {
+        this.upersonalType = upersonalType;
+    }
 
-	public String getTid() {
-		return tid;
-	}
+    public String getTid() {
+        return tid;
+    }
 
-	public void setTid(String tid) {
-		this.tid = tid;
-	}
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
 
-	public String getUid() {
-		return uid;
-	}
+    public String getUid() {
+        return uid;
+    }
 
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
-	public String getUname() {
-		return uname;
-	}
+    public String getUname() {
+        return uname;
+    }
 
-	public void setUname(String uname) {
-		this.uname = uname;
-	}
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
 
-	public String getUbirthday() {
-		return ubirthday;
-	}
+    public String getUbirthday() {
+        return ubirthday;
+    }
 
-	public void setUbirthday(String ubirthday) {
-		this.ubirthday = ubirthday;
-	}
+    public void setUbirthday(String ubirthday) {
+        this.ubirthday = ubirthday;
+    }
 
-	public String getUemail() {
-		return uemail;
-	}
+    public String getUemail() {
+        return uemail;
+    }
 
-	public void setUemail(String uemail) {
-		this.uemail = uemail;
-	}
+    public void setUemail(String uemail) {
+        this.uemail = uemail;
+    }
 
-	public String getUregionId() {
-		return uregionId;
-	}
+    public String getUregionId() {
+        return uregionId;
+    }
 
-	public void setUregionId(String uregionId) {
-		this.uregionId = uregionId;
-	}
+    public void setUregionId(String uregionId) {
+        this.uregionId = uregionId;
+    }
 
-	public String getUmarryStatus() {
-		return umarryStatus;
-	}
+    public String getUmarryStatus() {
+        return umarryStatus;
+    }
 
-	public void setUmarryStatus(String umarryStatus) {
-		this.umarryStatus = umarryStatus;
-	}
+    public void setUmarryStatus(String umarryStatus) {
+        this.umarryStatus = umarryStatus;
+    }
 
-	public String getUmobile() {
-		return umobile;
-	}
+    public String getUmobile() {
+        return umobile;
+    }
 
-	public void setUmobile(String umobile) {
-		this.umobile = umobile;
-	}
+    public void setUmobile(String umobile) {
+        this.umobile = umobile;
+    }
 
-	public String getAutoYears() {
-		return autoYears;
-	}
+    public String getAutoYears() {
+        return autoYears;
+    }
 
-	public void setAutoYears(String autoYears) {
-		this.autoYears = autoYears;
-	}
+    public void setAutoYears(String autoYears) {
+        this.autoYears = autoYears;
+    }
 
-	public String getEducation() {
-		return education;
-	}
+    public String getEducation() {
+        return education;
+    }
 
-	public void setEducation(String education) {
-		this.education = education;
-	}
+    public void setEducation(String education) {
+        this.education = education;
+    }
 
-	public String getIntro() {
-		return intro;
-	}
+    public String getIntro() {
+        return intro;
+    }
 
-	public void setIntro(String intro) {
-		this.intro = intro;
-	}
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
 
-	public String getMainCourse() {
-		return mainCourse;
-	}
+    public String getMainCourse() {
+        return mainCourse;
+    }
 
-	public void setMainCourse(String mainCourse) {
-		this.mainCourse = mainCourse;
-	}
+    public void setMainCourse(String mainCourse) {
+        this.mainCourse = mainCourse;
+    }
 
-	public String getBusinessCategory() {
-		return businessCategory;
-	}
+    public String getBusinessCategory() {
+        return businessCategory;
+    }
 
-	public void setBusinessCategory(String businessCategory) {
-		this.businessCategory = businessCategory;
-	}
+    public void setBusinessCategory(String businessCategory) {
+        this.businessCategory = businessCategory;
+    }
 
-	public String getExecutionCategory() {
-		return executionCategory;
-	}
+    public String getExecutionCategory() {
+        return executionCategory;
+    }
 
-	public void setExecutionCategory(String executionCategory) {
-		this.executionCategory = executionCategory;
-	}
+    public void setExecutionCategory(String executionCategory) {
+        this.executionCategory = executionCategory;
+    }
 
-	public String getVedioURL1() {
-		return vedioURL1;
-	}
+    public String getVedioURL1() {
+        return vedioURL1;
+    }
 
-	public void setVedioURL1(String vedioURL1) {
-		this.vedioURL1 = vedioURL1;
-	}
+    public void setVedioURL1(String vedioURL1) {
+        this.vedioURL1 = vedioURL1;
+    }
 
-	public String getVedioURL2() {
-		return vedioURL2;
-	}
+    public String getVedioURL2() {
+        return vedioURL2;
+    }
 
-	public void setVedioURL2(String vedioURL2) {
-		this.vedioURL2 = vedioURL2;
-	}
-	
+    public void setVedioURL2(String vedioURL2) {
+        this.vedioURL2 = vedioURL2;
+    }
+
 }
