@@ -5,3 +5,4 @@ out/
 *.iml
 target/
 .DS_Store
+car-training.properties
