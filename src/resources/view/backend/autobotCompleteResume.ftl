@@ -13,7 +13,7 @@
 
 <body>
 <#include "/assets/website/common/header.html">
-	
+
 <!-- main开始 -->
 <div class="main">
 	<div class="content">
@@ -23,9 +23,9 @@
     </div>
     <div class="pxshi_gl">
     	<div class="pxshi_gl_l left">
-        
+
         <#include "/assets/website/backend/common/menu.html">
-        
+
         <div class="pxshi_gl_r right">
         <form id="form1">
         <!--隐藏域-->
@@ -91,7 +91,7 @@
         </tr>
       <tr>
         <td>
-        
+
         <table width="400" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td  width="15%" height="40" align="left" valign="middle"><input type="file" name="headLogo" id="headLogo" value="浏 览" onChange="selectImage(this)"/></td>
@@ -99,7 +99,7 @@
             <td width="62%" align="left" valign="middle"></td>
             </tr>
           </table>
-          
+
           </td>
         </tr>
       <tr>
@@ -177,7 +177,7 @@
 							</#if>
 							<#list 0..20 as t>
 							<option value="${t}">${t}</option>
-							</#list>	
+							</#list>
 							</select>&nbsp;
 							<font color="red" >选择0表示应界毕业生</font>
                     	    </td>
@@ -205,9 +205,9 @@
                     	   	<input type="checkBox" name="autobot.businessCategory" id="autobot.businessCategory"  value="行政"/>行政
                     	    </#if>
                     	    </td>
-                    	    
+
                   	    </tr>
-                  	    
+
                   	    <tr>
                   	     <td height="40" align="right" valign="middle"><font color="#ff0000">*</font>工作照：</td>
                   	     <td colspan="3" align="left" valign="middle">
@@ -216,16 +216,16 @@
                   	     <img id="autobot.workPhotoURL2" src="<#if autobot.workPhotoURL2??>${autobot.workPhotoURL2!}<#else>http://obu3flkwk.bkt.clouddn.com/backend/images/zw.jpg</#if>" style="width:40px;height:40px;" />
                   	     <input type="file" name="workPhotoURL2" id="workPhotoURL2" value="浏览" onChange="selectImage(this)"/></td>
                   	  	</tr>
-                  	  	
+
                   	  </table>
                 </div>
                 </div>
-                
+
           <div class="pxshijl">
                	  <h5>所获认证</h5>
                     <div class="pxshijl_box">
                     	<table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
-  
+
 		     <tr>
 		    <td height="40" colspan="4" align="left" valign="middle"><table width="90%" border="0" cellspacing="0" cellpadding="0">
 		  <tr>
@@ -243,9 +243,9 @@
                	  <h5>工作经历</h5>
                     <div class="pxshijl_box">
                     	<table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
-  
-  
-  
+
+
+
      <tr>
     <td height="40" colspan="4" align="left" valign="middle"><table width="90%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -270,7 +270,7 @@
       </div>
       </form>
         <div class="clear"></div>
-    
+
     </div>
     </div>
 </div>
@@ -286,7 +286,7 @@ function checkform(){
 	var mobile = $("input[name='autobot.userCenter.mobile']").val();
 	var authHistroy = $("[name='autobot.authHistroy']").val();
 	var workingHistroy = $("[name='autobot.workingHistroy']").val();
-	
+
 	if(name == undefined || birthday == undefined || marryStatus == undefined || currentWorkStatus == undefined || autoBrand == undefined || mobile == undefined || authHistroy == undefined || workingHistroy == undefined){
 		alert("带*的为必填字段 ");
 		return false;
@@ -295,7 +295,7 @@ function checkform(){
 		alert("带*的为必填字段 ");
 		return false;
 	}
-	
+
 	return true;
 }
 
@@ -304,7 +304,7 @@ function submitdata(){
 	if(!checkform()){
 		return;
 	}
-	
+
 	var form_data = {};
 	var url  = "/backend/autobotCompleteResume/save";
 
@@ -326,10 +326,10 @@ function submitdata(){
 	var businessCategory = '';
 	$("input:checkbox[name='autobot.businessCategory']:checked").each(function(index, element) {
                          businessCategory += $(this).val() + ",";
-	 }); 
+	 });
 	var workPhotoURL1 = document.getElementById('autobot.workPhotoURL1').src;
 	var workPhotoURL2 = document.getElementById('autobot.workPhotoURL2').src;
-	
+
 	form_data.aid = aid;
 	form_data.uid = uid;
 	form_data.uname = uname;
@@ -371,7 +371,7 @@ function selectCities(){
 	form_data.parentId = $("[name='province']").val();
 	$.ajax({
 		 type: "POST",
-	     url: "/backend/autobotCompleteResume/getcities",
+	     url: "/backend/regions/getCities",
 	     data: form_data,
 	     error: function(request) {
 	         showErrMsg("网络出错啦！");
@@ -397,7 +397,7 @@ function selectCities(){
 	 if(!file.files || !file.files[0]){
 		return;
 	}
-	
+
 	 var reader = new FileReader();
 	 reader.onload = function(evt){
 	 if(file.name=='headLogo'){

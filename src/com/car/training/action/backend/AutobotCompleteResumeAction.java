@@ -1,29 +1,24 @@
 package com.car.training.action.backend;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.car.training.utils.FileUploaderUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.struts2.ServletActionContext;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
-import org.ironrhino.common.model.Region;
-import org.ironrhino.core.metadata.AutoConfig;
-import org.ironrhino.core.metadata.JsonConfig;
-import org.ironrhino.core.service.EntityManager;
-import org.ironrhino.core.struts.BaseAction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-
 import com.car.training.domain.Autobots;
 import com.car.training.domain.UserCenter;
 import com.car.training.enums.MarryStatus;
 import com.car.training.enums.PersonalType;
 import com.car.training.service.AutobotsService;
+import com.car.training.utils.FileUploaderUtil;
+import com.car.training.utils.RegionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
+import org.ironrhino.common.model.Region;
+import org.ironrhino.core.metadata.AutoConfig;
+import org.ironrhino.core.metadata.JsonConfig;
+import org.ironrhino.core.struts.BaseAction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @AutoConfig
 public class AutobotCompleteResumeAction extends BaseAction {
@@ -31,11 +26,12 @@ public class AutobotCompleteResumeAction extends BaseAction {
     private static final long serialVersionUID = 4839883380537115435L;
     @Autowired
     private AutobotsService autobotsService;
-    @Autowired
-    private transient EntityManager<Region> entityManager;
 
     @Autowired
     private FileUploaderUtil fileUploaderUtil;
+
+    @Autowired
+    private RegionUtils regionUtils;
 
     @Value("${upload.filepath:/car/training/upload/}")
     public static String CARTRAINING_UPLOAD_FILEPATH = "/car/training/upload/";
@@ -110,34 +106,9 @@ public class AutobotCompleteResumeAction extends BaseAction {
         if (uc != null) {
             autobot = autobotsService.findByUserCenter(uc.getId());
         }
-        entityManager.setEntityClass(Region.class);
-        DetachedCriteria dc = entityManager.detachedCriteria();
-        dc.add(Restrictions.isNull("parent"));
-        dc.addOrder(Order.asc("displayOrder"));
-        dc.addOrder(Order.asc("name"));
-        provinces = entityManager.findListByCriteria(dc);
+        provinces = regionUtils.getSubCities(-1);
+        cities = regionUtils.getSubCities(uc.getRegion().getId());
         return SUCCESS;
-    }
-
-    @JsonConfig(root = "data")
-    public String getcities() {
-        Map<String, Object> map = new HashMap<>();
-        Region region = new Region();
-        entityManager.setEntityClass(Region.class);
-        if (parentId != null && parentId > 0) {
-            region = entityManager.get(parentId);
-        } else {
-            DetachedCriteria dc = entityManager.detachedCriteria();
-            dc.add(Restrictions.isNull("parent"));
-            dc.addOrder(Order.asc("displayOrder"));
-            dc.addOrder(Order.asc("name"));
-            region.setChildren(entityManager.findListByCriteria(dc));
-        }
-        cities = (List<Region>) region.getChildren();
-        map.put("code", "200");
-        map.put("cities", cities);
-        setData(map);
-        return JSON;
     }
 
     @JsonConfig(root = "data")
