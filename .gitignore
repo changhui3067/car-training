@@ -3,3 +3,5 @@ webapp/WEB-INF/classes/
 out/
 .idea/
 *.iml
+target/
+.DS_Store

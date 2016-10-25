@@ -5,13 +5,13 @@
         <div class="nav_box left">
         	<div class="nav">
             	<ul class="menu">
-				<li><a href="<@url value='/website/index' />" >首页</a></li>
-                <li><a href="<@url value='/website/trainer' />">培训师</a></li>
-                <li><a href="<@url value='/website/recruit/?companyType=COMPANY' />">培训需求</a></li>
-                <li ><a href="<@url value='/website/autobot' />">汽车人</a></li>
-                <li ><a href="<@url value='/website/recruit/?companyType=STORE' />">汽车人需求</a></li>
-                <li><a href="<@url value='/website/topic' />">培训学院</a></li>
-                <li><a href="<@url value='/website/courses' />">公开课</a></li>
+				<li><a onclick="tabClick(0)">首页</a></li>
+                <li><a onclick="tabClick(1)">培训师</a></li>
+                <li><a onclick="tabClick(2)">培训需求</a></li>
+                <li><a onclick="tabClick(3)">汽车人</a></li>
+                <li><a onclick="tabClick(4)">汽车人需求</a></li>
+                <li><a onclick="tabClick(5)">培训学院</a></li>
+                <li><a onclick="tabClick(6)">公开课</a></li>
             </ul>
             </div>
         </div>
@@ -33,15 +33,49 @@
         <div class="clear"></div>
     </div>
 </div>
+<script src="<@url value="/assets/website/js/jquery-1.8.0.min.js?v=1.1.0"/>"></script>
 <script type="text/javascript">
-var url = location.href;
- $(".menu li").each(function(){
-  if ($(this).children("a").attr("href")=='/website/index') {
-   $(this).addClass('cn'); 
-  } else {
-   $(this).removeClass('cn');
-  }
- });
+//var url = location.href;
+// $(".menu li").each(function(){
+//  if ($(this).children("a").attr("href")=='/website/index') {
+//   $(this).addClass('cn');
+//  } else {
+//   $(this).removeClass('cn');
+//  }
+// });
+var selectedTabIndex = localStorage.tabIndex ? localStorage.tabIndex : 0;
+var selectedTab = $('.menu li')[selectedTabIndex];
+$(selectedTab).addClass('cn');
+
+function tabClick(index){
+    localStorage.tabIndex = index ? index : 0;
+    switch(index){
+        case 0:
+            location.href = '/website/index';
+            break;
+        case 1:
+            location.href = '/website/trainer';
+            break;
+        case 2:
+            location.href = '/website/recruit/?companyType=COMPANY';
+            break;
+        case 3:
+            location.href = '/website/autobot';
+            break;
+        case 4:
+            location.href = '/website/recruit/?companyType=STORE';
+            break;
+        case 5:
+            location.href = '/website/topic';
+            break;
+        case 6:
+            location.href = '/website/courses';
+            break;
+        default:
+            location.href = '/website/index';
+            break;
+    }
+}
  
 function logout(){
 	$.ajax({

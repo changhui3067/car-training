@@ -52,7 +52,7 @@
             
 				</div>
 
-                <div class="dl"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dl_bg.jpg" onClick='javascript:login();' /></div>
+                <div class="dl cursorStyle"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dl_bg.jpg" onClick='javascript:login();' /></div>
            		<div class="wjpwd"><span class="errMsg" style="display:block; padding-left:10px;line-height: 40px;color:red;"></span><!--<a href="#">忘记密码？</a>--></div>
             </div>
         </div>
@@ -80,12 +80,12 @@
                         <div class="pxshi_zp">${trainer.currentPosition!} </div>
                         <div class="pxshi_rz">
                         	<ul>
-                            	<li><a href='#'><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></a></li>
-                                <li><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></a></li>
-                                <li><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></a></li>
-                                <li><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/xin.jpg" /></a></li>
-                                <li><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zishen.jpg" /></a></li>
-                                <li><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dav.jpg" /></a></li>
+                            	<li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></li>
+                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></li>
+                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></li>
+                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/xin.jpg" /></li>
+                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zishen.jpg" /></li>
+                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dav.jpg" /></li>
                             </ul>
                         </div>
                     </div>
@@ -147,10 +147,10 @@
                             <div class="clear"></div>
                         </div>
                         <div class="pxsheng_rz">
-                        	<span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot2.jpg" /></a></span>
-                            <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/yrz.jpg" /></a></span>
-                            <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dr.jpg" /></a></span>
-                            <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zs.jpg" /></a></span>
+                        	<span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot2.jpg" /></span>
+                            <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/yrz.jpg" /></span>
+                            <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dr.jpg" /></span>
+                            <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zs.jpg" /></span>
                            
                         </div>
                     </div>
@@ -172,25 +172,30 @@
                 	<div class="qz"></div> <div class="pxxq_l left">
                    	 <a href="/website/jobDetail?jobs.id=${t.id!}"> <div class="zw_name">${t.name!}</div></a>
                         <div class="dy_box">
-                        	<span class="cn" style="padding-left:0px;"><a href="#">${t.salary!}</a></span><span><a href="#">${t.workExprience!}年工作经验</a></span><span style="background:none;"><a href="#"><#if t.region??>${t.region.fullname!}</#if></a></span>
+                        	<span class="cn" style="padding-left:0px;">${t.salary!}</span><span>${t.workExprience!}年工作经验</span><span style="background:none;"><#if t.region??>${t.region.fullname!}</#if></span>
                         </div>
                         <div class="fb_box">
-                        	<span  style="padding-left:0px;"><a href="#">发布于：${t.publishDate!?string("yyyy-MM-dd")}</a></span><span style="background:none;"><a href="#">投递后：48小时反馈 </a></span>
+                        	<span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span><span style="background:none;">投递后：48小时反馈</span>
                         </div>
                     </div>
                     <div class="pxxq_r right">
                    	  <div class="qy">
-                        	<div class="qy_l left"><a href="/website/autoCompany?company.id=${t.company.id!}"><img src="${t.company.logo!}" style="width:100px;height:50px;"/></a></div>
-                          <div class="qy_r right">
-                            	<div class="qy_name"><span><a href="#">已有${t.company.bondsmanCount}人担保</a></span><a href="/website/autoCompany?company.id=${t.company.id!}">${t.company.name!}</a></div>
-                                <div class="jyfw"><a href="#">${t.company.industry!}</a></div>
-                          </div>
-                            <div class="clear"></div>
-                        </div>
+                          <a href="/website/autoCompany?company.id=${t.company.id!}">
+                              <div class="qy_l left"><img src="${t.company.logo!}" style="width:100px;height:50px;"/></div>
+                              <div class="qy_r right">
+                                  <div class="qy_name">
+                                      <span>已有${t.company.bondsmanCount}人担保</span>
+                                      <span>${t.company.name!}</span>
+                                  </div>
+                                  <div class="jyfw">${t.company.industry!}</div>
+                              </div>
+                          </a>
+                          <div class="clear"></div>
+                      </div>
                         <div class="fl">
                         <#if t.welfare??>
                         	<#list t.welfare as w>
-                        	<span><a href="#">${w!}</a></span>
+                        	<span>${w!}</span>
                             </#list>
                         </#if>
                         </div>
@@ -213,32 +218,39 @@
                 	<li>
                 	<#if t?? && t.company??>
                     	<div class="qcrxq_l left">
-                        	 <a href="/website/jobDetail?jobs.id=${t.id!}"> <div class="qcrxq_zw_name">${t.name!}</div></a>
+                        	 <a href="/website/jobDetail?jobs.id=${t.id!}"><div class="qcrxq_zw_name">${t.name!}</div></a>
                        		 <div class="qcrxq_dy_box">
-                        	<span class="cn" style="padding-left:0px;"><a href="#">${t.salary!}</a></span><span><a href="#">${t.workExprience!}年工作经验</a></span><span style="background:none;"><a href="#">上海-嘉定区</a></span>
-                        </div>
-                        	 <div class="pingpai">
-                        <em>当前汽车品牌：</em><span>宝马</span><span>宝马</span>
-                        <div class="clear"></div>
-                        </div>
-                       		 <div class="qcrxq_fb_box">
-                        	<span  style="padding-left:0px;"><a href="#">发布于：${t.publishDate!?string("yyyy-MM-dd")}</a></span><span style="background:none;"><a href="#">投递后：48小时反馈 </a></span>
+                                 <span class="cn" style="padding-left:0px;">${t.salary!}</span>
+                                 <span>${t.workExprience!}年工作经验</span>
+                                 <span style="background:none;">上海-嘉定区</span>
+                             </div>
+                            <div class="pingpai">
+                                <em>当前汽车品牌：</em><span>宝马</span><span>宝马</span>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="qcrxq_fb_box">
+                                <span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span>
+                                <span style="background:none;">投递后：48小时反馈 </span>
                         </div>
                     </div>
                        
                			<div class="qcrxq_r right">
                    	  <div class="qcrxq_qy">
-                        	<div class="qcrxq_qy_l left"><a href="/website/autoCompany?company.id=${t.company.id!}"><img src="${t.company.logo!}" style="width:100px;height:50px;"/></a></div>
-                          <div class="qcrxq_qy_r right">
-                            	<div class="qcrxq_qy_name"><span><a href="#">已有${t.company.bondsmanCount}人担保</a></span><a href="/website/autoCompany?company.id=${t.company.id!}">${t.company.name!}</a></div>
-                                <div class="qcrxq_jyfw"><a href="#">${t.company.industry!}</a></div>
+                          <a href="/website/autoCompany?company.id=${t.company.id!}">
+                              <div class="qcrxq_qy_l left"><img src="${t.company.logo!}" style="width:100px;height:50px;"/></div>
+                              <div class="qcrxq_qy_r right">
+                            	<div class="qcrxq_qy_name">
+                                    <span>已有${t.company.bondsmanCount}人担保</span>
+                                    <span>${t.company.name!}</span></div>
+                                <div class="qcrxq_jyfw">${t.company.industry!}</div>
                           </div>
                             <div class="clear"></div>
                         </div>
                         <div class="qcrxq_fl">
                         	<#if t.welfare??>
                         	<#list t.welfare as w>
-                        	<span><a href="#">${w!}</a></span>
+                        	<span>${w!}</span>
                             </#list>
                         </#if>
                         </div>
