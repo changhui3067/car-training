@@ -67,6 +67,8 @@ public class AutobotCompleteResumeAction extends BaseAction {
 
     private Long parentId;
 
+    private Region userRegion;
+
     public Object getData() {
         return data;
     }
@@ -107,7 +109,8 @@ public class AutobotCompleteResumeAction extends BaseAction {
             autobot = autobotsService.findByUserCenter(uc.getId());
         }
         provinces = regionUtils.getSubCities(-1);
-        cities = regionUtils.getSubCities(uc.getRegion().getId());
+        userRegion = regionUtils.getRegionById(uc.getRegion().getId());
+        cities = regionUtils.getSubCities(userRegion.getParent().getId());
         return SUCCESS;
     }
 
@@ -328,4 +331,11 @@ public class AutobotCompleteResumeAction extends BaseAction {
         this.businessCategory = businessCategory;
     }
 
+    public Region getUserRegion() {
+        return userRegion;
+    }
+
+    public void setUserRegion(Region userRegion) {
+        this.userRegion = userRegion;
+    }
 }

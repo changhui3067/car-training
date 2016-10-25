@@ -20,18 +20,22 @@ public class RegionUtils {
 
 
     public List<Region> getSubCities(long parentId) {
-        Region region = new Region();
+        entityManager.setEntityClass(Region.class);
         if(parentId > 0){
-            region = entityManager.get(parentId);
+            return  (List<Region>) entityManager.get(parentId).getChildren();
         }else{
             DetachedCriteria dc = entityManager.detachedCriteria();
             dc.add(Restrictions.isNull("parent"));
             dc.addOrder(Order.asc("displayOrder"));
             dc.addOrder(Order.asc("name"));
-            region.setChildren(entityManager.findListByCriteria(dc));
+            return entityManager.findListByCriteria(dc);
 
         }
-        return (List<Region>) region.getChildren();
+    }
+
+    public Region getRegionById(long id){
+        entityManager.setEntityClass(Region.class);
+        return entityManager.get(id);
     }
 
 }

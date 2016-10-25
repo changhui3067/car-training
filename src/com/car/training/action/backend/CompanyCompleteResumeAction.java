@@ -123,26 +123,6 @@ public class CompanyCompleteResumeAction extends BaseAction {
         return SUCCESS;
     }
 
-    @JsonConfig(root = "data")
-    public String getcities() {
-        Map<String, Object> map = new HashMap<>();
-        Region region = new Region();
-        entityManager.setEntityClass(Region.class);
-        if (parentId != null && parentId > 0) {
-            region = entityManager.get(parentId);
-        } else {
-            DetachedCriteria dc = entityManager.detachedCriteria();
-            dc.add(Restrictions.isNull("parent"));
-            dc.addOrder(Order.asc("displayOrder"));
-            dc.addOrder(Order.asc("name"));
-            region.setChildren(entityManager.findListByCriteria(dc));
-        }
-        cities = (List<Region>) region.getChildren();
-        map.put("code", "200");
-        map.put("cities", cities);
-        setData(map);
-        return JSON;
-    }
 
     @JsonConfig(root = "data")
     public String save() throws Exception {

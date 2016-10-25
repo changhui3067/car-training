@@ -378,7 +378,7 @@ function selectCities(){
 	form_data.parentId = $("[name='province']").val();;
 	$.ajax({
 		 type: "POST",
-	     url: "/backend/companyCompleteResume/getcities",
+	     url: "/backend/regions/getCities",
 	     data: form_data,
 	     error: function(request) {
 	         showErrMsg("网络出错啦！");
