@@ -1,65 +1,9 @@
-/* StyleName:专题*/
-/* 2016/6/1 by WZM*/
-/* 全局 */
-html,body {height:100%; background:#f3f1f1;  }
-body {font:14px "微软雅黑",Arial,sans-serif; color:#4c4c4c;margin:0px; }
-form,menu,dir,fieldset,blockquote,p,pre,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6 { padding:0; margin:0;}
-ul,ol,dl { list-style:none; }
-a {color:#666666;;text-decoration: none;}
-a:hover {color:#666666;text-decoration:none;}
-a img {border: none;}
-.clear {clear: both;line-height: 0px;font-size:0px;}
-.content {width:1200px;margin: 0 auto;  }
-.left {float:left;}
-.right {float:right;}
-.mt10 {margin-top:10px;}
-.oh {height:100%;overflow: hidden;}
-
-
-/*头部*/
-.top{ background:#313a41; height:50px;}
-.logo{ width:230px;}
-.nav_box{ width:665px;}
-
-.nav li{ display:block; float:left; width:95px; height:50px;line-height:50px;font-size:14px; color:#cdcdcd; text-align:center;}
-.nav li a{ display:block;color:#cdcdcd;width:95px; height:50px;}
-.nav li a:hover{ display:block;width:95px; height:50px;color:#ffffff;font-weight:700;background:#3689b3;}
-.nav li.cn a,.nav li.cn a:hover{ display:block;width:95px; font-weight:700;height:50px;color:#ffffff;background:#3689b3;}
-
-.dl_tel{ width:170px;height:50px;line-height:50px; color:#fff; text-align:right;}
-.dl_top{ width:120px; padding-left:15px;height:50px;line-height:50px;}
-.dl_top li{ display:block; float:left; width:60px; text-align:center; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/line.jpg) no-repeat left center; height:50px; line-height:50px; color:#a0a0a0; font-size:12px;}
-.dl_top li a{color:#a0a0a0;}
-.dl_top li a:hover{ color:#fff;}
-
-
-
-
-/*main*/
-.main{ padding:20px 0px; width:100%;  }
-.ny{padding:30px 15px; background:#fff;}
-
-
-
-
-/*分页*/
-.fypage {padding:40px 0px 42px 0px;text-align: center;}
-.fypage span {padding: 5px 10px; background: #fff;border: 1px #ccc solid;margin-left: 5px;color: #777;}
-.fypage a {padding: 5px 10px;background: #3d9ccc;border: 1px #3d9ccc solid;margin-left: 5px;color: #fff;}
-.fypage a:hover {color: #fff;}
-
-
 
 
 /*培训公司招聘信息*/
 .ny_zhaopin{padding:30px 0px;}
 .zhaopin_l{ width:890px;}
 .zhaopin_r{ width:260px;border:1px solid #e1e1e1; background:#fff; padding:15px;}
-
-
-
-
-
 
 
 .zhuanti{ padding:20px 0px;background:#f3f3f3; }
@@ -97,12 +41,10 @@ a img {border: none;}
 .zt_pl2_l{}
 .zt_pl2_r{ width:155px;}
 
-
 /*专题——右侧 评论*/
 .kstw{ margin-bottom:30px;}
 .kstw h4{ display:block; height:40px; line-height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/ycwz_h4.jpg) no-repeat left center; padding-left:45px; font-size:18px; color:#000; font-weight:100; border-bottom:1px solid #e1e1e1; margin-bottom:10px;}
 .kstw_box{line-height:24px;font-size:14px;}
-
 
 
 /*专题——右侧  问答*/
@@ -110,8 +52,3 @@ a img {border: none;}
 .wdwd h4{ display:block; height:40px; line-height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pxshi_pj.jpg) no-repeat left center; padding-left:45px; font-size:18px; color:#000; font-weight:100; border-bottom:1px solid #e1e1e1; margin-bottom:10px;}
 .wdwd_box{font-size:14px; padding:0px 10px;}
 .wdwd_box li{ display:block; height:30px;line-height:30px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/icon2.jpg) no-repeat left center; padding-left:10px; border-bottom:1px dotted #ccc; margin-bottom:5px;}
-
-/*底部信息*/
-.footer{ width:100%; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/footer_bg.jpg) repeat-x left top;height:90px; padding-top:40px;}
-
-.bq{ line-height:24px; color:#000; text-align:center;}

@@ -16,7 +16,7 @@ a img {border: none;}
 .oh {height:100%;overflow: hidden;}
 
 
-/*头部*/
+/*for Header*/
 .top{ background:#313a41; height:50px;}
 .logo{ width:230px;}
 .nav_box{ width:665px;}
@@ -33,7 +33,7 @@ a img {border: none;}
 .dl_top li a:hover{ color:#fff;}
 
 /*banner*/
-
+.banner{height:310px; padding-top:25px; background:url(../images/banner0.jpg) no-repeat center top; }
 
 
 .dl_box{  margin-left:900px;width:260px; height:245px; padding:10px 20px 0px 20px; background:#383633;filter:alpha(opacity=80);   
@@ -58,6 +58,7 @@ a img {border: none;}
 .wjpwd{height:20px; line-height:20px; text-align:right; padding-bottom:4px;  color:#fff;  }
 .wjpwd a,.wjpwd a:hover{ color:#fff;}
 .dl{ height:37px; line-height:37px;  padding-bottom:4px;  border-bottom:1px dotted #ccc;}
+
 .phonecode {
     display: inline-block;
     background: #ccc;
@@ -72,6 +73,22 @@ a img {border: none;}
 
 /*main*/
 .main{ padding:20px 0px; width:100%; }
+.ny{padding:30px 15px; background:#fff;}
+
+/*搜索*/
+.sousuo_box{ border:1px solid #e3e3e3; background:#f9fbfb; padding:20px; height:100%; margin-bottom:25px;}
+
+/*搜索框*/
+.sou{ height:35px;/* line-height:35px;*/ margin-top:10px;}
+.sou h4{ display:block; float:left; font-weight:100; width:65px; text-align:left;  padding-left:30px; color:#3689b3;font-weight:700;  }
+.sou_box{ width:1030px;float:right;}
+.sou_box li{ display:block; float:left; padding-right:40px;}
+
+/*分页*/
+.fypage {padding:0px 0px 42px 0px;text-align: center;}
+.fypage span {padding: 5px 10px; background: #fff;border: 1px #ccc solid;margin-left: 5px;color: #777;}
+.fypage a {padding: 5px 10px;background: #3d9ccc;border: 1px #3d9ccc solid;margin-left: 5px;color: #fff;}
+.fypage a:hover {color: #fff;}
 
 /*培训师*/
 .pxshi_box{ height:525px; padding:15px 0px;background:#ffffff; margin-bottom:20px;}
@@ -139,7 +156,7 @@ a img {border: none;}
 .pxxq_box h4{ display:block;font-weight:100; height:40px; border-bottom:2px solid #ff7d00; background:url(../images/pxxq_h4.jpg) no-repeat 15px center; line-height:40px; font-size:18px; color:#ff7d00;font-weight:700; padding-left:70px;  }
 .pxxq_box h4 span{ display:block; float:right; padding-right:15px;color:#ff7d00; font-size:14px; font-weight:100;}
 .pxxq_box h4 span a,.pxxq_box h4 span a:hover{color:#ff7d00;}
-.pxxq{ padding:15px 15px 0px 15px; height:295px;}
+.pxxq{ padding:15px 15px 0px 15px; /*height:295px;*/}
 .pxxq li{
 	margin-bottom: 15px;
 	width: 1138px;
@@ -199,7 +216,7 @@ a img {border: none;}
 .qcrxq li{margin-bottom: 15px;width: 1138px;height: 105px;background: #f7fcff;border: 1px solid #e5e5e5;	padding: 15px;
 	
 }
-.qcrxq_l{ width:610px;padding:10px 15px 0x 15px; border-right:1px dotted #e5e5e5;height: 105px;}
+.qcrxq_l{ width:610px;padding:10px 15px 0px 15px; border-right:1px dotted #e5e5e5;height: 105px;}
 .qcrxq_zw_name{ font-size:16px; line-height:24px; height:24px; color:#3d9ccc; font-weight:700; margin-bottom:8px;}
 
 
@@ -288,6 +305,26 @@ a img {border: none;}
 .cursorStyle:hover {
     cursor: pointer;
 }
+
+/*培训领域*//*职位地址*//*培训形式*//*工作性质*//*培训时间*/
+.pxly, .scxs, .zwdz, .pxxs, .gzxz, .pxsj
+{ font-size:12px; height:30px; line-height:30px; margin-bottom:5px;}
+
+.pxly h4, .scxs h4, .zwdz h4, .pxxs h4, .gzxz h4, .pxsj h4
+{ display:block;font-size:12px; float:left; font-weight:100; width:65px; text-align:left; padding-left:30px; color:#3689b3;  }
+
+.pxly_box, .scxs_box, .zwdz_box, .pxxs_box, .gzxz_box, .pxsj_box
+{ width:1030px;float:right;}
+
+.pxly_box li, .scxs_box li, .zwdz_box li, .pxxs_box li, .gzxz_box li, .pxsj_box li
+{ display:block; float:left; padding-right:40px;}
+
+.pxly h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pxly.jpg) no-repeat left 2px;}
+.scxs h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/scxs.jpg) no-repeat left 2px;}
+.zwdz h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/zwdz.jpg) no-repeat left 2px;}
+.pxxs h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pxxs.jpg) no-repeat left 4px;}
+.gzxz h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/gzxz.jpg) no-repeat left 2px;}
+.pxsj h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pxsj.jpg) no-repeat left 3px;}
 /**
 add our css below
 */

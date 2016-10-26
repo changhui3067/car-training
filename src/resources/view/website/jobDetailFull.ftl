@@ -5,7 +5,7 @@
 
 <title>培聘网</title>
 <link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen" />
-
+    <link rel="stylesheet" href="<@url value="/assets/website/css/style.css"/>" type="text/css" media="screen" />
 <link rel="stylesheet" type="text/css" href="<@url value="/assets/website/css/lrtk.css"/>">
 <script src="<@url value="/assets/website/js/jquery1.42.min.js?v=1.1.0"/>"></script>
 <script src="<@url value="/assets/website/js/jquery.superslide.2.1.1.js?v=1.1.0"/>" type="text/javascript"></script>
