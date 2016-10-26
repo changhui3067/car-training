@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <title>培聘网</title>
-<link rel="stylesheet" href="<@url value="/assets/website/css/qcren.css"/>" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen" />
+<link rel="stylesheet" href="<@url value="/assets/website/css/style.css"/>" type="text/css" media="screen" />
 
 <link rel="stylesheet" type="text/css" href="<@url value="/assets/website/css/lrtk.css"/>" />
 <script src="<@url value="/assets/website/js/jquery1.42.min.js"/>"></script>
@@ -12,33 +13,8 @@
 </head>
 
 <body>
-<!-- 头部开始 -->	
-<div class="top">
-	<div class="content">
-    	<div class="logo left"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/logo.jpg" /></div>
-        <div class="nav_box left">
-        	<div class="nav">
-            	<ul>
-            	<li><a href="#">首页</a></li>
-                <li><a href="#">培训师</a></li>
-                <li><a href="#">培训需求</a></li>
-                <li class="cn"><a href="#">汽车人</a></li>
-                <li><a href="#">汽车人需求</a></li>
-                <li><a href="#">培训学院</a></li>
-                <li><a href="#">公开课</a></li>
-                
-            </ul>
-            </div>
-        </div>
-        <div class="dl_top right">
-        	<ul>
-            	<li style="background:none;"><a href="#">请登录</a></li>
-                <li><a href="#">免费注册</a></li>
-            </ul>
-        </div>
-        <div class="clear"></div>
-    </div>
-</div>
+<!-- 头部开始 -->
+<#include "/assets/website/common/header.html">
 <!-- 头部结束 -->	
 
 <!-- main开始 -->
