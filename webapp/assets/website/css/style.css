@@ -33,7 +33,7 @@ a img {border: none;}
 .dl_top li a:hover{ color:#fff;}
 
 /*banner*/
-.banner{height:310px; padding-top:25px; background:url(../images/banner0.jpg) no-repeat center top; }
+
 
 
 .dl_box{  margin-left:900px;width:260px; height:245px; padding:10px 20px 0px 20px; background:#383633;filter:alpha(opacity=80);   
@@ -288,3 +288,54 @@ a img {border: none;}
 .cursorStyle:hover {
     cursor: pointer;
 }
+/**
+add our css below
+*/
+.banner {
+	height:340px; 
+	padding-top:15px; 
+	background:url(../images/banner0.jpg) 
+	no-repeat 
+	center 
+	top; 
+}
+.login-box{  
+	margin-left:900px;
+	width:300px; 
+	height:300px; 
+	padding:10px 20px 0px 20px; 
+	background:#383633;
+	filter:alpha(opacity=80);   
+    -moz-opacity:0.8;   
+    -khtml-opacity: 0.8;   
+    opacity: 0.8; color:#fff;  
+}
+.dot-line { 
+	height:30px; 
+	line-height:30px; 
+	margin-bottom:10px; 
+	border-bottom:1px 
+	dotted #f0f0f0;  
+	text-align:left; 
+	font-weight:700; 
+	color:#fff;
+}
+
+.form-group >label {
+	padding-right: 0;
+	text-align: left;
+}
+
+.errMsg {
+	display:block; 
+	padding-left:10px;
+	height: 3px;
+	color:#FA5506;
+}
+
+#checkeRadio label {
+	padding-left: 35px;
+	margin-bottom:10px;
+}
+
+
