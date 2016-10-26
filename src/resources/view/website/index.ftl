@@ -61,7 +61,7 @@
                  <div class="pxshi_name">
                      <div class="xm left">${trainer.userCenter.name!}</div>
                      <div class="pl left"><#if trainer.autobotsCommentList??> ${trainer.autobotsCommentList.size!}<#else>0</#if>人<span>评论</span></div>
-                     <div class="dz right">${trainer.starLevel!}</div>
+                     <div class="dz right"><a href='#'>${trainer.starLevel!}</a></div>
                      <div class="clear"></div>
                  </div>
                  <div class="pxshi_zp">${trainer.currentPosition!} </div>
@@ -94,12 +94,12 @@
                 </div>
                 <div class="pxshi_zp2">${t.currentPosition!} </div>
                 <div class="rz2">
-                    <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></a></span>
-                    <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></a></span>
-                    <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></a></span>
-                    <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/xin.jpg" /></a></span>
-                    <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zishen.jpg" /></a></span>
-                    <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dav.jpg" /></a></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/xin.jpg" /></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zishen.jpg" /></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dav.jpg" /></span>
                 </div>
             </div>
             </#if>
@@ -251,7 +251,7 @@
 </div>
 </div>
 <div class="art_box">
- <div class="ycwz left">
+ <!--<div class="ycwz left">
      <h4><span><a href="#">更多>></a></span>原创文章</h4>
      <div class="ycwz_box">
          <#if trainerEssayList??>
@@ -266,7 +266,7 @@
          </ul>
          </#if>
      </div>
- </div>
+ </div>-->
  <div class="yiti left">
      <h4><span><a href="#">更多>></a></span>培训学院热点议题</h4>
      <div class="yiti_box">

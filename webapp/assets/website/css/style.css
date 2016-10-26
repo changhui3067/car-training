@@ -5,7 +5,7 @@ html,body {height:100%; background:#f3f1f1;  }
 body {font:14px "微软雅黑",Arial,sans-serif; color:#4c4c4c;margin:0px; }
 form,menu,dir,fieldset,blockquote,p,pre,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6 { padding:0; margin:0;}
 ul,ol,dl { list-style:none; }
-a {color:#666666;;text-decoration: none;}
+a {color:#666666;;text-decoration: none !important;}
 a:hover {color:#666666;text-decoration:none; cursor: pointer;}
 a img {border: none;}
 .clear {clear: both;line-height: 0px;font-size:0px;}
@@ -90,12 +90,32 @@ a img {border: none;}
 .fypage a {padding: 5px 10px;background: #3d9ccc;border: 1px #3d9ccc solid;margin-left: 5px;color: #fff;}
 .fypage a:hover {color: #fff;}
 
-/*培训师*/
-.pxshi_box{ height:525px; padding:15px 0px;background:#ffffff; margin-bottom:20px;}
-.pxshi_box h4{ display:block;font-weight:100; height:40px; border-bottom:2px solid #ff7d00; background:url(../images/pxshi_h4.jpg) no-repeat 15px center; line-height:40px; font-size:18px; color:#ff7d00;font-weight:700; padding-left:70px;  }
-.pxshi_box h4 span{ display:block; float:right; padding-right:15px;color:#ff7d00; font-size:14px; font-weight:100;}
+/*培训师*//*培训生*//*培训需求*//*汽车人需求*/
+.pxshi_box, .pxsheng_box, .pxxq_box, .qcrxq_box{ padding:0px;background:#ffffff; margin-bottom:20px;}
+.pxshi_box{ height:525px; color:#ff7d00;}
+.pxsheng_box{ height:325px; color:#3d9ccc;}
+.pxxq_box{ height:350px; color:#ff7d00;}
+.qcrxq_box{ height:350px; color:#3d9ccc;}
+
+.pxshi_box h4, .pxsheng_box h4, .pxxq_box h4, .qcrxq_box h4
+{ display:block;font-weight:100; height:40px; line-height:40px; font-size:18px;font-weight:700; padding-left:70px;  }
+.pxshi_box h4 { border-bottom:2px solid #ff7d00; background:url(../images/pxshi_h4.jpg) no-repeat 15px center;}
+.pxsheng_box h4{ border-bottom:2px solid #3d9ccc; background:url(../images/pxsheng_h4.jpg) no-repeat 15px center;}
+.pxxq_box h4{ border-bottom:2px solid #ff7d00; background:url(../images/pxxq_h4.jpg) no-repeat 15px center;}
+.qcrxq_box h4{ border-bottom:2px solid #3d9ccc; background:url(../images/qcrxq_h4.jpg) no-repeat 15px center;}
+
+.pxshi_box h4 span, .pxsheng_box h4 span, .pxxq_box h4 span, .qcrxq_box h4 span
+{ display:block; float:right; padding-right:15px;font-size:14px; font-weight:500;}
+
 .pxshi_box h4 span a,.pxshi_box h4 span a:hover{color:#ff7d00;}
-.pxshi{ padding:15px 0px 0px 15px; height:470px;}
+.pxsheng_box h4 span a,.pxsheng_box h4 span a:hover{color:#3d9ccc;}
+.pxxq_box h4 span a,.pxxq_box h4 span a:hover{color:#ff7d00;}
+.qcrxq_box h4 span a,.qcrxq_box h4 span a:hover{color:#3d9ccc;}
+
+.qcrxq{ padding:15px 15px 0px 15px; height:295px;}
+.pxshi{ padding:5px 0px 0px 15px; height:470px;}
+.pxsheng{ padding:15px 15px 0px 15px; height:265px;}
+.pxxq{ padding:15px 15px 0px 15px; /*height:295px;*/}
 
 /*培训师_左边大图*/
 .pxshi_l{ width:382px; height:464px; background:#faf9f9; border:1px solid #e7e5e5;  padding:1px;}
@@ -129,13 +149,7 @@ a img {border: none;}
 .rz2{}
 .rz2 span{ display:block; float:left; margin-right:2px;}
 
-/*培训生*/
-.pxsheng_box{ height:325px;  padding:15px 0px;background:#ffffff; margin-bottom:20px;}
-.pxsheng_box h4{ display:block;font-weight:100; height:40px; border-bottom:2px solid #3d9ccc; background:url(../images/pxsheng_h4.jpg) no-repeat 15px center; line-height:40px; font-size:18px; color:#3d9ccc;font-weight:700; padding-left:70px;  }
-.pxsheng_box h4 span{ display:block; float:right; padding-right:15px;color:#3d9ccc; font-size:14px; font-weight:100;}
-.pxsheng_box h4 span a,.pxsheng_box h4 span a:hover{color:#3d9ccc;}
-.pxsheng{ padding:15px 15px 0px 15px; height:265px;}
-
+/*培训生_缩略图*/
 .pxsheng li{ display:block; float:left; width:210px; height:260px;background:#faf8f9; border:1px solid #e7e5e5;  padding:1px; margin-right:20px;}
 .pxsheng_pic{ width:214px; height:181px;}
 .pxsheng_pic img{ width:214px; height:181px;}
@@ -152,22 +166,17 @@ a img {border: none;}
 .pxsheng_rz span{ display:block; float:left; margin-right:8px;}
 
 /*培训需求*/
-.pxxq_box{ height:350px;padding:15px 0px;background:#fffbf8; margin-bottom:20px;}
-.pxxq_box h4{ display:block;font-weight:100; height:40px; border-bottom:2px solid #ff7d00; background:url(../images/pxxq_h4.jpg) no-repeat 15px center; line-height:40px; font-size:18px; color:#ff7d00;font-weight:700; padding-left:70px;  }
-.pxxq_box h4 span{ display:block; float:right; padding-right:15px;color:#ff7d00; font-size:14px; font-weight:100;}
-.pxxq_box h4 span a,.pxxq_box h4 span a:hover{color:#ff7d00;}
-.pxxq{ padding:15px 15px 0px 15px; /*height:295px;*/}
 .pxxq li{
 	margin-bottom: 15px;
-	width: 1138px;
-	height: 105px;
+	/*width: 1138px;*/
+	height: 120px;
 	background: #fffbf8;
 	border: 1px solid #e5e5e5;
 	padding: 15px;
 	position: relative;
 	left: 0px;
 }
-.pxxq_l{ width:610px;padding:10px 15px 0x 15px; border-right:1px dotted #e5e5e5;height: 105px;}
+.pxxq_l{ width:610px;/*padding:10px 15px 0x 15px;*/ border-right:1px dotted #e5e5e5;height: 105px;}
 .zw_name{ font-size:16px; line-height:24px; height:24px; color:#ff7d00; font-weight:700; margin-bottom:8px;}
 .dy_box{ height:24px; line-height:24px;margin-bottom:8px; color:#666666;}
 .dy_box span{ display:block; float:left; padding:0px 10px; background:url(../images/line2.jpg) no-repeat right center;color:#666666;}
@@ -178,8 +187,8 @@ a img {border: none;}
 .fb_box span{ display:block; float:left; padding:0px 10px; background:url(../images/line2.jpg) no-repeat right center;}
 
 
-.pxxq_r{ width:490px;padding:10px 15px 0x 15px; }
-.qy{ height:55px; margin-bottom:15px; }
+.pxxq_r{ width:490px;/*padding:10px 15px 0px 15px;*/ }
+.qy{ height:55px; /*margin-bottom:15px;*/ }
 .qy_l{ width:100px; height:50px; border:1px solid #f0f0f0; padding:2px; }
 .qy_r{ width:365px;}
 .qy_name{ text-align:left; font-size:16px; line-height:24px; height:24px; color:#000;  margin-bottom:4px;}
@@ -191,32 +200,19 @@ a img {border: none;}
 .jyfw a,.jyfw a:hover{color:#9c9c9c;}
 .fl{ }
 .fl span{padding:0px 10px; background:#fff6ee; border:1px solid #ffeddc; margin-right:10px; height:24px; line-height:24px; font-size:12px; color:#ff7d00}
-.qz{
+.qz, .jz{
 	position: absolute;
 	left: 1127px;
 	top: -1px;
-	background: url(../images/qz.gif) no-repeat right top;
 	height: 43px;
 	width: 41px;
-} 
-.jz{
-	position: absolute;
-	left: 1127px;
-	top: -1px;
-	background: url(../images/jz.gif) no-repeat right top;
-	height: 43px;
-	width: 41px;
-} 
-/*汽车人需求*/
-.qcrxq_box{ height:350px;padding:15px 0px;background:#f7fcff; margin-bottom:20px;}
-.qcrxq_box h4{ display:block;font-weight:100; height:40px; border-bottom:2px solid #3d9ccc; background:url(../images/qcrxq_h4.jpg) no-repeat 15px center; line-height:40px; font-size:18px; color:#3d9ccc;font-weight:700; padding-left:70px;  }
-.qcrxq_box h4 span{ display:block; float:right; padding-right:15px;color:#3d9ccc; font-size:14px; font-weight:100;}
-.qcrxq_box h4 span a,.qcrxq_box h4 span a:hover{color:#3d9ccc;}
-.qcrxq{ padding:15px 15px 0px 15px; height:295px;}
-.qcrxq li{margin-bottom: 15px;width: 1138px;height: 105px;background: #f7fcff;border: 1px solid #e5e5e5;	padding: 15px;
-	
 }
-.qcrxq_l{ width:610px;padding:10px 15px 0px 15px; border-right:1px dotted #e5e5e5;height: 105px;}
+.qz { background: url(../images/qz.gif) no-repeat right top;}
+.jz{ background: url(../images/jz.gif) no-repeat right top;}
+
+/*汽车人需求*/
+.qcrxq li{margin-bottom: 15px;/*width: 1138px;*/height: 135px;background: #f7fcff;border: 1px solid #e5e5e5;	padding: 15px;  }
+.qcrxq_l{ width:610px;/*padding:10px 15px 0px 15px;*/ border-right:1px dotted #e5e5e5;height: 105px;}
 .qcrxq_zw_name{ font-size:16px; line-height:24px; height:24px; color:#3d9ccc; font-weight:700; margin-bottom:8px;}
 
 
@@ -269,7 +265,7 @@ a img {border: none;}
 .yiti h4 span a,.yiti h4 span a:hover{color:#a1c25a;}
 
 /*公开课*/
-.gkk{ width:390px; height:270px; background:#fff;}
+.gkk{ width:790px; height:270px; background:#fff;}
 .gkk h4{ display:block;font-weight:100; height:40px;padding-top:10px; border-bottom:2px solid #d76b63; background:url(../images/gkk_h4.jpg) no-repeat 10px center; line-height:40px; font-size:18px; color:#d76b63;font-weight:700; padding-left:60px;  }
 .gkk h4 span{ display:block; float:right; padding-right:15px;color:#a1c25a; font-size:14px; font-weight:100;}
 .gkk h4 span a,.yiti h4 span a:hover{color:#d76b63;}
