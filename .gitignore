@@ -6,4 +6,5 @@ out/
 target/
 .DS_Store
 car-training.properties
+applicationContext.properties
 src/resources/spring/applicationContext.properties
