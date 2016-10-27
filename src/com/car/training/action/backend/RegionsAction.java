@@ -2,16 +2,11 @@ package com.car.training.action.backend;
 
 
 import com.car.training.utils.RegionUtils;
-import org.apache.struts2.ServletActionContext;
-import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.JsonConfig;
-import org.ironrhino.core.service.EntityManager;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 

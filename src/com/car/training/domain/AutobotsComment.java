@@ -3,105 +3,119 @@ package com.car.training.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-public class AutobotsComment implements Serializable{
-	
-	private static final long serialVersionUID = -8330767379598052647L;
+public class AutobotsComment implements Serializable {
 
-	/**系统Id**/
-	private String id;
-	
-	/**内容设计评分*/
-	private Integer	 contentDesignScore;
-	
-	/**课堂气氛评分*/
-	private Integer	 lessonAtmosphereScore;
-	
-	/**课后收获评分*/
-	private Integer	 afterLessonGainsScore;
-	
-	/**评论内容*/
-	private String	content;
-	
-	/**创建日期*/
-	private Date createDate;
-	
-	/**是否启用*/
-	private boolean enabled;
-	
-	private Autobots autobots;
-	
-	private Trainer trainer;
-	
-	public String getId() {
-		return id;
-	}
+    private static final long serialVersionUID = -8330767379598052647L;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    /**
+     * 系统Id
+     **/
+    private String id;
 
-	public Integer getContentDesignScore() {
-		return contentDesignScore;
-	}
+    /**
+     * 内容设计评分
+     */
+    private Integer contentDesignScore;
 
-	public void setContentDesignScore(Integer contentDesignScore) {
-		this.contentDesignScore = contentDesignScore;
-	}
+    /**
+     * 课堂气氛评分
+     */
+    private Integer lessonAtmosphereScore;
 
-	public Integer getLessonAtmosphereScore() {
-		return lessonAtmosphereScore;
-	}
+    /**
+     * 课后收获评分
+     */
+    private Integer afterLessonGainsScore;
 
-	public void setLessonAtmosphereScore(Integer lessonAtmosphereScore) {
-		this.lessonAtmosphereScore = lessonAtmosphereScore;
-	}
+    /**
+     * 评论内容
+     */
+    private String content;
 
-	public Integer getAfterLessonGainsScore() {
-		return afterLessonGainsScore;
-	}
+    /**
+     * 创建日期
+     */
+    private Date createDate;
 
-	public void setAfterLessonGainsScore(Integer afterLessonGainsScore) {
-		this.afterLessonGainsScore = afterLessonGainsScore;
-	}
+    /**
+     * 是否启用
+     */
+    private boolean enabled;
 
-	public String getContent() {
-		return content;
-	}
+    private Autobots autobots;
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    private Trainer trainer;
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public Integer getContentDesignScore() {
+        return contentDesignScore;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setContentDesignScore(Integer contentDesignScore) {
+        this.contentDesignScore = contentDesignScore;
+    }
 
-	public Autobots getAutobots() {
-		return autobots;
-	}
+    public Integer getLessonAtmosphereScore() {
+        return lessonAtmosphereScore;
+    }
 
-	public void setAutobots(Autobots autobots) {
-		this.autobots = autobots;
-	}
+    public void setLessonAtmosphereScore(Integer lessonAtmosphereScore) {
+        this.lessonAtmosphereScore = lessonAtmosphereScore;
+    }
 
-	public Trainer getTrainer() {
-		return trainer;
-	}
+    public Integer getAfterLessonGainsScore() {
+        return afterLessonGainsScore;
+    }
 
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
-	}
-	
+    public void setAfterLessonGainsScore(Integer afterLessonGainsScore) {
+        this.afterLessonGainsScore = afterLessonGainsScore;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Autobots getAutobots() {
+        return autobots;
+    }
+
+    public void setAutobots(Autobots autobots) {
+        this.autobots = autobots;
+    }
+
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
 }

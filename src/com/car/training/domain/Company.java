@@ -1,297 +1,336 @@
 package com.car.training.domain;
 
+import com.car.training.enums.CompanyType;
+import com.car.training.enums.Industry;
+import com.car.training.enums.Nature;
+import com.car.training.enums.Scale;
+import org.ironrhino.common.model.Region;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
-import org.ironrhino.common.model.Region;
-
-import com.car.training.enums.CompanyType;
-import com.car.training.enums.Industry;
-import com.car.training.enums.Nature;
-import com.car.training.enums.Scale;
-
 public class Company implements Serializable {
 
-	private static final long serialVersionUID = -5028918733673342940L;
+    private static final long serialVersionUID = -5028918733673342940L;
 
-	private String id;
-	
-	/**公司名称**/
-	private String name; 
-	
-	/**账户名称**/
-	private String username;
-	
-	/** 密码 */
-	private String password;
-	
-	/**公司类别(公司/4S店)**/
-	private CompanyType companyType;
-	
-	/** 汽车品牌 */
-	private String autoBrand;
+    private String id;
 
-	/**区域**/
-	private Region region;
-	
-	/**公司地址**/
-	private String address; 
-	
-	/**公司LOGO**/
-	private String logo;  
-	
-	/**公司规模**/
-	private Scale scale;
-	
-	/**所属行业**/
-	private Industry industry;
-	
-	/**公司性质**/
-	private Nature nature;
-	
-	/**福利**/
-	private Set<String> welfare;
-	
-	/**担保人**/
-	private String bondsman;
-	/**担保人数**/
-	private int bondsmanCount;
-	
-	/** 财富值 */
-	private BigDecimal wealth;
-	
-	/** 财富值开始有效日期 */
-	private Date wealthStartDate;
-	
-	/** 财富值结束有效日期 */
-	private Date wealthEndDate;
-	
-	/** 公司介绍 */
-	private String intro;
-	
-	/**工作环境照片1**/
-	private String environmentURL1;
-	
-	/**工作环境照片2**/
-	private String environmentURL2;
-	
-	private Date createDate;
-	
-	private Date modifyDate;
-	
-	private String createUser;
+    /**
+     * 公司名称
+     **/
+    private String name;
 
-	private String modifyUser;
-	
-	private boolean enabled;
+    /**
+     * 账户名称
+     **/
+    private String username;
 
-	public String getId() {
-		return id;
-	}
+    /**
+     * 密码
+     */
+    private String password;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    /**
+     * 公司类别(公司/4S店)
+     **/
+    private CompanyType companyType;
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * 汽车品牌
+     */
+    private String autoBrand;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * 区域
+     **/
+    private Region region;
 
-	public String getUsername() {
-		return username;
-	}
+    /**
+     * 公司地址
+     **/
+    private String address;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    /**
+     * 公司LOGO
+     **/
+    private String logo;
 
-	public String getPassword() {
-		return password;
-	}
+    /**
+     * 公司规模
+     **/
+    private Scale scale;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * 所属行业
+     **/
+    private Industry industry;
 
-	public CompanyType getCompanyType() {
-		return companyType;
-	}
+    /**
+     * 公司性质
+     **/
+    private Nature nature;
 
-	public void setCompanyType(CompanyType companyType) {
-		this.companyType = companyType;
-	}
+    /**
+     * 福利
+     **/
+    private Set<String> welfare;
 
-	public String getAutoBrand() {
-		return autoBrand;
-	}
+    /**
+     * 担保人
+     **/
+    private String bondsman;
+    /**
+     * 担保人数
+     **/
+    private int bondsmanCount;
 
-	public void setAutoBrand(String autoBrand) {
-		this.autoBrand = autoBrand;
-	}
+    /**
+     * 财富值
+     */
+    private BigDecimal wealth;
 
-	public Region getRegion() {
-		return region;
-	}
+    /**
+     * 财富值开始有效日期
+     */
+    private Date wealthStartDate;
 
-	public void setRegion(Region region) {
-		this.region = region;
-	}
+    /**
+     * 财富值结束有效日期
+     */
+    private Date wealthEndDate;
 
-	public String getAddress() {
-		return address;
-	}
+    /**
+     * 公司介绍
+     */
+    private String intro;
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    /**
+     * 工作环境照片1
+     **/
+    private String environmentURL1;
 
-	public String getLogo() {
-		return logo;
-	}
+    /**
+     * 工作环境照片2
+     **/
+    private String environmentURL2;
 
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
+    private Date createDate;
 
-	public Scale getScale() {
-		return scale;
-	}
+    private Date modifyDate;
 
-	public void setScale(Scale scale) {
-		this.scale = scale;
-	}
+    private String createUser;
 
-	public Industry getIndustry() {
-		return industry;
-	}
+    private String modifyUser;
 
-	public void setIndustry(Industry industry) {
-		this.industry = industry;
-	}
+    private boolean enabled;
 
-	public Nature getNature() {
-		return nature;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setNature(Nature nature) {
-		this.nature = nature;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public Set<String> getWelfare() {
-		return welfare;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setWelfare(Set<String> welfare) {
-		this.welfare = welfare;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getBondsman() {
-		return bondsman;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setBondsman(String bondsman) {
-		this.bondsman = bondsman;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public int getBondsmanCount() {
-		return bondsmanCount;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setBondsmanCount(int bondsmanCount) {
-		this.bondsmanCount = bondsmanCount;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public BigDecimal getWealth() {
-		return wealth;
-	}
+    public CompanyType getCompanyType() {
+        return companyType;
+    }
 
-	public void setWealth(BigDecimal wealth) {
-		this.wealth = wealth;
-	}
+    public void setCompanyType(CompanyType companyType) {
+        this.companyType = companyType;
+    }
 
-	public Date getWealthStartDate() {
-		return wealthStartDate;
-	}
+    public String getAutoBrand() {
+        return autoBrand;
+    }
 
-	public void setWealthStartDate(Date wealthStartDate) {
-		this.wealthStartDate = wealthStartDate;
-	}
+    public void setAutoBrand(String autoBrand) {
+        this.autoBrand = autoBrand;
+    }
 
-	public Date getWealthEndDate() {
-		return wealthEndDate;
-	}
+    public Region getRegion() {
+        return region;
+    }
 
-	public void setWealthEndDate(Date wealthEndDate) {
-		this.wealthEndDate = wealthEndDate;
-	}
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 
-	public String getIntro() {
-		return intro;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setIntro(String intro) {
-		this.intro = intro;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public String getEnvironmentURL1() {
-		return environmentURL1;
-	}
+    public String getLogo() {
+        return logo;
+    }
 
-	public void setEnvironmentURL1(String environmentURL1) {
-		this.environmentURL1 = environmentURL1;
-	}
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
-	public String getEnvironmentURL2() {
-		return environmentURL2;
-	}
+    public Scale getScale() {
+        return scale;
+    }
 
-	public void setEnvironmentURL2(String environmentURL2) {
-		this.environmentURL2 = environmentURL2;
-	}
+    public void setScale(Scale scale) {
+        this.scale = scale;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public Industry getIndustry() {
+        return industry;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public void setIndustry(Industry industry) {
+        this.industry = industry;
+    }
 
-	public Date getModifyDate() {
-		return modifyDate;
-	}
+    public Nature getNature() {
+        return nature;
+    }
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
-	}
+    public void setNature(Nature nature) {
+        this.nature = nature;
+    }
 
-	public String getCreateUser() {
-		return createUser;
-	}
+    public Set<String> getWelfare() {
+        return welfare;
+    }
 
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
+    public void setWelfare(Set<String> welfare) {
+        this.welfare = welfare;
+    }
 
-	public String getModifyUser() {
-		return modifyUser;
-	}
+    public String getBondsman() {
+        return bondsman;
+    }
 
-	public void setModifyUser(String modifyUser) {
-		this.modifyUser = modifyUser;
-	}
+    public void setBondsman(String bondsman) {
+        this.bondsman = bondsman;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public int getBondsmanCount() {
+        return bondsmanCount;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setBondsmanCount(int bondsmanCount) {
+        this.bondsmanCount = bondsmanCount;
+    }
+
+    public BigDecimal getWealth() {
+        return wealth;
+    }
+
+    public void setWealth(BigDecimal wealth) {
+        this.wealth = wealth;
+    }
+
+    public Date getWealthStartDate() {
+        return wealthStartDate;
+    }
+
+    public void setWealthStartDate(Date wealthStartDate) {
+        this.wealthStartDate = wealthStartDate;
+    }
+
+    public Date getWealthEndDate() {
+        return wealthEndDate;
+    }
+
+    public void setWealthEndDate(Date wealthEndDate) {
+        this.wealthEndDate = wealthEndDate;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public String getEnvironmentURL1() {
+        return environmentURL1;
+    }
+
+    public void setEnvironmentURL1(String environmentURL1) {
+        this.environmentURL1 = environmentURL1;
+    }
+
+    public String getEnvironmentURL2() {
+        return environmentURL2;
+    }
+
+    public void setEnvironmentURL2(String environmentURL2) {
+        this.environmentURL2 = environmentURL2;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    public String getModifyUser() {
+        return modifyUser;
+    }
+
+    public void setModifyUser(String modifyUser) {
+        this.modifyUser = modifyUser;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 }

@@ -3,68 +3,68 @@ package com.car.training.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-public class DeliveryResume  implements Serializable {
+public class DeliveryResume implements Serializable {
 
-	private static final long serialVersionUID = 555506496775574089L;
-	
-	private String id;
+    private static final long serialVersionUID = 555506496775574089L;
 
-	private Jobs	jobs;
-	
-	private Trainer	trainer;
-	
-	private Autobots	 autobots;
-	
-	private Date createDate;
-	
-	private boolean enabled;
+    private String id;
 
-	public String getId() {
-		return id;
-	}
+    private Jobs jobs;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    private Trainer trainer;
 
-	public Jobs getJobs() {
-		return jobs;
-	}
+    private Autobots autobots;
 
-	public void setJobs(Jobs jobs) {
-		this.jobs = jobs;
-	}
+    private Date createDate;
 
-	public Trainer getTrainer() {
-		return trainer;
-	}
+    private boolean enabled;
 
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public Autobots getAutobots() {
-		return autobots;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setAutobots(Autobots autobots) {
-		this.autobots = autobots;
-	}
+    public Jobs getJobs() {
+        return jobs;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public void setJobs(Jobs jobs) {
+        this.jobs = jobs;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public Trainer getTrainer() {
+        return trainer;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public Autobots getAutobots() {
+        return autobots;
+    }
+
+    public void setAutobots(Autobots autobots) {
+        this.autobots = autobots;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
 }

@@ -1,299 +1,325 @@
 package com.car.training.domain;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
-
-import org.ironrhino.common.model.Region;
-
 import com.car.training.enums.CompanyType;
 import com.car.training.enums.Education;
 import com.car.training.enums.JobType;
 import com.car.training.enums.Major;
+import org.ironrhino.common.model.Region;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
 
 public class Jobs implements Serializable {
-	
-	private static final long serialVersionUID = -1405570857184708202L;
 
-	private String id;
-	
-	/**职位名称**/
-	private String name; 
+    private static final long serialVersionUID = -1405570857184708202L;
 
-	/**所属公司**/
-	private Company company; 
-	
-	private Region region;
-	
-	/**工作年限**/
-	private Integer workExprience;  
-	
-	/**发布日期**/
-	private Date publishDate;
-	
-	/**学历要求**/
-	private Education education;
-	
-	/** 品牌 */
-	private String autoBrand;
-	
-	/**工作种类**/
-	private JobType jobType;
-	
-	/**公司职位类别(公司招聘/4S店招聘)**/
-	private CompanyType companyType;
-	
-	/**兼职开始执行时间**/
-	private Date startExcutionDate;
-	
-	/**兼职结束执行时间**/
-	private Date endExecutionDate;
-	
-	/**福利**/
-	private Set<String> welfare;
-	
-	/**工资**/
-	private String salary;
-	
-	private Set<String> languages;
-	
-	private String jobDescription;
-	
-	private String reportTo;
-	
-	private String department;
-	
-	private Integer underling;
-	
-	private Major major;
-	
-	private Date createDate;
-	
-	private Date modifyDate;
-	
-	private String createUser;
+    private String id;
 
-	private String modifyUser;
-	
-	private boolean enabled;
-	
-	/**是否推荐**/
-	private boolean promoted;
-	
-	private Integer deliveryCount;
+    /**
+     * 职位名称
+     **/
+    private String name;
 
-	public String getId() {
-		return id;
-	}
+    /**
+     * 所属公司
+     **/
+    private Company company;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    private Region region;
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * 工作年限
+     **/
+    private Integer workExprience;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * 发布日期
+     **/
+    private Date publishDate;
 
-	public Company getCompany() {
-		return company;
-	}
+    /**
+     * 学历要求
+     **/
+    private Education education;
 
-	public void setCompany(Company company) {
-		this.company = company;
-	}
+    /**
+     * 品牌
+     */
+    private String autoBrand;
 
-	public Region getRegion() {
-		return region;
-	}
+    /**
+     * 工作种类
+     **/
+    private JobType jobType;
 
-	public void setRegion(Region region) {
-		this.region = region;
-	}
+    /**
+     * 公司职位类别(公司招聘/4S店招聘)
+     **/
+    private CompanyType companyType;
 
-	public String getAutoBrand() {
-		return autoBrand;
-	}
+    /**
+     * 兼职开始执行时间
+     **/
+    private Date startExcutionDate;
 
-	public void setAutoBrand(String autoBrand) {
-		this.autoBrand = autoBrand;
-	}
+    /**
+     * 兼职结束执行时间
+     **/
+    private Date endExecutionDate;
 
-	public Integer getWorkExprience() {
-		return workExprience;
-	}
+    /**
+     * 福利
+     **/
+    private Set<String> welfare;
 
-	public void setWorkExprience(Integer workExprience) {
-		this.workExprience = workExprience;
-	}
+    /**
+     * 工资
+     **/
+    private String salary;
 
-	public Date getPublishDate() {
-		return publishDate;
-	}
+    private Set<String> languages;
 
-	public void setPublishDate(Date publishDate) {
-		this.publishDate = publishDate;
-	}
+    private String jobDescription;
 
-	public Education getEducation() {
-		return education;
-	}
+    private String reportTo;
 
-	public void setEducation(Education education) {
-		this.education = education;
-	}
+    private String department;
 
-	public JobType getJobType() {
-		return jobType;
-	}
+    private Integer underling;
 
-	public void setJobType(JobType jobType) {
-		this.jobType = jobType;
-	}
+    private Major major;
 
-	public CompanyType getCompanyType() {
-		return companyType;
-	}
+    private Date createDate;
 
-	public void setCompanyType(CompanyType companyType) {
-		this.companyType = companyType;
-	}
+    private Date modifyDate;
 
-	public Date getStartExcutionDate() {
-		return startExcutionDate;
-	}
+    private String createUser;
 
-	public void setStartExcutionDate(Date startExcutionDate) {
-		this.startExcutionDate = startExcutionDate;
-	}
+    private String modifyUser;
 
-	public Date getEndExecutionDate() {
-		return endExecutionDate;
-	}
+    private boolean enabled;
 
-	public void setEndExecutionDate(Date endExecutionDate) {
-		this.endExecutionDate = endExecutionDate;
-	}
+    /**
+     * 是否推荐
+     **/
+    private boolean promoted;
 
-	public Set<String> getWelfare() {
-		return welfare;
-	}
+    private Integer deliveryCount;
 
-	public void setWelfare(Set<String> welfare) {
-		this.welfare = welfare;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getSalary() {
-		return salary;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setSalary(String salary) {
-		this.salary = salary;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Set<String> getLanguages() {
-		return languages;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setLanguages(Set<String> languages) {
-		this.languages = languages;
-	}
+    public Company getCompany() {
+        return company;
+    }
 
-	public String getJobDescription() {
-		return jobDescription;
-	}
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
-	public void setJobDescription(String jobDescription) {
-		this.jobDescription = jobDescription;
-	}
+    public Region getRegion() {
+        return region;
+    }
 
-	public String getReportTo() {
-		return reportTo;
-	}
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 
-	public void setReportTo(String reportTo) {
-		this.reportTo = reportTo;
-	}
+    public String getAutoBrand() {
+        return autoBrand;
+    }
 
-	public String getDepartment() {
-		return department;
-	}
+    public void setAutoBrand(String autoBrand) {
+        this.autoBrand = autoBrand;
+    }
 
-	public void setDepartment(String department) {
-		this.department = department;
-	}
+    public Integer getWorkExprience() {
+        return workExprience;
+    }
 
-	public Integer getUnderling() {
-		return underling;
-	}
+    public void setWorkExprience(Integer workExprience) {
+        this.workExprience = workExprience;
+    }
 
-	public void setUnderling(Integer underling) {
-		this.underling = underling;
-	}
+    public Date getPublishDate() {
+        return publishDate;
+    }
 
-	public Major getMajor() {
-		return major;
-	}
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
 
-	public void setMajor(Major major) {
-		this.major = major;
-	}
+    public Education getEducation() {
+        return education;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public void setEducation(Education education) {
+        this.education = education;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public JobType getJobType() {
+        return jobType;
+    }
 
-	public Date getModifyDate() {
-		return modifyDate;
-	}
+    public void setJobType(JobType jobType) {
+        this.jobType = jobType;
+    }
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
-	}
+    public CompanyType getCompanyType() {
+        return companyType;
+    }
 
-	public String getCreateUser() {
-		return createUser;
-	}
+    public void setCompanyType(CompanyType companyType) {
+        this.companyType = companyType;
+    }
 
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
+    public Date getStartExcutionDate() {
+        return startExcutionDate;
+    }
 
-	public String getModifyUser() {
-		return modifyUser;
-	}
+    public void setStartExcutionDate(Date startExcutionDate) {
+        this.startExcutionDate = startExcutionDate;
+    }
 
-	public void setModifyUser(String modifyUser) {
-		this.modifyUser = modifyUser;
-	}
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public Date getEndExecutionDate() {
+        return endExecutionDate;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setEndExecutionDate(Date endExecutionDate) {
+        this.endExecutionDate = endExecutionDate;
+    }
 
-	public Integer getDeliveryCount() {
-		return deliveryCount;
-	}
+    public Set<String> getWelfare() {
+        return welfare;
+    }
 
-	public void setDeliveryCount(Integer deliveryCount) {
-		this.deliveryCount = deliveryCount;
-	}
+    public void setWelfare(Set<String> welfare) {
+        this.welfare = welfare;
+    }
 
-	public boolean isPromoted() {
-		return promoted;
-	}
+    public String getSalary() {
+        return salary;
+    }
 
-	public void setPromoted(boolean promoted) {
-		this.promoted = promoted;
-	}
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public Set<String> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(Set<String> languages) {
+        this.languages = languages;
+    }
+
+    public String getJobDescription() {
+        return jobDescription;
+    }
+
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
+    }
+
+    public String getReportTo() {
+        return reportTo;
+    }
+
+    public void setReportTo(String reportTo) {
+        this.reportTo = reportTo;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public Integer getUnderling() {
+        return underling;
+    }
+
+    public void setUnderling(Integer underling) {
+        this.underling = underling;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    public String getModifyUser() {
+        return modifyUser;
+    }
+
+    public void setModifyUser(String modifyUser) {
+        this.modifyUser = modifyUser;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Integer getDeliveryCount() {
+        return deliveryCount;
+    }
+
+    public void setDeliveryCount(Integer deliveryCount) {
+        this.deliveryCount = deliveryCount;
+    }
+
+    public boolean isPromoted() {
+        return promoted;
+    }
+
+    public void setPromoted(boolean promoted) {
+        this.promoted = promoted;
+    }
 }

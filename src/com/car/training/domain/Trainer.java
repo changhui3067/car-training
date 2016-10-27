@@ -1,245 +1,285 @@
 package com.car.training.domain;
 
+import com.car.training.enums.Education;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import com.car.training.enums.Education;
-
 
 public class Trainer implements Serializable {
 
-	private static final long serialVersionUID = 921909027302657526L;
+    private static final long serialVersionUID = 921909027302657526L;
 
-	private String id;
-	
-	/**用户编号外键UserCenter**/
-	private UserCenter userCenter;
-	
-	/**星级*/
-	private int starLevel;
-	
-	/**学历*/
-	private Education education;
-	
-	/**主修课程*/
-	private String mainCourse;
-	
-	/**汽车行业经验*/
-	private Integer autoYears;
-	
-	/**培训行业经验*/
-	private Integer trainingYears;
-	
-	/**业务领域**/
-	private Set<String>  businessCategory;
-	
-	/**执行类别**/
-	private Set<String>  executionCategory;
-	
-	/**当前职位**/
-	private String currentPosition;
-	
-	/**公司发起的橄榄枝**/
-	private String olives;
-	
-	/**创建时间**/
-	private Date createDate;
-	
-	/**修改时间**/
-	private Date modifyDate;
-	
-	/**是否诚信认证,默认为false未认证**/
-	private boolean authFaithed;
-	
-	/**学员对讲师的平均打分**/
-	private BigDecimal averageScore;
-	
-	/**培训师的展示视频1**/
-	private String vedioURL1;
-	
-	/**培训师的展示视频2**/
-	private String vedioURL2;
-	
-	/**是否推荐**/
-	private boolean promoted;
-	
-	/**学员评论列表 */
-	private List<AutobotsComment> autobotsCommentList;
-	
-	/**学员文章列表 */
-	private List<TrainerEssay> trainerEssayList;
-	
-	/**培训公开课列表 */
-	private List<Courses> coursesList;
+    private String id;
 
-	public String getId() {
-		return id;
-	}
+    /**
+     * 用户编号外键UserCenter
+     **/
+    private UserCenter userCenter;
 
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	public UserCenter getUserCenter() {
-		return userCenter;
-	}
+    /**
+     * 星级
+     */
+    private int starLevel;
 
-	public void setUserCenter(UserCenter userCenter) {
-		this.userCenter = userCenter;
-	}
+    /**
+     * 学历
+     */
+    private Education education;
 
-	public int getStarLevel() {
-		return starLevel;
-	}
+    /**
+     * 主修课程
+     */
+    private String mainCourse;
 
-	public void setStarLevel(int starLevel) {
-		this.starLevel = starLevel;
-	}
+    /**
+     * 汽车行业经验
+     */
+    private Integer autoYears;
 
-	public Education getEducation() {
-		return education;
-	}
+    /**
+     * 培训行业经验
+     */
+    private Integer trainingYears;
 
-	public void setEducation(Education education) {
-		this.education = education;
-	}
+    /**
+     * 业务领域
+     **/
+    private Set<String> businessCategory;
 
-	public String getMainCourse() {
-		return mainCourse;
-	}
+    /**
+     * 执行类别
+     **/
+    private Set<String> executionCategory;
 
-	public void setMainCourse(String mainCourse) {
-		this.mainCourse = mainCourse;
-	}
+    /**
+     * 当前职位
+     **/
+    private String currentPosition;
 
-	public Integer getAutoYears() {
-		return autoYears;
-	}
+    /**
+     * 公司发起的橄榄枝
+     **/
+    private String olives;
 
-	public void setAutoYears(Integer autoYears) {
-		this.autoYears = autoYears;
-	}
+    /**
+     * 创建时间
+     **/
+    private Date createDate;
 
-	public Integer getTrainingYears() {
-		return trainingYears;
-	}
+    /**
+     * 修改时间
+     **/
+    private Date modifyDate;
 
-	public void setTrainingYears(Integer trainingYears) {
-		this.trainingYears = trainingYears;
-	}
+    /**
+     * 是否诚信认证,默认为false未认证
+     **/
+    private boolean authFaithed;
 
-	public Set<String> getBusinessCategory() {
-		return businessCategory;
-	}
+    /**
+     * 学员对讲师的平均打分
+     **/
+    private BigDecimal averageScore;
 
-	public void setBusinessCategory(Set<String> businessCategory) {
-		this.businessCategory = businessCategory;
-	}
+    /**
+     * 培训师的展示视频1
+     **/
+    private String vedioURL1;
 
-	public Set<String> getExecutionCategory() {
-		return executionCategory;
-	}
+    /**
+     * 培训师的展示视频2
+     **/
+    private String vedioURL2;
 
-	public void setExecutionCategory(Set<String> executionCategory) {
-		this.executionCategory = executionCategory;
-	}
+    /**
+     * 是否推荐
+     **/
+    private boolean promoted;
 
-	public String getCurrentPosition() {
-		return currentPosition;
-	}
+    /**
+     * 学员评论列表
+     */
+    private List<AutobotsComment> autobotsCommentList;
 
-	public void setCurrentPosition(String currentPosition) {
-		this.currentPosition = currentPosition;
-	}
+    /**
+     * 学员文章列表
+     */
+    private List<TrainerEssay> trainerEssayList;
 
-	public String getOlives() {
-		return olives;
-	}
+    /**
+     * 培训公开课列表
+     */
+    private List<Courses> coursesList;
 
-	public void setOlives(String olives) {
-		this.olives = olives;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public UserCenter getUserCenter() {
+        return userCenter;
+    }
 
-	public Date getModifyDate() {
-		return modifyDate;
-	}
+    public void setUserCenter(UserCenter userCenter) {
+        this.userCenter = userCenter;
+    }
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
-	}
+    public int getStarLevel() {
+        return starLevel;
+    }
 
-	public boolean isAuthFaithed() {
-		return authFaithed;
-	}
+    public void setStarLevel(int starLevel) {
+        this.starLevel = starLevel;
+    }
 
-	public void setAuthFaithed(boolean authFaithed) {
-		this.authFaithed = authFaithed;
-	}
+    public Education getEducation() {
+        return education;
+    }
 
-	public BigDecimal getAverageScore() {
-		return averageScore;
-	}
+    public void setEducation(Education education) {
+        this.education = education;
+    }
 
-	public void setAverageScore(BigDecimal averageScore) {
-		this.averageScore = averageScore;
-	}
+    public String getMainCourse() {
+        return mainCourse;
+    }
 
-	public String getVedioURL1() {
-		return vedioURL1;
-	}
+    public void setMainCourse(String mainCourse) {
+        this.mainCourse = mainCourse;
+    }
 
-	public void setVedioURL1(String vedioURL1) {
-		this.vedioURL1 = vedioURL1;
-	}
+    public Integer getAutoYears() {
+        return autoYears;
+    }
 
-	public String getVedioURL2() {
-		return vedioURL2;
-	}
+    public void setAutoYears(Integer autoYears) {
+        this.autoYears = autoYears;
+    }
 
-	public void setVedioURL2(String vedioURL2) {
-		this.vedioURL2 = vedioURL2;
-	}
+    public Integer getTrainingYears() {
+        return trainingYears;
+    }
 
-	public boolean isPromoted() {
-		return promoted;
-	}
+    public void setTrainingYears(Integer trainingYears) {
+        this.trainingYears = trainingYears;
+    }
 
-	public void setPromoted(boolean promoted) {
-		this.promoted = promoted;
-	}
+    public Set<String> getBusinessCategory() {
+        return businessCategory;
+    }
 
-	public List<AutobotsComment> getAutobotsCommentList() {
-		return autobotsCommentList;
-	}
+    public void setBusinessCategory(Set<String> businessCategory) {
+        this.businessCategory = businessCategory;
+    }
 
-	public void setAutobotsCommentList(List<AutobotsComment> autobotsCommentList) {
-		this.autobotsCommentList = autobotsCommentList;
-	}
+    public Set<String> getExecutionCategory() {
+        return executionCategory;
+    }
 
-	public List<TrainerEssay> getTrainerEssayList() {
-		return trainerEssayList;
-	}
+    public void setExecutionCategory(Set<String> executionCategory) {
+        this.executionCategory = executionCategory;
+    }
 
-	public void setTrainerEssayList(List<TrainerEssay> trainerEssayList) {
-		this.trainerEssayList = trainerEssayList;
-	}
+    public String getCurrentPosition() {
+        return currentPosition;
+    }
 
-	public List<Courses> getCoursesList() {
-		return coursesList;
-	}
+    public void setCurrentPosition(String currentPosition) {
+        this.currentPosition = currentPosition;
+    }
 
-	public void setCoursesList(List<Courses> coursesList) {
-		this.coursesList = coursesList;
-	}
+    public String getOlives() {
+        return olives;
+    }
+
+    public void setOlives(String olives) {
+        this.olives = olives;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public boolean isAuthFaithed() {
+        return authFaithed;
+    }
+
+    public void setAuthFaithed(boolean authFaithed) {
+        this.authFaithed = authFaithed;
+    }
+
+    public BigDecimal getAverageScore() {
+        return averageScore;
+    }
+
+    public void setAverageScore(BigDecimal averageScore) {
+        this.averageScore = averageScore;
+    }
+
+    public String getVedioURL1() {
+        return vedioURL1;
+    }
+
+    public void setVedioURL1(String vedioURL1) {
+        this.vedioURL1 = vedioURL1;
+    }
+
+    public String getVedioURL2() {
+        return vedioURL2;
+    }
+
+    public void setVedioURL2(String vedioURL2) {
+        this.vedioURL2 = vedioURL2;
+    }
+
+    public boolean isPromoted() {
+        return promoted;
+    }
+
+    public void setPromoted(boolean promoted) {
+        this.promoted = promoted;
+    }
+
+    public List<AutobotsComment> getAutobotsCommentList() {
+        return autobotsCommentList;
+    }
+
+    public void setAutobotsCommentList(List<AutobotsComment> autobotsCommentList) {
+        this.autobotsCommentList = autobotsCommentList;
+    }
+
+    public List<TrainerEssay> getTrainerEssayList() {
+        return trainerEssayList;
+    }
+
+    public void setTrainerEssayList(List<TrainerEssay> trainerEssayList) {
+        this.trainerEssayList = trainerEssayList;
+    }
+
+    public List<Courses> getCoursesList() {
+        return coursesList;
+    }
+
+    public void setCoursesList(List<Courses> coursesList) {
+        this.coursesList = coursesList;
+    }
 }

@@ -24,17 +24,14 @@ import java.util.*;
 public class AutobotCompleteResumeAction extends BaseAction {
 
     private static final long serialVersionUID = 4839883380537115435L;
-    @Autowired
-    private AutobotsService autobotsService;
-
-    @Autowired
-    private FileUploaderUtil fileUploaderUtil;
-
-    @Autowired
-    private RegionUtils regionUtils;
-
     @Value("${upload.filepath:/car/training/upload/}")
     public static String CARTRAINING_UPLOAD_FILEPATH = "/car/training/upload/";
+    @Autowired
+    private AutobotsService autobotsService;
+    @Autowired
+    private FileUploaderUtil fileUploaderUtil;
+    @Autowired
+    private RegionUtils regionUtils;
     /**
      * 汽车人
      */
@@ -136,15 +133,15 @@ public class AutobotCompleteResumeAction extends BaseAction {
             }
             autobot.setCurrentWorkStatus(currentWorkStatus);
             if (StringUtils.isNotBlank(uheadLogo) && !uheadLogo.startsWith("http")) {
-                String headLogo = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH,uheadLogo);
+                String headLogo = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, uheadLogo);
                 uc.setHeadLogo(headLogo);
             }
             if (StringUtils.isNotBlank(workPhotoURL1) && !workPhotoURL1.startsWith("http")) {
-                String fileURL1 = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH,workPhotoURL1);
+                String fileURL1 = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, workPhotoURL1);
                 autobot.setWorkPhotoURL1(fileURL1);
             }
             if (StringUtils.isNotBlank(workPhotoURL2) && !workPhotoURL2.startsWith("http")) {
-                String fileURL2 = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH,workPhotoURL2);
+                String fileURL2 = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, workPhotoURL2);
                 autobot.setWorkPhotoURL2(fileURL2);
             }
             autobot.setWorkingHistroy(workingHistroy);
@@ -173,8 +170,6 @@ public class AutobotCompleteResumeAction extends BaseAction {
         setData(map);
         return JSON;
     }
-
-
 
 
     public Autobots getAutobot() {

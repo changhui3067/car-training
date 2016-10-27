@@ -1,48 +1,34 @@
 package com.car.training.action.backend;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.car.training.domain.Company;
+import com.car.training.enums.Industry;
+import com.car.training.enums.Scale;
+import com.car.training.service.CompanyService;
 import com.car.training.utils.FileUploaderUtil;
 import com.car.training.utils.RegionUtils;
 import com.opensymphony.xwork2.interceptor.annotations.Before;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.fs.FileStorage;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.JsonConfig;
 import org.ironrhino.core.service.EntityManager;
 import org.ironrhino.core.struts.BaseAction;
-import org.ironrhino.rest.RestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.car.training.domain.Company;
-import com.car.training.enums.Industry;
-import com.car.training.enums.Scale;
-import com.car.training.service.CompanyService;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @AutoConfig
 public class CompanyCompleteResumeAction extends BaseAction {
 
     private static final long serialVersionUID = 4839883380537115435L;
-    @Autowired
-    public FileStorage fileStorage;
     @Value("${upload.filepath:/car/training/upload/}")
     public static String CARTRAINING_UPLOAD_FILEPATH = "/car/training/upload/";
+    @Autowired
+    public FileStorage fileStorage;
     @Autowired
     private CompanyService companyService;
     @Autowired
@@ -164,15 +150,15 @@ public class CompanyCompleteResumeAction extends BaseAction {
             }
 
             if (StringUtils.isNotBlank(logo) && !logo.startsWith("http")) {
-                String logoUrl = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH,logo);
+                String logoUrl = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, logo);
                 company.setLogo(logoUrl);
             }
             if (StringUtils.isNotBlank(environmentURL1) && !environmentURL1.startsWith("http")) {
-                String URL1 = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH,environmentURL1);
+                String URL1 = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, environmentURL1);
                 company.setEnvironmentURL1(URL1);
             }
             if (StringUtils.isNotBlank(environmentURL2) && !environmentURL2.startsWith("http")) {
-                String URL2 = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH,environmentURL2);
+                String URL2 = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, environmentURL2);
                 company.setEnvironmentURL2(URL2);
             }
 

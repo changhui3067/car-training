@@ -1,15 +1,6 @@
 package com.car.training.model;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.ConstraintMode;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.NotInCopy;
 import org.ironrhino.core.metadata.UiConfig;
@@ -17,7 +8,8 @@ import org.ironrhino.core.model.BaseEntity;
 import org.ironrhino.core.search.elasticsearch.annotations.Searchable;
 import org.nustaq.serialization.annotations.Version;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+import java.util.Date;
 
 @Searchable
 @AutoConfig
@@ -25,127 +17,145 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "trainer_essay")
 public class TrainerEssay extends BaseEntity {
 
-	private static final long serialVersionUID = 4092941816602786998L;
+    private static final long serialVersionUID = 4092941816602786998L;
 
-	/**培训师*/
-	@JoinColumn(name = "trainerId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT) )
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	private Trainer	trainer;
-	
-	/**文章标题*/
-	@Column(length = 255) 
-	private String	title;
-	
-	/**文章内容*/
-	@Column(length = 5000,nullable=true) 
-	private String	content;
-	
-	/**发布日期*/
-	private Date	publishDate;
-	
-	/**点赞数*/
-	private Integer	praiseCount;
-	
-	/**创建日期*/
-	@UiConfig(hidden = true)
-	@Column(updatable = false) 
-	private Date createDate = new Date();
-	
-	/**修改日期*/
-	@NotInCopy
-	@UiConfig(hidden = true)
-	@Column(insertable = false)
-	private Date modifyDate;
-	
-	/**是否启用*/
-	@JsonIgnore
-	private boolean enabled = true;
-	
-	/**是否推荐**/
-	private boolean promoted = false;
-	
-	@Version(value = 0)
-	@UiConfig(hidden = true)
-	private int version = -1;
+    /**
+     * 培训师
+     */
+    @JoinColumn(name = "trainerId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    private Trainer trainer;
 
-	public Trainer getTrainer() {
-		return trainer;
-	}
+    /**
+     * 文章标题
+     */
+    @Column(length = 255)
+    private String title;
 
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
-	}
+    /**
+     * 文章内容
+     */
+    @Column(length = 5000, nullable = true)
+    private String content;
 
-	public String getTitle() {
-		return title;
-	}
+    /**
+     * 发布日期
+     */
+    private Date publishDate;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    /**
+     * 点赞数
+     */
+    private Integer praiseCount;
 
-	public String getContent() {
-		return content;
-	}
+    /**
+     * 创建日期
+     */
+    @UiConfig(hidden = true)
+    @Column(updatable = false)
+    private Date createDate = new Date();
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    /**
+     * 修改日期
+     */
+    @NotInCopy
+    @UiConfig(hidden = true)
+    @Column(insertable = false)
+    private Date modifyDate;
 
-	public Date getPublishDate() {
-		return publishDate;
-	}
+    /**
+     * 是否启用
+     */
+    @JsonIgnore
+    private boolean enabled = true;
 
-	public void setPublishDate(Date publishDate) {
-		this.publishDate = publishDate;
-	}
+    /**
+     * 是否推荐
+     **/
+    private boolean promoted = false;
 
-	public Integer getPraiseCount() {
-		return praiseCount;
-	}
+    @Version(value = 0)
+    @UiConfig(hidden = true)
+    private int version = -1;
 
-	public void setPraiseCount(Integer praiseCount) {
-		this.praiseCount = praiseCount;
-	}
+    public Trainer getTrainer() {
+        return trainer;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public Date getModifyDate() {
-		return modifyDate;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public Date getPublishDate() {
+        return publishDate;
+    }
 
-	public boolean isPromoted() {
-		return promoted;
-	}
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
 
-	public void setPromoted(boolean promoted) {
-		this.promoted = promoted;
-	}
+    public Integer getPraiseCount() {
+        return praiseCount;
+    }
 
-	public int getVersion() {
-		return version;
-	}
+    public void setPraiseCount(Integer praiseCount) {
+        this.praiseCount = praiseCount;
+    }
 
-	public void setVersion(int version) {
-		this.version = version;
-	}
-	
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isPromoted() {
+        return promoted;
+    }
+
+    public void setPromoted(boolean promoted) {
+        this.promoted = promoted;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
 }

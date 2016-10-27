@@ -1,18 +1,6 @@
 package com.car.training.model;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.ConstraintMode;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.Hidden;
@@ -22,7 +10,11 @@ import org.ironrhino.core.model.BaseEntity;
 import org.ironrhino.core.search.elasticsearch.annotations.Searchable;
 import org.nustaq.serialization.annotations.Version;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Searchable
 @AutoConfig
@@ -30,231 +22,257 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "courses")
 public class Courses extends BaseEntity {
 
-	private static final long serialVersionUID = -5621639682381355149L;
+    private static final long serialVersionUID = -5621639682381355149L;
 
-	/**课程名称**/
-	@Column(length = 100, nullable = true)
-	private String courseName; 
-	
-	/**课程类型**/
-	private Set<String> courseType = new HashSet<String>(0);  
-	
-	/**发布日期**/
-	private Date publishDate = new Date();
-	
-	/**上课时间**/
-	@Column(length = 50, nullable = true)
-	private String schoolTime;
-	
-	/**价格**/
-	@UiConfig(hiddenInList = @Hidden(true) )
-	private BigDecimal price;
-	
-	/**时长**/
-	@UiConfig(hiddenInList = @Hidden(true) )
-	private String longTime;
-	
-	/**区域**/
-	@JoinColumn(name = "regionId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT) )
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
-	private Region region;
-	
-	/**受众**/
-	private String audiences;
-	
-	/**课程目标**/
-	private String courseTarget;
-	
-	/**课程大纲**/
-	private String courseOutline;
-	
-	/**工具模型**/
-	private String toolModel;
-	
-	/**培训师*/
-	@JoinColumn(name = "trainerId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT) )
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	private Trainer trainer;
-	
-	@UiConfig(hidden = true)
-	@Column(updatable = false) 
-	private Date createDate = new Date();
-	
-	@NotInCopy
-	@UiConfig(hidden = true)
-	@Column(insertable = false)
-	private Date modifyDate;
-	
-	@NotInCopy
-	@UiConfig(hidden = true)
-	@Column(updatable = false)
-	private String createUser;
+    /**
+     * 课程名称
+     **/
+    @Column(length = 100, nullable = true)
+    private String courseName;
 
-	@NotInCopy
-	@UiConfig(hidden = true)
-	@Column(insertable = false)
-	private String modifyUser;
-	
-	@JsonIgnore
-	private boolean enabled = true;
-	
-	/**是否推荐**/
-	private boolean promoted = false;
-	
-	@Version(value = 0)
-	@UiConfig(hidden = true)
-	private int version = 0;
+    /**
+     * 课程类型
+     **/
+    private Set<String> courseType = new HashSet<String>(0);
 
-	public String getCourseName() {
-		return courseName;
-	}
+    /**
+     * 发布日期
+     **/
+    private Date publishDate = new Date();
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
-	}
+    /**
+     * 上课时间
+     **/
+    @Column(length = 50, nullable = true)
+    private String schoolTime;
 
-	public Set<String> getCourseType() {
-		return courseType;
-	}
+    /**
+     * 价格
+     **/
+    @UiConfig(hiddenInList = @Hidden(true))
+    private BigDecimal price;
 
-	public void setCourseType(Set<String> courseType) {
-		this.courseType = courseType;
-	}
+    /**
+     * 时长
+     **/
+    @UiConfig(hiddenInList = @Hidden(true))
+    private String longTime;
 
-	public Date getPublishDate() {
-		return publishDate;
-	}
+    /**
+     * 区域
+     **/
+    @JoinColumn(name = "regionId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    private Region region;
 
-	public void setPublishDate(Date publishDate) {
-		this.publishDate = publishDate;
-	}
+    /**
+     * 受众
+     **/
+    private String audiences;
 
-	public String getSchoolTime() {
-		return schoolTime;
-	}
+    /**
+     * 课程目标
+     **/
+    private String courseTarget;
 
-	public void setSchoolTime(String schoolTime) {
-		this.schoolTime = schoolTime;
-	}
+    /**
+     * 课程大纲
+     **/
+    private String courseOutline;
 
-	public BigDecimal getPrice() {
-		return price;
-	}
+    /**
+     * 工具模型
+     **/
+    private String toolModel;
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
-	}
+    /**
+     * 培训师
+     */
+    @JoinColumn(name = "trainerId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Trainer trainer;
 
-	public String getLongTime() {
-		return longTime;
-	}
+    @UiConfig(hidden = true)
+    @Column(updatable = false)
+    private Date createDate = new Date();
 
-	public void setLongTime(String longTime) {
-		this.longTime = longTime;
-	}
+    @NotInCopy
+    @UiConfig(hidden = true)
+    @Column(insertable = false)
+    private Date modifyDate;
 
-	public Region getRegion() {
-		return region;
-	}
+    @NotInCopy
+    @UiConfig(hidden = true)
+    @Column(updatable = false)
+    private String createUser;
 
-	public void setRegion(Region region) {
-		this.region = region;
-	}
+    @NotInCopy
+    @UiConfig(hidden = true)
+    @Column(insertable = false)
+    private String modifyUser;
 
-	public String getAudiences() {
-		return audiences;
-	}
+    @JsonIgnore
+    private boolean enabled = true;
 
-	public void setAudiences(String audiences) {
-		this.audiences = audiences;
-	}
+    /**
+     * 是否推荐
+     **/
+    private boolean promoted = false;
 
-	public String getCourseTarget() {
-		return courseTarget;
-	}
+    @Version(value = 0)
+    @UiConfig(hidden = true)
+    private int version = 0;
 
-	public void setCourseTarget(String courseTarget) {
-		this.courseTarget = courseTarget;
-	}
+    public String getCourseName() {
+        return courseName;
+    }
 
-	public String getCourseOutline() {
-		return courseOutline;
-	}
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
 
-	public void setCourseOutline(String courseOutline) {
-		this.courseOutline = courseOutline;
-	}
+    public Set<String> getCourseType() {
+        return courseType;
+    }
 
-	public String getToolModel() {
-		return toolModel;
-	}
+    public void setCourseType(Set<String> courseType) {
+        this.courseType = courseType;
+    }
 
-	public void setToolModel(String toolModel) {
-		this.toolModel = toolModel;
-	}
+    public Date getPublishDate() {
+        return publishDate;
+    }
 
-	public Trainer getTrainer() {
-		return trainer;
-	}
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
 
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
-	}
+    public String getSchoolTime() {
+        return schoolTime;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public void setSchoolTime(String schoolTime) {
+        this.schoolTime = schoolTime;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public BigDecimal getPrice() {
+        return price;
+    }
 
-	public Date getModifyDate() {
-		return modifyDate;
-	}
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
-	}
+    public String getLongTime() {
+        return longTime;
+    }
 
-	public String getCreateUser() {
-		return createUser;
-	}
+    public void setLongTime(String longTime) {
+        this.longTime = longTime;
+    }
 
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
+    public Region getRegion() {
+        return region;
+    }
 
-	public String getModifyUser() {
-		return modifyUser;
-	}
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 
-	public void setModifyUser(String modifyUser) {
-		this.modifyUser = modifyUser;
-	}
+    public String getAudiences() {
+        return audiences;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public void setAudiences(String audiences) {
+        this.audiences = audiences;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public String getCourseTarget() {
+        return courseTarget;
+    }
 
-	public boolean isPromoted() {
-		return promoted;
-	}
+    public void setCourseTarget(String courseTarget) {
+        this.courseTarget = courseTarget;
+    }
 
-	public void setPromoted(boolean promoted) {
-		this.promoted = promoted;
-	}
+    public String getCourseOutline() {
+        return courseOutline;
+    }
 
-	public int getVersion() {
-		return version;
-	}
+    public void setCourseOutline(String courseOutline) {
+        this.courseOutline = courseOutline;
+    }
 
-	public void setVersion(int version) {
-		this.version = version;
-	}
+    public String getToolModel() {
+        return toolModel;
+    }
+
+    public void setToolModel(String toolModel) {
+        this.toolModel = toolModel;
+    }
+
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    public String getModifyUser() {
+        return modifyUser;
+    }
+
+    public void setModifyUser(String modifyUser) {
+        this.modifyUser = modifyUser;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isPromoted() {
+        return promoted;
+    }
+
+    public void setPromoted(boolean promoted) {
+        this.promoted = promoted;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
 
 }
