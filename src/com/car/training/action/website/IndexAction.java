@@ -177,10 +177,10 @@ public class IndexAction extends BaseAction {
 					map.put("code", 200);
 					map.put("target", targetUrl);
 					map.put("msg", "登陆成功！");
-				}
-		} else {
-			map.put("code", 400);
-			map.put("msg", "您的账号或密码错误！");
+				} else {
+					map.put("code", 400);
+					map.put("msg", "您的账号或密码错误！");
+			}
 		}
 	  }
 		setData(map);

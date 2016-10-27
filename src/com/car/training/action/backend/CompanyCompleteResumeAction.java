@@ -13,6 +13,8 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import com.car.training.utils.FileUploaderUtil;
+import com.car.training.utils.RegionUtils;
+import com.opensymphony.xwork2.interceptor.annotations.Before;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
@@ -47,13 +49,15 @@ public class CompanyCompleteResumeAction extends BaseAction {
     private transient EntityManager<Region> entityManager;
     @Autowired
     private FileUploaderUtil fileUploaderUtil;
-
+    @Autowired
+    private RegionUtils regionUtils;
     /**
      * 培训公司/汽车公司
      */
     private Company company;
 
     private List<Region> provinces;
+    private Region userRegion;
 
     private List<Region> cities;
 
@@ -108,27 +112,30 @@ public class CompanyCompleteResumeAction extends BaseAction {
     @Override
     public String execute() throws Exception {
         HttpServletRequest request = ServletActionContext.getRequest();
-        Company com = new Company();
-        com = (Company) request.getSession().getAttribute("userDetails");
-        if (com != null) {
-            company = companyService.findById(com.getId());
-        }
-
-        entityManager.setEntityClass(Region.class);
-        DetachedCriteria dc = entityManager.detachedCriteria();
-        dc.add(Restrictions.isNull("parent"));
-        dc.addOrder(Order.asc("displayOrder"));
-        dc.addOrder(Order.asc("name"));
-        provinces = entityManager.findListByCriteria(dc);
+        Company companyInSession = (Company) request.getSession().getAttribute("userDetails");
+        company = companyService.findById(companyInSession.getId());
+        userRegion = regionUtils.getRegionById(company.getRegion().getId());
+        provinces = regionUtils.getSubCities(-1);
+//        cities = regionUtils.getSubCities(-1);
+        cities = regionUtils.getSubCities(userRegion.getParent().getId());
         return SUCCESS;
     }
 
+    @Before
+    public String checkLogin() throws Exception {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        Company companyInSession = (Company) request.getSession().getAttribute("userDetails");
+        if (companyInSession == null) {
+            setTargetUrl("/website/index");
+            return "redirect";
+        }
+        return super.preAction();
+    }
 
     @JsonConfig(root = "data")
     public String save() throws Exception {
         HttpServletRequest request = ServletActionContext.getRequest();
-        Company company = null;
-        company = (Company) request.getSession().getAttribute("userDetails");
+        Company company = (Company) request.getSession().getAttribute("userDetails");
         if (company != null) {
             company = companyService.findById(company.getId());
         }
@@ -171,6 +178,7 @@ public class CompanyCompleteResumeAction extends BaseAction {
 
             company.setIndustry(Enum.valueOf(Industry.class, industry));
             companyService.update(company);
+            this.company = company;
         }
         Map<String, Object> map = new HashMap<>();
         map.put("code", "200");
@@ -281,6 +289,14 @@ public class CompanyCompleteResumeAction extends BaseAction {
 
     public void setEnvironmentURL2(String environmentURL2) {
         this.environmentURL2 = environmentURL2;
+    }
+
+    public Region getUserRegion() {
+        return userRegion;
+    }
+
+    public void setUserRegion(Region userRegion) {
+        this.userRegion = userRegion;
     }
 
 }

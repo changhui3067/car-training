@@ -109,7 +109,7 @@ public class AutobotCompleteResumeAction extends BaseAction {
             autobot = autobotsService.findByUserCenter(uc.getId());
         }
         provinces = regionUtils.getSubCities(-1);
-        userRegion = regionUtils.getRegionById(uc.getRegion().getId());
+        userRegion = regionUtils.getRegionById(autobot.getUserCenter().getRegion().getId());
         cities = regionUtils.getSubCities(userRegion.getParent().getId());
         return SUCCESS;
     }

@@ -15,6 +15,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import com.car.training.utils.FileUploaderUtil;
+import com.car.training.utils.RegionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
@@ -51,6 +52,9 @@ public class TrainerCompleteResumeAction extends BaseAction {
     private transient EntityManager<Region> entityManager;
     @Autowired
     private FileUploaderUtil fileUploaderUtil;
+    @Autowired
+    private RegionUtils regionUtils;
+
     /**
      * 培训师
      */
@@ -59,6 +63,8 @@ public class TrainerCompleteResumeAction extends BaseAction {
     private List<Region> provinces;
 
     private List<Region> cities;
+
+    private Region userRegion;
 
     private Object data;
 
@@ -114,12 +120,9 @@ public class TrainerCompleteResumeAction extends BaseAction {
             trainer = trainerService.findByUserCenter(uc.getId());
         }
 
-        entityManager.setEntityClass(Region.class);
-        DetachedCriteria dc = entityManager.detachedCriteria();
-        dc.add(Restrictions.isNull("parent"));
-        dc.addOrder(Order.asc("displayOrder"));
-        dc.addOrder(Order.asc("name"));
-        provinces = entityManager.findListByCriteria(dc);
+        userRegion = regionUtils.getRegionById(trainer.getUserCenter().getRegion().getId());
+        provinces = regionUtils.getSubCities(-1);
+        cities = regionUtils.getSubCities(userRegion.getParent().getId());
         return SUCCESS;
     }
 
@@ -349,4 +352,11 @@ public class TrainerCompleteResumeAction extends BaseAction {
         this.vedioURL2 = vedioURL2;
     }
 
+    public Region getUserRegion() {
+        return userRegion;
+    }
+
+    public void setUserRegion(Region userRegion) {
+        this.userRegion = userRegion;
+    }
 }
