@@ -23,13 +23,13 @@
                 <div class="form-group">
                     <label  class="col-sm-3 control-label">账号：</label>
                     <div class="col-sm-9">
-                        <input class="form-control text-size" type="email" id="username" name="username" data-nick="login_user" value="" placeholder="请输入邮箱/手机号" required validate-title="邮箱/手机号" />
+                        <input class="form-control text-size" type="email" id="username" name="username" data-nick="login_user" value="" placeholder="请输入手机号" required validate-title="手机号" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">密码：</label>
                     <div class="col-sm-9">
-                        <input class="form-control text-size" type="password" name="password" id="password" data-nick="login_pwd" value=""   placeholder="请输入6-16位字母、数字" required validate-title="密码" /></div>
+                        <input class="form-control text-size" type="password" name="password" id="password" data-nick="login_pwd" value=""   placeholder="请输入密码" required validate-title="密码" /></div>
                     </div>
                 <div class="errMsg"></div>
                 <div id="checkeRadio">
@@ -251,22 +251,6 @@
 </div>
 </div>
 <div class="art_box">
- <!--<div class="ycwz left">
-     <h4><span><a href="#">更多>></a></span>原创文章</h4>
-     <div class="ycwz_box">
-         <#if trainerEssayList??>
-         <ul>
-             <#list trainerEssayList as t>
-             <li>
-                 <#if t??>
-                 <span><a href="#">${t.publishDate!?string("yyyy-MM-dd")}</a></span><a href="/website/trainerEssayDetail?trainerEssay.id=${t.id!}">${t.title!}</a>
-                 </#if>
-             </li>
-             </#list>
-         </ul>
-         </#if>
-     </div>
- </div>-->
  <div class="yiti left">
      <h4><span><a href="#">更多>></a></span>培训学院热点议题</h4>
      <div class="yiti_box">
@@ -324,13 +308,17 @@
 </div>  
 <script>
 function login(){
-    var form_data={},
+    var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
+        form_data={},
         errMsg = $(".errMsg")[0];
     form_data["username"] = $("#loginform #username").val(),
     form_data["password"] = $("#loginform #password").val(),
     form_data["userType"] = $('input:radio[name="userType"]:checked').val();
     if(form_data.username == "" || form_data.username == null){
-        errMsg.innerHTML = "请输入用户名"
+        errMsg.innerHTML = "请输入用户名";
+        return false;
+    }else if(!phoneReg.test(form_data.username)){
+        errMsg.innerHTML = "手机格式不正确";
         return false;
     }
     if(form_data.password == "" || form_data.password == null){

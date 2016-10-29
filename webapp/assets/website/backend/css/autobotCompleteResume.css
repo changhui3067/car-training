@@ -1,0 +1,13 @@
+/* StyleName:培聘网*/
+/* 2016/6/1 by WZM*/
+/* 全局 */
+
+.pxshijl .container{ width:100%}
+
+.pxshijl .label { padding-left: 0px; padding-right: 0px; font-size: 14px; font-weight:normal}
+label.pxshijl_label { padding-left: 0px; padding-right: 0px; font-size: 14px; font-weight:normal}
+
+.pxshijl .li{ border:none; height: auto; padding-left: 0px}
+li.pxshijl_li{ border:none; list-style:none; height: 50px; padding-left: 0px}
+
+.pxshijl .placeholder{ font-size: 14px;}
