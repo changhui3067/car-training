@@ -2,7 +2,7 @@
 <div class="top">
 	<div class="content">
     	<div class="logo left"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/logo.jpg" /></div>
-        <div class="nav_box left list-inline">
+        <div class="nav_box left">
         	<div class="nav">
             	<ul class="menu">
 				<li><a onclick="tabClick(0)">首页</a></li>
@@ -18,13 +18,12 @@
         <#if Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' >
         <div  class="dl_tel left" >欢迎您,${Session["userDetails"].username}</div>
         </#if>
-        <div class="dl_top right"> 
+        <div class="register right list-inline"> 
         <#if Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' >
      	 <li style="background:none;"><#if Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' && (Session["loginType"]=='TRAINER'||Session["loginType"]=='AUTOBOT') > <a href='<@url value='/backend/applyJobHistory'/>' ><#else> <a href='<@url value='/backend/companyJobManage'/>'> </#if>我的管理</a></li>
      	 <li><a href="#" onclick="javascript:logout();">退出</a></li>
         <#else> 
         	<ul>
-            	<li style="background:none;"><a href='<@url value='/backend/login'/>'>请登录</a></li>
                 <li><a href='<@url value='/backend/register'/>'>免费注册</a></li>
             </ul>
         </#if> 

@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">密码：</label>
                     <div class="col-sm-9">
-                        <input class="form-control text-size" type="password" name="password" id="password" data-nick="login_pwd" value=""   placeholder="请输入6-16位字母、数字" required validate-title="密码" /></div>
+                        <input class="form-control text-size" type="password" name="password" id="password" data-nick="login_pwd" value=""   placeholder="请输入6-16位字母、数字、下划线" required validate-title="密码" /></div>
                     </div>
                 <div class="errMsg"></div>
                 <div id="checkeRadio">
@@ -324,17 +324,25 @@
 </div>  
 <script>
 function login(){
-    var form_data={},
+    var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
+        passwordReg = /^[\w]{6,12}$/,
+        form_data={},
         errMsg = $(".errMsg")[0];
     form_data["username"] = $("#loginform #username").val(),
     form_data["password"] = $("#loginform #password").val(),
     form_data["userType"] = $('input:radio[name="userType"]:checked').val();
     if(form_data.username == "" || form_data.username == null){
-        errMsg.innerHTML = "请输入用户名"
+        errMsg.innerHTML = "请输入用户名";
+        return false;
+    }else if(!phoneReg.test(form_data.username)){
+        errMsg.innerHTML = "手机格式不正确";
         return false;
     }
     if(form_data.password == "" || form_data.password == null){
         errMsg.innerHTML = "请输入密码";
+        return false;
+    }else if(!passwordReg.test(form_data.password)){
+        errMsg.innerHTML = "密码格式不正确";
         return false;
     }
     $.ajax({
