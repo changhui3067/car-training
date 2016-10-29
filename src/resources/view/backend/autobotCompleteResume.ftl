@@ -12,8 +12,11 @@
     <link rel="stylesheet" href="<@url value='/assets/website/backend/css/autobotCompleteResume.css'/>" type="text/css"
           media="screen"/>
     <link rel="stylesheet" href="<@url value='/assets/website/css/bootstrap.min.css'/>" type="text/css" media="screen"/>
-    <script src="<@url value="/assets/website/js/jquery-1.8.0.min.js?v=1.1.0"/>"></script>
-    <script src="<@url value="/assets/website/js/laydate.js?v=1.1.0"/>"></script>
+    <link rel="stylesheet" href="/assets/website/css/cropper.css" type="text/css" media="screen"/>
+    <#--<script src="/assets/website/js/cropper.js" type="text/javascript"></script>-->
+    <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
+    <#--<script src="<@url value="/assets/website/js/laydate.js?v=1.1.0"/>"></script>-->
 </head>
 
 <body>
@@ -40,9 +43,9 @@
                 <div class="pxshi_gl_r right">
                     <form id="form1">
                         <!--隐藏域-->
-                        <input type="hidden" name="autobot.userCenter.personalType" value="AUTOBOT">
-                        <input type="hidden" name="autobot.id" value="<#if autobot??>${autobot.id!}</#if>">
-                        <input type="hidden" name="autobot.userCenter.id"
+                        <input type="hidden" name="upersonalType" value="AUTOBOT">
+                        <input type="hidden" name="aid" value="<#if autobot??>${autobot.id!}</#if>">
+                        <input type="hidden" name="uid"
                                value="<#if autobot?? && autobot.userCenter??>${autobot.userCenter.id!}</#if>">
                         <!--隐藏域-->
                         <div class="pxshijl">
@@ -58,16 +61,10 @@
                                                                 style="color: red">*</span>
                                                             姓名:</label>
                                                         <div class="col-sm-9">
-                                                        <#if autobot?? && autobot.userCenter?? && autobot.userCenter.name??>
                                                             <input type="text" class="form-control"
                                                                    placeholder="请输入姓名"
-                                                                   name="autobot.userCenter.name"
-                                                                   value="${autobot.userCenter.name!}"/>
-                                                        <#else>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="请输入姓名"
-                                                                   name="autobot.userCenter.name" value=""/>
-                                                        </#if>
+                                                                   name="uname"
+                                                                   value="<#if autobot?? && autobot.userCenter?? && autobot.userCenter.name??>${autobot.userCenter.name!}</#if>"/>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -77,7 +74,7 @@
                                                                 style="color: red">*</span>
                                                             出生年月:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control" name="ubirthday"
                                                                    placeholder="请输入出生年月">
                                                         </div>
                                                     </div>
@@ -88,7 +85,7 @@
                                                                 style="color: red">*</span>
                                                             工作状态:</label>
                                                         <div class="col-sm-9">
-                                                            <select class="form-control">
+                                                            <select class="form-control" name="currentWorkStatus">
                                                                 <option>在职</option>
                                                                 <option>求职</option>
                                                             </select>
@@ -101,10 +98,10 @@
                                                                 style="color: red">*</span>
                                                             婚姻状况:</label>
                                                         <div class="col-sm-9">
-                                                            <select class="form-control">
-                                                                <option>未婚</option>
-                                                                <option>已婚</option>
-                                                                <option>离异</option>
+                                                            <select class="form-control" name="umarryStatus">
+                                                                <option value="UNMARRIED">未婚</option>
+                                                                <option value="MARRIED">已婚</option>
+                                                                <option value="RAISED">离异</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -116,6 +113,7 @@
                                                             行业经验:</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control"
+                                                                   name="autoYears"
                                                                    placeholder="请输入行业经验">
                                                         </div>
                                                     </div>
@@ -126,7 +124,7 @@
                                                                 style="color: red">*</span>
                                                             联系方式:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control"name="umobile"
                                                                    placeholder="请输入联系方式">
                                                         </div>
                                                     </div>
@@ -137,8 +135,20 @@
                                                                 style="color: red">*</span>
                                                             目前地区:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="修改">
+                                                            <select id="province" onChange="selectCities()">
+                                                                <option value="">请选择省</option>
+                                                            <#list provinces as t>
+                                                                <option value="${t.id!}"
+                                                                        <#if userRegion?? && userRegion.parent.id == t.id>selected="selected"</#if>>${t.name!}</option>
+                                                            </#list>
+                                                            </select>
+                                                            <select name="uregionId" id="city">
+                                                                <option value="">请选择市</option>
+                                                            <#list cities as city>
+                                                                <option value="${city.id!}"
+                                                                        <#if userRegion ?? && city.id == userRegion.id>selected="selected"</#if>>${city.name!}</option>
+                                                            </#list>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -148,7 +158,7 @@
                                                                 style="color: red">*</span>
                                                             汽车品牌:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control" name="autoBrand"
                                                                    placeholder="请输入汽车品牌">
                                                         </div>
                                                     </div>
@@ -159,6 +169,7 @@
                                                                 style="color: red">*</span>
                                                             擅长领域:</label>
                                                         <div class="col-sm-9">
+                                                            <input type="hidden" name="businessCategory"/>
                                                         <#if autobot ?? && autobot.businessCategory??>
                                                             <input type="checkBox" name="autobot.businessCategory"
                                                                    id="autobot.businessCategory" <#if autobot.businessCategory ? index_of("销售")!=-1>
@@ -211,12 +222,14 @@
                                             <ul class="list-group">
                                                 <li class="list-group-item pxshijl_li">
                                                     <div class="form-group">
-                                                        <label class="col-sm-3 pxshijl_label"><span
-                                                                style="color: red">*</span>
-                                                            头像:</label>
+                                                        <img src="${autobot.workPhotoURL1!}">
+                                                        <button type="button" class="btn btn-primary btn-lg"
+                                                                data-toggle="modal" data-target="#myModal">
+                                                            上传照片
+                                                        </button>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="修改">
+                                                            <input type="hidden" id="workPhotoURL1"
+                                                                   name="workPhotoURL1">
                                                         </div>
                                                     </div>
                                                 </li>
@@ -230,7 +243,7 @@
                         <div class="pxshijl">
                             <h5>所获认证</h5>
                             <div class="pxshijl_box">
-                                <textarea style="width:800px;margin-left:15px;resize:none" name="autobot.authHistroy"
+                                <textarea style="width:800px;margin-left:15px;resize:none" name="authHistroy"
                                           id="autobot.authHistroy" cols="45"
                                           rows="5"><#if autobot?? && autobot.authHistroy??> ${autobot.authHistroy!}<#else>
                                     请输入所获认证</#if></textarea>
@@ -239,9 +252,9 @@
                         <div class="pxshijl">
                             <h5>工作经历</h5>
                             <div class="pxshijl_box">
-                                <textarea style="width:800px;margin-left:15px" name="autobot.authHistroy"
+                                <textarea style="width:800px;margin-left:15px" name="workingHistroy"
                                           id="autobot.authHistroy" cols="45"
-                                          rows="5"><#if autobot?? && autobot.authHistroy??> ${autobot.authHistroy!}<#else>
+                                          rows="5"><#if autobot?? && autobot.workingHistroy??> ${autobot.workingHistroy!}<#else>
                                     请输入</#if></textarea>
                             </div>
                         </div>
@@ -265,77 +278,38 @@
     <script>
 
         function checkform() {
-            var name = $("[name='autobot.userCenter.name']").val();
-            var birthday = $("[name='autobot.userCenter.birthday']").val();
-            var marryStatus = $("[name='autobot.userCenter.marryStatus']").val();
-            var currentWorkStatus = $("[name='autobot.currentWorkStatus']").val();
-            var autoBrand = $("[name='autobot.autoBrand']").val();
-            var mobile = $("input[name='autobot.userCenter.mobile']").val();
-            var authHistroy = $("[name='autobot.authHistroy']").val();
-            var workingHistroy = $("[name='autobot.workingHistroy']").val();
-
-            if (name == undefined || birthday == undefined || marryStatus == undefined || currentWorkStatus == undefined || autoBrand == undefined || mobile == undefined || authHistroy == undefined || workingHistroy == undefined) {
-                alert("带*的为必填字段 ");
-                return false;
-            }
-            if (name == "" || birthday == "" || marryStatus == "" || currentWorkStatus == "" || autoBrand == "" || mobile == "" || authHistroy == "" || workingHistroy == "") {
-                alert("带*的为必填字段 ");
-                return false;
-            }
+//            var name = $("[name='autobot.userCenter.name']").val();
+//            var birthday = $("[name='autobot.userCenter.birthday']").val();
+//            var marryStatus = $("[name='autobot.userCenter.marryStatus']").val();
+//            var currentWorkStatus = $("[name='autobot.currentWorkStatus']").val();
+//            var autoBrand = $("[name='autobot.autoBrand']").val();
+//            var mobile = $("input[name='autobot.userCenter.mobile']").val();
+//            var authHistroy = $("[name='autobot.authHistroy']").val();
+//            var workingHistroy = $("[name='autobot.workingHistroy']").val();
+//
+//            if (name == undefined || birthday == undefined || marryStatus == undefined || currentWorkStatus == undefined || autoBrand == undefined || mobile == undefined || authHistroy == undefined || workingHistroy == undefined) {
+//                alert("带*的为必填字段 ");
+//                return false;
+//            }
+//            if (name == "" || birthday == "" || marryStatus == "" || currentWorkStatus == "" || autoBrand == "" || mobile == "" || authHistroy == "" || workingHistroy == "") {
+//                alert("带*的为必填字段 ");
+//                return false;
+//            }
 
             return true;
         }
 
         function submitdata() {
-
             if (!checkform()) {
                 return;
             }
-
-            var form_data = {};
-            var url = "/backend/autobotCompleteResume/save";
-
-            var uheadLogo = document.getElementById('autobot.userCenter.headLogo').src;
-            var upersonalType = $("[name='autobot.userCenter.personalType']").val();
-            var aid = $("[name='autobot.id']").val();
-            var uid = $("[name='autobot.userCenter.id']").val();
-            var uname = $("[name='autobot.userCenter.name']").val();
-            var ubirthday = $("[name='autobot.userCenter.birthday']").val();
-            var uemail = $("[name='autobot.userCenter.email']").val();
-            var uregionId = $("[name='city']").val();
-            var umarryStatus = $("[name='autobot.userCenter.marryStatus']").val();
-            var currentWorkStatus = $("[name='autobot.currentWorkStatus']").val();
-            var autoBrand = $("[name='autobot.autoBrand']").val();
-            var umobile = $("input[name='autobot.userCenter.mobile']").val();
-            var autoYears = $("[name='autobot.autoYears']").val();
-            var authHistroy = $("[name='autobot.authHistroy']").val();
-            var workingHistroy = $("[name='autobot.workingHistroy']").val();
-            var businessCategory = '';
+            var businessCategoryValue = '';
             $("input:checkbox[name='autobot.businessCategory']:checked").each(function (index, element) {
-                businessCategory += $(this).val() + ",";
+                businessCategoryValue += $(this).val() + ",";
             });
-            var workPhotoURL1 = document.getElementById('autobot.workPhotoURL1').src;
-            var workPhotoURL2 = document.getElementById('autobot.workPhotoURL2').src;
-
-            form_data.aid = aid;
-            form_data.uid = uid;
-            form_data.uname = uname;
-            form_data.uheadLogo = uheadLogo;
-            form_data.ubirthday = ubirthday;
-            form_data.umarryStatus = umarryStatus;
-            form_data.currentWorkStatus = currentWorkStatus;
-            form_data.autoBrand = autoBrand;
-            form_data.umobile = umobile;
-            form_data.uemail = uemail;
-            form_data.uregionId = uregionId;
-            form_data.autoYears = autoYears;
-            form_data.authHistroy = authHistroy;
-            form_data.workingHistroy = workingHistroy;
-            form_data.upersonalType = upersonalType;
-            form_data.workPhotoURL1 = workPhotoURL1;
-            form_data.workPhotoURL2 = workPhotoURL2;
-            form_data.businessCategory = businessCategory;
-
+            $("input[name='autobot.businessCategory']").val(businessCategoryValue);
+            var url = "/backend/autobotCompleteResume/save";
+            var form_data = $("#form1").serialize();
             $.ajax({
                 type: "POST",
                 url: url,
@@ -355,7 +329,7 @@
 
         function selectCities() {
             var form_data = {};
-            form_data.parentId = $("[name='province']").val();
+            form_data.parentId = $("#province").val();
             $.ajax({
                 type: "POST",
                 url: "/backend/regions/getCities",
@@ -377,35 +351,76 @@
             });
         }
 
-
-        var image = '';
-        function selectImage(file) {
-            if (!file.files || !file.files[0]) {
-                return;
+    </script>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">上传图片</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="file" inputmode="" accept=".jpeg,.jpg,.png,.bmp" onchange="selectImage(this)">
+                    <input type="hidden" id="input_url">
+                    <div>
+                        <img id="cropperimg" src="/assets/website/images/blank.jpg">
+                    </div>
+                    <!-- sadjkfj -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" id="save_btn" class="btn btn-primary" onclick="save()">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var BLANK_IMG_URL = "/assets/website/images/blank.jpg";
+        function showCrop(url) {
+            if (!!window.cropper && !!url) { // reset url
+                cropper.replace(url);
+                $("#save_btn").removeClass("disabled");
+            } else if (!!window.cropper) { //second open reset url
+                cropper.replace(BLANK_IMG_URL);
+            } else {//first open need init
+                var image = document.getElementById('cropperimg');
+                image.src = BLANK_IMG_URL;
+                cropper = new Cropper(image, {
+                    aspectRatio: 1,
+                    toggleDragModeOnDblclick: false,
+                    zoomable: false,
+                    movable: false,
+                    minCropBoxWidth: 100,
+                    minCropBoxHeight: 100,
+                    dragMode: 'none',
+                    checkCrossOrigin: true,
+                    autoCrop: true
+                });
             }
-
-            var reader = new FileReader();
-            reader.onload = function (evt) {
-                if (file.name == 'headLogo') {
-                    document.getElementById('autobot.userCenter.headLogo').src = evt.target.result;
-                }
-                if (file.name == 'workPhotoURL1') {
-                    document.getElementById('autobot.workPhotoURL1').src = evt.target.result;
-                }
-                if (file.name == 'workPhotoURL2') {
-                    document.getElementById('autobot.workPhotoURL2').src = evt.target.result;
-                }
-                image = evt.target.result;
-            }
-            reader.readAsDataURL(file.files[0]);
         }
 
-        function getFilePath(ext) {
-            var timestamp = new Date().getTime();
-            return ("autobot/upload/" + timestamp + "." + ext);
+        $("#myModal").on("shown.bs.modal", function () {
+            showCrop();
+            $("#save_btn").addClass("disabled");
+        });
+
+        function save() {
+            var url = cropper.getCroppedCanvas().toDataURL();
+            $("#workPhotoURL1").val(url);
+            $('#myModal').modal('hide');
+        }
+
+        function selectImage(file) {
+            if (file.files && file.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (evt) {
+                    showCrop(evt.target.result);
+                };
+                reader.readAsDataURL(file.files[0]);
+            }
         }
     </script>
-
     <!-- main结束 -->
 <#--<#include "/assets/backend/common/footer.html">-->
 

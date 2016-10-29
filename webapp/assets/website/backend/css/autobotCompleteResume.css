@@ -11,3 +11,7 @@ label.pxshijl_label { padding-left: 0px; padding-right: 0px; font-size: 14px; fo
 li.pxshijl_li{ border:none; list-style:none; height: 50px; padding-left: 0px}
 
 .pxshijl .placeholder{ font-size: 14px;}
+
+#cropperimg{
+    max-width: 100%;
+}
