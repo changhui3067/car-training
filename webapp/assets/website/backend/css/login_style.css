@@ -152,3 +152,9 @@ a img {border: none;}
 .footer{ width:100%; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/footer_bg.jpg) repeat-x left top;height:90px; padding-top:40px;}
 
 .bq{ line-height:24px; color:#000; text-align:center;}
+
+#personal_loginform table tr:nth-child(n+2):nth-child(-n+6) td:nth-child(1),
+#company_loginform table tr:nth-child(n+2):nth-child(-n+6) td:nth-child(1) {
+	padding-left: 25px !important;
+	text-align: left !important;
+}
