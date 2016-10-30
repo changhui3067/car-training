@@ -82,18 +82,18 @@
           <#if trainerList??>
           <ul>
            <#list trainerList as t>
-           <li>
+           <li class="oneBox">
               <#if t?? && t.userCenter??>
-              <div class="pxshi_pic2"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
-              <div class="pxshi_intro2">
-                <div class="pxshi_name2">
-                    <div class="xm2 left">${t.userCenter.name!}</div>
-                    <div class="pl2 left"><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if>人<span>评论</span></div>
-                    <div class="dz2 right">${t.starLevel!}</div>
+              <div class="picContainer"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
+              <div class="intro">
+                <div>
+                    <div class="name">${t.userCenter.name!}</div>
+                    <div class="right">${t.starLevel!}</div>
+                    <div class="right"><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if>人</div>
                     <div class="clear"></div>
                 </div>
-                <div class="pxshi_zp2">${t.currentPosition!} </div>
-                <div class="rz2">
+                <div>${t.currentPosition!} </div>
+                <div>
                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></span>
                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></span>
                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></span>
@@ -118,27 +118,25 @@
      <#if autobotsList??>
      <ul>
          <#list autobotsList as t>
-         <li>
+         <li class="oneBox">
              <#if t?? && t.userCenter??>
-             <div class="pxsheng_pic"><a href="/website/autobotDetail?autobots.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
-             <div class="pxsheng_intro">
-                 <div class="pxsheng_name">
-                     <div class="pxsheng_xm left">${t.userCenter.name!}</div>
-                     <!--<div class="pxsheng_pl right">34人<span>评论</span></div>-->
-
+             <div class="picContainer"><a href="/website/autobotDetail?autobots.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
+             <div class="intro">
+                 <div>
+                     <div class="name">${t.userCenter.name!}</div>
+                     <div class="right">34人</div>
+                     <div class="right">${t.autoYears!}年</div>
                      <div class="clear"></div>
                  </div>
-                 <div class="pxsheng_zw">
-                     <div class="pxsheng_zw_l left">${t.currentPosition!}</div>
-                     <div class="pxsheng_zw_r  right">工作经验${t.autoYears!}年</div>
+                 <div>
+                     <div>${t.currentPosition!}</div>
                      <div class="clear"></div>
                  </div>
-                 <div class="pxsheng_rz">
-                        	<span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot2.jpg" /></span>
-                            <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/yrz.jpg" /></span>
-                            <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dr.jpg" /></span>
-                            <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zs.jpg" /></span>
-
+                 <div>
+                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot2.jpg" /></span>
+                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/yrz.jpg" /></span>
+                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dr.jpg" /></span>
+                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zs.jpg" /></span>
                  </div>
              </div>
              </#if>
@@ -154,38 +152,39 @@
      <#if jobsTrainerList??>
      <ul>
          <#list jobsTrainerList as t>
-         <li>
+         <li class="zp_box">
              <#if t?? && t.company??>
-             <div class="qz"></div> <div class="pxxq_l left">
-             <a href="/website/jobDetail?jobs.id=${t.id!}"> <div class="zw_name">${t.name!}</div></a>
-             <div class="dy_box">
-                        	<span class="cn" style="padding-left:0px;">${t.salary!}</span><span>${t.workExprience!}年工作经验</span><span style="background:none;"><#if t.region??>${t.region.fullname!}</#if></span>
-             </div>
-             <div class="fb_box">
+             <div class="qz"></div>
+                 <div class="pxxq_l left zp_box_l">
+                    <a href="/website/jobDetail?jobs.id=${t.id!}"> <div class="zw_name">${t.name!}</div></a>
+                    <div class="dy_box">
+                        <span class="cn" style="padding-left:0px;">${t.salary!}</span>
+                        <span>${t.workExprience!}年工作经验</span>
+                        <span style="background:none;"><#if t.region??>${t.region.fullname!}</#if></span>
+                    </div>
+                    <div class="fb_box">
                         	<span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span><span style="background:none;">投递后：48小时反馈</span>
-             </div>
-         </div>
-         <div class="pxxq_r right">
-          <div class="qy">
+                    </div>
+                </div>
+                <div class="pxxq_r right zp_box_r">
+                    <div class="qy">
                           <a href="/website/autoCompany?company.id=${t.company.id!}">
-                              <div class="qy_l left"><img src="${t.company.logo!}" style="width:100px;height:50px;"/></div>
-                              <div class="qy_r right">
+                              <div class="qy_l left zp_box_r_l"><img src="${t.company.logo!}" /></div>
+                              <div class="qy_r right zp_box_r_r">
                                   <div class="qy_name">
-                                      <span>已有${t.company.bondsmanCount}人担保</span>
                                       <span>${t.company.name!}</span>
+                                      <span>已有${t.company.bondsmanCount}人担保</span>
                                   </div>
                                   <div class="jyfw">${t.company.industry!}</div>
+                                  <div class="fl">
+                                      <#if t.welfare??>
+                                          <#list t.welfare as w><span>${w!}</span></#list>
+                                      </#if>
+                                  </div>
                               </div>
                           </a>
                           <div class="clear"></div>
                       </div>
-         <div class="fl">
-            <#if t.welfare??>
-            <#list t.welfare as w>
-                        	<span>${w!}</span>
-            </#list>
-            </#if>
-        </div>
     </div>
     <div class="clear"></div>
 
@@ -202,46 +201,46 @@
      <#if jobsAutobotsList??>
      <ul>
          <#list jobsAutobotsList as t>
-         <li>
+         <li class="zp_box">
              <#if t?? && t.company??>
-             <div class="qcrxq_l left">
-                        	 <a href="/website/jobDetail?jobs.id=${t.id!}"><div class="qcrxq_zw_name">${t.name!}</div></a>
-              <div class="qcrxq_dy_box">
-                                 <span class="cn" style="padding-left:0px;">${t.salary!}</span>
-                                 <span>${t.workExprience!}年工作经验</span>
-                                 <span style="background:none;">上海-嘉定区</span>
-                             </div>
-                            <div class="pingpai">
-                                <em>当前汽车品牌：</em><span>宝马</span><span>宝马</span>
-                                <div class="clear"></div>
+             <div class="qcrxq_l left zp_box_l">
+                 <a href="/website/jobDetail?jobs.id=${t.id!}"><div class="qcrxq_zw_name">${t.name!}</div></a>
+                <div class="qcrxq_dy_box">
+                    <span class="cn" style="padding-left:0px;">${t.salary!}</span>
+                    <span>${t.workExprience!}年工作经验</span>
+                    <span style="background:none;">上海-嘉定区</span>
+                </div>
+                 <div class="pingpai">
+                     <em>当前汽车品牌：</em><span>宝马</span><span>宝马</span>
+                     <div class="clear"></div>
+                 </div>
+
+                 <div class="qcrxq_fb_box">
+                     <span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span>
+                     <span style="background:none;">投递后：48小时反馈 </span>
+                </div>
+             </div>
+
+            <div class="qcrxq_r right zp_box_r">
+                <div class="qcrxq_qy">
+                    <a href="/website/autoCompany?company.id=${t.company.id!}">
+                        <div class="qcrxq_qy_l left zp_box_r_l"><img src="${t.company.logo!}" /></div>
+                        <div class="qcrxq_qy_r right zp_box_r_r">
+                            <div class="qcrxq_qy_name">
+                                <span>${t.company.name!}</span>
+                                <span>已有${t.company.bondsmanCount}人担保</span>
                             </div>
-
-                            <div class="qcrxq_fb_box">
-                                <span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span>
-                                <span style="background:none;">投递后：48小时反馈 </span>
-         </div>
-     </div>
-
-     <div class="qcrxq_r right">
-      <div class="qcrxq_qy">
-                          <a href="/website/autoCompany?company.id=${t.company.id!}">
-                              <div class="qcrxq_qy_l left"><img src="${t.company.logo!}" style="width:100px;height:50px;"/></div>
-                              <div class="qcrxq_qy_r right">
-                            	<div class="qcrxq_qy_name">
-                                    <span>已有${t.company.bondsmanCount}人担保</span>
-                                    <span>${t.company.name!}</span></div>
-                                <div class="qcrxq_jyfw">${t.company.industry!}</div>
-         </div>
-         <div class="clear"></div>
-     </div>
-     <div class="qcrxq_fl">
-         <#if t.welfare??>
-         <#list t.welfare as w>
-                        	<span>${w!}</span>
-         </#list>
-         </#if>
-     </div>
- </div>
+                            <div class="qcrxq_jyfw">${t.company.industry!}</div>
+                            <div class="qcrxq_fl">
+                                <#if t.welfare??>
+                                    <#list t.welfare as w><span>${w!}</span></#list>
+                                </#if>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </a>
+                </div>
+            </div>
  <div class="clear"></div>
  </#if>
 </li>
@@ -251,24 +250,8 @@
 </div>
 </div>
 <div class="art_box">
- <!--<div class="ycwz left">
-     <h4><span><a href="#">更多>></a></span>原创文章</h4>
-     <div class="ycwz_box">
-         <#if trainerEssayList??>
-         <ul>
-             <#list trainerEssayList as t>
-             <li>
-                 <#if t??>
-                 <span><a href="#">${t.publishDate!?string("yyyy-MM-dd")}</a></span><a href="/website/trainerEssayDetail?trainerEssay.id=${t.id!}">${t.title!}</a>
-                 </#if>
-             </li>
-             </#list>
-         </ul>
-         </#if>
-     </div>
- </div>-->
  <div class="yiti left">
-     <h4><span><a href="#">更多>></a></span>培训学院热点议题</h4>
+     <h4>培训学院热点议题<span><a href="#">更多>></a></span></h4>
      <div class="yiti_box">
          <#if topicList??>
          <ul>
@@ -290,23 +273,22 @@
        <#if coursesList??>
        <ul>
           <#list coursesList as t>
-          <li>
+          <li class="oneBox">
              <#if t?? && t.trainer ?? &&t.trainer.userCenter ?? >
-             <div class="sy_gkk_pic"><a href="/website/courseDetail?course.id=${t.id!}"><img src="${t.trainer.userCenter.headLogo!}" /></a></div>
-             <div class="sy_gkk_intro">
-                 <div class="sy_gkk_name">
-                     <div class="sy_gkk_xm"><a href="/website/courseDetail?course.id=${t.id!}">${t.courseName!}</a></div>
-
+             <div class="picContainer"><a href="/website/courseDetail?course.id=${t.id!}"><img src="${t.trainer.userCenter.headLogo!}" /></a></div>
+             <div class="intro">
+                 <div>
+                     <div class="name"><a href="/website/courseDetail?course.id=${t.id!}">${t.courseName!}</a></div>
                      <div class="clear"></div>
                  </div>
-                 <div class="sy_gkk_zw">
-                     <div class="sy_gkk_zw_l left"><#if t.region??></#if>${t.region.fullname!}</div>
-                     <div class="sy_gkk_zw_r  right">2016-6-18</div>
+                 <div class="">
+                     <div class="left"><#if t.region??></#if>${t.region.fullname!}</div>
+                     <div class="right">2016-6-18</div>
                      <div class="clear"></div>
                  </div>
-                 <div class="sy_gkk_zw">
-                     <div class="sy_gkk_zw_l left"><font color="ff8100">${t.price!}元</font></div>
-                     <div class="sy_gkk_zw_r  right">报名数：<font color="ff8100">${t.willnum!}人</font></div>
+                 <div class="">
+                     <div class="left">${t.price!}元</div>
+                     <div class="right">${t.willnum!}人</div>
                      <div class="clear"></div>
                  </div>
              </div>
