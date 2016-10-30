@@ -13,10 +13,9 @@
           media="screen"/>
     <link rel="stylesheet" href="<@url value='/assets/website/css/bootstrap.min.css'/>" type="text/css" media="screen"/>
     <link rel="stylesheet" href="/assets/website/css/cropper.css" type="text/css" media="screen"/>
-    <#--<script src="/assets/website/js/cropper.js" type="text/javascript"></script>-->
+    <script src="/assets/website/js/cropper.js" type="text/javascript"></script>
     <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
-    <#--<script src="<@url value="/assets/website/js/laydate.js?v=1.1.0"/>"></script>-->
 </head>
 
 <body>
@@ -28,9 +27,9 @@
         <div class="dq_box">
             <div class="dqwz left">当前位置 : <a href="#">首 页</a> > <a href="#">汽车人管理中心</a> > <a href="#">申请记录</a></div>
             <div class="wdcf right"><span
-                    color="#FF66001"><#if Session?exists && Session["userDetails"].wealthStartDate??> ${Session["userDetails"].wealthStartDate!?string("dd/MM/yyyy")}
+                    color="#FF66001"><#if Session?? && Session["userDetails"].wealthStartDate??> ${Session["userDetails"].wealthStartDate!?string("dd/MM/yyyy")}
                 —${Session["userDetails"].wealthEndDate!?string("dd/MM/yyyy")}</#if></span>我的财富：<font
-                    color="#FF66001"><#if Session?exists && Session["userDetails"]??> ${Session["userDetails"].wealth!}</#if></font>
+                    color="#FF66001"><#if Session?? && Session["userDetails"]??> ${Session["userDetails"].wealth!}</#if></font>
             </div>
             <div class="clear"></div>
         </div>
@@ -124,7 +123,7 @@
                                                                 style="color: red">*</span>
                                                             联系方式:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control"name="umobile"
+                                                            <input type="text" class="form-control" name="umobile"
                                                                    placeholder="请输入联系方式">
                                                         </div>
                                                     </div>
@@ -222,14 +221,13 @@
                                             <ul class="list-group">
                                                 <li class="list-group-item pxshijl_li">
                                                     <div class="form-group">
-                                                        <img src="${autobot.workPhotoURL1!}">
+                                                        <img id="workPhotoURL1_show" src="${autobot.workPhotoURL1!}">
                                                         <button type="button" class="btn btn-primary btn-lg"
                                                                 data-toggle="modal" data-target="#myModal">
                                                             上传照片
                                                         </button>
                                                         <div class="col-sm-9">
-                                                            <input type="hidden" id="workPhotoURL1"
-                                                                   name="workPhotoURL1">
+                                                            <input type="hidden" name="workPhotoURL1">
                                                         </div>
                                                     </div>
                                                 </li>
@@ -407,7 +405,8 @@
 
         function save() {
             var url = cropper.getCroppedCanvas().toDataURL();
-            $("#workPhotoURL1").val(url);
+            $("[name='workPhotoURL1']").val(url);
+            $("#workPhotoURL1_show").attr("src", url);
             $('#myModal').modal('hide');
         }
 
@@ -421,8 +420,6 @@
             }
         }
     </script>
-    <!-- main结束 -->
-<#--<#include "/assets/backend/common/footer.html">-->
 
 </body>
 </html>
