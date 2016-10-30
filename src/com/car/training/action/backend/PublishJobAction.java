@@ -1,14 +1,10 @@
 package com.car.training.action.backend;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.car.training.domain.Company;
+import com.car.training.domain.Jobs;
+import com.car.training.enums.JobType;
+import com.car.training.service.CompanyService;
+import com.car.training.service.JobsService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
@@ -21,11 +17,8 @@ import org.ironrhino.core.service.EntityManager;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.car.training.domain.Company;
-import com.car.training.domain.Jobs;
-import com.car.training.enums.JobType;
-import com.car.training.service.CompanyService;
-import com.car.training.service.JobsService;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @AutoConfig
 public class PublishJobAction extends BaseAction {

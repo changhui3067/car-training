@@ -5,106 +5,108 @@ import java.util.Date;
 
 public class TrainerEssay implements Serializable {
 
-	private static final long serialVersionUID = 4092941816602786998L;
+    private static final long serialVersionUID = 4092941816602786998L;
 
-	private String id;
-	
-	private Trainer	trainer;
-	
-	private String	title;
-	
-	private String	content;
-	
-	private Date	publishDate;
-	
-	private Integer	praiseCount;
+    private String id;
 
-	private Date createDate;
+    private Trainer trainer;
 
-	private Date modifyDate;
-	
-	private boolean enabled;
-	
-	/**是否推荐**/
-	private boolean promoted;
+    private String title;
 
-	public String getId() {
-		return id;
-	}
+    private String content;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    private Date publishDate;
 
-	public Trainer getTrainer() {
-		return trainer;
-	}
+    private Integer praiseCount;
 
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
-	}
+    private Date createDate;
 
-	public String getTitle() {
-		return title;
-	}
+    private Date modifyDate;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    private boolean enabled;
 
-	public String getContent() {
-		return content;
-	}
+    /**
+     * 是否推荐
+     **/
+    private boolean promoted;
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public Date getPublishDate() {
-		return publishDate;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setPublishDate(Date publishDate) {
-		this.publishDate = publishDate;
-	}
+    public Trainer getTrainer() {
+        return trainer;
+    }
 
-	public Integer getPraiseCount() {
-		return praiseCount;
-	}
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
 
-	public void setPraiseCount(Integer praiseCount) {
-		this.praiseCount = praiseCount;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public Date getModifyDate() {
-		return modifyDate;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
-	}
+    public Date getPublishDate() {
+        return publishDate;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public Integer getPraiseCount() {
+        return praiseCount;
+    }
 
-	public boolean isPromoted() {
-		return promoted;
-	}
+    public void setPraiseCount(Integer praiseCount) {
+        this.praiseCount = praiseCount;
+    }
 
-	public void setPromoted(boolean promoted) {
-		this.promoted = promoted;
-	}
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isPromoted() {
+        return promoted;
+    }
+
+    public void setPromoted(boolean promoted) {
+        this.promoted = promoted;
+    }
 }

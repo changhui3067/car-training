@@ -6,7 +6,7 @@ body {font:14px "微软雅黑",Arial,sans-serif; color:#4c4c4c;margin:0px; backg
 form,menu,dir,fieldset,blockquote,p,pre,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6 { padding:0; margin:0;}
 ul,ol,dl { list-style:none; }
 a {color:#666666;;text-decoration: none !important;}
-a:hover {color:#666666;text-decoration:none; cursor: pointer;}
+a:hover, img:hover {color:#666666;text-decoration:none; cursor: pointer;}
 a img {border: none;}
 .clear {clear: both;line-height: 0px;font-size:0px;}
 .content {width:1200px;margin: 0 auto;  }
@@ -500,13 +500,36 @@ add our css below
 .errMsg {
 	display:block; 
 	padding-left:10px;
-	height: 3px;
+	height: 30px;
 	color:#FA5506;
 }
 
 #checkeRadio label {
 	padding-left: 35px;
-	margin-bottom:10px;
+	margin-bottom:15px;
+}
+
+.register{ 
+	width:120px; 
+	padding-left:15px;
+	height:50px;
+	line-height:50px;
+}
+.register li{ 
+	display:block; 
+	float:left; 
+	width:60px; 
+	text-align:center;
+	height:50px; 
+	line-height:50px; 
+	color:#a0a0a0; 
+	font-size:12px;
+}
+.register li a{
+	color:#a0a0a0;
+}
+.register li a:hover{ 
+	color:#fff;
 }
 
 

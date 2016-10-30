@@ -1,56 +1,45 @@
 package com.car.training.action.backend;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-
-import com.car.training.utils.FileUploaderUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.struts2.ServletActionContext;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
-import org.ironrhino.common.model.Region;
-import org.ironrhino.core.fs.FileStorage;
-import org.ironrhino.core.metadata.AutoConfig;
-import org.ironrhino.core.metadata.JsonConfig;
-import org.ironrhino.core.service.EntityManager;
-import org.ironrhino.core.struts.BaseAction;
-import org.ironrhino.rest.RestStatus;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-
 import com.car.training.domain.Trainer;
 import com.car.training.domain.UserCenter;
 import com.car.training.enums.Education;
 import com.car.training.enums.MarryStatus;
 import com.car.training.enums.PersonalType;
 import com.car.training.service.TrainerService;
+import com.car.training.utils.FileUploaderUtil;
+import com.car.training.utils.RegionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
+import org.ironrhino.common.model.Region;
+import org.ironrhino.core.fs.FileStorage;
+import org.ironrhino.core.metadata.AutoConfig;
+import org.ironrhino.core.metadata.JsonConfig;
+import org.ironrhino.core.service.EntityManager;
+import org.ironrhino.core.struts.BaseAction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @AutoConfig
 public class TrainerCompleteResumeAction extends BaseAction {
 
     private static final long serialVersionUID = 4839883380537115435L;
-    @Autowired
-    public FileStorage fileStorage;
     @Value("${upload.filepath:/car/training/upload/}")
     public static String CARTRAINING_UPLOAD_FILEPATH = "/car/training/upload/";
+    @Autowired
+    public FileStorage fileStorage;
     @Autowired
     private TrainerService trainerService;
     @Autowired
     private transient EntityManager<Region> entityManager;
     @Autowired
     private FileUploaderUtil fileUploaderUtil;
+    @Autowired
+    private RegionUtils regionUtils;
+
     /**
      * 培训师
      */
@@ -59,6 +48,8 @@ public class TrainerCompleteResumeAction extends BaseAction {
     private List<Region> provinces;
 
     private List<Region> cities;
+
+    private Region userRegion;
 
     private Object data;
 
@@ -114,12 +105,9 @@ public class TrainerCompleteResumeAction extends BaseAction {
             trainer = trainerService.findByUserCenter(uc.getId());
         }
 
-        entityManager.setEntityClass(Region.class);
-        DetachedCriteria dc = entityManager.detachedCriteria();
-        dc.add(Restrictions.isNull("parent"));
-        dc.addOrder(Order.asc("displayOrder"));
-        dc.addOrder(Order.asc("name"));
-        provinces = entityManager.findListByCriteria(dc);
+        userRegion = regionUtils.getRegionById(trainer.getUserCenter().getRegion().getId());
+        provinces = regionUtils.getSubCities(-1);
+        cities = regionUtils.getSubCities(userRegion.getParent().getId());
         return SUCCESS;
     }
 
@@ -173,7 +161,7 @@ public class TrainerCompleteResumeAction extends BaseAction {
                 uc.setRegion(region);
             }
             if (StringUtils.isNotBlank(uheadLogo) && !uheadLogo.startsWith("http")) {
-                String headLogo = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH,uheadLogo);
+                String headLogo = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, uheadLogo);
                 uc.setHeadLogo(headLogo);
             }
             trainer.setVedioURL1(vedioURL1);
@@ -349,4 +337,11 @@ public class TrainerCompleteResumeAction extends BaseAction {
         this.vedioURL2 = vedioURL2;
     }
 
+    public Region getUserRegion() {
+        return userRegion;
+    }
+
+    public void setUserRegion(Region userRegion) {
+        this.userRegion = userRegion;
+    }
 }

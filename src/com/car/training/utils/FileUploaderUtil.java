@@ -12,8 +12,6 @@ import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.car.training.action.backend.TrainerCompleteResumeAction.CARTRAINING_UPLOAD_FILEPATH;
-
 /**
  * Created by bill on 10/25/16.
  */
@@ -21,10 +19,11 @@ import static com.car.training.action.backend.TrainerCompleteResumeAction.CARTRA
 public class FileUploaderUtil {
     @Autowired
     public FileStorage fileStorage;
+
     /**
      * 单个上传base64公用接口
      */
-    public String uploadFile(String prePath ,String imgData) {
+    public String uploadFile(String prePath, String imgData) {
         if (imgData == null) {
             throw RestStatus.valueOf(RestStatus.CODE_FIELD_INVALID, "参数有误");
         }

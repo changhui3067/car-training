@@ -4,20 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <title>培聘网</title>
+<link rel="stylesheet" href="<@url value="/assets/website/css/style.css?v=1.1.0"/>" type="text/css" media="screen" />
 <link rel="stylesheet" href="<@url value='/assets/website/backend/css/login_style.css'/>" type="text/css" media="screen" />
-<script type="text/javascript" src="<@url value='/assets/website/backend/js/jquery-1.8.0.min.js'/>"></script>
+<link rel="stylesheet" href="<@url value="/assets/website/css/bootstrap.min.css?v=1.1.0"/>" type="text/css" media="screen" />
+<script src="<@url value="/assets/website/js/jquery-3.1.1.min.js?v=1.1.0"/>"></script>
+<script src="<@url value="/assets/website/js/bootstrap.min.js?v=1.1.0"/>"></script>
 <script type="text/javascript" src="<@url value='/assets/website/backend/js/common.js'/>"></script>
-<script type="text/javascript">
-
-function displayimg()
-{
-	$("#img1").show();
-}
-	function hidimg()
-	{
-		$("#img1").hide();
-	}
-</script>
 </head>
 
 <body>
@@ -39,160 +31,170 @@ function displayimg()
 		</div>
 		<div class="linksmain" id="item_con">
 			<div id="item_con_0">
-			  <form action="" id="loginform0">
+			  <form action="" id="personal_loginform">
 				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
                   <td height="60" colspan="4" align="left" valign="middle" style="background:url(http://obu3flkwk.bkt.clouddn.com/backend/images/icon2.jpg) no-repeat left center; padding:20px 0px; height:30px; line-height:30px; padding-left:30px;">每个手机只能申请一个账号</td>
                   </tr>
                 <tr>
                   <td width="106" height="60" align="right" valign="middle"><font color="#ff0000">*</font>个人账号：</td>
-                  <td colspan="2"><input style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="text" name="gr_username" id="gr_username"  data-reg="/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/" placeholder="请输入11位手机号" required/></td>
+                  <td colspan="2"><input style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="text" name="username" id="username"  data-reg="/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/" placeholder="请输入11位手机号" required/></td>
                   <td width="282"><font color="#999999">作为登录账号，请填写未注册过的手机</font></td>
                 </tr>
                 <tr>
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>密码：</td>
-                  <td colspan="2"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="password" name="gr_password" id="gr_password"   data-reg="/^[A-Za-z0-9]{6,16}$/"  placeholder="请输入6-16位字母、数字组成的登录密码" required/></td>
-                  <td><font color="#999999">6~16个字符，包含字母，数字，特殊符号</font></td>
+                  <td colspan="2"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="password" name="password" id="password"   data-reg="/^[A-Za-z0-9]{6,16}$/"  placeholder="请输入6-16位字母、数字组成的登录密码" required/></td>
+                  <td><font color="#999999">6~16个字符，包含字母，数字，下划线</font></td>
                 </tr>
                 <tr>
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>确认密码：</td>
-                  <td colspan="2"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="password" name="gr_confirmPassword" id="gr_confirmPassword"   data-reg="/^[A-Za-z0-9]{6,16}$/"  placeholder="请再次输入登录密码" required/></td>
+                  <td colspan="2"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="password" name="confirmPassword" id="confirmPassword"   data-reg="/^[A-Za-z0-9]{6,16}$/"  placeholder="请再次输入登录密码" required/></td>
                   <td><font color="#999999">请再次输入密码</font></td>
                 </tr>
                 <tr>
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>验证码：</td>
-                  <td width="100"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" type="text" name="gr_verCode" id="gr_verCode" /></td>
+                  <td width="100"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" type="text" name="verCode" id="verCode" /></td>
                   <td width="72"> 
-                      <input type="button" id="gr_msgsend" value="免费获取验证码" onclick="javascript:settime(this);sendmsg(this.id);return false;" style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" /></td>
+                      <input type="button" id="personal_msgsend" value="免费获取验证码" onclick="javascript:settime(this);sendmsg(this.id);return false;" style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" /></td>
                   <td><font color="#999999">请输入手机验证码</font></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="errMsg"></div>
+                    </td>
                 </tr>
                 <tr>
                   <td height="60" colspan="4" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                      <td width="6%" height="33">&nbsp;</td>
-                      <td width="94%"><input name="personalType" type="radio" id="personalType" value="AUTOBOT" />
-汽车人
-                       &nbsp;&nbsp;&nbsp;&nbsp;
-                       <input name="personalType" type="radio" id="personalType" value="TRAINER" />
-培训师</td>
+                    	<div id="checkeRadio">
+                    	    <label class="radio-inline col-sm-3"> 
+                    	        <input name="personalType" id="personalType" type="radio"  value="AUTOBOT" checked/>汽车人
+                    	    </label>
+                    	    <label class="radio-inline col-sm-3">
+                    	        <input type="radio" name="personalType" id="personalType" value="TRAINER" />培训师
+                    	    </label>
+                    	</div>
                     </tr>
                   </table></td>
                   </tr>
                 <tr>
-                  <td height="80" colspan="4" align="center" valign="middle"><input type="image" name="imageField" id="imageField" src="http://obu3flkwk.bkt.clouddn.com/backend/images/tj.jpg" onClick='javascript:gr_register();return false;'/></td>
+                  <td height="80" colspan="4" align="center" valign="middle"><input type="image" name="imageField" id="imageField" src="http://obu3flkwk.bkt.clouddn.com/backend/images/tj.jpg" onClick='javascript:personal_register();return false;'/></td>
                 </tr>
               </table>
               </form>
 			</div>
 			<div id="item_con_1" style="display:none">
-			  <form action="" id="loginform1">
+			  <form action="" id="company_loginform">
 				<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
                   <td height="60" colspan="4" align="left" valign="middle" style="background:url(http://obu3flkwk.bkt.clouddn.com/backend/images/icon2.jpg) no-repeat left center; padding:20px 0px; height:30px; line-height:30px; padding-left:30px;">每个手机只能申请一个账号</td>
                   </tr>
                 <tr>
                   <td width="106" height="60" align="right" valign="middle"><font color="#ff0000">*</font>企业账号：</td>
-                  <td colspan="2"><input style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="text" name="qy_username" id="qy_username"  data-reg="/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/" placeholder="请输入11位手机号" required/></td>
+                  <td colspan="2"><input style="30px;border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="text" name="username" id="username"  data-reg="/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/" placeholder="请输入11位手机号" required/></td>
                   <td width="282"><font color="#999999">作为登录账号，请填写未注册过的手机</font></td>
                 </tr>
                 <tr>
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>密码：</td>
-                  <td colspan="2"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="password" name="qy_password" id="qy_password"   data-reg="/^[A-Za-z0-9]{6,16}$/"  placeholder="请输入6-16位字母、数字组成的登录密码" required/></td>
-                  <td><font color="#999999">6~16个字符，包含字母，数字，特殊符号</font></td>
+                  <td colspan="2"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="password" name="password" id="password"   data-reg="/^[A-Za-z0-9]{6,16}$/"  placeholder="请输入6-16位字母、数字组成的登录密码" required/></td>
+                  <td><font color="#999999">6~16个字符，包含字母，数字，下划线</font></td>
                 </tr>
                 <tr>
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>确认密码：</td>
-                  <td colspan="2"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="password" name="qy_confirmPassword" id="qy_confirmPassword"   data-reg="/^[A-Za-z0-9]{6,16}$/"   placeholder="请再次输入登录密码" required/></td>
+                  <td colspan="2"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="password" name="confirmPassword" id="confirmPassword"   data-reg="/^[A-Za-z0-9]{6,16}$/"   placeholder="请再次输入登录密码" required/></td>
                   <td><font color="#999999">请再次输入密码</font></td>
                 </tr>
                 <tr>
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>验证码：</td>
-                  <td width="100"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" type="text" name="qy_verCode" id="qy_verCode" /></td>
+                  <td width="100"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" type="text" name="verCode" id="verCode" /></td>
                   <td width="72" align="left"> 
-                   <input type="button" id="qy_msgsend" style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" value="免费获取验证码" onclick="settime(this);sendmsg(this.id);return false;" /></td>
+                   <input type="button" id="company_msgsend" style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" value="免费获取验证码" onclick="settime(this);sendmsg(this.id);return false;" /></td>
                   <td><font color="#999999">请输入手机验证码</font></td>
+                </tr>
+                <tr>
+                	<td>
+                        <div class="errMsg"></div>
+                    </td>
                 </tr>
                 <tr>
                   <td height="60" colspan="4" align="center" valign="middle"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                      <td width="6%" height="33">&nbsp;</td>
-                      <td width="94%"><input name="companyType" type="radio" id="COMPANY" value="COMPANY"  />
-培训企业
-                       &nbsp;&nbsp;&nbsp;&nbsp;
-                       <input name="companyType" type="radio" id="companyType" value="STORE" />
-汽车公司</td>
+                    	<div id="checkeRadio">
+                    	    <label class="radio-inline col-sm-3"> 
+                    	        <input name="companyType" id="companyType" type="radio"  value="COMPANY" checked/>培训企业
+                    	    </label>
+                    	    <label class="radio-inline col-sm-3">
+                    	        <input type="radio" name="companyType" id="companyType" value="STORE" />汽车公司
+                    	    </label>
+                    	</div>
                     </tr>
                   </table></td>
                   </tr>
                 <tr>
-                  <td height="80" colspan="4" align="center" valign="middle"><img id="imageField" src="http://obu3flkwk.bkt.clouddn.com/backend/images/tj.jpg"  onClick='qy_register()'/></td>
+                  <td height="80" colspan="4" align="center" valign="middle"><img id="imageField" src="http://obu3flkwk.bkt.clouddn.com/backend/images/tj.jpg"  onClick='company_register()'/></td>
                 </tr>
               </table>
               </form>
-            <!--错误信息显示域-->
-            <span class="errMsg" style="display:block; padding-left:166px;line-height: 40px;"></span>
 			</div>
 			
 		</div>
 	</div>
         
         </div>
-        <div class="zc_r right">已有培聘账号？<a href="<@url value='/backend/login'/>">立即登录</a>。</div>
+        <div class="zc_r right">已有培聘账号？<a href="<@url value='/website/index'/>">立即登录</a>。</div>
         <div class="clear"></div>
     </div>
     </div>
 </div>
 <script>
-
-function gr_register(){
-	var form_data={};
-	var username = $("#loginform0").find("#gr_username").val();
-	var password = $("#loginform0").find("#gr_password").val();
-	var comfirmPassword = $("#loginform0").find("#gr_confirmPassword").val();
-	var vercode = $("#loginform0").find("#gr_verCode").val();
-	var personalType = $("input[name='personalType']:checked").val();
+var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
+    passwordReg = /^[\w]{6,12}$/;
+function personal_register(){
+	var form_data={},
+	    errMsg = $("#personal_loginform .errMsg")[0];
+	form_data["username"] = $("#personal_loginform #username").val(),
+    form_data["password"] = $("#personal_loginform #password").val(),
+    form_data["vercode"] = $("#personal_loginform #verCode").val(),
+    form_data["personalType"] = $("input[name='personalType']:checked").val();
+	var comfirmPassword = $("#personal_loginform #confirmPassword").val();
 	
-	var userType = 'PERSONAL';
-	if(username==''||username==null){
-		alert('请输入用户名');
-		return false;
-	}
-	if(password==''||password==null){
-		alert('请输入用户密码');
-		return false;
-	}
+	if(!form_data.username){
+		errMsg.innerHTML = "请输入用户名";
+        return false;
+	}else if(!phoneReg.test(form_data.username)){
+        errMsg.innerHTML = "手机格式不正确";
+        return false;
+    }
+	if(form_data.password ==''||form_data.password==null){
+		errMsg.innerHTML = "请输入密码";
+        return false;
+	}else if(!passwordReg.test(form_data.password)){
+        errMsg.innerHTML = "密码格式不正确";
+        return false;
+    }
 	if(comfirmPassword==''||comfirmPassword==null){
-		alert('请输入确认密码');
+		errMsg.innerHTML = "请输入确认密码";
 		return false;
 	}
-	if(comfirmPassword!=password){
-		alert('您 输入的密码和确认密码不一致');
+	if(comfirmPassword!=form_data.password){
+		errMsg.innerHTML = "您输入的密码和确认密码不一致";
 		return false;
 	}
-	if(vercode==''||vercode==null){
-		alert('请选择短信验证码');
+	if(form_data.vercode==''||form_data.vercode==null){
+		errMsg.innerHTML = "请选择短信验证码";
 		return false;
 	}
-	if(personalType==''||personalType==null||personalType=='undefined'){
-		alert('请选择个人类型');
+	if(!form_data.personalType){
+		errMsg.innerHTML = "请选择个人类型";
 		return false;
 	}
-	if(userType==''||userType==null){
-		alert('请选择用户登陆类型');
-		return false;
-	}
-	form_data.username = username;
-	form_data.password = password;
-	form_data.vercode = vercode;
-	form_data.userType = userType;
-	form_data.personalType = personalType;
 	$.ajax({
-		 type: "POST",
-	     url: "/backend/register/register",
-	     data: form_data,
-	     error: function(request) {
-             showErrMsg("网络出错啦！");
-             return false;
+		type: "POST",
+	    url: "/backend/register/register",
+	    data: form_data,
+        error: function(request) {
+            errMsg.innerHTML = "网络出错啦！";
+            return false;
          },
 	     success: function (data) {
 	    	 if(data.code==200){
@@ -208,136 +210,129 @@ function gr_register(){
 				 }
 	    	 }else{
 	    	 if(data.code==400){
-	    	 	 showErrMsg(data.msg);
+	    	 	 errMsg.innerHTML = data.msg;
 	    	 	 return false;
 	    	 }else if(data.code==402){
-	    	  	showErrMsg(data.msg);
+	    	  	errMsg.innerHTML = data.msg;
 	    	 	return false;
 	    	 }else if(data.code==405){
-	    	  	showErrMsg(data.msg);
+	    	  	errMsg.innerHTML = data.msg;
 	    	 	return false;
-	    	 }
+	    	 }else{
+                errMsg.innerHTML = "注册失败";
+                return false;
+            }
 	     }
 	    }
 	});
 }
 
-function qy_register(){
-	var form_data={};
-	var username = $("#loginform1").find("#qy_username").val();
-	var password = $("#loginform1").find("#qy_password").val();
-	var comfirmPassword = $("#loginform1").find("#qy_confirmPassword").val();
-	var vercode = $("#loginform1").find("#qy_verCode").val();	
-	var companyType = $("input[name='companyType']:checked").val();
-	var userType = 'COMPANY';
-	
-	if(username==''||username==null){
-		alert('请输入手机号');
+function company_register(){
+	var form_data={},
+        errMsg = $("#company_loginform .errMsg")[0];
+	form_data["username"] = $("#company_loginform #username").val(),
+	form_data["password"] = $("#company_loginform #password").val(),
+	form_data["vercode"] = $("#company_loginform #verCode").val(),
+	form_data["companyType"] = $("input[name='companyType']:checked").val();
+    var comfirmPassword = $("#company_loginform").find("#confirmPassword").val();
+
+	if(!form_data.username){
+		errMsg.innerHTML = "请输入用户名";
+        return false;
+	}else if(!phoneReg.test(form_data.username)){
+        errMsg.innerHTML = "手机格式不正确";
+        return false;
+    }
+	if(form_data.password==''||form_data.password==null){
+		errMsg.innerHTML = "请输入密码";
 		return false;
-	}
-	if(password==''||password==null){
-		alert('请输入用户密码');
-		return false;
-	}
+	}else if(!passwordReg.test(form_data.password)){
+        errMsg.innerHTML = "密码格式不正确";
+        return false;
+    }
 	if(comfirmPassword==''||comfirmPassword==null){
-		alert('请输入确认密码');
+		errMsg.innerHTML = "请输入确认密码";
 		return false;
 	}
-	if(comfirmPassword!=password){
-		alert('您 输入的密码和确认密码不一致');
+	if(comfirmPassword!=form_data.password){
+		errMsg.innerHTML = "您输入的密码和确认密码不一致";
 		return false;
 	}
-	if(vercode==''||vercode==null){
-		alert('请输入短信验证码');
+	if(form_data.vercode==''||form_data.vercode==null){
+		errMsg.innerHTML = "请选择短信验证码";
 		return false;
 	}
-	if(userType==''||userType==null){
-		alert('请选择用户登陆类型');
+	if(!form_data.companyType){
+		errMsg.innerHTML = "请选择企业类型";
 		return false;
 	}
-	if(companyType==''||companyType==null||companyType=='undefined'){
-		alert('请选择企业类型');
-		return false;
-	}
-	
-	form_data.username = username;
-	form_data.password = password;
-	form_data.vercode = vercode;
-	form_data.userType = userType;
-	form_data.companyType = companyType;
 	$.ajax({
-		 type: "POST",
-	     url: "/backend/register/register",
-	     data: form_data,
-	     error: function(request) {
-             showErrMsg("网络出错啦！");
-             return false;
-         },
-	     success: function (data) {
-	    	 if(data.code==200){
-				 showErrMsg("注册成功！");
-				 if(data.target == "" || data.target == null){
+		type: "POST",
+	    url: "/backend/register/register",
+	    data: form_data,
+	    error: function(request) {
+            showErrMsg("网络出错啦！");
+            return false;
+        },
+	    success: function (data) {
+	    	if(data.code==200){
+				showErrMsg("注册成功！");
+				if(data.target == "" || data.target == null){
 				 	setTimeout(function(){
 		     	 			window.location.href = "/backend/companyJobManage";
 		     	 		},300);
-				 }else{
+				}else{
 				 	setTimeout(function(){
 		     	 			window.location.href = data.target;
 		     	 		},300);
-				 }
-	    	 }else if(data.code==400){
-	    	 	 showErrMsg(data.msg);
-	    	 	 return false;
-	    	 }else if(data.code==402){
-	    	  showErrMsg(data.msg);
-	    	 return false;
-	    	 }else if(data.code==405){
-	    	  showErrMsg(data.msg);
-	    	 return false;
-	    	 }else{
-	    	 	 return false;
-	    	 }
+				}
+	    	}else if(data.code==400){
+	    	 	errMsg.innerHTML = data.msg;
+	    	 	return false;
+	    	}else if(data.code==402){
+	    	    errMsg.innerHTML = data.msg;
+                return false;
+	    	}else if(data.code==405){
+	    	    errMsg.innerHTML = data.msg;
+	    	    return false;
+	    	}else{
+                errMsg.innerHTML = "注册失败";
+	    	 	return false;
+	    	}
 	     }
 	});
 }
-
-function showErrMsg(errMsg){
-	alert(errMsg);
-}
-    
+   
  function sendmsg(s_type){
- 	var username='';
- 	var userType='';
-	var form_data={};
-	 if(s_type=='gr_msgsend'){
-	 username = $("#loginform0").find("#gr_username").val();
-	 userType= 'PERSONAL';
-	 }else if(s_type=='qy_msgsend'){
-	  username = $("#loginform1").find("#qy_username").val();
-	  userType= 'COMPANY';
-	 }
-	if(username==''||username==null){
-		alert('请输入手机号');
+	var form_data={},
+        errMsg = $("#errMsg")[0];
+	if(s_type=='personal_msgsend'){
+	   form_data["username"] = $("#personal_loginform #usernam").val();
+	   form_data["userType"]= "PERSONAL";
+	}else if(s_type=='company_msgsend'){
+	   form_data["username"] = $("#company_loginform #usernam").val();
+	   form_data["userType"]= "COMPANY";
+	}
+	if(!form_data.username){
+        errMsg.innerHTML = "请输入手机号";
 		return false;
 	}
-	
-	form_data.username = username;
-	form_data.userType = userType;
 	$.ajax({
 		 type: "POST",
 	     url: "/backend/register/sendmsg",
 	     data: form_data,
 	     error: function(request) {
-	         showErrMsg("网络出错啦！");
+	         errMsg.innerHTML = "网络出错啦！";
 	         return false;
 	     },
 	     success: function (data) {
 	    	 if(data.code==200){
-				 showErrMsg("发送成功！");
+				errMsg.innerHTML = "发送成功！";
 	    	 }else if(data.code==400){
-	    	 	 showErrMsg(data.msg);
+	    	 	 errMsg.innerHTML = data.msg;
 	    	 	 return false;
 	    	 }else{
+                errMsg.innerHTML = "未知错误";
 	    	 	 return false;
 	    	 }
 	     }

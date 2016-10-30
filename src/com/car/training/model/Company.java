@@ -1,23 +1,10 @@
 package com.car.training.model;
 
-import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.ConstraintMode;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
+import com.car.training.enums.CompanyType;
+import com.car.training.enums.Industry;
+import com.car.training.enums.Nature;
+import com.car.training.enums.Scale;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.Hidden;
@@ -30,358 +17,407 @@ import org.nustaq.serialization.annotations.Version;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.car.training.enums.CompanyType;
-import com.car.training.enums.Industry;
-import com.car.training.enums.Nature;
-import com.car.training.enums.Scale;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Searchable
 @AutoConfig
 @javax.persistence.Entity
 @Table(name = "company")
-public class Company extends BaseEntity  implements UserDetails {
+public class Company extends BaseEntity implements UserDetails {
 
-	private static final long serialVersionUID = -5484521796779236186L;
+    private static final long serialVersionUID = -5484521796779236186L;
 
-	/**公司名称**/
-	@Column(length = 50, nullable = true)
-	private String name; 
-	
-	/**账户名称**/
-	@Column(length = 50, nullable = false)
-	private String username;
-	
-	/** 密码 */
-	@Column(length = 50, nullable = true)
-	private String password;
-	
-	/**公司类别(公司/4S店)**/
-	@UiConfig(hiddenInList = @Hidden(true) )
-	@Enumerated(EnumType.STRING)
-	@Column(length=20, nullable = false)
-	private CompanyType companyType;
-	
-	/** 汽车品牌 */
-	private String autoBrand;
-	
-	/**区域**/
-	@JoinColumn(name = "regionId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT) )
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	private Region region;
-	
-	/**公司地址**/
-	@Column(length = 100, nullable = true)
-	private String address; 
-	
-	/**公司LOGO**/
-	@Column(length = 255, nullable = true)
-	@UiConfig(cssClass = "imagepick", viewTemplate = "<#if value?has_content><a href=\"<@url value=value/>\" target=\"_blank\"><img src=\"<@url value=value/>\" style=\"height:50px;\"/></a></#if>")
-	private String logo;  
-	
-	/**公司规模**/
-	@UiConfig(hiddenInList = @Hidden(true) )
-	private Scale scale;
-	
-	/**所属行业**/
-	@UiConfig(hiddenInList = @Hidden(true) )
-	@Enumerated(EnumType.STRING)
-	@Column(length=30, nullable = true)
-	private Industry industry = Industry.AUTO;
-	
-	/**公司性质**/
-	@UiConfig(hiddenInList = @Hidden(true) )
-	@Enumerated(EnumType.STRING)
-	@Column(length=20, nullable = true)
-	private Nature nature = Nature.PERSONAL;
-	
-	/**福利**/
-	@UiConfig(hiddenInList = @Hidden(true) )
-	private Set<String> welfare = new HashSet<String>(0);
-	
-	/**担保人**/
-	@Column(length = 1000, nullable = true)
-	private String bondsman;
-	
-	/** 财富值 */
-	private BigDecimal wealth;
-	
-	/** 财富值开始有效日期 */
-	@Temporal(TemporalType.DATE)
-	private Date wealthStartDate;
-	
-	/** 财富值结束有效日期 */
-	@Temporal(TemporalType.DATE)
-	private Date wealthEndDate;
-	
-	/**公司简介*/
-	@Column(length = 4000, nullable = true)
-	private String intro;
-	
-	/**工作环境照片1**/
-	@UiConfig(cssClass = "imagepick", viewTemplate = "<#if value?has_content><a href=\"<@url value=value/>\" target=\"_blank\"><img src=\"<@url value=value/>\" style=\"height:50px;\"/></a></#if>")
-	private String environmentURL1;
-	
-	/**工作环境照片2**/
-	@UiConfig(cssClass = "imagepick", viewTemplate = "<#if value?has_content><a href=\"<@url value=value/>\" target=\"_blank\"><img src=\"<@url value=value/>\" style=\"height:50px;\"/></a></#if>")
-	private String environmentURL2;
-	
-	/**创建日期*/
-	@UiConfig(hidden = true)
-	@Column(updatable = false)
-	private Date createDate = new Date();
-	
-	/**修改日期*/
-	@NotInCopy
-	@UiConfig(hidden = true)
-	@Column(insertable = false)
-	private Date modifyDate;
-	
-	/**创建人*/
-	@NotInCopy
-	@UiConfig(hidden = true)
-	@Column(updatable = false)
-	private String createUser;
+    /**
+     * 公司名称
+     **/
+    @Column(length = 50, nullable = true)
+    private String name;
 
-	/**修改人*/
-	@NotInCopy
-	@UiConfig(hidden = true)
-	@Column(insertable = false)
-	private String modifyUser;
-	
-	/**是否启用*/
-	@JsonIgnore
-	private boolean enabled = true;
-	
-	@Version(value = 0)
-	@UiConfig(hidden = true)
-	private int version = -1;
+    /**
+     * 账户名称
+     **/
+    @Column(length = 50, nullable = false)
+    private String username;
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * 密码
+     */
+    @Column(length = 50, nullable = true)
+    private String password;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * 公司类别(公司/4S店)
+     **/
+    @UiConfig(hiddenInList = @Hidden(true))
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20, nullable = false)
+    private CompanyType companyType;
 
-	public String getUsername() {
-		return username;
-	}
+    /**
+     * 汽车品牌
+     */
+    private String autoBrand;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    /**
+     * 区域
+     **/
+    @JoinColumn(name = "regionId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Region region;
 
-	public String getPassword() {
-		return password;
-	}
+    /**
+     * 公司地址
+     **/
+    @Column(length = 100, nullable = true)
+    private String address;
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * 公司LOGO
+     **/
+    @Column(length = 255, nullable = true)
+    @UiConfig(cssClass = "imagepick", viewTemplate = "<#if value?has_content><a href=\"<@url value=value/>\" target=\"_blank\"><img src=\"<@url value=value/>\" style=\"height:50px;\"/></a></#if>")
+    private String logo;
 
-	public CompanyType getCompanyType() {
-		return companyType;
-	}
-	
-	public void setLegiblePassword(String legiblePassword) {
-		this.password = AuthzUtils.encodePassword(this, legiblePassword);
-	}
+    /**
+     * 公司规模
+     **/
+    @UiConfig(hiddenInList = @Hidden(true))
+    private Scale scale;
 
-	public boolean isPasswordValid(String legiblePassword) {
-		return AuthzUtils.encodePassword(this, legiblePassword).equals(this.password);
-	}
+    /**
+     * 所属行业
+     **/
+    @UiConfig(hiddenInList = @Hidden(true))
+    @Enumerated(EnumType.STRING)
+    @Column(length = 30, nullable = true)
+    private Industry industry = Industry.AUTO;
 
-	public void setCompanyType(CompanyType companyType) {
-		this.companyType = companyType;
-	}
+    /**
+     * 公司性质
+     **/
+    @UiConfig(hiddenInList = @Hidden(true))
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20, nullable = true)
+    private Nature nature = Nature.PERSONAL;
 
-	public String getAutoBrand() {
-		return autoBrand;
-	}
+    /**
+     * 福利
+     **/
+    @UiConfig(hiddenInList = @Hidden(true))
+    private Set<String> welfare = new HashSet<String>(0);
 
-	public void setAutoBrand(String autoBrand) {
-		this.autoBrand = autoBrand;
-	}
+    /**
+     * 担保人
+     **/
+    @Column(length = 1000, nullable = true)
+    private String bondsman;
 
-	public Region getRegion() {
-		return region;
-	}
+    /**
+     * 财富值
+     */
+    private BigDecimal wealth;
 
-	public void setRegion(Region region) {
-		this.region = region;
-	}
+    /**
+     * 财富值开始有效日期
+     */
+    @Temporal(TemporalType.DATE)
+    private Date wealthStartDate;
 
-	public String getAddress() {
-		return address;
-	}
+    /**
+     * 财富值结束有效日期
+     */
+    @Temporal(TemporalType.DATE)
+    private Date wealthEndDate;
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    /**
+     * 公司简介
+     */
+    @Column(length = 4000, nullable = true)
+    private String intro;
 
-	public String getLogo() {
-		return logo;
-	}
+    /**
+     * 工作环境照片1
+     **/
+    @UiConfig(cssClass = "imagepick", viewTemplate = "<#if value?has_content><a href=\"<@url value=value/>\" target=\"_blank\"><img src=\"<@url value=value/>\" style=\"height:50px;\"/></a></#if>")
+    private String environmentURL1;
 
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
+    /**
+     * 工作环境照片2
+     **/
+    @UiConfig(cssClass = "imagepick", viewTemplate = "<#if value?has_content><a href=\"<@url value=value/>\" target=\"_blank\"><img src=\"<@url value=value/>\" style=\"height:50px;\"/></a></#if>")
+    private String environmentURL2;
 
-	public Scale getScale() {
-		return scale;
-	}
+    /**
+     * 创建日期
+     */
+    @UiConfig(hidden = true)
+    @Column(updatable = false)
+    private Date createDate = new Date();
 
-	public void setScale(Scale scale) {
-		this.scale = scale;
-	}
+    /**
+     * 修改日期
+     */
+    @NotInCopy
+    @UiConfig(hidden = true)
+    @Column(insertable = false)
+    private Date modifyDate;
 
-	public Industry getIndustry() {
-		return industry;
-	}
+    /**
+     * 创建人
+     */
+    @NotInCopy
+    @UiConfig(hidden = true)
+    @Column(updatable = false)
+    private String createUser;
 
-	public void setIndustry(Industry industry) {
-		this.industry = industry;
-	}
+    /**
+     * 修改人
+     */
+    @NotInCopy
+    @UiConfig(hidden = true)
+    @Column(insertable = false)
+    private String modifyUser;
 
-	public Nature getNature() {
-		return nature;
-	}
+    /**
+     * 是否启用
+     */
+    @JsonIgnore
+    private boolean enabled = true;
 
-	public void setNature(Nature nature) {
-		this.nature = nature;
-	}
+    @Version(value = 0)
+    @UiConfig(hidden = true)
+    private int version = -1;
 
-	public Set<String> getWelfare() {
-		return welfare;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setWelfare(Set<String> welfare) {
-		this.welfare = welfare;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getBondsman() {
-		return bondsman;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setBondsman(String bondsman) {
-		this.bondsman = bondsman;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public BigDecimal getWealth() {
-		return wealth;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setWealth(BigDecimal wealth) {
-		this.wealth = wealth;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Date getWealthStartDate() {
-		return wealthStartDate;
-	}
+    public CompanyType getCompanyType() {
+        return companyType;
+    }
 
-	public void setWealthStartDate(Date wealthStartDate) {
-		this.wealthStartDate = wealthStartDate;
-	}
+    public void setCompanyType(CompanyType companyType) {
+        this.companyType = companyType;
+    }
 
-	public Date getWealthEndDate() {
-		return wealthEndDate;
-	}
+    public void setLegiblePassword(String legiblePassword) {
+        this.password = AuthzUtils.encodePassword(this, legiblePassword);
+    }
 
-	public void setWealthEndDate(Date wealthEndDate) {
-		this.wealthEndDate = wealthEndDate;
-	}
+    public boolean isPasswordValid(String legiblePassword) {
+        return AuthzUtils.encodePassword(this, legiblePassword).equals(this.password);
+    }
 
-	public String getIntro() {
-		return intro;
-	}
+    public String getAutoBrand() {
+        return autoBrand;
+    }
 
-	public void setIntro(String intro) {
-		this.intro = intro;
-	}
+    public void setAutoBrand(String autoBrand) {
+        this.autoBrand = autoBrand;
+    }
 
-	public String getEnvironmentURL1() {
-		return environmentURL1;
-	}
+    public Region getRegion() {
+        return region;
+    }
 
-	public void setEnvironmentURL1(String environmentURL1) {
-		this.environmentURL1 = environmentURL1;
-	}
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 
-	public String getEnvironmentURL2() {
-		return environmentURL2;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setEnvironmentURL2(String environmentURL2) {
-		this.environmentURL2 = environmentURL2;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public String getLogo() {
+        return logo;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
-	public Date getModifyDate() {
-		return modifyDate;
-	}
+    public Scale getScale() {
+        return scale;
+    }
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
-	}
+    public void setScale(Scale scale) {
+        this.scale = scale;
+    }
 
-	public String getCreateUser() {
-		return createUser;
-	}
+    public Industry getIndustry() {
+        return industry;
+    }
 
-	public void setCreateUser(String createUser) {
-		this.createUser = createUser;
-	}
+    public void setIndustry(Industry industry) {
+        this.industry = industry;
+    }
 
-	public String getModifyUser() {
-		return modifyUser;
-	}
+    public Nature getNature() {
+        return nature;
+    }
 
-	public void setModifyUser(String modifyUser) {
-		this.modifyUser = modifyUser;
-	}
+    public void setNature(Nature nature) {
+        this.nature = nature;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public Set<String> getWelfare() {
+        return welfare;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setWelfare(Set<String> welfare) {
+        this.welfare = welfare;
+    }
 
-	public int getVersion() {
-		return version;
-	}
+    public String getBondsman() {
+        return bondsman;
+    }
 
-	public void setVersion(int version) {
-		this.version = version;
-	}
+    public void setBondsman(String bondsman) {
+        this.bondsman = bondsman;
+    }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
-	}
+    public BigDecimal getWealth() {
+        return wealth;
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return false;
-	}
+    public void setWealth(BigDecimal wealth) {
+        this.wealth = wealth;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return false;
-	}
+    public Date getWealthStartDate() {
+        return wealthStartDate;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return false;
-	}
+    public void setWealthStartDate(Date wealthStartDate) {
+        this.wealthStartDate = wealthStartDate;
+    }
+
+    public Date getWealthEndDate() {
+        return wealthEndDate;
+    }
+
+    public void setWealthEndDate(Date wealthEndDate) {
+        this.wealthEndDate = wealthEndDate;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public String getEnvironmentURL1() {
+        return environmentURL1;
+    }
+
+    public void setEnvironmentURL1(String environmentURL1) {
+        this.environmentURL1 = environmentURL1;
+    }
+
+    public String getEnvironmentURL2() {
+        return environmentURL2;
+    }
+
+    public void setEnvironmentURL2(String environmentURL2) {
+        this.environmentURL2 = environmentURL2;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
+    public String getModifyUser() {
+        return modifyUser;
+    }
+
+    public void setModifyUser(String modifyUser) {
+        this.modifyUser = modifyUser;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
 }

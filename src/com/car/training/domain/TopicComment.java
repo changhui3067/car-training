@@ -5,96 +5,96 @@ import java.util.Date;
 
 public class TopicComment implements Serializable {
 
-	private static final long serialVersionUID = -4022948726061031708L;
+    private static final long serialVersionUID = -4022948726061031708L;
 
-	private String id;
-	
-	private Trainer	trainer;
-	
-	private Topic	topic;
-	
-	private String	content;
-	
-	private String	parentId;
-	
-	private Integer	praiseCount;
-	
-	private Date createDate;
-	
-	private Date modifyDate;
+    private String id;
 
-	private boolean enabled;
+    private Trainer trainer;
 
-	public String getId() {
-		return id;
-	}
+    private Topic topic;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    private String content;
 
-	public Trainer getTrainer() {
-		return trainer;
-	}
+    private String parentId;
 
-	public void setTrainer(Trainer trainer) {
-		this.trainer = trainer;
-	}
+    private Integer praiseCount;
 
-	public Topic getTopic() {
-		return topic;
-	}
+    private Date createDate;
 
-	public void setTopic(Topic topic) {
-		this.topic = topic;
-	}
+    private Date modifyDate;
 
-	public String getContent() {
-		return content;
-	}
+    private boolean enabled;
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getParentId() {
-		return parentId;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
-	}
+    public Trainer getTrainer() {
+        return trainer;
+    }
 
-	public Integer getPraiseCount() {
-		return praiseCount;
-	}
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
 
-	public void setPraiseCount(Integer praiseCount) {
-		this.praiseCount = praiseCount;
-	}
+    public Topic getTopic() {
+        return topic;
+    }
 
-	public Date getCreateDate() {
-		return createDate;
-	}
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public Date getModifyDate() {
-		return modifyDate;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
-	}
+    public String getParentId() {
+        return parentId;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-	
+    public Integer getPraiseCount() {
+        return praiseCount;
+    }
+
+    public void setPraiseCount(Integer praiseCount) {
+        this.praiseCount = praiseCount;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
 }

@@ -130,23 +130,16 @@
                     	    <td width="125" align="right" valign="middle"><font color="#ff0000">*</font>所在地：</td>
                     	    <td colspan="3">
                     	     <select name="province" id="province" onChange="selectCities()">
-                    	    <option value="">请选择省</option>
-                    	    <#if company?? && company.region??>
-							<option selected="selected" value="${company.region.id!}">${company.region.fullname!}</option>
-							<#list provinces as t>
-							<option value="${t.id!}">${t.fullname!}</option>
-							</#list>
-							<#else>
-							<#list provinces as t>
-							<option value="${t.id!}">${t.fullname!}</option>
-							</#list>
-							</#if>
-							</select>
-							<select name="city" id="city">
-                    	    <option value="">请选择市</option>
-                    	    <#if company?? &&  company.region??>
-							<option selected="selected" value="${company.region.id!}">${company.region.fullname!}</option>
-							</#if>
+                                 <option value="">请选择省</option>
+							 <#list provinces as t>
+                                 <option value="${t.id!}"<#if userRegion?? && userRegion.parent.id == t.id>selected="selected"</#if>>${t.name!}</option>
+							 </#list>
+                             </select>
+                                <select name="city" id="city">
+                                    <option value="">请选择市</option>
+								<#list cities as city>
+                                    <option value="${city.id!}" <#if userRegion ?? && city.id == userRegion.id>selected="selected"</#if>>${city.name!}</option>
+								</#list>
 							</select>
                     	    </td>
                   	    </tr>
