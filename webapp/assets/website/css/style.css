@@ -124,6 +124,8 @@ a img {border: none;}
 
 /*培训师_左边大图 will put into index.css file*/
 .pxshi_l{ width:386px; height:464px; background:#faf9f9; border:1px solid #e7e5e5;  padding:1px;}
+
+/* to delete*/
 .pxshi_l_pic{ width:382px; height:322px;}
 .pxshi_l_pic img{ width:382px; height:322px;}
 .pxshi_l_intro{ padding:15px 10px; height:112px;}
@@ -403,6 +405,10 @@ a img {border: none;}
     padding: 5px 5px;
 }
 
+.oneBox .intro>div:nth-child(1) {
+    line-height: 30px;
+}
+
 .oneBox .intro>div:nth-child(1) .name{
     float: left;
     font-size: 16px;
@@ -430,8 +436,54 @@ a img {border: none;}
     float: left;
     margin-right: 2px;
 }
-/***************************************End one box structure**************************************************************/
+/***************************************End One Box structure**************************************************************/
 
+/***************************************Search Box structure*******************************************************/
+.searchBox {
+    border: 1px solid #e3e3e3;
+    background: #f9fbfb;
+    padding: 20px;
+    height: 100%;
+    margin-bottom: 25px;
+}
+
+.searchBox .filterType {
+    width: 100%;
+    font-size: 12px;
+    line-height: 30px;
+}
+
+.searchBox .filterType .filterName {
+    display: block;
+    font-size: 12px;
+    float: left;
+    width: 65px;
+    text-align: left;
+    line-height: 30px;
+    /*padding-left: 30px;*/
+    color: #3689b3;
+}
+
+.searchBox .filterType .filterItemList{
+    float: left;
+    width: calc(100% - 65px);
+}
+
+.searchBox .filterType .filterItemList span{
+    display: block;
+    float: left;
+    padding: 0 5px;
+    margin: 0 5px 5px 0;
+    border: #3689b3 solid 1px;
+}
+
+.searchBox .filterType .filterItemList span:hover, .searchBox .filterType .filterItemList .selected {
+    background: #3689b3;
+    color: #fff;
+    cursor: pointer;
+}
+
+/***************************************End Search Box structure*******************************************************/
 .cursorStyle {
 
 }
@@ -531,5 +583,8 @@ add our css below
 .register li a:hover{ 
 	color:#fff;
 }
+
+
+
 
 

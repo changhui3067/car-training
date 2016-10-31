@@ -18,95 +18,57 @@
 
 <div class="content">
     <div class="ny">
-     	<div class="sousuo_box">
-        	<div class="pxly">
-            	<h4>职位类型:</h4>
-                <div class="pxly_box">
-                	<ul>
-                    	<li><a href="#">销售</a></li>
-                        <li><a href="#">产品</a></li>
-                        <li><a href="#">非技术</a></li>
-                        <li><a href="#">技术</a></li>
-                        <li><a href="#">管理</a></li>
-                        <li><a href="#">财务</a></li>
-                        <li><a href="#">市场营销</a></li>
-                        <li><a href="#">客户关系</a></li>
-                        <li><a href="#">人事</a></li>
-                        <li><a href="#">生产</a></li>
-                        <li><a href="#">领导力</a></li>
-                        <li><a href="#">新能源</a></li>
-                    </ul>
+     	<div class="searchBox">
+        	<div class="filterType">
+            	<div class="filterName">职位类型:</div>
+                <div class="filterItemList">
+                    <span>销售</span>
+                    <span>产品</span>
+                    <span>非技术</span>
+                    <span>技术</span>
+                    <span>管理</span>
+                    <span>财务</span>
+                    <span>市场营销</span>
+                    <span>客户关系</span>
+                    <span>人事</span>
+                    <span>生产</span>
+                    <span>领导力</span>
+                    <span>新能源</span>
                 </div>
                 <div class="clear"></div>
             </div>
             
-            <div class="zwdz">
-            	<h4>职位地址:</h4>
-                <div class="zwdz_box">
-                	<table width="250" border="0" cellspacing="0" cellpadding="0"><form id="form1" name="form1" method="post" action="">
-  <tr>
-    <td width="29">省</td>
-    <td width="90">
-      <select name="select" id="select">
-        <option value="上海市">上海市</option>
-        <option value="浙江省">浙江省</option>
-      </select>
-    </td>
-    <td width="37">市</td>
-    <td width="94"><select name="select2" id="select2">
-      <option value="上海市">上海市</option>
-      <option value="浙江省">浙江省</option>
-    </select></td>
-  </tr></form>
-</table>
-
+            <div class="filterType">
+            	<div class="filterName">职位地址:</div>
+                <div class="filterItemList">
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="pxsj">
-            	<h4>发布时间:</h4>
-                <div class="pxly_box">
-                	<ul>
-                    	<li><a href="#">当日</a></li>
-                        <li><a href="#">三天</a></li>
-                        <li><a href="#">一周</a></li>
-                        <li><a href="#">两周</a></li>
-                        <li><a href="#">一个月</a></li>
-                        
-                    </ul>
+            <div class="filterType">
+            	<div class="filterName">发布时间:</div>
+                <div class="filterItemList">
+                    <span>当日</span><span>三天</span><span>一周</span><span>两周</span><span>一个月</span>
                 </div>
                 <div class="clear"></div>
             	
             </div>
-            <div class="pxxs">
-            	<h4>培训形式:</h4>
-                <div class="pxly_box">
-                	<ul>
-                    	<li><a href="#">开发</a></li>
-                        <li><a href="#">培训</a></li>
-                        <li><a href="#">辅导</a></li>
-                        <li><a href="#">项目管理</a></li>
-                        <li><a href="#">经销商托管</a></li>
-                        
-                    </ul>
+            <div class="filterType">
+            	<div class="filterName">培训形式:</div>
+                <div class="filterItemList">
+                    <span>开发</span><span>培训</span><span>辅导</span><span>项目管理</span><span>经销商托管</span>
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="gzxz">
-            	<h4>工作性质:</h4>
-                <div class="gzxz_box">
-                	<ul>
-                    	<li><a href="#">全职</a></li>
-                        <li><a href="#">兼职</a></li>
-                       
-                        
-                    </ul>
+            <div class="filterType">
+            	<div class="filterName">工作性质:</div>
+                <div class="filterItemList">
+                    <span>全职</span><span>兼职</span>
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="sou">
-           	  <h4>关键字</h4>
-                <div class="sou_box">
+            <div class="filterType">
+           	  <div class="filterName">关键字</div>
+                <div class="filterItemList">
                   <table width="590px" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                       <td width="505px"><input style=" background:url(http://obu3flkwk.bkt.clouddn.com/website/images/ss_bg.jpg) no-repeat left 1px; height:35px;line-height:35px;   width:501px; border:none; padding-left:4px; " type="text" name="user_login"  placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" /></td>

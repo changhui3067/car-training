@@ -50,6 +50,7 @@
                         <div class="pxshijl">
                             <h5>基本信息</h5>
                             <div class="pxshijl_box">
+                                <div class="errMsg"></div>
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-7">
@@ -134,20 +135,43 @@
                                                                 style="color: red">*</span>
                                                             目前地区:</label>
                                                         <div class="col-sm-9">
-                                                            <select id="province" onChange="selectCities()">
-                                                                <option value="">请选择省</option>
-                                                            <#list provinces as t>
-                                                                <option value="${t.id!}"
-                                                                        <#if userRegion?? && userRegion.parent.id == t.id>selected="selected"</#if>>${t.name!}</option>
-                                                            </#list>
-                                                            </select>
-                                                            <select name="uregionId" id="city">
-                                                                <option value="">请选择市</option>
-                                                            <#list cities as city>
-                                                                <option value="${city.id!}"
-                                                                        <#if userRegion ?? && city.id == userRegion.id>selected="selected"</#if>>${city.name!}</option>
-                                                            </#list>
-                                                            </select>
+                                                            <#--<select id="province" onChange="selectCities()">-->
+                                                                <#--<option value="">请选择省</option>-->
+                                                            <#--<#list provinces as t>-->
+                                                                <#--<option value="${t.id!}"-->
+                                                                        <#--<#if userRegion?? && userRegion.parent.id == t.id>selected="selected"</#if>>${t.name!}</option>-->
+                                                            <#--</#list>-->
+                                                            <#--</select>-->
+                                                            <#--<select name="uregionId" id="city">-->
+                                                                <#--<option value="">请选择市</option>-->
+                                                            <#--<#list cities as city>-->
+                                                                <#--<option value="${city.id!}"-->
+                                                                        <#--<#if userRegion ?? && city.id == userRegion.id>selected="selected"</#if>>${city.name!}</option>-->
+                                                            <#--</#list>-->
+                                                            <#--</select>-->
+                                                            <div class="dropdown" id="province">
+                                                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                    <#if userRegion?? >${userRegion.parent.id}<#else>请选择省</#if>
+                                                                    <span class="caret"></span>
+                                                                </button>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                                    <#list provinces as t>
+                                                                        <li value="${t.id!}"><a href='#'>${t.name!}</a></li>
+                                                                    </#list>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="dropdown" id="uregionId">
+                                                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                <#if userRegion?? >${userRegion.id}<#else>请选择市</#if>
+                                                                    <span class="caret"></span>
+                                                                </button>
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                                    <#list cities as city>
+                                                                        <li value="${city.id!}"><a href='#'>${city.name!}</a></li>
+                                                                    </#list>
+                                                                </ul>
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </li>
@@ -168,50 +192,34 @@
                                                                 style="color: red">*</span>
                                                             擅长领域:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="hidden" name="businessCategory"/>
-                                                        <#if autobot ?? && autobot.businessCategory??>
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" <#if autobot.businessCategory ? index_of("销售")!=-1>
-                                                                   checked </#if> value="销售"/>销售
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" <#if autobot.businessCategory ? index_of("售后")!=-1>
-                                                                   checked </#if> value="售后"/>售后
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" <#if autobot.businessCategory ? index_of("客服")!=-1>
-                                                                   checked </#if> value="客服"/>客服
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" <#if autobot.businessCategory ? index_of("市场")!=-1>
-                                                                   checked </#if> value="市场"/>市场
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" <#if autobot.businessCategory ? index_of("管理")!=-1>
-                                                                   checked </#if> value="管理"/>管理
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" <#if autobot.businessCategory ? index_of("内训")!=-1>
-                                                                   checked </#if> value="内训"/>内训
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" <#if autobot.businessCategory ? index_of("生产研发")!=-1>
-                                                                   checked </#if> value="生产研发"/>生产研发
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" <#if autobot.businessCategory ? index_of("行政")!=-1>
-                                                                   checked </#if> value="行政"/>行政
-                                                        <#else>
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" value="销售"/>销售
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" value="售后"/>售后
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" value="客服"/>客服
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" value="市场"/>市场
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" value="管理"/>管理
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" value="内训"/>内训
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" value="生产研发"/>生产研发
-                                                            <input type="checkBox" name="autobot.businessCategory"
-                                                                   id="autobot.businessCategory" value="行政"/>行政
-                                                        </#if>
+                                                            <input type="hidden" name="autobot.businessCategory"/>
+                                                        <#--<#if autobot ?? && autobot.businessCategory??>-->
+                                                            <span class="checkBox <#if autobot.businessCategory ? index_of("销售")!=-1>checked</#if>" value="销售" onclick="categoryClicked(this)">销售</span>
+                                                            <span class="checkBox <#if autobot.businessCategory ? index_of("售后")!=-1>checked</#if>" value="售后" onclick="categoryClicked(this)">售后</span>
+                                                            <span class="checkBox <#if autobot.businessCategory ? index_of("客服")!=-1>checked</#if>" value="客服" onclick="categoryClicked(this)">客服</span>
+                                                            <span class="checkBox <#if autobot.businessCategory ? index_of("市场")!=-1>checked</#if>" value="市场" onclick="categoryClicked(this)">市场</span>
+                                                            <span class="checkBox <#if autobot.businessCategory ? index_of("管理")!=-1>checked</#if>" value="管理" onclick="categoryClicked(this)">管理</span>
+                                                            <span class="checkBox <#if autobot.businessCategory ? index_of("内训")!=-1>checked</#if>" value="内训" onclick="categoryClicked(this)">内训</span>
+                                                            <span class="checkBox <#if autobot.businessCategory ? index_of("行政")!=-1>checked</#if>" value="行政" onclick="categoryClicked(this)">行政</span>
+                                                            <span class="checkBox <#if autobot.businessCategory ? index_of("生产研发")!=-1>checked</#if>" value="生产研发" onclick="categoryClicked(this)">生产研发</span>
+                                                        <#--<#else>-->
+                                                            <#--<input type="checkBox" name="autobot.businessCategory"-->
+                                                                   <#--id="autobot.businessCategory" value="销售"/>销售-->
+                                                            <#--<input type="checkBox" name="autobot.businessCategory"-->
+                                                                   <#--id="autobot.businessCategory" value="售后"/>售后-->
+                                                            <#--<input type="checkBox" name="autobot.businessCategory"-->
+                                                                   <#--id="autobot.businessCategory" value="客服"/>客服-->
+                                                            <#--<input type="checkBox" name="autobot.businessCategory"-->
+                                                                   <#--id="autobot.businessCategory" value="市场"/>市场-->
+                                                            <#--<input type="checkBox" name="autobot.businessCategory"-->
+                                                                   <#--id="autobot.businessCategory" value="管理"/>管理-->
+                                                            <#--<input type="checkBox" name="autobot.businessCategory"-->
+                                                                   <#--id="autobot.businessCategory" value="内训"/>内训-->
+                                                            <#--<input type="checkBox" name="autobot.businessCategory"-->
+                                                                   <#--id="autobot.businessCategory" value="生产研发"/>生产研发-->
+                                                            <#--<input type="checkBox" name="autobot.businessCategory"-->
+                                                                   <#--id="autobot.businessCategory" value="行政"/>行政-->
+                                                        <#--</#if>-->
                                                         </div>
                                                     </div>
                                                 </li>
@@ -297,17 +305,34 @@
             return true;
         }
 
+        function categoryClicked(that){
+            if($(that).hasClass('checked')){
+                $(that).removeClass('checked');
+            } else {
+                $(that).addClass('checked');
+            }
+        }
+
         function submitdata() {
             if (!checkform()) {
                 return;
             }
             var businessCategoryValue = '';
-            $("input:checkbox[name='autobot.businessCategory']:checked").each(function (index, element) {
-                businessCategoryValue += $(this).val() + ",";
+            $('span.checkBox.checked').each(function (index, element) {
+                businessCategoryValue += (businessCategoryValue === '') ? $(this).val() : (','+$(this).val());
             });
             $("input[name='autobot.businessCategory']").val(businessCategoryValue);
             var url = "/backend/autobotCompleteResume/save";
             var form_data = $("#form1").serialize();
+
+            //validate if any required field is null
+            if(form_data.indexOf('&=')>0) {
+                $('.errMsg').innerHTML = '必填项不能为空';
+                return;
+            } else {
+                $('.errMsg').innerHTML = '';
+            }
+
             $.ajax({
                 type: "POST",
                 url: url,

@@ -1,6 +1,3 @@
-/* StyleName:培聘网*/
-/* 2016/6/1 by WZM*/
-/* 全局 */
 
 .pxshijl .container{ width:100%}
 
@@ -14,4 +11,34 @@ li.pxshijl_li{ border:none; list-style:none; height: 50px; padding-left: 0px}
 
 #cropperimg{
     max-width: 100%;
+}
+
+.pxshijl .container .row span.checkBox {
+    height: 30px;
+    display: inline-block;
+    border: #3689b3 1px solid;
+    padding: 0 5px;
+    margin: 5px;
+    color: #000;
+    cursor: pointer;
+}
+
+.form-group img{
+    width: 100%;
+    height: 100%;
+}
+
+.pxshijl .container .row span.checkBox:hover, .pxshijl .container .row span.checked {
+    background: #428bca;
+    color: #fff;
+}
+
+.pxshijl_box .errMsg{
+    padding-left:15px;
+    height: 30px;
+    color:#FA5506;
+}
+
+.dropdown {
+    display: inline-block;
 }
