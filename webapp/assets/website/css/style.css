@@ -449,13 +449,14 @@ a img {border: none;}
 
 .searchBox .filterType {
     width: 100%;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 30px;
+    overflow: auto;
 }
 
 .searchBox .filterType .filterName {
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     float: left;
     width: 65px;
     text-align: left;
@@ -474,7 +475,27 @@ a img {border: none;}
     float: left;
     padding: 0 5px;
     margin: 0 5px 5px 0;
+    /*border: #3689b3 solid 1px;*/
+}
+
+.searchBox .filterType .filterItemList input {
+    height: 30px;
+    font-size: 14px;
+    width: 500px;
     border: #3689b3 solid 1px;
+    padding-left: 4px;
+}
+
+.searchBox .filterType .filterItemList button {
+    background: transparent;
+    padding: 10px 10px 9px;
+    border: #3689b3 solid 1px;
+}
+
+.searchBox .filterType .filterItemList button:hover {
+    background: #3689b3;
+    color: #fff;
+    cursor: pointer;
 }
 
 .searchBox .filterType .filterItemList span:hover, .searchBox .filterType .filterItemList .selected {

@@ -13,9 +13,7 @@
           media="screen"/>
     <link rel="stylesheet" href="<@url value='/assets/website/css/bootstrap.min.css'/>" type="text/css" media="screen"/>
     <link rel="stylesheet" href="/assets/website/css/cropper.css" type="text/css" media="screen"/>
-    <script src="/assets/website/js/cropper.js" type="text/javascript"></script>
-    <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -24,15 +22,15 @@
 <!-- main开始 -->
 <div class="main">
     <div class="content">
-        <div class="dq_box">
-            <div class="dqwz left">当前位置 : <a href="#">首 页</a> > <a href="#">汽车人管理中心</a> > <a href="#">申请记录</a></div>
-            <div class="wdcf right"><span
-                    color="#FF66001"><#if Session?? && Session["userDetails"].wealthStartDate??> ${Session["userDetails"].wealthStartDate!?string("dd/MM/yyyy")}
-                —${Session["userDetails"].wealthEndDate!?string("dd/MM/yyyy")}</#if></span>我的财富：<font
-                    color="#FF66001"><#if Session?? && Session["userDetails"]??> ${Session["userDetails"].wealth!}</#if></font>
-            </div>
-            <div class="clear"></div>
-        </div>
+        <#--<div class="dq_box">-->
+            <#--<div class="dqwz left">当前位置 : <a href="#">首 页</a> > <a href="#">汽车人管理中心</a> > <a href="#">申请记录</a></div>-->
+            <#--<div class="wdcf right"><span-->
+                    <#--color="#FF66001"><#if Session?? && Session["userDetails"].wealthStartDate??> ${Session["userDetails"].wealthStartDate!?string("dd/MM/yyyy")}-->
+                <#--—${Session["userDetails"].wealthEndDate!?string("dd/MM/yyyy")}</#if></span>-->
+                <#--我的财富：<font color="#FF66001"><#if Session?? && Session["userDetails"]??> ${Session["userDetails"].wealth!}</#if></font>-->
+            <#--</div>-->
+            <#--<div class="clear"></div>-->
+        <#--</div>-->
 
         <div class="pxshi_gl">
             <div class="pxshi_gl_l left">
@@ -135,39 +133,25 @@
                                                                 style="color: red">*</span>
                                                             目前地区:</label>
                                                         <div class="col-sm-9">
-                                                            <#--<select id="province" onChange="selectCities()">-->
-                                                                <#--<option value="">请选择省</option>-->
-                                                            <#--<#list provinces as t>-->
-                                                                <#--<option value="${t.id!}"-->
-                                                                        <#--<#if userRegion?? && userRegion.parent.id == t.id>selected="selected"</#if>>${t.name!}</option>-->
-                                                            <#--</#list>-->
-                                                            <#--</select>-->
-                                                            <#--<select name="uregionId" id="city">-->
-                                                                <#--<option value="">请选择市</option>-->
-                                                            <#--<#list cities as city>-->
-                                                                <#--<option value="${city.id!}"-->
-                                                                        <#--<#if userRegion ?? && city.id == userRegion.id>selected="selected"</#if>>${city.name!}</option>-->
-                                                            <#--</#list>-->
-                                                            <#--</select>-->
                                                             <div class="dropdown" id="province">
                                                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                    <#if userRegion?? >${userRegion.parent.id}<#else>请选择省</#if>
+                                                                    <#if userRegion?? >${userRegion.parent.name}<#else>请选择省</#if>
                                                                     <span class="caret"></span>
                                                                 </button>
                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                                     <#list provinces as t>
-                                                                        <li value="${t.id!}"><a href='#'>${t.name!}</a></li>
+                                                                        <li ><a href='#' onclick="selectCities(this)" value="${t.id!}">${t.name!}</a></li>
                                                                     </#list>
                                                                 </ul>
                                                             </div>
-                                                            <div class="dropdown" id="uregionId">
+                                                            <div class="dropdown" name="uregionId" id="city">
                                                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                                <#if userRegion?? >${userRegion.id}<#else>请选择市</#if>
+                                                                <#if userRegion?? >${userRegion.name}<#else>请选择市</#if>
                                                                     <span class="caret"></span>
                                                                 </button>
                                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                                     <#list cities as city>
-                                                                        <li value="${city.id!}"><a href='#'>${city.name!}</a></li>
+                                                                        <li value="${city.id!}"><a href='#' onclick="selectCity(this)">${city.name!}</a></li>
                                                                     </#list>
                                                                 </ul>
                                                             </div>
@@ -281,6 +265,10 @@
         </div>
     </div>
 
+    <script src="/assets/website/js/cropper.js" type="text/javascript"></script>
+    <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
+
     <script>
 
         function checkform() {
@@ -326,11 +314,11 @@
             var form_data = $("#form1").serialize();
 
             //validate if any required field is null
-            if(form_data.indexOf('&=')>0) {
-                $('.errMsg').innerHTML = '必填项不能为空';
+            if(form_data.indexOf('=&')>0) {
+                $('.errMsg')[0].innerHTML = '必填项不能为空';
                 return;
             } else {
-                $('.errMsg').innerHTML = '';
+                $('.errMsg')[0].innerHTML = '';
             }
 
             $.ajax({
@@ -350,9 +338,14 @@
             });
         }
 
-        function selectCities() {
+        function selectCities(ele) {
+            var provinceId = $(ele).val();
+            var provinceName = ele.innerHTML;
+            $('#province button').val(provinceId);
+            $('#province button').innerHTML = provinceName + '<span class="caret"></span>';
+
             var form_data = {};
-            form_data.parentId = $("#province").val();
+            form_data.parentId = provinceId;
             $.ajax({
                 type: "POST",
                 url: "/backend/regions/getCities",
@@ -363,9 +356,14 @@
                 },
                 success: function (data) {
                     if (data.code == 200) {
-                        $("#city").get(0).options.length = data.cities.length + 1;
+                        //$("#city").get(0).options.length = data.cities.length + 1;
+                        var parent = $("#city ul");
+                        parent.empty();
                         for (var i = 0; i < data.cities.length; i++) {
-                            $("#city").get(0).options[i + 1] = new Option(data.cities[i].name, data.cities[i].id);
+                            var liString = "<li value='" + data.cities[i].id + "'>" +
+                                "<a href='#' onclick='selectCity(this)'>" + data.cities[i].name + "</a></li>";
+                            parent.append(liString);
+                            //$("#city ul").get(0).options[i + 1] = new Option(, );
                         }
                     } else {
                         return false;
@@ -374,6 +372,12 @@
             });
         }
 
+        function selectCity(ele) {
+            var regionId = $(ele).val();
+            var regionName = ele.innerHTML;
+            $('#city button').val(regionId);
+            $('#city button')[0].innerHTML = regionName + '<span class="caret"></span>';
+        }
     </script>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">

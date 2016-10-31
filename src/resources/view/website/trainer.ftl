@@ -5,7 +5,8 @@
 
 <title>培聘网</title>
     <link rel="stylesheet" href="<@url value="/assets/website/css/style.css"/>" type="text/css" media="screen" />
-<link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen" />
+
 </head>
 
 <body>
@@ -16,59 +17,40 @@
 <!-- main开始 -->
 <div class="content">
     <div class="ny">
-     	<div class="sousuo_box">
-        	<div class="pxly">
-            	<h4>业务领域:</h4>
-                <div class="pxly_box">
-                	<ul>
-                	  <#list businessCategoryEnum?keys as key>
-                    	<li><a href="/website/trainer?businessCategory=${key!}">${businessCategoryEnum.get(key)!}</a></li>
-                      </#list>
-                    </ul>
+        <div class="searchBox">
+            <div class="filterType">
+                <div class="filterName">职位类型:</div>
+                <div class="filterItemList">
+                    <span>销售</span><span>产品</span><span>非技术</span><span>技术</span><span>管理</span><span>财务</span>
+                    <span>市场营销</span><span>客户关系</span><span>人事</span><span>生产</span><span>领导力</span><span>新能源</span>
                 </div>
-                <div class="clear"></div>
             </div>
-            <div class="scxs">
-            	<h4>执行类型:</h4>
-                <div class="pxly_box">
-                	<ul>
-                    	<li><a href="#">开发</a></li>
-                        <li><a href="#">培训</a></li>
-                        <li><a href="#">辅导</a></li>
-                        <li><a href="#">项目管理</a></li>
-                        <li><a href="#">经销商托管</a></li>
-                        
-                    </ul>
+
+            <div class="filterType">
+                <div class="filterName">发布时间:</div>
+                <div class="filterItemList">
+                    <span>当日</span><span>三天</span><span>一周</span><span>两周</span><span>一个月</span>
                 </div>
-                <div class="clear"></div>
             </div>
-            <div class="pxsj">
-            	<h4>培训经验:</h4>
-                <div class="pxly_box">
-                	<ul>
-                		<li><a href="#">应界毕业生</a></li>
-                    	<li><a href="#">5年内</a></li>
-                        <li><a href="#">5-10年</a></li>
-                        <li><a href="#">10-15年</a></li>
-                        <li><a href="#">15-20年</a></li>
-                        <li><a href="#">20年以上</a></li>
-                        
-                    </ul>
+            <div class="filterType">
+                <div class="filterName">培训形式:</div>
+                <div class="filterItemList">
+                    <span>开发</span><span>培训</span><span>辅导</span><span>项目管理</span><span>经销商托管</span>
                 </div>
-                <div class="clear"></div>
-            	
             </div>
-            <div class="sou">
-           	  <h4>关键字</h4>
-                <div class="sou_box">
-                  <table width="590px" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="505px"><input style=" background:url(http://obu3flkwk.bkt.clouddn.com/website/images/ss_bg.jpg) no-repeat left 1px; height:35px; line-height:35px;   width:501px; border:none; padding-left:4px; " type="text" name="keyword" id="keyword" placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" /></td>
-                      <td width="85px" height="35px"><input style="border:none;" type="image" src="http://obu3flkwk.bkt.clouddn.com/website/images/ss.jpg" /></td>
-                    </tr>
-                  </table>
+            <div class="filterType">
+                <div class="filterName">工作性质:</div>
+                <div class="filterItemList">
+                    <span>全职</span><span>兼职</span>
                 </div>
-          </div>
+            </div>
+            <div class="filterType">
+                <div class="filterName">关键字:</div>
+                <div class="filterItemList">
+                    <input type="text" name="user_login"  placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" /></td>
+                    <button onclick="">搜索</button>
+                </div>
+            </div>
         </div>
         
         <#if trainerList??>
@@ -150,5 +132,8 @@
     
 <!-- main结束 -->
 <#include "/assets/website/common/footer.html">
+
+<script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
 </body>
 </html></#escape>
