@@ -488,8 +488,9 @@ a img {border: none;}
 
 .searchBox .filterType .filterItemList button {
     background: transparent;
-    padding: 10px 10px 9px;
+    padding: 7px 9px 8px;
     border: #3689b3 solid 1px;
+    font-size: 14px;
 }
 
 .searchBox .filterType .filterItemList button:hover {
@@ -498,7 +499,7 @@ a img {border: none;}
     cursor: pointer;
 }
 
-.searchBox .filterType .filterItemList span:hover, .searchBox .filterType .filterItemList .selected {
+.searchBox .filterType .filterItemList span:hover, .searchBox .filterType .filterItemList .checked {
     background: #3689b3;
     color: #fff;
     cursor: pointer;

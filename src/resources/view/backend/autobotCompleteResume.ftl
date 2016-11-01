@@ -214,7 +214,7 @@
                                                 <li class="list-group-item pxshijl_li">
                                                     <div class="form-group">
                                                         <img id="workPhotoURL1_show" src="${autobot.workPhotoURL1!}">
-                                                        <button type="button" class="btn btn-primary btn-lg"
+                                                        <button type="button" class="btn btn-primary btn-lg adminPageBtn"
                                                                 data-toggle="modal" data-target="#myModal">
                                                             上传照片
                                                         </button>
@@ -249,13 +249,7 @@
                             </div>
                         </div>
                         <div class="tj">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td height="60" align="center" valign="middle">
-                                        <input type="button" onclick="submitdata()"
-                                               style="width:58px;height:28px;background-repeat:no-repeat;background-image:url(http://obu3flkwk.bkt.clouddn.com/backend/images/bc.jpg);border:0;"/>
-                                </tr>
-                            </table>
+                            <button type="button" onclick="submitdata()" style="adminPageBtn"/>保存</button>
                         </div>
                 </div>
                 </form>
@@ -339,10 +333,10 @@
         }
 
         function selectCities(ele) {
-            var provinceId = $(ele).val();
+            var provinceId = $(ele).attr('value');
             var provinceName = ele.innerHTML;
             $('#province button').val(provinceId);
-            $('#province button').innerHTML = provinceName + '<span class="caret"></span>';
+            $('#province button')[0].innerHTML = provinceName + '<span class="caret"></span>';
 
             var form_data = {};
             form_data.parentId = provinceId;
@@ -373,7 +367,7 @@
         }
 
         function selectCity(ele) {
-            var regionId = $(ele).val();
+            var regionId = $(ele).attr('value');
             var regionName = ele.innerHTML;
             $('#city button').val(regionId);
             $('#city button')[0].innerHTML = regionName + '<span class="caret"></span>';

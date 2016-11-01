@@ -21,8 +21,18 @@
             <div class="filterType">
                 <div class="filterName">职位类型:</div>
                 <div class="filterItemList">
-                    <span>销售</span><span>产品</span><span>非技术</span><span>技术</span><span>管理</span><span>财务</span>
-                    <span>市场营销</span><span>客户关系</span><span>人事</span><span>生产</span><span>领导力</span><span>新能源</span>
+                    <span onclick="filterClicked(this)">销售</span>
+                    <span onclick="filterClicked(this)">产品</span>
+                    <span onclick="filterClicked(this)">非技术</span>
+                    <span onclick="filterClicked(this)">技术</span>
+                    <span onclick="filterClicked(this)">管理</span>
+                    <span onclick="filterClicked(this)">财务</span>
+                    <span onclick="filterClicked(this)">市场营销</span>
+                    <span onclick="filterClicked(this)">客户关系</span>
+                    <span onclick="filterClicked(this)">人事</span>
+                    <span onclick="filterClicked(this)">生产</span>
+                    <span onclick="filterClicked(this)">领导力</span>
+                    <span onclick="filterClicked(this)">新能源</span>
                 </div>
             </div>
 
@@ -47,8 +57,8 @@
             <div class="filterType">
                 <div class="filterName">关键字:</div>
                 <div class="filterItemList">
-                    <input type="text" name="user_login"  placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" /></td>
-                    <button onclick="">搜索</button>
+                    <input type="text" id="search_input"  placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" />
+                    <button onclick="searchBtnClick()">搜索</button>
                 </div>
             </div>
         </div>
@@ -135,5 +145,28 @@
 
 <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
+<script type="text/javascript">
+
+var filterList = [];
+
+function filterClicked(ele) {
+    if($(ele).hasClass('checked')){
+        $(ele).removeClass('checked');
+        filterList.splice(ele.innerHTML)
+    } else {
+        $(ele).addClass('checked');
+        filterList.push(ele.innerHTML)
+    }
+
+    console.log('selected filter: ' + filterList.join())
+
+}
+
+function searchBtnClick() {
+    var searchInput = $('#search_input').val();
+    console.log('input string: ' + searchInput)
+}
+</script>
 </body>
-</html></#escape>
+</html>
+</#escape>

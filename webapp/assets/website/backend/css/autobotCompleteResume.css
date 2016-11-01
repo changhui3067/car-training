@@ -42,3 +42,10 @@ li.pxshijl_li{ border:none; list-style:none; height: 50px; padding-left: 0px}
 .dropdown {
     display: inline-block;
 }
+
+.adminPageBtn {
+    font-size: 14px;
+    margin: 5px auto;
+    padding: 5px 10px;
+    border-radius: 3px;
+}

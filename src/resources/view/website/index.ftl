@@ -4,8 +4,7 @@
     <title>培聘网</title>
     <link rel="stylesheet" href="<@url value="/assets/website/css/style.css?v=1.1.0"/>" type="text/css" media="screen" />
     <link rel="stylesheet" href="<@url value="/assets/website/css/bootstrap.min.css?v=1.1.0"/>" type="text/css" media="screen" />
-    <script src="<@url value="/assets/website/js/jquery-3.1.1.min.js?v=1.1.0"/>"></script>
-    <script src="<@url value="/assets/website/js/bootstrap.min.js?v=1.1.0"/>"></script>
+
 </head>
 
 <body>
@@ -303,7 +302,9 @@
 </div>
 </div>
 
-</div>  
+</div>
+    <script src="<@url value="/assets/website/js/jquery-3.1.1.min.js?v=1.1.0"/>"></script>
+    <script src="<@url value="/assets/website/js/bootstrap.min.js?v=1.1.0"/>"></script>
 <script>
 function login(){
     var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
