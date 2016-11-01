@@ -51,7 +51,7 @@
 <div class="main">
    <div class="content">
      <div class="pxshi_box">
-         <h4><span><a href="#">更多>></a></span>推荐培训师</h4>
+         <h4><span><a href="/website/trainer">更多>></a></span>推荐培训师</h4>
          <div class="pxshi">
              <div class="pxshi_l left">
                <#if trainer?? && trainer.userCenter??>
@@ -112,7 +112,7 @@
 </div>
 </div>
 <div class="pxsheng_box">
- <h4><span><a href="#">更多>></a></span>推荐培训生</h4>
+ <h4><span><a href="/website/autobot">更多>></a></span>推荐培训生</h4>
  <div class="pxsheng">
      <#if autobotsList??>
      <ul>
@@ -146,7 +146,7 @@
  </div>
 </div>
 <div class="pxxq_box">
- <h4><span><a href="#">更多>></a></span>培训需求</h4>
+ <h4><span><a href="/website/recruit/?companyType=COMPANY">更多>></a></span>培训需求</h4>
  <div class="pxxq">
      <#if jobsTrainerList??>
      <ul>
@@ -195,7 +195,7 @@
 </div>
 </div>
 <div class="qcrxq_box">
- <h4><span><a href="#">更多>></a></span>汽车人需求</h4>
+ <h4><span><a href="/website/recruit/?companyType=STORE">更多>></a></span>汽车人需求</h4>
  <div class="qcrxq">
      <#if jobsAutobotsList??>
      <ul>
@@ -250,7 +250,7 @@
 </div>
 <div class="art_box">
  <div class="yiti left">
-     <h4>培训学院热点议题<span><a href="#">更多>></a></span></h4>
+     <h4>培训学院热点议题<span><a href="/website/topic">更多>></a></span></h4>
      <div class="yiti_box">
          <#if topicList??>
          <ul>
@@ -267,7 +267,7 @@
  </div>
 
  <div class="gkk right">
-     <h4><span><a href="#">更多>></a></span>公开课</h4>
+     <h4><span><a href="/website/courses">更多>></a></span>公开课</h4>
      <div class="gkk_box">
        <#if coursesList??>
        <ul>

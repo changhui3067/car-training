@@ -72,8 +72,11 @@
                                                                 style="color: red">*</span>
                                                             出生年月:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" class="form-control" name="ubirthday"
-                                                                   placeholder="请输入出生年月">
+                                                            <input type="date" class="form-control" name="ubirthday"
+                                                                   placeholder="请输入出生年月"
+                                                                   onclick="laydate()"
+                                                                   value="<<#if autobot?? && autobot.userCenter?? && autobot.userCenter.name??>${autobot.userCenter.birthday?string("yyyy-MM-dd")!}</#if>"
+                                                            />
                                                         </div>
                                                     </div>
                                                 </li>
@@ -112,7 +115,8 @@
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control"
                                                                    name="autoYears"
-                                                                   placeholder="请输入行业经验">
+                                                                   placeholder="请输入行业经验"
+                                                                   value="<#if autobot?? && autobot.autoYears?? >${autobot.autoYears!}</#if>"/>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -123,7 +127,8 @@
                                                             联系方式:</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="umobile"
-                                                                   placeholder="请输入联系方式">
+                                                                   placeholder="请输入联系方式"
+                                                                   value="<#if autobot?? && autobot.userCenter?? && autobot.userCenter.mobile??>${autobot.userCenter.mobile!}</#if>"/>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -166,7 +171,8 @@
                                                             汽车品牌:</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="autoBrand"
-                                                                   placeholder="请输入汽车品牌">
+                                                                   placeholder="请输入汽车品牌"
+                                                                   value="<#if autobot?? && autobot.autoBrand?? >${autobot.autoBrand!}</#if>"/>
                                                         </div>
                                                     </div>
                                                 </li>
