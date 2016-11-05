@@ -4,6 +4,7 @@ import com.car.training.domain.Trainer;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.ironrhino.core.util.BeanUtils;
@@ -41,8 +42,8 @@ public class TrainerDAOImpl {
         DetachedCriteria dc = DetachedCriteria.forClass(com.car.training.model.Trainer.class);
         Criteria criteria = dc.getExecutableCriteria(session);
 
-        criteria.add(Restrictions.sqlRestriction("businessCategory" + toReg(businessCategory)));
-        criteria.add(Restrictions.sqlRestriction("executionCategory" + toReg(executionCategory)));
+        criteria.add(getRestriction("businessCategory",businessCategory));
+        criteria.add(getRestriction("executionCategory",executionCategory));
         criteria.add(Restrictions.between("autoYears", minAutoYears, maxAutoYears));
 //        criteria.createAlias("UserCenter.name", "name");
 //        if (!StringUtils.isEmpty(keyword)) {
@@ -54,7 +55,18 @@ public class TrainerDAOImpl {
     }
 
 
-    String toReg(String cats) {
+    private Criterion getRestriction(String categoryName, String cats){
+        Criterion criterion = Restrictions.and();
+        if (!StringUtils.isEmpty(cats)) {
+            String[] categories = cats.split(",");
+            for (String category : categories) {
+                criterion = Restrictions.and(criterion,Restrictions.like(categoryName, "%"+category+"%"));
+            }
+        }
+        return criterion;
+    }
+
+    private String toReg(String cats) {
         StringBuilder sb = new StringBuilder(" REGEXP '");
         if (!StringUtils.isEmpty(cats)) {
             String[] categories = cats.split(",");
