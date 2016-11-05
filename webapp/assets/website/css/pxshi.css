@@ -346,3 +346,16 @@
 .zpgw_l{ width:550px;padding:10px 0px 0px 15px; border-right:1px dotted #e5e5e5;height:80px;}
 .zpgw_r{ width:125px; margin-top:20px;}
 .zp_qiye_r{ width:270px; padding:15px;}
+
+
+/*Trainer page*/
+.pxshilist{ width: 1200px; height:800px; color:#ff7d00;}
+.pxshilist li.oneBox{ margin: 11px; width: 210px;}
+.pxshilist .intro div{padding-right: 10px;}
+.pxshilist .intro div.right{padding-right: 10px;}
+.pxshilist .oneBox div.picContainer{ width:210px; height: 210px;}
+.pxshilist .intro {font-size:17px;}
+.pxshilist .intro span {padding-top:5px;}
+.pxshilist .iconfont {font-size:16px;}
+.pxshilist .intro>div:nth-child(1) .name{font-size:18px;}
+.pxshilist .intro>div:nth-child(2){font-size:14px; padding-top:5px;}

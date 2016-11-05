@@ -6,7 +6,7 @@
 <title>培聘网</title>
     <link rel="stylesheet" href="<@url value="/assets/website/css/style.css"/>" type="text/css" media="screen" />
     <link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen" />
-
+    <link rel="stylesheet" href="<@url value="/assets/website/css/iconfont.css"/>" type="text/css" media="screen" />
 </head>
 
 <body>
@@ -63,8 +63,120 @@
                 </div>
             </div>
         </div>
-        
-        <#if trainerList??>
+
+        <div class="pxshilist">
+            <#if trainerList??>
+                <ul>
+                    <#list trainerList as t>
+                        <li class="oneBox">
+                            <#if t?? && t.userCenter??>
+                                <div class="picContainer"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
+                                <div class="intro">
+                                    <div>
+                                        <div class="name">${t.userCenter.name!}</div>
+                                        <div class="right"><i class="iconfont" title="点赞">&#xe717;</i>${t.starLevel!}</div>
+                                        <div class="right"><i class="iconfont" title="评论">&#xe69b;</i><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if></div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div>${t.currentPosition!} </div>
+                                    <div>
+                                        <span><i class="iconfont" title="留言多">&#xe756;</i></span>
+                                        <span><i class="iconfont" title="资料完整">&#xe69f;</i></span>
+                                        <span><i class="iconfont" title="身份信息可靠">&#xe70a;</i></span>
+                                        <span><i class="iconfont" title="培训经验超过10年">&#xe735;</i></span>
+                                        <span><i class="iconfont" title="行业经验超过20年">&#xe726;</i></span>
+                                    </div>
+                                </div>
+                            </#if>
+                        </li>
+
+                    </#list>
+                </ul>
+            </#if>
+        </div>
+
+    <#-- 分页 -->
+        <div class="page">
+            <#if topicList?? && topicList.result?? && topicList.result?size gt 0>
+                <div class="fypage" >
+
+                    <#if pageNo gt 5>
+                        <a data-class="p5" href="javascript:void(0)" onclick="prevFivePage()"">上五页</a>
+                    <#else>
+                        <span data-class="p5">上五页</span>
+                    </#if>
+                    <#if pageNo gt 1>
+                        <a data-class="p1" href="/website/topic?pageNo=${pageNo-1}">上一页</a>
+                    <#else>
+                        <span data-class="p1" class="">上一页</span>
+                    </#if>
+
+                    <div data-class="pag" style="padding:0px;margin:0px;display:inline;">
+                        <#if pageNo lt 6>
+                            <#list 1..5 as t>
+                                <#if t = pageNo>
+                                    <span>${t!}</span>
+                                <#else>
+                                    <a href="/website/topic?pageNo=${t!}">${t!}</a>
+                                </#if>
+                                <#if t = topicList.totalPage>
+                                    <#break>
+                                </#if>
+                            </#list>
+
+                        <#elseif pageNo%5 gt 0>
+                            <#list (pageNo/5)?floor*5+1..(pageNo/5)?floor*5+5 as t>
+                                <#if t = pageNo>
+                                    <span>${t!}</span>
+                                <#else>
+                                    <a href="/website/topic?&pageNo=${t!}">${t!}</a>
+                                </#if>
+                                <#if t = topicList.totalPage>
+                                    <#break>
+                                </#if>
+                            </#list>
+
+                        <#elseif pageNo%5 = 0>
+                            <#list ((pageNo/5)?floor-1)*5+1..(pageNo/5)?floor*5 as t>
+                                <#if t = pageNo>
+                                    <span>${t!}</span>
+                                <#else>
+                                    <a href="/website/topic?pageNo=${t!}">${t!}</a>
+                                </#if>
+                                <#if t = topicList.totalPage>
+                                    <#break>
+                                </#if>
+                            </#list>
+                        </#if>
+                    </div>
+
+                    <#if (topicList.totalPage - pageNo) gt 0>
+                        <a data-class="n1" href="/website/topic?pageNo=${pageNo+1}">下一页</a>
+                    <#else>
+                        <span data-class="n1" class="">下一页</span>
+                    </#if>
+                    <#if (topicList.totalPage - ((pageNo/5)?ceiling * 5)) gt 4>
+                        <a data-class="n5" href="javascript:void(0)" onclick="nextFivePage()">下五页</a>
+                    <#else>
+                        <span data-class="n5">下五页</span>
+                    </#if>
+
+                    跳转到
+                    <select name="PageSelect" onchange="jumpPage()">
+                        <#list 1..topicList.totalPage as t>
+                            <#if t = pageNo>
+                                <option selected="selected" value="${t!}">第${t!}页</option>
+                            <#else>
+                                <option value="${t!}">第${t!}页</option>
+                            </#if>
+                        </#list>
+                    </select>
+                </div>
+            </#if>
+        </div>
+
+
+<#--        <#if trainerList??>
        <#if businessCategoryEnum??>
     		<#list businessCategoryEnum?keys as key>
     			<div class="xiaoshou_box">
@@ -136,7 +248,7 @@
     			
         	</#list>
       </#if>
-      </#if>
+      </#if>-->
         
     </div>
 </div>
