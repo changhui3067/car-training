@@ -3,6 +3,9 @@ package com.car.training.action.website;
 import com.car.training.domain.Trainer;
 import com.car.training.enums.BusinessCategory;
 import com.car.training.service.TrainerService;
+import com.car.training.service.service.TrainerDAOImpl;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionContext;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +21,7 @@ public class TrainerAction extends BaseAction {
     private static final long serialVersionUID = 4839883380537115435L;
 
     @Autowired
-    private TrainerService trainerService;
+    private TrainerDAOImpl trainerDAO;
 
     /**
      * 按条件筛选培训师列表
@@ -47,19 +50,30 @@ public class TrainerAction extends BaseAction {
      */
     private Map<String, Object> businessCategoryEnum;
 
+    private String businessCategory;
+
+    private String executionCategory;
+
+    private String autoYears;
+
     @Override
     public String execute() throws Exception {
-        Trainer trainer = new Trainer();
-        trainer.setAutoYears(trainingYears);
-        trainer.setBusinessCategory(businessCategories);
-        trainer.setExecutionCategory(executionCategories);
-        trainer.setCurrentPosition(keyword);
-        //按条件筛选培训师列表(包含分页)
-        trainerList = trainerService.findListByTrainer(trainer);
+        trainerList = trainerDAO.searchUI(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
+        return SUCCESS;
+    }
 
-        //设置类别枚举值
-        setBusinessCategorieEnumVal();
-
+    public String search() {
+        int minAutoYear;
+        int maxAutoYear;
+        try{
+            String[] arr = autoYears.split(",");
+            minAutoYear = Integer.valueOf(arr[0]);
+            maxAutoYear = Integer.valueOf(arr[1]);
+        } catch (Exception e){
+            minAutoYear = -1;
+            maxAutoYear = Integer.MAX_VALUE;
+        }
+        trainerList = trainerDAO.searchUI(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
         return SUCCESS;
     }
 
@@ -114,4 +128,31 @@ public class TrainerAction extends BaseAction {
         this.businessCategoryEnum = businessCategoryEnum;
     }
 
+    public String getBusinessCategory() {
+        return businessCategory;
+    }
+
+    public void setBusinessCategory(String businessCategory) {
+        this.businessCategory = businessCategory;
+    }
+
+    public void setTrainerList(List<Trainer> trainerList) {
+        this.trainerList = trainerList;
+    }
+
+    public String getExecutionCategory() {
+        return executionCategory;
+    }
+
+    public void setExecutionCategory(String executionCategory) {
+        this.executionCategory = executionCategory;
+    }
+
+    public String getAutoYears() {
+        return autoYears;
+    }
+
+    public void setAutoYears(String autoYears) {
+        this.autoYears = autoYears;
+    }
 }
