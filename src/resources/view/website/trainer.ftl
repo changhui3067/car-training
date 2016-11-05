@@ -66,7 +66,7 @@
 
         <div id="searchResult">
             <!-- search result start -->
-            <#include "/resources/view/website/peopleSearchResult.ftl">
+            <#include "/resources/view/meta/result/peopleSearchResult.ftl">
             <!-- search result end -->
         </div>
 

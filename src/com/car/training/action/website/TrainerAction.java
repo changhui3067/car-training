@@ -74,7 +74,7 @@ public class TrainerAction extends BaseAction {
             maxAutoYear = Integer.MAX_VALUE;
         }
         trainerList = trainerDAO.searchUI(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
-        return "search";
+        return "peopleSearchResult";
     }
 
     public void setBusinessCategorieEnumVal() {
