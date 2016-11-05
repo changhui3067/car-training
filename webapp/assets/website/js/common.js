@@ -1,4 +1,4 @@
-﻿// JavaScript Document
+﻿k// JavaScript Document
 //网站头部导航js切换
 if(document.getElementById("nav")){
 var nav = document.getElementById("nav");

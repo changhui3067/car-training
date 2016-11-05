@@ -133,12 +133,11 @@ a img {border: none;}
 .pxshi_zp{ height:30px; line-height:30px;font-size:16px;margin-bottom:5px;}
 
 .xm{ color:#ff7f00; font-size:24px; margin-right:150px;   }
-.pl{ color:#ffa757; font-size:16px;}
+.pl{ color:#ffa757; font-size:25px;}
 .pl span{ color:#818180;}
-.dz{ background:url(../images/dz1.jpg) no-repeat left center; padding-left:35px;font-size:16px;}
+.dz{ padding-left:35px;font-size:25px;}
 
-.pxshi_rz{ height:17px; line-height:17px;}
-.pxshi_rz li{ display:block; float:left; margin-right:5px;}
+.pxshi_rz li{ display:block; float:left; margin-right:5px; font-size: 25px;}
 
 /*培训师_左边8个缩略图*/
 .pxshi_r{ width:786px;}
@@ -605,6 +604,8 @@ add our css below
 .register li a:hover{ 
 	color:#fff;
 }
+
+
 
 
 

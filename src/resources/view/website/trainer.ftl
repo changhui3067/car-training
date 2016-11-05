@@ -19,11 +19,10 @@
     <div class="ny">
         <div class="searchBox">
             <div class="filterType">
-                <div class="filterName">职位类型:</div>
+                <div class="filterName">领域类型:</div>
                 <div class="filterItemList">
                     <span onclick="filterClicked(this)">销售</span>
                     <span onclick="filterClicked(this)">产品</span>
-                    <span onclick="filterClicked(this)">非技术</span>
                     <span onclick="filterClicked(this)">技术</span>
                     <span onclick="filterClicked(this)">管理</span>
                     <span onclick="filterClicked(this)">财务</span>
@@ -37,21 +36,23 @@
             </div>
 
             <div class="filterType">
-                <div class="filterName">发布时间:</div>
+                <div class="filterName">工作经验:</div>
                 <div class="filterItemList">
-                    <span>当日</span><span>三天</span><span>一周</span><span>两周</span><span>一个月</span>
+                    <span onclick="filter2Clicked(this)">5年内</span>
+                    <span onclick="filter2Clicked(this)">5-10年</span>
+                    <span onclick="filter2Clicked(this)">10-15年</span>
+                    <span onclick="filter2Clicked(this)" >15-20年</span>
+                    <span onclick="filterClicked(this)">20年以上</span>
                 </div>
             </div>
             <div class="filterType">
-                <div class="filterName">培训形式:</div>
+                <div class="filterName">执行类型:</div>
                 <div class="filterItemList">
-                    <span>开发</span><span>培训</span><span>辅导</span><span>项目管理</span><span>经销商托管</span>
-                </div>
-            </div>
-            <div class="filterType">
-                <div class="filterName">工作性质:</div>
-                <div class="filterItemList">
-                    <span>全职</span><span>兼职</span>
+                    <span onclick="filterClicked(this)">开发</span>
+                    <span onclick="filterClicked(this)">培训</span>
+                    <span onclick="filterClicked(this)">辅导</span>
+                    <span onclick="filterClicked(this)">项目管理</span>
+                    <span onclick="filterClicked(this)">经销商托管</span>
                 </div>
             </div>
             <div class="filterType">
@@ -148,23 +149,33 @@
 <script type="text/javascript">
 
 var filterList = [];
+var filterDateRange = "";
 
 function filterClicked(ele) {
     if($(ele).hasClass('checked')){
         $(ele).removeClass('checked');
-        filterList.splice(ele.innerHTML)
+        filterList.splice($.inArray(ele.innerHTML), 1);
     } else {
         $(ele).addClass('checked');
         filterList.push(ele.innerHTML)
     }
 
-    console.log('selected filter: ' + filterList.join())
+    console.log('selected filter: ' + filterList.join() + ','+ filterDateRange);
+}
 
+function filter2Clicked(ele) {
+    if(!$(ele).hasClass('checked')){
+        $(ele).addClass('checked').siblings('span').removeClass('checked');
+        filterDateRange = ele.innerHTML;
+    }
+
+    console.log('selected filter: ' + filterList.join() + ','+ filterDateRange);
 }
 
 function searchBtnClick() {
     var searchInput = $('#search_input').val();
-    console.log('input string: ' + searchInput)
+    console.log('input string: ' + searchInput);
+    console.log('selected filter: ' + filterList.join() + ','+ filterDateRange);
 }
 </script>
 </body>
