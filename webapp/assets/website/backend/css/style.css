@@ -5,8 +5,8 @@ html,body {height:100%; background:#f3f1f1;  }
 body {font:14px "微软雅黑",Arial,sans-serif; color:#4c4c4c;margin:0px; }
 form,menu,dir,fieldset,blockquote,p,pre,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6 { padding:0; margin:0;}
 ul,ol,dl { list-style:none; }
-a {color:#666666;;text-decoration: none;}
-a:hover {color:#666666;text-decoration:none;}
+a {color:#666666;;text-decoration: none !important;}
+a:hover, img:hover{color:#666666;text-decoration:none; cursor: pointer;}
 a img {border: none;}
 .clear {clear: both;line-height: 0px;font-size:0px;}
 .content {width:1200px;margin: 0 auto;  }
@@ -64,7 +64,7 @@ a img {border: none;}
 .pxshi_gl{ background:#fff; padding:20px;}
 .pxshi_gl_l{ width:235px; border:1px solid #e1e1e1; }
 .pxshi_gl_l h4{ display:block; height:40px; padding-top:1px; line-height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/gl_l_h4.jpg) no-repeat left top; text-align:center; font-size:20px; color:#fff; font-weight:100;}
-.pxshi_gl_r{width:860px; border:1px solid #e1e1e1; padding:20px; font-size:12px; }
+.pxshi_gl_r{width:900px; border:1px solid #e1e1e1; padding:20px; font-size:12px; }
 
 .caozuo a,.caozuo a:hover{ color:#0d84d1;}
 .sq a:hover{ color:#0d84d1;}
@@ -74,8 +74,8 @@ a img {border: none;}
 /*栏目*/
 
 .lanmu{ padding:20px 30px 30px 30px;}
-.lanmu li{ display:block; height:40px; font-size:16px; line-height:40px; border-bottom:1px dotted #e1e1e1;}
-
+.lanmu li{ display:block; height:40px; font-size:16px; line-height:40px; border-bottom:1px dotted #e1e1e1;padding-left:40px;color:#428bca;cursor: pointer;}
+.lanmu li.cn{display:block;font-weight:700;height:40px;color:#ffffff;background:#3689b3;}
 /*我的财富*/
 .wdcf{ width:300px; height:40px; line-height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/wdcf.jpg) no-repeat 15px center; padding-left:40px; padding-top:10px; font-size:14px; font-weight:100;}
 .wdcf span{ display:block; float:right; text-align:right;height:40px; line-height:40px; font-size:12px; padding-left:45px;  color:#999;} 
@@ -120,6 +120,7 @@ a img {border: none;}
 .zlws a{display:block; height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/wszl_1.jpg) no-repeat left center;padding-left:40px; }
 .zlws a:hover{display:block; height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/wszl_2.jpg) no-repeat left center; color:#3689b3;padding-left:40px; }
 .zlws.cn a,.zlws.cn a:hover{display:block; height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/wszl_2.jpg) no-repeat left center; color:#3689b3;padding-left:40px; }
+
 
 /*我的专题*/
 .tjzt{ padding:20px 0px 50px 10px;}
