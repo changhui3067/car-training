@@ -72,10 +72,9 @@
                                                                 style="color: red">*</span>
                                                             出生年月:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="date" class="form-control" name="ubirthday"
-                                                                   placeholder="请输入出生年月"
+                                                            <input type="" class="form-control" name="ubirthday"
                                                                    onclick="laydate()"
-                                                                   value="<<#if autobot?? && autobot.userCenter?? && autobot.userCenter.name??>${autobot.userCenter.birthday?string("yyyy-MM-dd")!}</#if>"
+                                                                   value="<#if autobot?? && autobot.userCenter?? && autobot.userCenter.name??>${autobot.userCenter.birthday?string("yyyy-MM-dd")!}</#if>"
                                                             />
                                                         </div>
                                                     </div>
@@ -220,7 +219,7 @@
                                                 <li class="list-group-item pxshijl_li">
                                                     <div class="form-group">
                                                         <img id="workPhotoURL1_show" src="${autobot.workPhotoURL1!}">
-                                                        <button type="button" class="btn btn-primary btn-lg"
+                                                        <button type="button" class="btn btn-primary btn-lg adminPageBtn"
                                                                 data-toggle="modal" data-target="#myModal">
                                                             上传照片
                                                         </button>
@@ -255,13 +254,7 @@
                             </div>
                         </div>
                         <div class="tj">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td height="60" align="center" valign="middle">
-                                        <input type="button" onclick="submitdata()"
-                                               style="width:58px;height:28px;background-repeat:no-repeat;background-image:url(http://obu3flkwk.bkt.clouddn.com/backend/images/bc.jpg);border:0;"/>
-                                </tr>
-                            </table>
+                            <button type="button" onclick="submitdata()" style="adminPageBtn"/>保存</button>
                         </div>
                 </div>
                 </form>
@@ -274,6 +267,7 @@
     <script src="/assets/website/js/cropper.js" type="text/javascript"></script>
     <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
+    <script src="/assets/website/js/laydate.js?v=1.1.0" type="text/javascript"></script>
 
     <script>
 
@@ -345,10 +339,10 @@
         }
 
         function selectCities(ele) {
-            var provinceId = $(ele).val();
+            var provinceId = $(ele).attr('value');
             var provinceName = ele.innerHTML;
             $('#province button').val(provinceId);
-            $('#province button').innerHTML = provinceName + '<span class="caret"></span>';
+            $('#province button')[0].innerHTML = provinceName + '<span class="caret"></span>';
 
             var form_data = {};
             form_data.parentId = provinceId;
@@ -379,7 +373,7 @@
         }
 
         function selectCity(ele) {
-            var regionId = $(ele).val();
+            var regionId = $(ele).attr('value');
             var regionName = ele.innerHTML;
             $('#city button').val(regionId);
             $('#city button')[0].innerHTML = regionName + '<span class="caret"></span>';

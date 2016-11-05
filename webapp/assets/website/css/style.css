@@ -133,12 +133,11 @@ a img {border: none;}
 .pxshi_zp{ height:30px; line-height:30px;font-size:16px;margin-bottom:5px;}
 
 .xm{ color:#ff7f00; font-size:24px; margin-right:150px;   }
-.pl{ color:#ffa757; font-size:16px;}
+.pl{ color:#ffa757; font-size:25px;}
 .pl span{ color:#818180;}
-.dz{ background:url(../images/dz1.jpg) no-repeat left center; padding-left:35px;font-size:16px;}
+.dz{ padding-left:35px;font-size:25px;}
 
-.pxshi_rz{ height:17px; line-height:17px;}
-.pxshi_rz li{ display:block; float:left; margin-right:5px;}
+.pxshi_rz li{ display:block; float:left; margin-right:5px; font-size: 25px;}
 
 /*培训师_左边8个缩略图*/
 .pxshi_r{ width:786px;}
@@ -488,8 +487,9 @@ a img {border: none;}
 
 .searchBox .filterType .filterItemList button {
     background: transparent;
-    padding: 10px 10px 9px;
+    padding: 7px 9px 8px;
     border: #3689b3 solid 1px;
+    font-size: 14px;
 }
 
 .searchBox .filterType .filterItemList button:hover {
@@ -498,7 +498,7 @@ a img {border: none;}
     cursor: pointer;
 }
 
-.searchBox .filterType .filterItemList span:hover, .searchBox .filterType .filterItemList .selected {
+.searchBox .filterType .filterItemList span:hover, .searchBox .filterType .filterItemList .checked {
     background: #3689b3;
     color: #fff;
     cursor: pointer;
@@ -604,6 +604,15 @@ add our css below
 .register li a:hover{ 
 	color:#fff;
 }
+
+.stayTuned{
+    color:#ff7d00;
+    font-size: 20px;
+    height: 450px;
+    text-align: center;
+    padding-top: 200px;
+}
+
 
 
 
