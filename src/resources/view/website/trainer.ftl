@@ -21,38 +21,38 @@
             <div class="filterType">
                 <div class="filterName">领域类型:</div>
                 <div class="filterItemList">
-                    <span onclick="filterClicked(this)">销售</span>
-                    <span onclick="filterClicked(this)">产品</span>
-                    <span onclick="filterClicked(this)">技术</span>
-                    <span onclick="filterClicked(this)">管理</span>
-                    <span onclick="filterClicked(this)">财务</span>
-                    <span onclick="filterClicked(this)">市场营销</span>
-                    <span onclick="filterClicked(this)">客户关系</span>
-                    <span onclick="filterClicked(this)">人事</span>
-                    <span onclick="filterClicked(this)">生产</span>
-                    <span onclick="filterClicked(this)">领导力</span>
-                    <span onclick="filterClicked(this)">新能源</span>
+                    <span onclick="filterClicked(this,'businessCategory')">销售</span>
+                    <span onclick="filterClicked(this,'businessCategory')">产品</span>
+                    <span onclick="filterClicked(this,'businessCategory')">技术</span>
+                    <span onclick="filterClicked(this,'businessCategory')">管理</span>
+                    <span onclick="filterClicked(this,'businessCategory')">财务</span>
+                    <span onclick="filterClicked(this,'businessCategory')">市场营销</span>
+                    <span onclick="filterClicked(this,'businessCategory')">客户关系</span>
+                    <span onclick="filterClicked(this,'businessCategory')">人事</span>
+                    <span onclick="filterClicked(this,'businessCategory')">生产</span>
+                    <span onclick="filterClicked(this,'businessCategory')">领导力</span>
+                    <span onclick="filterClicked(this,'businessCategory')">新能源</span>
                 </div>
             </div>
 
             <div class="filterType">
                 <div class="filterName">工作经验:</div>
                 <div class="filterItemList">
-                    <span onclick="filter2Clicked(this)">5年内</span>
-                    <span onclick="filter2Clicked(this)">5-10年</span>
-                    <span onclick="filter2Clicked(this)">10-15年</span>
-                    <span onclick="filter2Clicked(this)" >15-20年</span>
-                    <span onclick="filterClicked(this)">20年以上</span>
+                    <span onclick="filter2Clicked(this, 'workExperience')">5年内</span>
+                    <span onclick="filter2Clicked(this, 'workExperience')">5-10年</span>
+                    <span onclick="filter2Clicked(this, 'workExperience')">10-15年</span>
+                    <span onclick="filter2Clicked(this, 'workExperience')" >15-20年</span>
+                    <span onclick="filter2Clicked(this, 'workExperience')">20年以上</span>
                 </div>
             </div>
             <div class="filterType">
                 <div class="filterName">执行类型:</div>
                 <div class="filterItemList">
-                    <span onclick="filterClicked(this)">开发</span>
-                    <span onclick="filterClicked(this)">培训</span>
-                    <span onclick="filterClicked(this)">辅导</span>
-                    <span onclick="filterClicked(this)">项目管理</span>
-                    <span onclick="filterClicked(this)">经销商托管</span>
+                    <span onclick="filterClicked(this, 'excutionCategory')">开发</span>
+                    <span onclick="filterClicked(this, 'excutionCategory')">培训</span>
+                    <span onclick="filterClicked(this, 'excutionCategory')">辅导</span>
+                    <span onclick="filterClicked(this, 'excutionCategory')">项目管理</span>
+                    <span onclick="filterClicked(this, 'excutionCategory')">经销商托管</span>
                 </div>
             </div>
             <div class="filterType">
@@ -148,34 +148,65 @@
 <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
 <script type="text/javascript">
 
-var filterList = [];
-var filterDateRange = "";
+var filters = {};
 
-function filterClicked(ele) {
+function filterClicked(ele, category) {
+    filters[category] = filters[category] ? filters[category] : [];
     if($(ele).hasClass('checked')){
         $(ele).removeClass('checked');
-        filterList.splice($.inArray(ele.innerHTML), 1);
+        filters[category].splice($.inArray(ele.innerHTML), 1);
     } else {
         $(ele).addClass('checked');
-        filterList.push(ele.innerHTML)
+        filters[category].push(ele.innerHTML)
     }
 
-    console.log('selected filter: ' + filterList.join() + ','+ filterDateRange);
+    sendAjax();
 }
 
-function filter2Clicked(ele) {
+function filter2Clicked(ele, category) {
+    filters[category] = filters[category] ? filters[category] : "";
     if(!$(ele).hasClass('checked')){
         $(ele).addClass('checked').siblings('span').removeClass('checked');
-        filterDateRange = ele.innerHTML;
     }
 
-    console.log('selected filter: ' + filterList.join() + ','+ filterDateRange);
+    switch(ele.innerHTML) {
+        case '5年内':
+            filters[category] = "0,5"; break;
+        case '5-10年':
+            filters[category] = "5,10"; break;
+        case '10-15年':
+            filters[category] = "10,15"; break;
+        case '15-20年':
+            filters[category] = "15,20"; break;
+        case '20年以上':
+            filters[category] = "20,100"; break;
+        default:
+            break;
+    }
+
+    sendAjax();
 }
 
 function searchBtnClick() {
-    var searchInput = $('#search_input').val();
-    console.log('input string: ' + searchInput);
-    console.log('selected filter: ' + filterList.join() + ','+ filterDateRange);
+    filters['keyWord'] = $('#search_input').val();
+    sendAjax();
+}
+
+function sendAjax() {
+    console.log(filters);
+    var url  = "website/trainer/search";
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: filters,
+        error: function(request) {
+            console.log("网络出错啦！");
+            return false;
+        },
+        success: function (data) {
+            console.log(data);
+        }
+    });
 }
 </script>
 </body>
