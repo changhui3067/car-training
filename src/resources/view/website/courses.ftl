@@ -20,7 +20,7 @@
 
 <div class="stayTuned">
     <p class="text-center">
-    <h1>敬请期待</h1></p>
+    <h1>敬请期待...</h1></p>
 </div>
 
 
