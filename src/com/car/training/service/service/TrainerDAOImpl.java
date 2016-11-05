@@ -39,16 +39,16 @@ public class TrainerDAOImpl {
     @Transactional
     public List<com.car.training.model.Trainer> search(String businessCategory, String executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
         Session session = sessionFactory.getCurrentSession();
-        DetachedCriteria dc = DetachedCriteria.forClass(com.car.training.model.Trainer.class);
+        DetachedCriteria dc = DetachedCriteria.forClass(com.car.training.model.Trainer.class,"trainer");
         Criteria criteria = dc.getExecutableCriteria(session);
 
         criteria.add(getRestriction("businessCategory",businessCategory));
         criteria.add(getRestriction("executionCategory",executionCategory));
         criteria.add(Restrictions.between("autoYears", minAutoYears, maxAutoYears));
-//        criteria.createAlias("UserCenter.name", "name");
-//        if (!StringUtils.isEmpty(keyword)) {
-//            criteria.add(Restrictions.like("name", keyword));
-//        }
+        criteria.createAlias("trainer.userCenter", "userCenter");
+        if (!StringUtils.isEmpty(keyword)) {
+            criteria.add(Restrictions.like("userCenter.name", "%"+keyword+"%"));
+        }
 
 //        criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
         return criteria.list();
