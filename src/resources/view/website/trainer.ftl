@@ -281,11 +281,15 @@ function searchBtnClick() {
 
 function sendAjax() {
     console.log(filters);
-    var url  = "website/trainer/search";
+    var url  = "/website/trainer/search";
+    var data_ = {};
+    for (var props in filters) {
+        data_[props] = filters[props].join(',');
+    }
     $.ajax({
         type: "GET",
         url: url,
-        data: filters,
+        data: data_,
         error: function(request) {
             console.log("网络出错啦！");
             return false;
