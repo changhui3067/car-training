@@ -72,10 +72,9 @@
                                                                 style="color: red">*</span>
                                                             出生年月:</label>
                                                         <div class="col-sm-9">
-                                                            <input type="date" class="form-control" name="ubirthday"
-                                                                   placeholder="请输入出生年月"
+                                                            <input type="" class="form-control" name="ubirthday"
                                                                    onclick="laydate()"
-                                                                   value="<<#if autobot?? && autobot.userCenter?? && autobot.userCenter.name??>${autobot.userCenter.birthday?string("yyyy-MM-dd")!}</#if>"
+                                                                   value="<#if autobot?? && autobot.userCenter?? && autobot.userCenter.name??>${autobot.userCenter.birthday?string("yyyy-MM-dd")!}</#if>"
                                                             />
                                                         </div>
                                                     </div>
@@ -268,6 +267,7 @@
     <script src="/assets/website/js/cropper.js" type="text/javascript"></script>
     <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
+    <script src="/assets/website/js/laydate.js?v=1.1.0" type="text/javascript"></script>
 
     <script>
 
