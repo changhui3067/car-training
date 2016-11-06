@@ -546,14 +546,26 @@ add our css below
 .login-box{  
 	margin-left:900px;
 	width:300px; 
-	height:300px; 
-	padding:10px 20px 0px 20px; 
+	padding:10px 20px 15px 20px; 
 	background:#383633;
 	filter:alpha(opacity=80);   
     -moz-opacity:0.8;   
     -khtml-opacity: 0.8;   
     opacity: 0.8; color:#fff;  
 }
+.login-box .form-group:nth-child(2){
+    margin-bottom: 8px;
+}
+.login-box button {
+    width: 100%;
+    font-size: 20px;
+    background-color: #ff7d00;
+    border: none;
+}
+.login-box button:hover {
+    background-color: #FF4000;
+}
+
 .dot-line { 
 	height:30px; 
 	line-height:30px; 
@@ -573,7 +585,7 @@ add our css below
 .errMsg {
 	display:block; 
 	padding-left:10px;
-	height: 30px;
+	height: 20px;
 	color:#FA5506;
 }
 

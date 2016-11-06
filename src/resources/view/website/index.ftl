@@ -39,7 +39,7 @@
                         <input type="radio" name="userType" id="userType" value="COMPANY" />企业
                     </label>
                 </div>
-                <div><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dl_bg.jpg" onClick='javascript:login();' /></div>
+                <div><button onClick='javascript:login();'>登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button></div>
             </div>
         </div>
     <#else>
