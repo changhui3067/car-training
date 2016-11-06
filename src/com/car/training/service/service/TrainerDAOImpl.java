@@ -60,7 +60,7 @@ public class TrainerDAOImpl {
         if (!StringUtils.isEmpty(cats)) {
             String[] categories = cats.split(",");
             for (String category : categories) {
-                criterion = Restrictions.and(criterion,Restrictions.like(categoryName, "%"+category+"%"));
+                criterion = Restrictions.or(criterion,Restrictions.like(categoryName, "%"+category+"%"));
             }
         }
         return criterion;
