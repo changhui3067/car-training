@@ -1,30 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-<title>培聘网</title>
-<link rel="stylesheet" href="<@url value='/assets/website/backend/css/style.css'/>" type="text/css" media="screen" />
-<script src="<@url value="/assets/website/js/jquery-1.8.0.min.js?v=1.1.0"/>"></script>
-
-</head>
-
-<body>
-<#include "/assets/website/common/header.html">
-	
-<!-- main开始 -->
-<div class="main">
-	<div class="content">
-    <div class="dq_box">
-    <div class="dqwz left">当前位置 : <a href="#">首 页</a> > <a href="#"><#if Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' && Session["loginType"]=='TRAINER'>培训师管理中心<#else>汽车人管理中心</#if></a> > <a href="#">申请记录</a></div>
-    <div class="wdcf right"><span color="#FF66001"><#if Session?exists && Session["userDetails"].wealthStartDate??> ${Session["userDetails"].wealthStartDate!?string("dd/MM/yyyy")}—${Session["userDetails"].wealthEndDate!?string("dd/MM/yyyy")}</#if></span>我的财富：<font color="#FF66001"><#if Session?exists && Session["userDetails"]??> ${Session["userDetails"].wealth!}</#if></font></div>
-    <div class="clear"></div>
-    </div>
-    <div class="pxshi_gl">
-    	<div class="pxshi_gl_l left">
-      <#include "/assets/website/backend/common/menu.html">
-
-        <div class="pxshi_gl_r right">
         	<#if deliveryResumeList?? && deliveryResumeList.result??>
          		<table bgcolor="#dedede" border="0" cellpadding="4" cellspacing="1" align="center" width="860">
                     <tbody>
@@ -74,7 +47,7 @@
             	<div class="fypage" >
             	
             	<#if pageNo gt 5>
-            	<a data-class="p5" href="javascript:void(0)" onclick="prevFivePage()"">上五页</a>
+            	<a data-class="p5" href="javascript:void(0)" onclick="prevFivePage()">上五页</a>
             	<#else>
             	<span data-class="p5">上五页</span>
             	</#if>
@@ -146,15 +119,6 @@
                </select>
                </div>
                </#if>    	  
-
-        
-      </div>
-        <div class="clear"></div>
-    
-    </div>
-    </div>
-</div>
-
 <!-- main结束 -->
 <script>
 $("#chk_all").click(function(){
@@ -207,55 +171,50 @@ function showErrMsg(errMsg){
 }
 </script>
 <!--分页有关js-->
-    <script>
-    
-		var pageNo = ${pageNo};
-		<#if deliveryResumeList??>
-			var totalPage = ${deliveryResumeList.totalPage};
-		<#else>
-			var totalPage = 0;
-		</#if>
-		var tarUrl = "/backend/applyJobHistory?";
+<script>
+
+	var pageNo = ${pageNo};
+	<#if deliveryResumeList??>
+		var totalPage = ${deliveryResumeList.totalPage};
+	<#else>
+		var totalPage = 0;
+	</#if>
+	var tarUrl = "/backend/applyJobHistory?";
+	
+	function prevFivePage(){
+		var pag = '';
+		for(var i = Math.floor(pageNo/5) * 5 - 4; i<=Math.floor(pageNo/5)*5;i++){
+			pag += '<a href="' + tarUrl + 'pageNo=' + i + '">' + i + '</a>';
+		}
+		pageNo = Math.floor(pageNo/5) * 5 - 4;
+		$("div.fypage").find("div[data-class=pag]").html(pag);
+		resetPreNex();
+	}
+	function nextFivePage(){
+		var pag = '';
+		for(var i = Math.ceil(pageNo/5) * 5 + 1; i<=Math.ceil(pageNo/5) * 5+5;i++){
+			pag += '<a href="' + tarUrl + 'pageNo=' + i + '">' + i + '</a>';
+		}
+		pageNo = Math.ceil(pageNo/5) * 5 + 1;
+		$("div.fypage").find("div[data-class=pag]").html(pag);
+		resetPreNex();
+	}
+	function resetPreNex(){
+		if(pageNo <= 5){
+			$("[data-class=p5]").replaceWith('<span data-class="p5">上五页</span>');
+		}else{
+			$("[data-class=p5]").replaceWith('<a data-class="p5" href="javascript:void(0)" onclick="prevFivePage()"">上五页</a>');
+		}
+		if(totalPage > Math.ceil(pageNo/5) * 5 + 4){
+			$("[data-class=n5]").replaceWith('<a data-class="n5" href="javascript:void(0)" onclick="nextFivePage()"">下五页</a>');
+		}else{
+			$("[data-class=n5]").replaceWith('<span data-class="n5">下五页</span>');
+		}
 		
-    	function prevFivePage(){
-    		var pag = '';
-    		for(var i = Math.floor(pageNo/5) * 5 - 4; i<=Math.floor(pageNo/5)*5;i++){
-				pag += '<a href="' + tarUrl + 'pageNo=' + i + '">' + i + '</a>';
-    		}
-    		pageNo = Math.floor(pageNo/5) * 5 - 4;
-    		$("div.fypage").find("div[data-class=pag]").html(pag);
-    		resetPreNex();
-    	}
-    	function nextFivePage(){
-    		var pag = '';
-    		for(var i = Math.ceil(pageNo/5) * 5 + 1; i<=Math.ceil(pageNo/5) * 5+5;i++){
-				pag += '<a href="' + tarUrl + 'pageNo=' + i + '">' + i + '</a>';
-    		}
-    		pageNo = Math.ceil(pageNo/5) * 5 + 1;
-    		$("div.fypage").find("div[data-class=pag]").html(pag);
-    		resetPreNex();
-    	}
-    	function resetPreNex(){
-    		if(pageNo <= 5){
-    			$("[data-class=p5]").replaceWith('<span data-class="p5">上五页</span>');
-    		}else{
-    			$("[data-class=p5]").replaceWith('<a data-class="p5" href="javascript:void(0)" onclick="prevFivePage()"">上五页</a>');
-    		}
-    		if(totalPage > Math.ceil(pageNo/5) * 5 + 4){
-    			$("[data-class=n5]").replaceWith('<a data-class="n5" href="javascript:void(0)" onclick="nextFivePage()"">下五页</a>');
-    		}else{
-    			$("[data-class=n5]").replaceWith('<span data-class="n5">下五页</span>');
-    		}
-    		
-    	}
-    	
-    	function jumpPage(){
-    		window.location.href = tarUrl + 'pageNo=' + $("select[name=PageSelect]").val();	
-    	}
-    	
-    </script>
-
-<#include "/assets/website/backend/common/footer.html">
-
-</body>
-</html>
+	}
+	
+	function jumpPage(){
+		window.location.href = tarUrl + 'pageNo=' + $("select[name=PageSelect]").val();	
+	}
+	
+</script>

@@ -18,8 +18,8 @@
 <script type="text/javascript">
     var oUrl = {
         "information": "",
-        "complete": "/backend/complete",
-        "record": "/backend/record",
+        "complete": "/backend/trainerCompleteResume",
+        "record": "/backend/applyJobHistory",
         "publish": "",
         "article": "",
         "password": "",
