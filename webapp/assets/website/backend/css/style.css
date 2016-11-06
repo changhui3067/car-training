@@ -34,7 +34,7 @@ a img {border: none;}
 
 
 /*main*/
-.main{ padding:20px 0px; width:100%; }
+.main{ padding:20px 0px; width:100%; background: white;}
 
 /*注册*/
 .zc{ background:#fff; padding:20px;}
@@ -61,7 +61,7 @@ a img {border: none;}
 /*培训师管理*/
 
 .dqwz{ height:30px; line-height:30px; padding:15px 0px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/home.jpg) no-repeat left center; padding-left:20px;}
-.pxshi_gl{ background:#fff; padding:20px;}
+.pxshi_gl{ background:#fff; padding:20px;overflow:auto;}
 .pxshi_gl_l{ width:235px; border:1px solid #e1e1e1; }
 .pxshi_gl_l h4{ display:block; height:40px; padding-top:1px; line-height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/gl_l_h4.jpg) no-repeat left top; text-align:center; font-size:20px; color:#fff; font-weight:100;}
 .pxshi_gl_r{width:900px; border:1px solid #e1e1e1; padding:20px; font-size:12px; }

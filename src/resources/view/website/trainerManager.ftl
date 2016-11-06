@@ -8,7 +8,6 @@
     <li id="publish" onclick='navigate(this.id)'>发布文章</li>
     <li id="article" onclick='navigate(this.id)'>我的文章</li>
     <li id="password" onclick='navigate(this.id)'>修改密码</li>
-    <li id="logout" onclick='navigate(this.id)'>安全退出</li>
 </ul>
 </div>
 </div>
@@ -17,13 +16,12 @@
 </div>
 <script type="text/javascript">
     var oUrl = {
-        "information": "",
+        "information": "/website/trainerDetail?trainer.id=${Session["userDetails"].trainer.id!}",
         "complete": "/backend/trainerCompleteResume",
         "record": "/backend/applyJobHistory",
-        "publish": "",
-        "article": "",
-        "password": "",
-        "logout": ""
+        "publish": "/backend/publishArticle",
+        "article": "/backend/articleManage",
+        "password": "/backend/modifyPassword"
     };
     navigate("record");
     function navigate(id) {
