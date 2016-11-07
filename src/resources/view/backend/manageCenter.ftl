@@ -20,9 +20,9 @@
 	        <#elseIf Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' && Session["loginType"]=='AUTOBOT'>
 
 	        </#if>
-		    <div class="clear"></div>
 		</div>
 	</div>
+	<div class="clear"></div>
 </div>
 <#include "/assets/website/backend/common/footer.html">
 </body>
