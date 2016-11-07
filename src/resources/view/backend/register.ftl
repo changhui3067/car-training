@@ -197,7 +197,6 @@ function personal_register(){
             return false;
          },
 	     success: function (data) {
-	    	 if(data.code==200){
 				 showErrMsg("注册成功！");
 				 if(data.target == "" || data.target == null){
 				 	setTimeout(function(){
@@ -208,20 +207,7 @@ function personal_register(){
 		     	 			window.location.href = data.target;
 		     	 		},300);
 				 }
-	    	 }else{
-	    	 if(data.code==400){
-	    	 	 errMsg.innerHTML = data.msg;
-	    	 	 return false;
-	    	 }else if(data.code==402){
-	    	  	errMsg.innerHTML = data.msg;
-	    	 	return false;
-	    	 }else if(data.code==405){
-	    	  	errMsg.innerHTML = data.msg;
-	    	 	return false;
-	    	 }else{
-                errMsg.innerHTML = "注册失败";
-                return false;
-            }
+
 	     }
 	    }
 	});
@@ -275,7 +261,6 @@ function company_register(){
             return false;
         },
 	    success: function (data) {
-	    	if(data.code==200){
 				showErrMsg("注册成功！");
 				if(data.target == "" || data.target == null){
 				 	setTimeout(function(){
@@ -286,19 +271,7 @@ function company_register(){
 		     	 			window.location.href = data.target;
 		     	 		},300);
 				}
-	    	}else if(data.code==400){
-	    	 	errMsg.innerHTML = data.msg;
-	    	 	return false;
-	    	}else if(data.code==402){
-	    	    errMsg.innerHTML = data.msg;
-                return false;
-	    	}else if(data.code==405){
-	    	    errMsg.innerHTML = data.msg;
-	    	    return false;
-	    	}else{
-                errMsg.innerHTML = "注册失败";
-	    	 	return false;
-	    	}
+
 	     }
 	});
 }
@@ -326,15 +299,7 @@ function company_register(){
 	         return false;
 	     },
 	     success: function (data) {
-	    	 if(data.code==200){
 				errMsg.innerHTML = "发送成功！";
-	    	 }else if(data.code==400){
-	    	 	 errMsg.innerHTML = data.msg;
-	    	 	 return false;
-	    	 }else{
-                errMsg.innerHTML = "未知错误";
-	    	 	 return false;
-	    	 }
 	     }
 	});
 }

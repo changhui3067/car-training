@@ -331,9 +331,7 @@
                 },
                 success: function (data) {
                     alert(data.msg);
-                    if (data.code == 200) {
-                        window.location.href = "/backend/autobotCompleteResume";
-                    }
+                    window.location.href = "/backend/autobotCompleteResume";
                 }
             });
         }
@@ -355,18 +353,14 @@
                     return false;
                 },
                 success: function (data) {
-                    if (data.code == 200) {
-                        //$("#city").get(0).options.length = data.cities.length + 1;
-                        var parent = $("#city ul");
-                        parent.empty();
-                        for (var i = 0; i < data.cities.length; i++) {
-                            var liString = "<li value='" + data.cities[i].id + "'>" +
+                    //$("#city").get(0).options.length = data.cities.length + 1;
+                    var parent = $("#city ul");
+                    parent.empty();
+                    for (var i = 0; i < data.cities.length; i++) {
+                        var liString = "<li value='" + data.cities[i].id + "'>" +
                                 "<a href='#' onclick='selectCity(this)'>" + data.cities[i].name + "</a></li>";
-                            parent.append(liString);
-                            //$("#city ul").get(0).options[i + 1] = new Option(, );
-                        }
-                    } else {
-                        return false;
+                        parent.append(liString);
+                           //$("#city ul").get(0).options[i + 1] = new Option(, );
                     }
                 }
             });

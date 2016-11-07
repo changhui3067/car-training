@@ -90,7 +90,6 @@ function modifyPassword(){
              return false;
          },
 	     success: function (data) {
-	    	 if(data.code==200){
 				 showErrMsg("密码修改成功！");
 				 if(data.target == "" || data.target == null){
 				 	setTimeout(function(){
@@ -101,12 +100,7 @@ function modifyPassword(){
 		     	 			window.location.href = data.target;
 		     	 		},300);
 				 }
-	    	 }else if(data.code==400){
-	    	 	 showErrMsg(data.msg);
-	    	 	 return false;
-	    	 }else{
-	    	 	 return false;
-	    	 }
+
 	     }
 	});
 }

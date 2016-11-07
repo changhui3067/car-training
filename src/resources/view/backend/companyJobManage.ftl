@@ -187,15 +187,9 @@ $.ajax({
          return false;
          },
 	     success: function (data) {
-	    	 if(data.code==200){
-				 showErrMsg("删除成功！");
-				 window.location.href = "/backend/companyJobManage";
-	    	 }else if(data.code==400){
-	    	 	 showErrMsg(data.msg);
-	    	 	 return false;
-	    	 }else{
-	    	 	 return false;
-	    	 }
+             showErrMsg("删除成功！");
+             window.location.href = "/backend/companyJobManage";
+
 	     }
 	});
 }else{

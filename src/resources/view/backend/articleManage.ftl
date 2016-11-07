@@ -174,19 +174,12 @@ $.ajax({
 	     url: url,
 	     data: form_data,
 	     error: function(request) {
-         showErrMsg("网络出错啦！");
-         return false;
+            showErrMsg("网络出错啦！");
+            return false;
          },
 	     success: function (data) {
-	    	 if(data.code==200){
-				 showErrMsg("删除成功！");
-				 window.location.href = "/backend/articleManage";
-	    	 }else if(data.code==400){
-	    	 	 showErrMsg(data.msg);
-	    	 	 return false;
-	    	 }else{
-	    	 	 return false;
-	    	 }
+             showErrMsg("删除成功！");
+             window.location.href = "/backend/articleManage";
 	     }
 	});
 }else{

@@ -189,15 +189,9 @@ function submitdata(){
 	             return false;
 	         },
 		     success: function (data) {
-		    	 if(data.code==200){
 					 showErrMsg("添加成功！");
 					 window.location.href = "/backend/companyJobManage";
-		    	 }else if(data.code==400){
-		    	 	 showErrMsg(data.msg);
-		    	 	 return false;
-		    	 }else{
-		    	 	 return false;
-		    	 }
+
 		     }
 	});
 }
@@ -215,15 +209,11 @@ function selectCities(){
 	         return false;
 	     },
 	     success: function (data) {
-	    	 if(data.code==200){
 				$("#city").get(0).options.length=data.cities.length+1;
 	    		for(var i=0;i<data.cities.length;i++)
 	    		{
 	    		  $("#city").get(0).options[i+1]=new Option(data.cities[i].name,data.cities[i].id);
 	    		}
-	    	 }else{
-	    	 	 return false;
-	    	 }
 	     }
 	});
 }

@@ -331,7 +331,6 @@ function login(){
             return false;
         },
         success: function (data) {
-            if(data.code==200){
                 if(data.target == "" || data.target == null){
                     setTimeout(function(){
                         window.location.href = "/website/index";
@@ -341,13 +340,7 @@ function login(){
                         window.location.href = data.target;
                     },300);
                 }
-            }else if(data.code==400){
-                    errMsg.innerHTML = data.msg;
-                    return false;
-            }else{
-                    errMsg.innerHTML = "未知错误";
-                    return false;
-            }
+
         }
     });
 }

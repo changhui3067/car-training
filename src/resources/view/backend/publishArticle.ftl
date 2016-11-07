@@ -91,15 +91,9 @@ function submitdata(){
 	             return false;
 	         },
 		     success: function (data) {
-		    	 if(data.code==200){
 					 showErrMsg("添加成功！");
 					 window.location.href = "/backend/articleManage";
-		    	 }else if(data.code==400){
-		    	 	 showErrMsg(data.msg);
-		    	 	 return false;
-		    	 }else{
-		    	 	 return false;
-		    	 }
+
 		     }
 		});
 }

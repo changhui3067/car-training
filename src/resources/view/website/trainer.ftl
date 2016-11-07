@@ -150,80 +150,6 @@
             </#if>
         </div>
 
-
-<#--        <#if trainerList??>
-       <#if businessCategoryEnum??>
-    		<#list businessCategoryEnum?keys as key>
-    			<div class="xiaoshou_box">
-    				<h4><span><a href="#">更多>></a></span>${businessCategoryEnum.get(key)!}</h4>
-    				
-    				<div class="pxshi">
-    					<ul>
-    						<#list trainerList as t>
-	    						<#if t?? && t.businessCategory??>
-	    						  <#list t.businessCategory as b>
-	    						  	<#if businessCategoryEnum.get(key) ? index_of(b) !=-1 >
-	    						  		<#if t_index = 0>
-    						   		<li style="border:2px solid #ff7d00; padding:0px;">
-    						   		<#if t.userCenter??>
-    						   			<div class="pxshi_pic"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
-    						   			<div class="pxshi_intro">
-					                    	<div class="pxshi_name">
-					                        	<div class="pxshi_xm left"><a href="#">${t.userCenter.name!}</a></div>
-					                          <div class="pxshi_pl right"><a href="#"><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if>人</a><span>评论</span></div>
-					                            
-					                            <div class="clear"></div>
-					                        </div>
-					                          <div class="pxshi_zp"><a href="#">${t.currentPosition!}</a></div>
-					                        <div class="pxshi_rz">
-					                        	<span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></a></span>
-					                            <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></a></span>
-					                            <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></a></span>
-					                            <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/xin.jpg" /></a></span>
-					                             <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zishen.jpg" /></a></span> 
-					                              <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dav.jpg" /></a></span>  
-					                        </div>
-					                    </div>
-				                    </#if>
-    						   		</li>
-    						   <#else>
-    						   		<#if t_index gt 4>  
-    						   			<#break>
-    						   		</#if>
-    						   		<li>
-    						   			<#if t.userCenter??>
-    						   			<div class="pxshi_pic"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
-    						   			<div class="pxshi_intro">
-					                    	<div class="pxshi_name">
-					                        	<div class="pxshi_xm left"><a href="#">${t.userCenter.name!}</a></div>
-					                          <div class="pxshi_pl right"><a href="#">34人</a><span>评论</span></div>
-					                            
-					                            <div class="clear"></div>
-					                        </div>
-					                          <div class="pxshi_zp"><a href="#">${t.currentPosition!}</a></div>
-					                        <div class="pxshi_rz">
-					                        	<span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></a></span>
-					                            <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></a></span>
-					                            <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></a></span>
-					                            <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/xin.jpg" /></a></span>
-					                             <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zishen.jpg" /></a></span> 
-					                              <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dav.jpg" /></a></span>  
-					                        </div>
-					                    </div>
-				                    </#if>
-    						   		</li>
-    						   </#if>
-	    						  	</#if>
-	    						  </#list>
-	    						</#if>
-    						</#list>
-    					</ul>
-    				</div>
-    			</div>
-    			
-        	</#list>
-      </#if>
-      </#if>-->
         
     </div>
 </div>
@@ -295,7 +221,7 @@ function sendAjax() {
             return false;
         },
         success: function (data) {
-            console.log(data);
+            $('searchResult')[0].innerHTML = data;
         }
     });
 }

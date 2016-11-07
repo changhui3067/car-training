@@ -188,19 +188,12 @@ $.ajax({
          return false;
      },
      success: function (data) {
-    	 if(data.code==200){
 			 setTimeout(function(){
 		 		if(jid==''||jid==null){
      	 			window.location.href = "/website/trainerDetail?trainer.id=tid";
      	 			}
      	 		},300);
      	 		window.location.reload();
-    	 }else if(data.code==400){
-    	 	 showErrMsg(data.msg);
-    	 	 return false;
-    	 }else{
-    	 	 return false;
-    	 }
      }
 });
 }
@@ -230,19 +223,13 @@ $.ajax({
          return false;
      },
      success: function (data) {
-    	 if(data.code==200){
 			 showErrMsg("添加评论成功！");
 			 setTimeout(function(){
 		 		if(jid==''||jid==null){
      	 			window.location.href = "/website/trainerDetail?trainer.id=tid";
      	 			}
      	 		},300);
-    	 }else if(data.code==400){
-    	 	 showErrMsg(data.msg);
-    	 	 return false;
-    	 }else{
-    	 	 return false;
-    	 }
+
      }
 });
 }

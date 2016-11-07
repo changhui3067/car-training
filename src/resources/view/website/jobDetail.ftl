@@ -185,19 +185,13 @@ $.ajax({
          return false;
      },
      success: function (data) {
-    	 if(data.code==200){
 			 showErrMsg("恭喜您,您已申请成功了！");
 		 	setTimeout(function(){
 		 		if(jid==''||jid==null){
      	 			window.location.href = "/website/jobDetail?jobs.id=jid";
      	 			}
      	 		},300);
-    	 }else if(data.code==400){
-    	 	 showErrMsg(data.msg);
-    	 	 return false;
-    	 }else{
-    	 	 return false;
-    	 }
+
      }
 });
 }else{
@@ -226,19 +220,13 @@ $.ajax({
          return false;
      },
      success: function (data) {
-    	 if(data.code==200){
 			 showErrMsg("恭喜您,您已成为该公司的担保人！");
 			 setTimeout(function(){
 		 		if(jid==''||jid==null){
      	 			window.location.href = "/website/jobDetail?jobs.id=jid";
      	 			}
      	 		},300);
-    	 }else if(data.code==400){
-    	 	 showErrMsg(data.msg);
-    	 	 return false;
-    	 }else{
-    	 	 return false;
-    	 }
+
      }
 });
 }else{

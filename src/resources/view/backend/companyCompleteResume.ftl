@@ -359,9 +359,7 @@ function submitdata(){
 	         },
 		     success: function (data) {
 		    	 showErrMsg("资料完善成功,请耐心等待培聘网的审核！");
-		    	 	if(data.code==200){
-		    	 		window.location.href = "/backend/companyCompleteResume";
-		    	 	}
+                 window.location.href = "/backend/companyCompleteResume";
 		     }
 	});
 }
@@ -378,15 +376,10 @@ function selectCities(){
 	         return false;
 	     },
 	     success: function (data) {
-	    	 if(data.code==200){
-				$("#city").get(0).options.length=data.cities.length+1;
-	    		for(var i=0;i<data.cities.length;i++)
-	    		{
-	    		  $("#city").get(0).options[i+1]=new Option(data.cities[i].name,data.cities[i].id);
-	    		}
-	    	 }else{
-	    	 	 return false;
-	    	 }
+             $("#city").get(0).options.length=data.cities.length+1;
+             for(var i=0;i<data.cities.length;i++) {
+	    		 $("#city").get(0).options[i+1]=new Option(data.cities[i].name,data.cities[i].id);
+             }
 	     }
 	});
 }
