@@ -30,7 +30,10 @@
                     <div class="col-sm-9">
                         <input class="form-control text-size" type="password" name="password" id="password" data-nick="login_pwd" value=""   placeholder="请输入密码" required validate-title="密码" /></div>
                     </div>
-                <div class="errMsg"></div>
+                <div>
+                    <div class="errMsg col-sm-8"></div>
+                    <div class="forgetPswd col-sm-4"><a href='<@url value='/backend/forgetPswd'/>'>忘记密码?</a></div>
+                </div>
                 <div id="checkeRadio">
                     <label class="radio-inline col-sm-5"> 
                         <input name="userType" id="userType" type="radio"  value="PERSONAL" checked/>个人
