@@ -1,4 +1,107 @@
+/***************************** CSS for people detail page *********************************/
+.people_detail_basic_info{ border-bottom:1px dotted #ccc; padding:20px 15px 20px 15px; margin-bottom:30px;}
+.people_detail_basic_info .photo img{
+	border: 1px solid #d9d9d9;
+	padding: 4px;
+	width: 180px;
+	height: 180px;
+}
+.people_detail_basic_info .detail{
+	margin-left: 20px;
+}
+.people_detail_basic_info .detail iconbox {
+	line-height: 38px;
+	color: #ff7f00;
+}
 
+.people_detail_basic_info .detail h1 {
+	color: #ff7f00;
+}
+
+.people_detail_basic_info .detail div span{
+	padding: 0px 15px;
+    border-right: solid 1px #aaa;
+}
+
+.people_other_info_box{ width: 860px; border-bottom:1px dotted #ccc; padding:20px 15px 20px 15px; margin-bottom:30px;}
+.people_other_info_bar{ background:#f0f8fc; height:40px;   padding:0px 15px;}
+.people_other_info_bar h4{ display:block;height:40px; line-height:40px; padding-left:40px; font-size:16px; color:#000; font-weight:100; }
+.people_other_info_video {
+	padding: 40px 0px 0px 50px;
+    height: 245px;
+}
+
+.people_other_info_list {
+	padding: 20px 15px 10px 15px;
+}
+
+.people_other_info_list li {
+	display: block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 14px;
+    font-size: 14px;
+}
+
+.people_other_info_list li .info_name {
+	width: 80%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.people_other_info_list li .info_date {
+	display: inline-block;
+    text-align: right;
+    width: 19%;
+}
+
+.people_other_info_box .add_comment_box {
+	padding: 20px 15px 10px 15px;
+	text-align: center;
+}
+
+.people_other_info_box .add_comment_box textarea {
+	width: 100%;
+    line-height: 30px;
+    height: 100px;
+    resize: none;
+    font-size: 16px;
+}
+  
+.people_other_info_box .add_comment_box button {
+	width: 60px;
+    padding: 8px;
+    background-color: #3689b3;
+    border: none;
+    margin: 10px;
+    color: #fff;
+}  
+
+.people_comments {
+	margin-bottom: 30px;
+	width: 260px;
+}
+
+.people_comments_list li {
+	border-bottom: #ccc dotted 1px;
+    margin: 5px 0;
+    padding: 5px 0;
+}
+
+.comments .comments_desc {
+	font-size: 13px;
+}
+
+.comments .comments_date {
+    font-size: 12px;
+    color: #aaa;
+    text-align: right;
+}
+
+/***************************** end of CSS people detail page *********************************/
 .xiaoshou_box, .chanpin_box, .fjs_box, .js_box, .gl_box, .cw_box, .pxshi_dp
 .shouhou_box, .kefu_box, .shichang_box, .gl_box, .neixun_box, .shengchan_box, .yanfa_box, .gzjl, .zwpj
 { height:340px; padding-bottom:15px;margin-bottom:30px; border-bottom:1px #ccc dotted;}
@@ -40,7 +143,7 @@
 .yanfa_box h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/cp_h4.jpg) no-repeat left center;}
 
 /*培训列表*/
-.pxshi{ padding:15px 0px 0px 0px; height:265px;}
+/*.pxshi{ padding:15px 0px 0px 0px; height:265px;}
 .pxshi li{ display:block; float:left; width:214px; height:260px;background:#faf8f9; border:1px solid #e7e5e5;  padding:1px; margin-right:20px;}
 .pxshi_pic, .pxshi_pic img{ width:214px; height:181px;}
 .pxshi_intro{ height:71px;width:204px; padding:4px 5px;}
@@ -55,7 +158,7 @@
 .pxshi_pl span{ color:#818180;}
 .pxshi_zp{ height:20px; line-height:20px;font-size:14px;margin-bottom:5px;}
 .pxshi_rz{}
-.pxshi_rz span{ display:block; float:left; margin-right:8px;}
+.pxshi_rz span{ display:block; float:left; margin-right:8px;}*/
 
 /*培训公司*/
 .pxgs{}
@@ -144,24 +247,11 @@
 /*培训师个人信息*/
 .ny_pxshi{padding:30px 0px;}
 .ny_pxshi_l, .ny_pxshi_r{ border:1px solid #e1e1e1; background:#fff; padding:15px;}
-.ny_pxshi_l{ width:860px;}
-.ny_pxshi_r{ width:260px;}
 
 /*培训师个人信息——左侧  培训师基本信息*/
-.pxshi_xx{ border-bottom:1px dotted #ccc; padding:20px 15px 40px 15px; margin-bottom:30px;}
-.zhaopian{width:200px;}
-.zhaopian img{border:1px solid #d9d9d9; padding:4px;}
-.xinxi{ width:615px;}
-.mingzi{}
-.mingzi_l{ width:100px; color:#ff7f00; font-size:24px; height:40px; line-height:40px;}
-.mingzi_m{ width:260px; padding-top:15px;}
-.mingzi_m span{ display:block; float:left; margin-right:8px;}
 
-.mingzi_r{ width:170px;color:#ffa757;padding-top:13px;}
-.pinglun{ padding-top:5px;}
-.pinglun span{ color:#818180;padding-top:5px;}
-.dianzan{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/dz2.jpg) no-repeat left 7px; padding-top:5px; margin-left:15px; padding-left:20px;}
-.guanzhu{}
+
+
 
 .ziping{ height:30px; line-height:30px; font-weight:700;margin-bottom:5px;}
 .scxs2{height:18px; line-height:18px; }
@@ -174,71 +264,15 @@
 
 
 /*培训师个人信息——左侧  培训师简介*/
-.pxshi_jj, .jiben_xx, .pxshi_kc, .pxjingli, .pxshi_sp, .pxshi_wz, .shrz, .pxshi_xypl
-{ border-bottom:1px dotted #ccc; padding:20px 15px 40px 15px; margin-bottom:30px;}
 
-.pxshi_bt, .pxshi_bt{ background:#f0f8fc; height:40px;   padding:0px 15px;}
-
-.pxshi_jj h4, .jiben_xx h4{ display:block;height:40px; line-height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/jj_h4.jpg) no-repeat left center; padding-left:40px; font-size:16px; color:#000; font-weight:100; }
-.pxshi_kc h4, .pxjingli h4{ display:block;height:40px; line-height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/kc_h4.jpg) no-repeat left center; padding-left:40px; font-size:16px; color:#000; font-weight:100; }
-.pxshi_kc_box li,
-.pxjingli_box li{ display:block; height:30px; line-height:30px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/icon.jpg) no-repeat 5px center;  padding-left:14px; font-size:12px;}
-.pxshi_sp h4{ display:block;height:40px; line-height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/sp_h4.jpg) no-repeat left center; padding-left:40px; font-size:16px; color:#000; font-weight:100; }
-
-.pxshi_jj h4 span, .jiben_xx span{ display:block; float:right;color:#ff7f00; font-size:12px; font-weight:100;}
-.pxshi_jj h4 span a,.pxshi_jj h4 span a:hover, .jiben_xx h4 span a,.jiben_xx h4 span a:hover{color:#ff7f00;}
-.pxshi_jj_box, .jiben_xx_box{ line-height:24px; padding:20px 15px 0px 15px; font-size:12px;}
-
-
-/*培训师个人信息——左侧  培训课程*/
-.pxshi_kc h4 span, .pxjingli h4 span{ display:block; float:right;color:#ff7f00; font-size:12px; font-weight:100;}
-.pxshi_kc h4 span a,.pxshi_kc h4 span a:hover{color:#ff7f00;}
-
-.pxshi_kc_box, .pxjingli_box{ padding:20px 15px 0px 15px;}
-.pxshi_kc_box li span, .pxjingli_box li span{ display:block; float:right; padding-right:5px; color:#3996c9;}
-.pxshi_kc_box li span a,.pxshi_kc_box li span a:hover, .pxjingli_box li span a,.pxjingli li span a:hover{ color:#3996c9;}
-
-
-/*培训师个人信息——左侧  视频链接*/
-.pxshi_sp h4 span{ display:block; float:right;color:#ff7f00; font-size:12px; font-weight:100;}
-.pxshi_sp h4 span a,.pxshi_sp h4 span a:hover{color:#ff7f00;}
-.pxshi_sp_box{ padding:40px 0px 0px 100px; height:245px;}
-.pxshi_sp_box li{ display:block; float:left; width:265px; height:245px; margin-right:70px;}
 
 /*汽车人个人信息——左侧  所获认证*/
-.shrz h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/rz_h4.jpg) no-repeat left center;}
+/*.shrz h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/rz_h4.jpg) no-repeat left center;}
 .pxshi_wz h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/wz_h4.jpg) no-repeat left center;}
 .pxshi_xypl h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pl_h4.jpg) no-repeat left center;}
-.pxshi_lx h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pxshi_lx.jpg) no-repeat left center;}
+.pxshi_lx h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pxshi_lx.jpg) no-repeat left center;}*/
 
-/*培训师个人信息——左侧  原创文章*/
-.pxshi_wz h4, .shrz h4, .pxshi_xypl h4, .pxshi_lx h4
-{ display:block;height:40px; line-height:40px; padding-left:40px; font-size:16px; color:#000; font-weight:100; }
-
-.pxshi_wz h4 span, .shrz h4 span{ display:block; float:right;color:#ff7f00; font-size:12px; font-weight:100;}
-
-.pxshi_wz h4 span a,.pxshi_wz h4 span a:hover, .shrz h4 span a,.shrz h4 span a:hover,
-.pxshi_xypl h4 span a,.pxshi_xypl h4 span a:hover
-{color:#ff7f00;}
-
-.pxshi_wz_box, .shrz_box, .pxshi_xypl_box{ padding:20px 15px 0px 15px;}
-.pxshi_wz_box li, .shrz_box li{ display:block; height:30px; line-height:30px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/icon.jpg) no-repeat 5px center;  padding-left:14px; font-size:12px;}
-.pxshi_wz_box li span{ display:block; float:right; padding-right:5px; color:#3996c9;}
-.pxshi_wz_box li span a,.ycwz_box li span a:hover{ color:#3996c9;}
-
-/*培训师个人信息——左侧  学员评论*/
-.pxshi_xypl h4 span{ display:block; float:right;color:#ff7f00; font-size:12px; font-weight:100;}
-
-/*培训师个人信息——右侧  联系方式*/
-.pxshi_lx, .pxshi_pj{ margin-bottom:30px;}
-.lx_box{line-height:24px;font-size:12px;}
-.xingming{ font-weight:700;  height:30px; line-height:30px;}
-
-/*培训师个人信息——右侧  学员评价*/
-.pxshi_pj h4{ display:block; height:40px; line-height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pxshi_pj.jpg) no-repeat left center; padding-left:45px; font-size:18px; color:#000; font-weight:100; border-bottom:1px solid #e1e1e1; margin-bottom:10px;}
-.pj_box{font-size:12px; padding:0px 10px;}
-.pj_box li{ display:block; height:30px;line-height:30px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/icon2.jpg) no-repeat left center; padding-left:10px; border-bottom:1px dotted #ccc; margin-bottom:5px;}
-
+.
 /*培训列表*/
 .pxsheng_zw{ margin-bottom:5px;}
 
@@ -282,14 +316,13 @@
 
 
 /*汽车人个人信息——左侧  工作经验*//*汽车人个人信息——左侧  自我评价*/
-.gzjl_box, .zwpj_box, .pxshi_dp_box{ padding:30px 15px 0px 15px;  font-size:12px; line-height:30px;}
+.gzjl_box, .zwpj_box{ padding:30px 15px 0px 15px;  font-size:12px; line-height:30px;}
 .gzjl_box li, .zwpj_box li{ display:block; height:30px; line-height:30px; padding-left:14px; font-size:12px;}
 
 .gzjl h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/gzjl_h4.jpg) no-repeat left center;}
 .zwpj h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/zwpj_h4.jpg) no-repeat left center;}
 .zwpj_box li{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/icon.jpg) no-repeat 5px center;}
 .gzjl_box li{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/icon.jpg) no-repeat 5px center;}
-.pxshi_dp h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/dp_h4.jpg) no-repeat left center;}
 
 /*汽车人个人信息——右侧  关注*/
 .pxshi_gz{ margin-bottom:30px;}
@@ -348,7 +381,7 @@
 .zp_qiye_r{ width:270px; padding:15px;}
 
 
-/*Trainer page*/
+/*Trainer list page*/
 .pxshilist{ width: 1200px; height:800px; color:#ff7d00;}
 .pxshilist li.oneBox{ margin: 11px; width: 210px;}
 .pxshilist .intro div{padding-right: 10px;}
