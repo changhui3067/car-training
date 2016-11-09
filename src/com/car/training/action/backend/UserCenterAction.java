@@ -60,17 +60,13 @@ public class UserCenterAction extends SimpleJsonAction {
         //TODO sync with frondend the paramater
         LoginBean user = userService.login(username, "PERSON".equals(personOrCompany), password);
         if (user == null) {
-            map.put("code", 400);
-            map.put("msg", "您的账号或密码错误！");
+            return errorJSON("您的账号或密码错误！");
         } else {
             HttpSession session = request.getSession();
             LoginVO loginVO = new LoginVO(user.getId(),user.getUsername(),user.getType());
             session.setAttribute("loginVO", loginVO);
-            map.put("code", 200);
-            map.put("msg", "登陆成功！");
+            return successJSON();
         }
-        setData(map);
-        return JSON;
     }
 
     /**

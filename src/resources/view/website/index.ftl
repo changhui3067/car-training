@@ -8,10 +8,10 @@
 </head>
 
 <body>
-    <!-- 头部开始 -->   
+    <!-- 头部开始 -->
     <#include "/assets/website/common/header.html">
-    <!-- 头部结束 -->   
-    <!-- banner开始 -->   
+    <!-- 头部结束 -->
+    <!-- banner开始 -->
     <div class="banner">
         <#if '{}' == '${session}'|| !Session["loginVO"]?? >
         <div class="content">
@@ -35,7 +35,7 @@
                     <div class="forgetPswd col-sm-4"><a href='<@url value='/backend/forgetPswd'/>'>忘记密码?</a></div>
                 </div>
                 <div id="checkeRadio">
-                    <label class="radio-inline col-sm-5"> 
+                    <label class="radio-inline col-sm-5">
                         <input name="userType" id="userType" type="radio"  value="PERSON" checked/>个人
                     </label>
                     <label class="radio-inline col-sm-6">
@@ -336,15 +336,13 @@ function login(){
             return false;
         },
         success: function (data) {
-                if(data.target == "" || data.target == null){
-                    setTimeout(function(){
-                        window.location.href = "/website/index";
-                    },300);
-                }else{
-                    setTimeout(function(){
-                        window.location.href = data.target;
-                    },300);
-                }
+            if (data == 'success') {
+                setTimeout(function () {
+                    window.location.href = "/website/index";
+                }, 300);
+            } else {
+                alert(data.error);
+            }
 
         }
     });
