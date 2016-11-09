@@ -361,10 +361,8 @@
 .pxshilist .intro>div:nth-child(2){font-size:14px; padding-top:5px;}
 
 /*Trainer recruiting page*/
-.pxgs_list li.zp_box {width: 500px;}
-div.pxgs_list {width: 1200px;}
+.pxgs_list {width: 1200px; height:800px;}
 .pxgs_list li.zp_box {width: 560px;margin-right: 25px; margin-left: -12px;}
-div.pxgs_list {width: 1200px;}
 .pxgs_list .zp_box_l {width:45%; padding: 10px 0px 10px 10px;}
 .pxgs_list .zp_box_r {width:48%;}
 .pxgs_list .zp_box_r_r {width:160px;}
