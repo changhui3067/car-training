@@ -1,18 +1,16 @@
 package com.car.training.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.UiConfig;
 import org.ironrhino.core.model.BaseEntity;
-import org.ironrhino.core.search.elasticsearch.annotations.Searchable;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Searchable
-@AutoConfig
-@javax.persistence.Entity
-@Table(name = "autobots_comment")
+//@Searchable
+//@AutoConfig
+//@javax.persistence.Entity
+//@Table(name = "autobots_comment")
 public class AutobotsComment extends BaseEntity {
 
     private static final long serialVersionUID = 7573757095426894290L;
@@ -66,7 +64,7 @@ public class AutobotsComment extends BaseEntity {
      **/
     @JoinColumn(name = "trainerId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    private Trainer trainer;
+    private OldTrainer oldTrainer;
 
     public Integer getContentDesignScore() {
         return contentDesignScore;
@@ -124,12 +122,12 @@ public class AutobotsComment extends BaseEntity {
         this.autobots = autobots;
     }
 
-    public Trainer getTrainer() {
-        return trainer;
+    public OldTrainer getOldTrainer() {
+        return oldTrainer;
     }
 
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
+    public void setOldTrainer(OldTrainer oldTrainer) {
+        this.oldTrainer = oldTrainer;
     }
 
 

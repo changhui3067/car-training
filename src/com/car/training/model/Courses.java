@@ -2,12 +2,10 @@ package com.car.training.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.ironrhino.common.model.Region;
-import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.Hidden;
 import org.ironrhino.core.metadata.NotInCopy;
 import org.ironrhino.core.metadata.UiConfig;
 import org.ironrhino.core.model.BaseEntity;
-import org.ironrhino.core.search.elasticsearch.annotations.Searchable;
 import org.nustaq.serialization.annotations.Version;
 
 import javax.persistence.*;
@@ -16,10 +14,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Searchable
-@AutoConfig
-@javax.persistence.Entity
-@Table(name = "courses")
+//@Searchable
+//@AutoConfig
+//@javax.persistence.Entity
+//@Table(name = "courses")
 public class Courses extends BaseEntity {
 
     private static final long serialVersionUID = -5621639682381355149L;
@@ -90,7 +88,7 @@ public class Courses extends BaseEntity {
      */
     @JoinColumn(name = "trainerId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Trainer trainer;
+    private OldTrainer oldTrainer;
 
     @UiConfig(hidden = true)
     @Column(updatable = false)
@@ -211,12 +209,12 @@ public class Courses extends BaseEntity {
         this.toolModel = toolModel;
     }
 
-    public Trainer getTrainer() {
-        return trainer;
+    public OldTrainer getOldTrainer() {
+        return oldTrainer;
     }
 
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
+    public void setOldTrainer(OldTrainer oldTrainer) {
+        this.oldTrainer = oldTrainer;
     }
 
     public Date getCreateDate() {

@@ -1,12 +1,11 @@
 package com.car.training.action.backend;
 
-import com.car.training.domain.Autobots;
-import com.car.training.domain.UserCenter;
-import com.car.training.enums.MarryStatus;
-import com.car.training.enums.PersonalType;
-import com.car.training.service.AutobotsService;
+import com.car.training.bean.Autobot;
+import com.car.training.bean.LoginUser;
+import com.car.training.service.AutobotService;
 import com.car.training.utils.FileUploaderUtil;
 import com.car.training.utils.RegionUtils;
+import com.opensymphony.xwork2.interceptor.annotations.Before;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.ironrhino.common.model.Region;
@@ -17,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @AutoConfig
 public class AutobotCompleteResumeAction extends BaseAction {
@@ -27,7 +28,7 @@ public class AutobotCompleteResumeAction extends BaseAction {
     @Value("${upload.filepath:/car/training/upload/}")
     public static String CARTRAINING_UPLOAD_FILEPATH = "/car/training/upload/";
     @Autowired
-    private AutobotsService autobotsService;
+    private AutobotService autobotService;
     @Autowired
     private FileUploaderUtil fileUploaderUtil;
     @Autowired
@@ -35,25 +36,23 @@ public class AutobotCompleteResumeAction extends BaseAction {
     /**
      * 汽车人
      */
-    private Autobots autobot;
+    private Autobot autobot;
 
-    private String uheadLogo = "";
-    private String upersonalType = "";
-    private String aid = "";
-    private String uid = "";
-    private String uname = "";
-    private String ubirthday = "";
-    private String uemail = "";
-    private String uregionId = "";
-    private String umarryStatus = "";
-    private String currentWorkStatus = "";
-    private String autoBrand = "";
-    private String umobile = "";
+    private String avatarUrl = "";
+    private String regionId = "";
+
+    private String name = "";
+    private String birthday = "";
+    private String email = "";
+    private String marriageStatus = "";
+    private String mobile = "";
+
     private String autoYears = "";
-    private String authHistroy = "";
-    private String workingHistroy = "";
-    private String workPhotoURL1 = "";
-    private String workPhotoURL2 = "";
+
+    private String workingStatus = "";
+    private String autoBrand = "";
+    private String certRecords = "";
+    private String workingHistory = "";
     private String businessCategory = "";
 
     private List<Region> provinces;
@@ -62,9 +61,8 @@ public class AutobotCompleteResumeAction extends BaseAction {
 
     private Object data;
 
-    private Long parentId;
-
     private Region userRegion;
+    private LoginUser user;
 
     public Object getData() {
         return data;
@@ -90,79 +88,41 @@ public class AutobotCompleteResumeAction extends BaseAction {
         this.cities = cities;
     }
 
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
     @Override
     public String execute() throws Exception {
-        HttpServletRequest request = ServletActionContext.getRequest();
-        UserCenter uc = (UserCenter) request.getSession().getAttribute("userDetails");
-        if (uc != null) {
-            autobot = autobotsService.findByUserCenter(uc.getId());
-        }
         provinces = regionUtils.getSubCities(-1);
-        userRegion = regionUtils.getRegionById(autobot.getUserCenter().getRegion().getId());
+        userRegion = regionUtils.getRegionById(autobot.getPersonInfo().getRegionId());
         cities = regionUtils.getSubCities(userRegion.getParent().getId());
         return SUCCESS;
     }
 
     @JsonConfig(root = "data")
     public String save() throws Exception {
-        HttpServletRequest request = ServletActionContext.getRequest();
-        UserCenter uc = (UserCenter) request.getSession().getAttribute("userDetails");
-        if (uc != null) {
-            autobot = autobotsService.findByUserCenter(uc.getId());
-        }
         if (autobot != null) {
-            autobot.setId(aid);
-            autobot.setAuthHistroy(authHistroy);
-            autobot.setAutoBrand(autoBrand);
             autobot.setAutoYears(new Integer(autoYears));
-            if (StringUtils.isNotBlank(businessCategory)) {
-                Set<String> setStr = new HashSet<String>();
-                String[] arr = businessCategory.split(",");
-                if (arr.length > 0) {
-                    Collections.addAll(setStr, arr);
-                    autobot.setBusinessCategory(setStr);
-                }
-            }
-            autobot.setCurrentWorkStatus(currentWorkStatus);
-            if (StringUtils.isNotBlank(uheadLogo) && !uheadLogo.startsWith("http")) {
-                String headLogo = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, uheadLogo);
-                uc.setHeadLogo(headLogo);
-            }
-            if (StringUtils.isNotBlank(workPhotoURL1) && !workPhotoURL1.startsWith("http")) {
-                String fileURL1 = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, workPhotoURL1);
-                autobot.setWorkPhotoURL1(fileURL1);
-            }
-            if (StringUtils.isNotBlank(workPhotoURL2) && !workPhotoURL2.startsWith("http")) {
-                String fileURL2 = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, workPhotoURL2);
-                autobot.setWorkPhotoURL2(fileURL2);
-            }
-            autobot.setWorkingHistroy(workingHistroy);
 
-            uc.setActiveDate(new Date());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            uc.setBirthday(sdf.parse(ubirthday));
-            uc.setEmail(uemail);
-            uc.setEnabled(true);
-            uc.setId(uid);
-            uc.setMarryStatus(Enum.valueOf(MarryStatus.class, umarryStatus));
-            uc.setName(uname);
-            uc.setPersonalType(Enum.valueOf(PersonalType.class, upersonalType));
-            if (StringUtils.isNotBlank(uregionId)) {
-                Region region = new Region();
-                region.setId(Long.valueOf(uregionId));
-                uc.setRegion(region);
+            if (StringUtils.isNotBlank(avatarUrl) && !avatarUrl.startsWith("http")) {
+                String headLogo = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, avatarUrl);
+                autobot.getPersonInfo().setAvatarUrl(headLogo);
             }
-            uc.setMobile(umobile);
-            autobot.setUserCenter(uc);
-            autobotsService.update(autobot);
+            autobot.getPersonInfo().setRegionId(Integer.valueOf(regionId));
+
+            String[] autoProps = new String[]{
+                    "certRecords",
+                    "autoBrand",
+                    "businessCategory",
+                    "workingHistory",
+                    "workingStatus"
+            };
+
+            String[] personProps = new String[]{
+                    "birthday",
+                    "email",
+                    "marriageStatus",
+                    "name",
+                    "mobile",
+            };
+            setValue(this,autobot.getPersonInfo(),personProps);
         }
         Map<String, Object> map = new HashMap<>();
         map.put("code", "200");
@@ -171,86 +131,149 @@ public class AutobotCompleteResumeAction extends BaseAction {
         return JSON;
     }
 
+    private void setValue(Object from, Object to, String[] props) {
+        setValue(from,to,props,props);
+    }
 
-    public Autobots getAutobot() {
+    private void setValue(Object from, Object to, String[] fromProps , String[] toProps) {
+        if(fromProps.length !=toProps.length){
+            return;
+        }
+        for ( int i = 0 ; i < fromProps.length ; i ++ ) {
+            try {
+                String fromProp = fromProps[i];
+                String toProp = toProps[i];
+                Field fromField = from.getClass().getDeclaredField(fromProp);
+                Field toField = to.getClass().getDeclaredField(toProp);
+                fromField.setAccessible(true);
+                toField.setAccessible(true);
+                toField.set(to, fromField.get(this));
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Before(priority = 20)
+    public String validateUser() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        user = (LoginUser) request.getSession().getAttribute("loginUser");
+        if (user != null) {
+            autobot = autobotService.findById(user.getId());
+            return null;
+        } else {
+            targetUrl = "/website/index";
+            return REDIRECT;
+        }
+    }
+
+    public Autobot getAutobot() {
         return autobot;
     }
 
 
-    public void setAutobot(Autobots autobot) {
+    public void setAutobot(Autobot autobot) {
         this.autobot = autobot;
     }
 
-    public String getUpersonalType() {
-        return upersonalType;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setUpersonalType(String upersonalType) {
-        this.upersonalType = upersonalType;
+    public AutobotService getAutobotService() {
+        return autobotService;
     }
 
-    public String getAid() {
-        return aid;
+    public void setAutobotService(AutobotService autobotService) {
+        this.autobotService = autobotService;
     }
 
-    public void setAid(String aid) {
-        this.aid = aid;
+    public FileUploaderUtil getFileUploaderUtil() {
+        return fileUploaderUtil;
     }
 
-    public String getUid() {
-        return uid;
+    public void setFileUploaderUtil(FileUploaderUtil fileUploaderUtil) {
+        this.fileUploaderUtil = fileUploaderUtil;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public RegionUtils getRegionUtils() {
+        return regionUtils;
     }
 
-    public String getUname() {
-        return uname;
+    public void setRegionUtils(RegionUtils regionUtils) {
+        this.regionUtils = regionUtils;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public String getUbirthday() {
-        return ubirthday;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
-    public void setUbirthday(String ubirthday) {
-        this.ubirthday = ubirthday;
+    public String getName() {
+        return name;
     }
 
-    public String getUemail() {
-        return uemail;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setUemail(String uemail) {
-        this.uemail = uemail;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public String getUregionId() {
-        return uregionId;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
-    public void setUregionId(String uregionId) {
-        this.uregionId = uregionId;
+    public String getEmail() {
+        return email;
     }
 
-    public String getUmarryStatus() {
-        return umarryStatus;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setUmarryStatus(String umarryStatus) {
-        this.umarryStatus = umarryStatus;
+    public String getRegionId() {
+        return regionId;
     }
 
-    public String getCurrentWorkStatus() {
-        return currentWorkStatus;
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
     }
 
-    public void setCurrentWorkStatus(String currentWorkStatus) {
-        this.currentWorkStatus = currentWorkStatus;
+    public String getMarriageStatus() {
+        return marriageStatus;
+    }
+
+    public void setMarriageStatus(String marriageStatus) {
+        this.marriageStatus = marriageStatus;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getWorkingStatus() {
+        return workingStatus;
+    }
+
+    public void setWorkingStatus(String workingStatus) {
+        this.workingStatus = workingStatus;
+    }
+
+    public LoginUser getUser() {
+        return user;
+    }
+
+    public void setUser(LoginUser user) {
+        this.user = user;
     }
 
     public String getAutoBrand() {
@@ -261,14 +284,6 @@ public class AutobotCompleteResumeAction extends BaseAction {
         this.autoBrand = autoBrand;
     }
 
-    public String getUmobile() {
-        return umobile;
-    }
-
-    public void setUmobile(String umobile) {
-        this.umobile = umobile;
-    }
-
     public String getAutoYears() {
         return autoYears;
     }
@@ -277,46 +292,23 @@ public class AutobotCompleteResumeAction extends BaseAction {
         this.autoYears = autoYears;
     }
 
-    public String getAuthHistroy() {
-        return authHistroy;
+    public String getCertRecords() {
+        return certRecords;
     }
 
-    public void setAuthHistroy(String authHistroy) {
-        this.authHistroy = authHistroy;
+    public void setCertRecords(String certRecords) {
+        this.certRecords = certRecords;
     }
 
-    public String getWorkingHistroy() {
-        return workingHistroy;
+    public String getWorkingHistory() {
+        return workingHistory;
     }
 
-    public void setWorkingHistroy(String workingHistroy) {
-        this.workingHistroy = workingHistroy;
+    public void setWorkingHistory(String workingHistory) {
+        this.workingHistory = workingHistory;
     }
 
 
-    public String getUheadLogo() {
-        return uheadLogo;
-    }
-
-    public void setUheadLogo(String uheadLogo) {
-        this.uheadLogo = uheadLogo;
-    }
-
-    public String getWorkPhotoURL1() {
-        return workPhotoURL1;
-    }
-
-    public void setWorkPhotoURL1(String workPhotoURL1) {
-        this.workPhotoURL1 = workPhotoURL1;
-    }
-
-    public String getWorkPhotoURL2() {
-        return workPhotoURL2;
-    }
-
-    public void setWorkPhotoURL2(String workPhotoURL2) {
-        this.workPhotoURL2 = workPhotoURL2;
-    }
 
     public String getBusinessCategory() {
         return businessCategory;

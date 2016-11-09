@@ -1,27 +1,25 @@
 package com.car.training.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.NotInCopy;
 import org.ironrhino.core.metadata.UiConfig;
 import org.ironrhino.core.model.BaseEntity;
-import org.ironrhino.core.search.elasticsearch.annotations.Searchable;
 import org.nustaq.serialization.annotations.Version;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Searchable
-@AutoConfig
-@javax.persistence.Entity
-@Table(name = "topic_comment")
+//@Searchable
+//@AutoConfig
+//@javax.persistence.Entity
+//@Table(name = "topic_comment")
 public class TopicComment extends BaseEntity {
 
     private static final long serialVersionUID = 6163518563667489408L;
 
     @JoinColumn(name = "trainerId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    private Trainer trainer;
+    private OldTrainer oldTrainer;
 
     @NotInCopy
     @JoinColumn(name = "topicId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
@@ -53,12 +51,12 @@ public class TopicComment extends BaseEntity {
     @UiConfig(hidden = true)
     private int version = -1;
 
-    public Trainer getTrainer() {
-        return trainer;
+    public OldTrainer getOldTrainer() {
+        return oldTrainer;
     }
 
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
+    public void setOldTrainer(OldTrainer oldTrainer) {
+        this.oldTrainer = oldTrainer;
     }
 
     public Topic getTopic() {

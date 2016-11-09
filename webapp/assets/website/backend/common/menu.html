@@ -13,7 +13,7 @@
           	<ul>
             	<#if Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' && Session["loginType"]=='TRAINER'>
             	<li><div class="zlws">
-            	<a href="<@url value='/website/trainerDetail?trainer.id=${Session["userDetails"].trainer.id!}'/>" target="_blank">个人资料</a></div>
+            	<a href="<@url value='/website/trainerDetail?oldTrainer.id=${Session["userDetails"].oldTrainer.id!}'/>" target="_blank">个人资料</a></div>
             	</li>
             	<li><div class="zlws">
             	<a href="<@url value='/backend/trainerCompleteResume'/>">完善资料</a></div>
@@ -67,7 +67,7 @@ function logout(){
 		type : "GET",
 		data : {},
 		dataType : "json",
-		url : "/website/index/logout",
+		url : "/backend/index/logout",
 		success : function(data){
 			if(data.code == 200){
 				window.location = '/website/index';

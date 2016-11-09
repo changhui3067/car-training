@@ -4,16 +4,16 @@
     <title>培聘网</title>
     <link rel="stylesheet" href="<@url value="/assets/website/css/style.css?v=1.1.0"/>" type="text/css" media="screen" />
     <link rel="stylesheet" href="<@url value="/assets/website/css/bootstrap.min.css?v=1.1.0"/>" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<@url value="/assets/website/css/iconfont.css"/>" type="text/css" media="screen" />
+
 </head>
 
 <body>
     <!-- 头部开始 -->   
     <#include "/assets/website/common/header.html">
-    <!-- 头部结束 -->
-    <!-- banner开始 -->
+    <!-- 头部结束 -->   
+    <!-- banner开始 -->   
     <div class="banner">
-        <#if '{}' == '${session}'|| Session["loginState"]!='Y' >
+        <#if '{}' == '${session}'|| !Session["loginVO"]?? >
         <div class="content">
             <div class="login-box">
                 <form action="" id="loginform" class="form-horizontal">
@@ -36,7 +36,7 @@
                 </div>
                 <div id="checkeRadio">
                     <label class="radio-inline col-sm-5"> 
-                        <input name="userType" id="userType" type="radio"  value="PERSONAL" checked/>个人
+                        <input name="userType" id="userType" type="radio"  value="PERSON" checked/>个人
                     </label>
                     <label class="radio-inline col-sm-6">
                         <input type="radio" name="userType" id="userType" value="COMPANY" />企业
@@ -57,11 +57,11 @@
          <h4><span><a href="/website/trainer">更多>></a></span>推荐培训师</h4>
          <div class="pxshi">
              <div class="pxshi_l left">
-               <#if trainer?? && trainer.userCenter??>
-               <div class="pxshi_l_pic"><a href="/website/trainerDetail?trainer.id=${trainer.id!}"><img src="${trainer.userCenter.headLogo!}" /></a></div>
+               <#if trainer?? >
+               <div class="pxshi_l_pic"><a href="/website/trainerDetail?trainer.id=${trainer.id!}"><img src="${trainer.personInfo.avatarUrl!}" /></a></div>
                <div class="pxshi_l_intro">
                  <div class="pxshi_name">
-                     <div class="xm left">${trainer.userCenter.name!}</div>
+                     <div class="xm left">${trainer.personInfo.name!}</div>
                      <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if trainer.autobotsCommentList??> ${trainer.autobotsCommentList.size!}<#else>0</#if></div>
                      <div class="dz right"><i class="iconfont" title="点赞">&#xe717;</i>${trainer.starLevel!}</div>
                      <div class="clear"></div>
@@ -69,11 +69,12 @@
                  <div class="pxshi_zp">${trainer.currentPosition!} </div>
                  <div class="pxshi_rz">
                      <ul>
-                        <li><i class="iconfont" title="留言多">&#xe756;</i></li>
-                        <li><i class="iconfont" title="资料完整">&#xe69f;</i></li>
-                        <li><i class="iconfont" title="身份信息可靠">&#xe70a;</i></li>
-                        <li><i class="iconfont" title="培训经验超过10年">&#xe735;</i></li>
-                        <li><i class="iconfont" title="行业经验超过20年">&#xe726;</i></li>
+                            	<li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></li>
+                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></li>
+                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></li>
+                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/xin.jpg" /></li>
+                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zishen.jpg" /></li>
+                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dav.jpg" /></li>
                      </ul>
                  </div>
              </div>
@@ -89,17 +90,18 @@
               <div class="intro">
                 <div>
                     <div class="name">${t.userCenter.name!}</div>
-                    <div class="right"><i class="iconfont" title="点赞">&#xe717;</i>${t.starLevel!}</div>
-                    <div class="right"><i class="iconfont" title="评论">&#xe69b;</i><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if></div>
+                    <div class="right">${t.starLevel!}</div>
+                    <div class="right"><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if>人</div>
                     <div class="clear"></div>
                 </div>
                 <div>${t.currentPosition!} </div>
                 <div>
-                    <span><i class="iconfont" title="留言多">&#xe756;</i></span>
-                    <span><i class="iconfont" title="资料完整">&#xe69f;</i></span>
-                    <span><i class="iconfont" title="身份信息可靠">&#xe70a;</i></span>
-                    <span><i class="iconfont" title="培训经验超过10年">&#xe735;</i></span>
-                    <span><i class="iconfont" title="行业经验超过20年">&#xe726;</i></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/xin.jpg" /></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zishen.jpg" /></span>
+                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dav.jpg" /></span>
                 </div>
             </div>
             </#if>
@@ -313,7 +315,7 @@ function login(){
         errMsg = $(".errMsg")[0];
     form_data["username"] = $("#loginform #username").val(),
     form_data["password"] = $("#loginform #password").val(),
-    form_data["userType"] = $('input:radio[name="userType"]:checked').val();
+    form_data["personOrCompany"] = $('input:radio[name="userType"]:checked').val();
     if(form_data.username == "" || form_data.username == null){
         errMsg.innerHTML = "请输入用户名";
         return false;
@@ -327,7 +329,7 @@ function login(){
     }
     $.ajax({
         type: "POST",
-        url: "/website/index/login",
+        url: "/backend/UserCenter/login",
         data: form_data,
         error: function(request) {
             errMsg.innerHTML = "网络出错啦!";

@@ -1,20 +1,18 @@
 package com.car.training.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.NotInCopy;
 import org.ironrhino.core.metadata.UiConfig;
 import org.ironrhino.core.model.BaseEntity;
-import org.ironrhino.core.search.elasticsearch.annotations.Searchable;
 import org.nustaq.serialization.annotations.Version;
 
 import javax.persistence.*;
 import java.util.Date;
-
-@Searchable
-@AutoConfig
-@javax.persistence.Entity
-@Table(name = "trainer_essay")
+//
+//@Searchable
+//@AutoConfig
+//@javax.persistence.Entity
+//@Table(name = "trainer_essay")
 public class TrainerEssay extends BaseEntity {
 
     private static final long serialVersionUID = 4092941816602786998L;
@@ -24,7 +22,7 @@ public class TrainerEssay extends BaseEntity {
      */
     @JoinColumn(name = "trainerId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    private Trainer trainer;
+    private OldTrainer oldTrainer;
 
     /**
      * 文章标题
@@ -78,12 +76,12 @@ public class TrainerEssay extends BaseEntity {
     @UiConfig(hidden = true)
     private int version = -1;
 
-    public Trainer getTrainer() {
-        return trainer;
+    public OldTrainer getOldTrainer() {
+        return oldTrainer;
     }
 
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
+    public void setOldTrainer(OldTrainer oldTrainer) {
+        this.oldTrainer = oldTrainer;
     }
 
     public String getTitle() {

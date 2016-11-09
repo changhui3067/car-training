@@ -1,9 +1,9 @@
 package com.car.training.model;
 
-import com.car.training.enums.CompanyType;
-import com.car.training.enums.Industry;
-import com.car.training.enums.Nature;
-import com.car.training.enums.Scale;
+import com.car.training.enums.old.CompanyType;
+import com.car.training.enums.old.Industry;
+import com.car.training.enums.old.Nature;
+import com.car.training.enums.old.Scale;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
@@ -24,10 +24,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Searchable
-@AutoConfig
-@javax.persistence.Entity
-@Table(name = "company")
+//@Searchable
+//@AutoConfig
+//@javax.persistence.Entity
+//@Table(name = "company")
 public class Company extends BaseEntity implements UserDetails {
 
     private static final long serialVersionUID = -5484521796779236186L;

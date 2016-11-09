@@ -1,6 +1,6 @@
 package com.car.training.domain;
 
-import com.car.training.enums.PositionType;
+import com.car.training.enums.old.PositionType;
 
 import java.io.Serializable;
 import java.util.Date;

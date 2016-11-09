@@ -20,10 +20,10 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 
-@Searchable
-@AutoConfig
-@javax.persistence.Entity
-@Table(name = "user_center", indexes = {@javax.persistence.Index(columnList = "username")})
+//@Searchable
+//@AutoConfig
+//@javax.persistence.Entity
+//@Table(name = "user_center", indexes = {@javax.persistence.Index(columnList = "username")})
 public class UserCenter extends BaseEntity implements UserDetails {
 
     private static final long serialVersionUID = 4453172705904061090L;

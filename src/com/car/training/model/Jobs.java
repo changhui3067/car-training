@@ -1,17 +1,15 @@
 package com.car.training.model;
 
-import com.car.training.enums.CompanyType;
-import com.car.training.enums.Education;
-import com.car.training.enums.JobType;
-import com.car.training.enums.Major;
+import com.car.training.enums.old.CompanyType;
+import com.car.training.enums.old.Education;
+import com.car.training.enums.old.JobType;
+import com.car.training.enums.old.Major;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.ironrhino.common.model.Region;
-import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.Hidden;
 import org.ironrhino.core.metadata.NotInCopy;
 import org.ironrhino.core.metadata.UiConfig;
 import org.ironrhino.core.model.BaseEntity;
-import org.ironrhino.core.search.elasticsearch.annotations.Searchable;
 import org.nustaq.serialization.annotations.Version;
 
 import javax.persistence.*;
@@ -19,10 +17,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Searchable
-@AutoConfig
-@javax.persistence.Entity
-@Table(name = "jobs")
+//@Searchable
+//@AutoConfig
+//@javax.persistence.Entity
+//@Table(name = "jobs")
 public class Jobs extends BaseEntity {
 
     private static final long serialVersionUID = -4749763655490330037L;

@@ -13,10 +13,10 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import java.util.Date;
 
-@Searchable
-@AutoConfig
-@javax.persistence.Entity
-@Table(name = "topic")
+//@Searchable
+//@AutoConfig
+//@javax.persistence.Entity
+//@Table(name = "topic")
 public class Topic extends BaseEntity {
 
     private static final long serialVersionUID = -4550736635312637032L;

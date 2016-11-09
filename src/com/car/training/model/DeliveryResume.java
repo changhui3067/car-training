@@ -1,19 +1,17 @@
 package com.car.training.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.NotInCopy;
 import org.ironrhino.core.metadata.UiConfig;
 import org.ironrhino.core.model.BaseEntity;
-import org.ironrhino.core.search.elasticsearch.annotations.Searchable;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Searchable
-@AutoConfig
-@javax.persistence.Entity
-@Table(name = "delivery_resume")
+//@Searchable
+//@AutoConfig
+//@javax.persistence.Entity
+//@Table(name = "delivery_resume")
 public class DeliveryResume extends BaseEntity {
 
     private static final long serialVersionUID = -2813198005704327613L;
@@ -25,7 +23,7 @@ public class DeliveryResume extends BaseEntity {
 
     @JoinColumn(name = "trainerId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(fetch = FetchType.LAZY)
-    private Trainer trainer;
+    private OldTrainer oldTrainer;
 
     @JoinColumn(name = "autobotsId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @ManyToOne(fetch = FetchType.LAZY)
@@ -46,12 +44,12 @@ public class DeliveryResume extends BaseEntity {
         this.jobs = jobs;
     }
 
-    public Trainer getTrainer() {
-        return trainer;
+    public OldTrainer getOldTrainer() {
+        return oldTrainer;
     }
 
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
+    public void setOldTrainer(OldTrainer oldTrainer) {
+        this.oldTrainer = oldTrainer;
     }
 
     public Autobots getAutobots() {

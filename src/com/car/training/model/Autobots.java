@@ -13,10 +13,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Searchable
-@AutoConfig
-@javax.persistence.Entity
-@Table(name = "autobots", indexes = {@javax.persistence.Index(columnList = "uid")})
+//@Searchable
+//@AutoConfig
+//@javax.persistence.Entity
+//@Table(name = "autobots", indexes = {@javax.persistence.Index(columnList = "uid")})
 public class Autobots extends BaseEntity {
 
     private static final long serialVersionUID = -3908483665308582434L;
