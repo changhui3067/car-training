@@ -117,15 +117,15 @@
 <div class="pxsheng_box">
  <h4><span><a href="/website/autobot">更多>></a></span>推荐培训生</h4>
  <div class="pxsheng">
-     <#if autobotsList??>
+     <#if autobotList??>
      <ul>
-         <#list autobotsList as t>
+         <#list autobotList as t>
          <li class="oneBox">
-             <#if t?? && t.userCenter??>
-             <div class="picContainer"><a href="/website/autobotDetail?autobots.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
+             <#if t??>
+             <div class="picContainer"><a href="/website/autobotDetail?autobots.id=${t.id!}"><img src="${t.personInfo.avatarUrl!}" /></a></div>
              <div class="intro">
                  <div>
-                     <div class="name">${t.userCenter.name!}</div>
+                     <div class="name">${t.personInfo.name!}</div>
                      <div class="right">34人</div>
                      <div class="right">${t.autoYears!}年</div>
                      <div class="clear"></div>

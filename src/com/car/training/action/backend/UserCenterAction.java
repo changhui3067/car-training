@@ -1,6 +1,6 @@
 package com.car.training.action.backend;
 
-import com.car.training.action.MyBaseAction;
+import com.car.training.action.SimpleJsonAction;
 import com.car.training.bean.*;
 import com.car.training.dao.BaseDao;
 import com.car.training.enums.UserType;
@@ -23,7 +23,7 @@ import java.util.Map;
  * Created by bill on 11/7/16.
  */
 @AutoConfig
-public class UserCenterAction extends MyBaseAction {
+public class UserCenterAction extends SimpleJsonAction {
 
     private static final long serialVersionUID = 7654848347188004593L;
 
@@ -58,7 +58,7 @@ public class UserCenterAction extends MyBaseAction {
         Map<String, Object> map = new HashMap<>();
         HttpServletRequest request = ServletActionContext.getRequest();
         //TODO sync with frondend the paramater
-        LoginBean user = userService.login(username, personOrCompany.equals("PERSON"), password);
+        LoginBean user = userService.login(username, "PERSON".equals(personOrCompany), password);
         if (user == null) {
             map.put("code", 400);
             map.put("msg", "您的账号或密码错误！");
@@ -76,11 +76,11 @@ public class UserCenterAction extends MyBaseAction {
     /**
      * 用户登出
      */
-    @JsonConfig(root = "data")
     public String logout() {
         HttpServletRequest request = ServletActionContext.getRequest();
         request.getSession().setAttribute("loginVO", null);
-        return successJSON();
+        setTargetUrl("/website/index");
+        return SUCCESS;
     }
 
 

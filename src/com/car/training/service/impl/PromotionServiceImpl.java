@@ -27,7 +27,7 @@ public class PromotionServiceImpl implements PromotionService {
 
     @Override
     public List<Autobot> getTopAutobot(int number) {
-        return null;
+        return baseDao.getAllList(Autobot.class);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class IndexAction extends BaseAction {
     /**
      * 首页推荐5个汽车人列表
 //     */
-    private List<Autobot> autobotsList;
+    private List<Autobot> autobotList;
 //    /**
 //     * 首页2个培训需求列表
 //     */
@@ -68,8 +68,8 @@ public class IndexAction extends BaseAction {
         if(topTrainers.size()>1){
             trainerList = topTrainers.subList(1,topTrainers.size()-1);
         }
-//        //首页推荐汽车人5个位置
-//        autobotsList = autobotsService.findByIndexPromoted(true, 5);
+        //首页推荐汽车人5个位置
+        autobotList = promotionService.getTopAutobot(5);
 //        //首页培训师需求2个位置
 //        jobsTrainerList = jobsService.findListByIndexType(CompanyType.COMPANY, 2);
 //        //首页汽车人才需求2个位置
@@ -100,11 +100,11 @@ public class IndexAction extends BaseAction {
         this.trainerList = trainerList;
     }
 
-    public List<Autobot> getAutobotsList() {
-        return autobotsList;
+    public List<Autobot> getAutobotList() {
+        return autobotList;
     }
 
-    public void setAutobotsList(List<Autobot> autobotsList) {
-        this.autobotsList = autobotsList;
+    public void setAutobotList(List<Autobot> autobotList) {
+        this.autobotList = autobotList;
     }
 }
