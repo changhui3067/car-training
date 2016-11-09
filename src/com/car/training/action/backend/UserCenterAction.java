@@ -84,10 +84,7 @@ public class UserCenterAction extends SimpleJsonAction {
     public String register() {
         Map<String, Object> map = new HashMap<>();
         if (userService.existUser(username, userType)) {
-            map.put("code", 405);
-            map.put("msg", "用户名已存在！");
-            setData(map);
-            return JSON;
+            return errorJSON("用户名已存在！");
         }
         if (!smsManager.checkCode(username, vercode)) {
             return errorJSON("wrong verification code");
@@ -133,10 +130,7 @@ public class UserCenterAction extends SimpleJsonAction {
             default:
                 return errorJSON("wrong user type");
         }
-        map.put("code", 200);
-        map.put("msg", "注册成功！");
-        setData(map);
-        return JSON;
+        return successJSON();
     }
 
     @JsonConfig(root = "data")
