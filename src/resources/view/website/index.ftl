@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label  class="col-sm-3 control-label">账号：</label>
                     <div class="col-sm-9">
-                        <input class="form-control text-size" type="email" id="username" name="username" data-nick="login_user" value="" placeholder="请输入手机号" required validate-title="手机号" />
+                        <input class="form-control text-size" id="username" name="username" data-nick="login_user" value="" placeholder="请输入手机号" required validate-title="手机号" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -341,7 +341,7 @@ function login(){
                     window.location.href = "/website/index";
                 }, 300);
             } else {
-                alert(data.error);
+                errMsg.innerHTML = data.error;
             }
 
         }
