@@ -18,8 +18,8 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public Trainer findById(int id) {
-        HashMap<String,String> map = new HashMap<>();
-        map.put("id",""+id);
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("id",id);
         return (Trainer) baseDAO.findOne(Trainer.class,map);
     }
 }

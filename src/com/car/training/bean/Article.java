@@ -13,7 +13,7 @@ public class Article {
     @Id
     @GeneratedValue
     @Column
-    private String id;
+    private int id;
 
     /**
      * 发布者
@@ -34,7 +34,6 @@ public class Article {
     private String content;
 
 
-
     /**
      * 创建日期
      */
@@ -47,14 +46,6 @@ public class Article {
     @Column
     private Date lastModifiedData;
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -94,5 +85,13 @@ public class Article {
 
     public void setTraineruid(int traineruid) {
         this.traineruid = traineruid;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

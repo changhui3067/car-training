@@ -143,12 +143,11 @@ public class HibernateBaseDAO implements BaseDAO {
         }
     }
 
-    public Object findOne(Class clazz, Map<String, String> condition) {
+    public Object findOne(Class clazz, Map<String, Object> condition) {
         DetachedCriteria dc = DetachedCriteria.forClass(clazz);
-        for (String property :
-                condition.keySet()) {
-            String value = condition.get(property);
-            dc.add(Restrictions.eq(property,value));
+        for (String property : condition.keySet()) {
+            Object value = condition.get(property);
+            dc.add(Restrictions.eq(property, value));
         }
         Criteria c = dc.getExecutableCriteria(sessionFactory.getCurrentSession());
         c.setMaxResults(1);

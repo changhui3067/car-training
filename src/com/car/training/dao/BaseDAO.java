@@ -40,7 +40,7 @@ public interface BaseDAO {
     //查找  满足attribute=value条件组的值
     List find(Class c, HashMap<String, String> condition);
 
-    Object findOne(Class clazz, Map<String, String> condition);
+    Object findOne(Class clazz, Map<String, Object> condition);
 
     //删除 满足 attribute=value条件组的值
     void delete(Class c, HashMap<String, String> condition);

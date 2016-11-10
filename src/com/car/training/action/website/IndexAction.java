@@ -3,13 +3,15 @@ package com.car.training.action.website;
 import com.car.training.bean.Autobot;
 import com.car.training.bean.Trainer;
 import com.car.training.service.PromotionService;
+import com.car.training.vo.LoginVO;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Controller
 @AutoConfig
 public class IndexAction extends BaseAction {
 
@@ -59,14 +61,19 @@ public class IndexAction extends BaseAction {
         //首页推荐培训师大图1个
         List<Trainer> topTrainers = promotionService.getTopTrainer(9);
 
-        if(topTrainers.size()>0){
+        if (topTrainers.size() > 0) {
             trainer = topTrainers.get(0);
-         }
+        }
+
+        if (topTrainers.size() > 1) {
+            trainerList = topTrainers.subList(1,topTrainers.size());
+        }
+
 
 
         //首页推荐培训师最上顶8位置
-        if(topTrainers.size()>1){
-            trainerList = topTrainers.subList(1,topTrainers.size()-1);
+        if (topTrainers.size() > 1) {
+            trainerList = topTrainers.subList(1, topTrainers.size() - 1);
         }
         //首页推荐汽车人5个位置
         autobotList = promotionService.getTopAutobot(5);

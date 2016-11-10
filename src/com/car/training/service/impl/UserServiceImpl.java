@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     BaseDAO baseDAO;
 
     public LoginBean login(String username, boolean isUser, String password) {
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
         map.put("password", password);
         if (isUser) {
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean existUser(String username, UserType userType) {
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
         if (userType == UserType.AUTOBOT || userType == UserType.TRAINER) {
             return baseDAO.findOne(LoginUser.class, map) != null;
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public LoginBean getUser(String username, UserType userType) {
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
         if (userType == UserType.AUTOBOT || userType == UserType.TRAINER) {
             return (LoginBean) baseDAO.findOne(LoginUser.class, map);
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updatePassword(String username, UserType userType, String newPassword) {
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
         if (userType == UserType.AUTOBOT || userType == UserType.TRAINER) {
             LoginUser user = (LoginUser) baseDAO.findOne(LoginUser.class, map);

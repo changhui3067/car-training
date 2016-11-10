@@ -56,14 +56,14 @@ public class UserCenterAction extends SimpleJsonAction {
     @JsonConfig(root = "data")
     public String login() {
         Map<String, Object> map = new HashMap<>();
-        HttpServletRequest request = ServletActionContext.getRequest();
         //TODO sync with frondend the paramater
         LoginBean user = userService.login(username, "PERSON".equals(personOrCompany), password);
         if (user == null) {
             return errorJSON("您的账号或密码错误！");
         } else {
+            HttpServletRequest request = ServletActionContext.getRequest();
             HttpSession session = request.getSession();
-            LoginVO loginVO = new LoginVO(user.getId(),user.getUsername(),user.getType());
+            LoginVO loginVO = new LoginVO(user.getId(), user.getUsername(), user.getType());
             session.setAttribute("loginVO", loginVO);
             return successJSON();
         }
@@ -148,12 +148,8 @@ public class UserCenterAction extends SimpleJsonAction {
 
     @JsonConfig(root = "data")
     public String sendmsgForRegister() {
-        Map<String, Object> map = new HashMap<>();
         if (userService.existUser(username, userType)) {
-            map.put("code", 400);
-            map.put("msg", "手机账号已注册！");
-            setData(map);
-            return JSON;
+            return errorJSON("手机账号已注册！");
         }
         try {
             smsManager.send(username, SmsTemplate.REGISTER);
@@ -161,9 +157,7 @@ public class UserCenterAction extends SimpleJsonAction {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        setData(map);
-        return JSON;
+        return successJSON();
     }
 
     @JsonConfig(root = "data")

@@ -85,11 +85,11 @@
           <ul>
            <#list trainerList as t>
            <li class="oneBox">
-              <#if t?? && t.userCenter??>
-              <div class="picContainer"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
+              <#if t?? >
+              <div class="picContainer"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img src="${t.personInfo.avatarUrl!}" /></a></div>
               <div class="intro">
                 <div>
-                    <div class="name">${t.userCenter.name!}</div>
+                    <div class="name">${t.personInfo.name!}</div>
                     <div class="right">${t.starLevel!}</div>
                     <div class="right"><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if>人</div>
                     <div class="clear"></div>
@@ -276,8 +276,8 @@
        <ul>
           <#list coursesList as t>
           <li class="oneBox">
-             <#if t?? && t.trainer ?? &&t.trainer.userCenter ?? >
-             <div class="picContainer"><a href="/website/courseDetail?course.id=${t.id!}"><img src="${t.trainer.userCenter.headLogo!}" /></a></div>
+             <#if t?? && t.trainer ?? &&t.trainer.personInfo ?? >
+             <div class="picContainer"><a href="/website/courseDetail?course.id=${t.id!}"><img src="${t.trainer.personInfo.headLogo!}" /></a></div>
              <div class="intro">
                  <div>
                      <div class="name"><a href="/website/courseDetail?course.id=${t.id!}">${t.courseName!}</a></div>

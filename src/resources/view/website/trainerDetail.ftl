@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen" />
 <link rel="stylesheet" type="text/css" href="<@url value="/assets/website/css/lrtk.css"/>">
-<#if trainer?? && trainer.userCenter??>
+<#if trainer??>
   <div class="ny_pxshi">
       <div class="ny_pxshi_l left">
           <div class="pxshi_xx">
               <div class="zhaopian left">
-                  <img src="${trainer.personInfo.headLogo!}" style="width:181px;height:153px;"/>
+                  <img src="${trainer.personInfo.avatarUrl!}" style="width:181px;height:153px;"/>
                 </div>
                 <div class="xinxi right">
                   <div class="mingzi">
@@ -32,7 +32,7 @@
                     </div>
                     <div class="shijian">
                       <div class="shijian_l left"><em>汽车行业时间（不含培训）：</em><#if trainer.autoYears?? && trainer.autoYears=0 > 应界毕业生 <#else>${trainer.autoYears!}年以上</#if></div>
-                        <div class="shijian_r  right"><em>常住地：</em>${trainer.personInfo.region.fullname!}</div>
+                        <#--<div class="shijian_r  right"><em>常住地：</em>${trainer.personInfo.region.fullname!}</div>-->
                         <div class="clear"></div>
 
                     </div>
@@ -73,10 +73,10 @@
                 <div class="pxshi_sp_box">
                   <ul>
                       <li>
-                      <a href="${trainer.vedioURL1!}">
-                      <iframe height=240 width=250 src='${trainer.vedioURL1!}' frameborder=0 'allowfullscreen'></iframe></a></li>
-                        <li><a href="${trainer.vedioURL2!}">
-                        <iframe height=240 width=250 src='${trainer.vedioURL2!}' frameborder=0 'allowfullscreen'></iframe></a></li>
+                      <a href="${trainer.videoUrl1!}">
+                      <iframe height=240 width=250 src='${trainer.videoUrl1!}' frameborder=0 'allowfullscreen'></iframe></a></li>
+                        <li><a href="${trainer.videoUrl!}"><embed src='http://player.youku.com/player.php/Type/Folder/Fid//Ob//sid/XMTgxMzQyNDM4MA==/v.swf' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' allowFullScreen='true' mode='transparent' type='application/x-shockwave-flash'></embed>
+                        <iframe height=240 width=250 src='${trainer.videoUrl2!}' frameborder=0 'allowfullscreen'></iframe></a></li>
                     </ul>
                 </div>
           </div>
@@ -116,10 +116,9 @@
               <h4>联系方式</h4>
                 <div class="lx_box">
                   <div class="xingming">${trainer.personInfo.name!}(培训师本人)</div>
-       <#if Session?exists && Session["loginState"]=='Y'>
+       <#if Session?? && Session["loginVO"]??>
                    电话：${trainer.personInfo.mobile!}<br />
                    邮箱：${trainer.personInfo.email!}<br />
-微信：${trainer.personInfo.weixin!}<br />-->
 <#else>
 请联系培训网  400-820-6666
 </#if>

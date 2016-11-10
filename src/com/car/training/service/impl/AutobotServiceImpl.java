@@ -19,8 +19,8 @@ public class AutobotServiceImpl implements AutobotService {
 
     @Override
     public Autobot findById(int id) {
-        HashMap<String,String> map = new HashMap<>();
-        map.put("id",""+id);
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("id",id);
         return (Autobot) baseDAO.findOne(Autobot.class,map);
     }
 }
