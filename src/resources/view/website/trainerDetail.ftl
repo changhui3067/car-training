@@ -5,11 +5,11 @@
       <div class="ny_pxshi_l left">
           <div class="pxshi_xx">
               <div class="zhaopian left">
-                  <img src="${trainer.userCenter.headLogo!}" style="width:181px;height:153px;"/>
+                  <img src="${trainer.personInfo.headLogo!}" style="width:181px;height:153px;"/>
                 </div>
                 <div class="xinxi right">
                   <div class="mingzi">
-                      <div class="mingzi_l left">${trainer.userCenter.name!}</div>
+                      <div class="mingzi_l left">${trainer.personInfo.name!}</div>
                         <div class="mingzi_m left"><span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></a></span>
                             <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></a></span>
                             <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></a></span>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="shijian">
                       <div class="shijian_l left"><em>汽车行业时间（不含培训）：</em><#if trainer.autoYears?? && trainer.autoYears=0 > 应界毕业生 <#else>${trainer.autoYears!}年以上</#if></div>
-                        <div class="shijian_r  right"><em>常住地：</em>${trainer.userCenter.region.fullname!}</div>
+                        <div class="shijian_r  right"><em>常住地：</em>${trainer.personInfo.region.fullname!}</div>
                         <div class="clear"></div>
 
                     </div>
@@ -49,7 +49,7 @@
               <h4><span><a href="#">更多>></a></span>培训师简介</h4>
                 </div>
               <div class="pxshi_jj_box">
-                       　　${trainer.userCenter.intro!}
+                       　　${trainer.personInfo.intro!}
                 </div>
             </div>
             <div class="pxshi_kc">
@@ -115,11 +115,11 @@
           <div class="pxshi_lx">
               <h4>联系方式</h4>
                 <div class="lx_box">
-                  <div class="xingming">${trainer.userCenter.name!}(培训师本人)</div>
+                  <div class="xingming">${trainer.personInfo.name!}(培训师本人)</div>
        <#if Session?exists && Session["loginState"]=='Y'>
-                   电话：${trainer.userCenter.mobile!}<br />
-                   邮箱：${trainer.userCenter.email!}<br />
-微信：${trainer.userCenter.weixin!}<br />-->
+                   电话：${trainer.personInfo.mobile!}<br />
+                   邮箱：${trainer.personInfo.email!}<br />
+微信：${trainer.personInfo.weixin!}<br />-->
 <#else>
 请联系培训网  400-820-6666
 </#if>

@@ -22,6 +22,9 @@ public class Trainer {
     private PersonInfo personInfo;
 
     @Column
+    private String currentPosition;
+
+    @Column
     private String education;
 
     @Column
@@ -133,5 +136,13 @@ public class Trainer {
 
     public void setPersonInfo(PersonInfo personInfo) {
         this.personInfo = personInfo;
+    }
+
+    public String getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(String currentPosition) {
+        this.currentPosition = currentPosition;
     }
 }
