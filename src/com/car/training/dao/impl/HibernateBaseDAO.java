@@ -1,6 +1,6 @@
 package com.car.training.dao.impl;
 
-import com.car.training.dao.BaseDao;
+import com.car.training.dao.BaseDAO;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by bill on 11/3/16.
  */
 @Component(value = "BaseDao")
-public class HibernateBaseDao implements BaseDao {
+public class HibernateBaseDAO implements BaseDAO {
     @Autowired
     protected SessionFactory sessionFactory;
 
@@ -179,7 +179,7 @@ public class HibernateBaseDao implements BaseDao {
                 hql.append(" and ");
             }
 
-            hql.append(attribute + "='" + condition.get(attribute) + "'");
+            hql.append(attribute).append("='").append(condition.get(attribute)).append("'");
         }
     }
 }
