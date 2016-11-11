@@ -16,6 +16,16 @@ public class SimpleJsonAction extends BaseAction {
         return JSON;
     }
 
+    @Override
+    public String execute() throws Exception {
+        return redirectToIndex();
+    }
+
+    public String redirectToIndex() {
+        setTargetUrl("/website/index");
+        return REDIRECT;
+    }
+
     protected String errorJSON(String errMsg){
         this.data = new HashMap<String,String>();
         ((Map) data).put("error",errMsg);

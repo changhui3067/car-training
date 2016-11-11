@@ -19,12 +19,12 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
-    public void like(int targetUid) {
-
+    public boolean like(int targetUid) {
+        return false;
     }
 
     @Override
-    public void unLike(int targetUid) {
-
+    public boolean unLike(int targetUid) {
+        return false;
     }
 }

@@ -46,7 +46,7 @@ public class TrainerDetailAction extends BaseAction {
     private int trainerId;
 
     @Override
-    public String execute() throws Exception {
+    public String execute(){
         trainer = trainerService.findById(trainerId);
         if (trainer == null) {
             setTargetUrl("/website/index");

@@ -18,17 +18,17 @@
 
 
 <div class="content">
-<#if autobots?? && autobots.userCenter??>
+<#if autobot??>
 	<div class="ny_pxshi">
     	<div class="ny_pxshi_l left">
     	
         	<div class="pxshi_xx">
             	<div class="zhaopian left">
-                	<img src="${autobots.userCenter.headLogo!}" style="width:181px;height:153px;"/>
+                	<img src="${autobot.personInfo.avatarUrl!}" style="width:181px;height:153px;"/>
                 </div>
                 <div class="xinxi right">
                	  <div class="mingzi">
-                    	<div class="mingzi_l left">${autobots.userCenter.name!}</div>
+                    	<div class="mingzi_l left">${autobot.personInfo.name!}</div>
                         <div class="mingzi_m left">
                        		
                             <span><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot2.jpg" /></a></span>
@@ -43,7 +43,7 @@
                 	
                     <div class="qcr_jbxx">
                     	<div class="jiben left">
-                        	<span>${autobots.currentPosition!}</span><span>大学本科</span><span>三年工作经验</span><span style=" background:none;">${autobots.userCenter.region!}</span>
+                        	<span>${autobot.currentPosition!}</span><span>大学本科</span><span>三年工作经验</span><span style=" background:none;">${autobot.personInfo.regionId!}</span>
                         </div>
                         <div class="ckcs right">简历查看数：35次</div>
                         <div class="clear"></div>
@@ -55,7 +55,7 @@
                         	擅长领域/行业：<span>售后</span><span>销售</span><span style=" background:none;">客服</span>
                         	
                         </div>
-                        <div class="jiben left"><span style=" border:none;">汽车品牌:</span>${autobots.autoBrand!}</div>
+                        <div class="jiben left"><span style=" border:none;">汽车品牌:</span>${autobot.autoBrand!}</div>
                         <div class="clear"></div>
                         
                         
@@ -73,16 +73,16 @@
                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
                    <tr>
                      <td width="20%" align="right" valign="middle">出生年份：</td>
-                     <td width="30%">${autobots.userCenter.brithday!}</td>
+                     <td width="30%">${autobot.personInfo.brithday!}</td>
                      <td width="20%" align="right">婚姻状况：</td>
-                     <td width="30%">${autobots.userCenter.marryStatus!}</td>
+                     <td width="30%">${autobot.personInfo.marriageStatus!}</td>
                    </tr>
                   
                    <tr>
                      <td align="right" valign="middle">国籍：</td>
                      <td>中国</td>
                      <td align="right">状态：</td>
-                     <td>${autobots.currentWorkStatus!}</td>
+                     <td>${autobot.currentWorkStatus!}</td>
                    </tr>
                  </table>
            	</div>
@@ -92,7 +92,7 @@
             	<h4>培训经历</h4>
                 </div>
                 <div class="pxjingli_box">
-            	${autobots.trainingHistroy!}
+            	<#--${autobot.trainingHistroy!}-->
                </div>
             </div>
           <div class="shrz">
@@ -100,7 +100,7 @@
             	<h4>所获认证</h4>
                 </div>
                 <div class="shrz_box">
-            	${autobots.authHistroy!}
+            	${autobot.certRecords!}
             	</div>
           </div>
           
@@ -108,7 +108,7 @@
             	<div class="pxshi_bt">
             	<h4>工作经历</h4>
                 </div>
-                ${autobots.workingHistroy!}
+                ${autobot.workingHistroy!}
                 </div>
           </div>
           <!--<div class="zwpj">
@@ -129,10 +129,10 @@
         	<div class="pxshi_lx">
             	<h4>联系方式</h4>
                 <div class="lx_box">
-                <div class="xingming">${autobots.userCenter.name!}(汽车人本人)</div>
+                <div class="xingming">${autobot.personInfo.name!}(汽车人本人)</div>
       <#if Session["loginState"]=='Y'>
-                   电话：${autobots.userCenter.mobile!}<br />
-                   邮箱：${autobots.userCenter.email!}<br />
+                   电话：${autobot.personInfo.mobile!}<br />
+                   邮箱：${autobot.personInfo.email!}<br />
                    <#else>
 请联系培训网  400-820-6666
       </#if>
@@ -163,8 +163,8 @@
                 <div class="guanzhu">
                 	<ul>
                 		<#list listTrainer as t>
-                		<#if t?? && t.userCenter>
-                    	<li><a href="#">${t.userCenter.name!} ${t.currentPosition!} </a><img src="${t.userCenter.headLogo!}" /></span></li>
+                		<#if t??>
+                    	<li><a href="#">${t.personInfo.name!} ${t.currentPosition!} </a><img src="${t.personInfo.avatarUrl!}" /></span></li>
                     	</#if>
                         </#list>
                     </ul>
@@ -172,16 +172,16 @@
             </#if>
         	</div>-->
             <div class="pyquan">
-            <#if autobotsList??>
+            <#if autobotList??>
             	<h4>朋友圈</h4>
                 <div class="pyquan_box">
                 	<ul>
-                   	  <#list autobotsList as t>
-                   	  <#if t?? && t.userCenter??>
+                   	  <#list autobotList as t>
+                   	  <#if t?? >
                       <li>
-                        	<div class="dbr_l left"><a href="#"><img src="${t.userCenter.headLogo!}" /></a></div>
+                        	<div class="dbr_l left"><a href="#"><img src="${t.personInfo.avatarUrl!}" /></a></div>
                           <div class="dbr_r right">
-                            	<div class="dbr_name"><a href="#">${t.userCenter.name!}</a></div>
+                            	<div class="dbr_name"><a href="#">${t.personInfo.name!}</a></div>
                                 <div class="dbr_gs"><a href="#">${t.currentPosition!}</a></div>
                           </div>
                             <div class="clear"></div>

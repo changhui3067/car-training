@@ -57,7 +57,7 @@ public class IndexAction extends BaseAction {
 //    PromotionService promotionService;
 
     @Override
-    public String execute() throws Exception {
+    public String execute(){
         //首页推荐培训师大图1个
         List<Trainer> topTrainers = promotionService.getTopTrainer(9);
 

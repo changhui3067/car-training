@@ -96,11 +96,11 @@
                 <div>${t.currentPosition!} </div>
                 <div>
               <ul>
-                  <li><i class="iconfont" title="留言多">&#xe756;</i></li>
-                  <li><i class="iconfont" title="资料完整">&#xe69f;</i></li>
-                  <li><i class="iconfont" title="身份信息可靠">&#xe70a;</i></li>
-                  <li><i class="iconfont" title="培训经验超过10年">&#xe735;</i></li>
-                  <li><i class="iconfont" title="行业经验超过20年">&#xe726;</i></li>
+                  <li><span class="iconfont" title="留言多">&#xe756;</span></li>
+                  <li><span class="iconfont" title="资料完整">&#xe69f;</span></li>
+                  <li><span class="iconfont" title="身份信息可靠">&#xe70a;</span></li>
+                  <li><span class="iconfont" title="培训经验超过10年">&#xe735;</span></li>
+                  <li><span class="iconfont" title="行业经验超过20年">&#xe726;</span></li>
                 </ul>
                 </div>
             </div>

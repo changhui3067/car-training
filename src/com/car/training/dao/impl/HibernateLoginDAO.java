@@ -3,12 +3,12 @@ package com.car.training.dao.impl;
 import com.car.training.bean.LoginUser;
 import com.car.training.dao.LoginDAO;
 import com.car.training.enums.UserType;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by bill on 11/7/16.
  */
-@Component
+@Repository
 public class HibernateLoginDAO implements LoginDAO {
 
     @Override

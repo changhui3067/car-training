@@ -4,7 +4,7 @@
         <#list trainerList as t>
             <li class="oneBox">
                 <#if t?? ??>
-                    <div class="picContainer"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img
+                    <div class="picContainer"><a href="/website/trainerDetail?trainerId=${t.id!}"><img
                             src="${t.personInfo.avatarUrl!}"/></a></div>
                     <div class="intro">
                         <div>

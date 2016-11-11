@@ -10,7 +10,7 @@ public class RegisterAction extends BaseAction {
     private static final long serialVersionUID = 4839883380537115435L;
 
     @Override
-    public String execute() throws Exception {
+    public String execute() {
         return SUCCESS;
     }
 }

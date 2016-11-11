@@ -2,9 +2,11 @@ package com.car.training.action.backend;
 
 import com.car.training.bean.Autobot;
 import com.car.training.bean.LoginUser;
+import com.car.training.enums.UserType;
 import com.car.training.service.AutobotService;
 import com.car.training.utils.FileUploaderUtil;
 import com.car.training.utils.RegionUtils;
+import com.car.training.vo.LoginVO;
 import com.opensymphony.xwork2.interceptor.annotations.Before;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
@@ -62,7 +64,6 @@ public class AutobotCompleteResumeAction extends BaseAction {
     private Object data;
 
     private Region userRegion;
-    private LoginUser user;
 
     public Object getData() {
         return data;
@@ -157,9 +158,9 @@ public class AutobotCompleteResumeAction extends BaseAction {
     @Before(priority = 20)
     public String validateUser() {
         HttpServletRequest request = ServletActionContext.getRequest();
-        user = (LoginUser) request.getSession().getAttribute("loginUser");
-        if (user != null) {
-            autobot = autobotService.findById(user.getId());
+        LoginVO loginVO = (LoginVO) request.getSession().getAttribute("loginVO");
+        if (loginVO != null && loginVO.getUserType().equals(UserType.AUTOBOT)) {
+            autobot = autobotService.findByUId(loginVO.getId());
             return null;
         } else {
             targetUrl = "/website/index";
@@ -266,14 +267,6 @@ public class AutobotCompleteResumeAction extends BaseAction {
 
     public void setWorkingStatus(String workingStatus) {
         this.workingStatus = workingStatus;
-    }
-
-    public LoginUser getUser() {
-        return user;
-    }
-
-    public void setUser(LoginUser user) {
-        this.user = user;
     }
 
     public String getAutoBrand() {

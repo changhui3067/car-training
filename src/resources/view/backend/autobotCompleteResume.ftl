@@ -35,16 +35,10 @@
         <div class="pxshi_gl">
             <div class="pxshi_gl_l left">
 
-            <#include "/assets/website/backend/common/menu.html">
+            <#include "/assets/website/backend/common/menu.ftl">
 
                 <div class="pxshi_gl_r right">
                     <form id="form1">
-                        <!--隐藏域-->
-                        <input type="hidden" name="upersonalType" value="AUTOBOT">
-                        <input type="hidden" name="aid" value="<#if autobot??>${autobot.id!}</#if>">
-                        <input type="hidden" name="uid"
-                               value="<#if autobot?? && autobot.userCenter??>${autobot.userCenter.id!}</#if>">
-                        <!--隐藏域-->
                         <div class="pxshijl">
                             <h5>基本信息</h5>
                             <div class="pxshijl_box">
@@ -62,7 +56,7 @@
                                                             <input type="text" class="form-control"
                                                                    placeholder="请输入姓名"
                                                                    name="uname"
-                                                                   value="<#if autobot?? && autobot.userCenter?? && autobot.userCenter.name??>${autobot.userCenter.name!}</#if>"/>
+                                                                   value="<#if autobot?? && autobot.personInfo.name??>${autobot.personInfo.name!}</#if>"/>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -74,7 +68,7 @@
                                                         <div class="col-sm-9">
                                                             <input type="" class="form-control" name="ubirthday"
                                                                    onclick="laydate()"
-                                                                   value="<#if autobot?? && autobot.userCenter?? && autobot.userCenter.name??>${autobot.userCenter.birthday?string("yyyy-MM-dd")!}</#if>"
+                                                                   <#--value="<#if autobot?? &&autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"-->
                                                             />
                                                         </div>
                                                     </div>
@@ -127,7 +121,7 @@
                                                         <div class="col-sm-9">
                                                             <input type="text" class="form-control" name="umobile"
                                                                    placeholder="请输入联系方式"
-                                                                   value="<#if autobot?? && autobot.userCenter?? && autobot.userCenter.mobile??>${autobot.userCenter.mobile!}</#if>"/>
+                                                                   value="<#if autobot?? && autobot.personInfo.mobile??>${autobot.personInfo.mobile!}</#if>"/>
                                                         </div>
                                                     </div>
                                                 </li>

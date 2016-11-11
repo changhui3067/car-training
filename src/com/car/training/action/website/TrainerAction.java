@@ -1,7 +1,7 @@
 package com.car.training.action.website;
 
 import com.car.training.bean.Trainer;
-import com.car.training.dao.impl.HibernateTrainerDAO;
+import com.car.training.service.TrainerService;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class TrainerAction extends BaseAction {
     private static final long serialVersionUID = 4839883380537115435L;
 
     @Autowired
-    private HibernateTrainerDAO trainerDAO;
+    private TrainerService trainerService;
 
     /**
      * 按条件筛选培训师列表
@@ -37,8 +37,8 @@ public class TrainerAction extends BaseAction {
     private String autoYears;
 
     @Override
-    public String execute() throws Exception {
-        trainerList = trainerDAO.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
+    public String execute(){
+        trainerList = trainerService.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
         return SUCCESS;
     }
 
@@ -53,7 +53,7 @@ public class TrainerAction extends BaseAction {
             minAutoYear = -1;
             maxAutoYear = Integer.MAX_VALUE;
         }
-        trainerList = trainerDAO.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
+        trainerList = trainerService.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
         return "peopleSearchResult";
     }
 

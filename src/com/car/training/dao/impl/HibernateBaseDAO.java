@@ -8,7 +8,7 @@ import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * Created by bill on 11/3/16.
  */
-@Component(value = "BaseDao")
+@Repository(value = "BaseDao")
 public class HibernateBaseDAO implements BaseDAO {
     @Autowired
     protected SessionFactory sessionFactory;

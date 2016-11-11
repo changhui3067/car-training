@@ -48,14 +48,8 @@ public class UserCenterAction extends SimpleJsonAction {
     private UserService userService;
 
 
-    public String execute() {
-        setTargetUrl("/website/index");
-        return REDIRECT;
-    }
-
     @JsonConfig(root = "data")
     public String login() {
-        Map<String, Object> map = new HashMap<>();
         //TODO sync with frondend the paramater
         LoginBean user = userService.login(username, "PERSON".equals(personOrCompany), password);
         if (user == null) {
@@ -75,8 +69,7 @@ public class UserCenterAction extends SimpleJsonAction {
     public String logout() {
         HttpServletRequest request = ServletActionContext.getRequest();
         request.getSession().setAttribute("loginVO", null);
-        setTargetUrl("/website/index");
-        return SUCCESS;
+        return redirectToIndex();
     }
 
 

@@ -6,6 +6,6 @@ package com.car.training.service;
 public interface LikeService {
     boolean isLike(int uidA,int uidB);
     boolean isLike(int targetUid);
-    void like(int targetUid);
-    void unLike(int targetUid);
+    boolean like(int targetUid);
+    boolean unLike(int targetUid);
 }
