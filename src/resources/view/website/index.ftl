@@ -69,12 +69,11 @@
                  <div class="pxshi_zp">${trainer.currentPosition!} </div>
                  <div class="pxshi_rz">
                      <ul>
-                            	<li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></li>
-                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></li>
-                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></li>
-                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/xin.jpg" /></li>
-                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zishen.jpg" /></li>
-                                <li><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dav.jpg" /></li>
+                         <li><i class="iconfont" title="留言多">&#xe756;</i></li>
+                         <li><i class="iconfont" title="资料完整">&#xe69f;</i></li>
+                         <li><i class="iconfont" title="身份信息可靠">&#xe70a;</i></li>
+                         <li><i class="iconfont" title="培训经验超过10年">&#xe735;</i></li>
+                         <li><i class="iconfont" title="行业经验超过20年">&#xe726;</i></li>
                      </ul>
                  </div>
              </div>
@@ -96,12 +95,13 @@
                 </div>
                 <div>${t.currentPosition!} </div>
                 <div>
-                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot.jpg" /></span>
-                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zan.jpg" /></span>
-                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zheng.jpg" /></span>
-                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/xin.jpg" /></span>
-                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zishen.jpg" /></span>
-                    <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dav.jpg" /></span>
+              <ul>
+                  <li><i class="iconfont" title="留言多">&#xe756;</i></li>
+                  <li><i class="iconfont" title="资料完整">&#xe69f;</i></li>
+                  <li><i class="iconfont" title="身份信息可靠">&#xe70a;</i></li>
+                  <li><i class="iconfont" title="培训经验超过10年">&#xe735;</i></li>
+                  <li><i class="iconfont" title="行业经验超过20年">&#xe726;</i></li>
+                </ul>
                 </div>
             </div>
             </#if>
