@@ -23,6 +23,14 @@
     border-right: solid 1px #aaa;
 }
 
+span.paddingLeftNull {
+	padding-left: 0;
+}
+
+.people_detail_basic_info .detail div span:nth-last-child {
+	border: none !important;
+}
+
 .people_other_info_box{ width: 860px; border-bottom:1px dotted #ccc; padding:20px 15px 20px 15px; margin-bottom:30px;}
 .people_other_info_bar{ background:#f0f8fc; height:40px;   padding:0px 15px;}
 .people_other_info_bar h4{ display:block;height:40px; line-height:40px; padding-left:40px; font-size:16px; color:#000; font-weight:100; }
@@ -73,11 +81,7 @@
   
 .people_other_info_box .add_comment_box button {
 	width: 60px;
-    padding: 8px;
-    background-color: #3689b3;
-    border: none;
     margin: 10px;
-    color: #fff;
 }  
 
 .people_comments {
@@ -101,7 +105,130 @@
     text-align: right;
 }
 
+.autoCompany_zp{
+	padding:30px 0px 0px 15px;
+}
+
+
+
 /***************************** end of CSS people detail page *********************************/
+
+
+/***************************** CSS for company detail page *********************************/
+.companyDetailTop {
+	height: 300px;
+    padding: 30px 20px 0px 30px;
+    background-color: rgba(255,255,255,0.6);
+}
+
+.companyLogo {
+	width: 200px;
+	margin-right: 30px;
+}
+
+.companyLogo img {
+	width: 100%;
+}
+
+.companyNameBox > div{
+	line-height: 50px;
+	margin-bottom: 15px;
+}
+
+.companyNameBox h1 {
+	font-size: 24px;
+    color: #000;
+}
+
+.companyNameBox span {
+	display: block;
+    float: left;
+    margin-right: 10px;
+    background: #fff;
+    padding: 2px 10px;
+    border-radius: 15px;
+    line-height: 26px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.companyBasicInfo {
+	width: 270px;
+    padding: 15px;
+}
+
+.companyBasicInfoBox {
+	margin-bottom: 30px;
+}
+
+.companyBasicInfoBox h4 {
+	display: block;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    color: #3689b3;
+    font-weight: 100;
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: 20px;
+}
+.companyBasicInfoBoxContent {
+	background: #fff;
+}
+.companyBasicInfoBoxContent > div {
+	font-size: 12px;
+    line-height: 30px;
+}
+
+.companyBasicInfoBoxContent h5 {
+	display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #000;
+}
+
+.companyBasicInfoBoxContent button {
+	margin-left: 10px;
+    
+}
+
+.companyBasicInfoBoxContent b {
+	color: #000;
+	font-size: 13px;
+}
+
+.companyGuaranteeLists {
+
+}
+
+.companyGuaranteeLists .guaranteeInfo {
+	float: left;
+    width: 60px;
+    height: 60px;
+    margin: 0 5px 5px 0;
+}
+
+.companyGuaranteeLists .guaranteeInfo img{
+	width: 100%;
+	height: 100%;
+}
+
+.companyDetailOther {
+	width: 860px;
+	margin-top: 20px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e1e1e1;
+}
+
+.company_other_info_bar{ background:#f0f8fc; height:40px;   padding:0px 15px;}
+.company_other_info_bar h4{ display:block;height:40px; line-height:40px; padding-left:40px; font-size:16px; color:#000; font-weight:100; }
+.company_other_info_box{ width: 860px; border-bottom:1px dotted #ccc; padding:20px 15px 20px 15px; margin-bottom:30px;}
+
+
+
+/***************************** end of CSS company detail page *********************************/
+
 .xiaoshou_box, .chanpin_box, .fjs_box, .js_box, .gl_box, .cw_box, .pxshi_dp
 .shouhou_box, .kefu_box, .shichang_box, .gl_box, .neixun_box, .shengchan_box, .yanfa_box, .gzjl, .zwpj
 { height:340px; padding-bottom:15px;margin-bottom:30px; border-bottom:1px #ccc dotted;}
@@ -175,21 +302,12 @@
 
 
 /*培训公司招聘信息——右侧   企业基本信息*/
-.zwfb_qy{ margin-bottom:30px;}
-.zwfb_qy h4, .dbr h4{ display:block; height:40px; line-height:40px;   font-size:18px; color:#3689b3; font-weight:100; border-bottom:1px solid #e1e1e1; margin-bottom:20px;}
-.zwfb_qy h4 {background:url(http://obu3flkwk.bkt.clouddn.com/website/images/qy_h4.jpg) no-repeat left center; padding-left:50px;}
-.dbr h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/dbr_h4.jpg) no-repeat left center; padding-left:40px;}
 
 .qy_box{ margin-bottom:10px;}
 .qylogo_l{width:100px; height:50px; border:1px solid #f0f0f0; padding:2px;}
 .qylogo_r{ width:130px; padding:5px 0px;}
 .danbao{ height:20px; padding-bottom:5px; line-height:20px; color:#ffab00; font-size:12px; font-weight:700;}
 .wydb{}
-
-.qyjj{ }
-.qyjj h5{ display:block; height:30px; line-height:30px; font-size:14px; color:#000; font-weight:700; }
-.xz, .dz, .jj{ font-size:12px; line-height:30px;}
-.jj{ margin-bottom:20px;}
 
 /*培训公司招聘信息——右侧   担保人列表*/
 .dbr{ }
@@ -345,19 +463,7 @@
 
 /*汽车人招聘企业*/
 .zhaopin_qy{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/zpqy_bg.jpg) no-repeat center top; padding-top:40px; }
-.qy_top{ height:145px; padding:30px 20px 0px 30px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/bg.png) repeat left top;}
-.zpqy_logo{ height:110px; width:220px;
-}
-.zpqy_xx{ width:910px; }
-.zpqy_xx_box{ height:55px;}
-.zpqy_xx_l{  height:40px; line-height:40px; font-size:24px; color:#000; font-weight:100;}
-.zpqy_xx_r{width:600px;}
-.zpqy_xx_r span{ display:block; float:left; width:130px; height:30px; line-height:30px; font-size:14px; font-weight:100; padding-top:5px;}
-.fl_dy{ }
-.fl_dy li{ display:block; float:left; margin-right:15px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/dy_bg.gif) no-repeat left top; height:36px; width:72px; line-height:26px;text-align:center; font-size:12px;  }
 
-.zp_qiye{ background:#fff;}
-.zp_qiye_l{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/zp_qy_r.jpg) repeat-y right top; width:870px; padding:15px}
 
 /*汽车人招聘企业——左侧  公司简介*/
 .gongsi_jj{ border-bottom:1px dotted #ccc; padding:20px 10px 40px 10px; margin-bottom:30px;}
@@ -375,10 +481,8 @@
 
 
 .qiye_zp_box{ padding:30px 30px 0px 30px; line-height:30px; font-size:12px;}
-.qiye_zp li{ display:block;text-align:left; height:100%; overflow:hidden;padding:10px 20px; line-height:30px; margin-bottom:40px; background:#fafafa;}
 .zpgw_l{ width:550px;padding:10px 0px 0px 15px; border-right:1px dotted #e5e5e5;height:80px;}
 .zpgw_r{ width:125px; margin-top:20px;}
-.zp_qiye_r{ width:270px; padding:15px;}
 
 
 /*Trainer list page*/

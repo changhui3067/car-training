@@ -4,12 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <title>培聘网</title>
-    <link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen" />
-<link rel="stylesheet" href="<@url value="/assets/website/css/style.css"/>" type="text/css" media="screen" />
-
-<link rel="stylesheet" type="text/css" href="<@url value="/assets/website/css/lrtk.css"/>" />
-<script src="<@url value="/assets/website/js/jquery1.42.min.js?v=1.1.0"/>"></script>
-<script src="<@url value="/assets/website/js/jquery.superslide.2.1.1.js?v=1.1.0"/>" type="text/javascript"></script>
+<link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/assets/website/css/iconfont.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/pxshi.css" type="text/css" />
+<link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -85,85 +83,19 @@
                 </div>
             </div>
         </div>
-        <div class="zhaopin_r right">
-        	<div class="zwfb_qy">
-            	<h4>职位发布企业</h4>
-                <div class="qy_box">
-                	<div class="qylogo">
-                    	<div class="qylogo_l left"><img src="${jobs.company.logo!}" style="width:100px;height:50px;"/></div>
-                      <div class="qylogo_r right">
-                       	<div class="danbao">已有${jobs.company.bondsmanCount!}人担保</div>
-                            <div class="wydb"><a href="#">
-                              <input style="border:none;" type="image" name="db" id="db" src="http://obu3flkwk.bkt.clouddn.com/website/images/danbao.jpg" onclick="bondsto('${jobs.company.id!}','${jobs.id!}')" />
-                            </a></div>
-                      </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-                <div class="qyjj">
-                	<h5>${jobs.company.name!}</h5>
-                    <div class="xz"><em style="font-style:normal;  font-size:12px; height:30px; line-height:30px; color:#000; font-weight:700;">经营范围：</em>${jobs.company.industry!}</div>
-                    <div class="dz"><em style="font-style:normal;  font-size:12px; height:30px; line-height:30px; color:#000; font-weight:700;">公司地址：</em>${jobs.company.address!}</div>
-                    <div class="jj"><em style="font-style:normal;  font-size:12px; height:30px; line-height:30px; color:#000; font-weight:700;">公司简介：</em>${jobs.company.intro!}</div>
-                    <div class="jj_img">
-                    	<!-- 代码 开始 -->
-						<div class="www51buycom">
-    <ul class="51buypic">
-        <li><a href="#" target="_blank"><img src="${jobs.company.environmentURL1!}" style="width:260px;height:170px;"/></a></li>
-       <li><a href="#" target="_blank"><img src="${jobs.company.environmentURL2!}" style="width:260px;height:170px;"/></a></li>
-        
-    </ul>
-   
-    <div class="num">
-    	<ul></ul>
-    </div>
-</div>
-						<script>
-/*鼠标移过，左右按钮显示*/
-$(".www51buycom").hover(function(){
-	$(this).find(".prev,.next").fadeTo("show",0.1);
-},function(){
-	$(this).find(".prev,.next").hide();
-})
-/*鼠标移过某个按钮 高亮显示*/
-$(".prev,.next").hover(function(){
-	$(this).fadeTo("show",0.7);
-},function(){
-	$(this).fadeTo("show",0.1);
-})
-$(".www51buycom").slide({ titCell:".num ul" , mainCell:".51buypic" , effect:"fold", autoPlay:true, delayTime:700 , autoPage:true });
-</script>
-						<!-- 代码 结束 -->
-                    </div>
-                </div>
-            </div>
-            <div class="dbr">
-            	<h4>担保人列表</h4>
-            <#if bondsmanList??>
-                <div class="dbr_box">
-                	<ul>
-                   	  <#list bondsmanList as b>
-                   	  <#if b??>
-                      	<li>
-                        	<div class="dbr_l left"><a href="#"><img src="${b.headLogo!}" style="width:58;height:63px;"/></a></div>
-                          <div class="dbr_r right">
-                            	<div class="dbr_name"><a href="#">${b.name!}</a></div>
-                          </div>
-                            <div class="clear"></div>
-                        </li>
-                        </#if>
-                        </#list>
-                    </ul>
-                </div>
-                </#if>
-            </div>
+        <div class="companyBasicInfo right">
+            <#include "/resources/view/website/companyBasicInfo.ftl">
         </div>
         <div class="clear"></div>
     </div>
     </#if>
 </div>
-<script>
+<!-- main结束 -->
+<#include "/assets/website/common/footer.html">  
 
+<script src="<@url value="/assets/website/js/jquery1.42.min.js?v=1.1.0"/>"></script>
+<script src="<@url value="/assets/website/js/jquery.superslide.2.1.1.js?v=1.1.0"/>" type="text/javascript"></script>        
+<script>
 function applyJob(jid){
 if(confirm("确定要申请该职位吗?")){
 var form_data={};
@@ -237,7 +169,6 @@ function showErrMsg(errMsg){
 	alert(errMsg);
 }
 </script>
-<!-- main结束 -->
-<#include "/assets/website/common/footer.html">
+
 </body>
 </html>

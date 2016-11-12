@@ -1,14 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html>    
 <head>    
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
-    <title>培聘网</title>
-    <script src="<@url value="/assets/website/js/jquery1.42.min.js?v=1.1.0"/>"></script>   
-    <link rel="stylesheet" href="<@url value="/assets/website/css/bootstrap.min.css"/>" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<@url value="/assets/website/css/style.css"/>" type="text/css" media="screen" />  
-    <link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen" />
-    <!-- <link rel="stylesheet" type="text/css" href="<@url value="/assets/website/css/lrtk.css"/>"> -->
-    <link rel="stylesheet" href="<@url value="/assets/website/css/iconfont.css"/>" type="text/css" media="screen" />
+<title>培聘网</title>
+<link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="/assets/website/css/style.css" type="text/css"/>  
+<link rel="stylesheet" href="/assets/website/css/pxshi.css" type="text/css"/>
+<link rel="stylesheet" href="/assets/website/css/iconfont.css" type="text/css"/>
 </head>   
      
  <body>    
@@ -23,8 +20,8 @@
   <div class="ny_pxshi">
       <div class="ny_pxshi_l left">
           <div class="people_detail_basic_info">
-              <div class="left">
-                  <img src="${trainer.userCenter.headLogo!}" style="width:181px;height:153px;"/>
+              <div class="photo left">
+                  <img src="${trainer.userCenter.headLogo!}"/>
               </div>
               <div class="detail left">
                   <div>
@@ -36,10 +33,10 @@
                       <div class="clear"></div>
                   </div>
                   <div>
-                      <span>${trainer.currentPosition!}</span>
+                      <span class="paddingLeftNull">${trainer.currentPosition!}</span>
                       <span>8年</span>
                       <span>${trainer.education!}</span>
-                      <span>${trainer.userCenter.region.fullname!}</span>
+                      <span class="noBorder">${trainer.userCenter.region.fullname!}</span>
                   </div>
                   <div>
                       擅长形式: <span>${trainer.businessCategory}</span>
@@ -52,7 +49,7 @@
                   </div>
                 </div>
                 <div class="clear"></div>
-            </div>
+          </div>
             <!-- <div class="pxshi_jj">
               <div class="pxshi_bt">
               <h4><span><a href="#">更多>></a></span>培训师简介</h4>
@@ -61,7 +58,7 @@
                        　　${trainer.userCenter.intro!}
                 </div>
             </div> -->
-            <div class="people_other_info_box">
+          <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>培训课程</h4></div>
                 <div class="people_other_info_list">
                   <#if coursesList??>
@@ -77,16 +74,16 @@
                     </ul>
                     </#if>
                 </div>
-            </div>
+          </div>
 
-            <div class="people_other_info_box">
+          <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>视频链接</h4></div>
                 <div class="people_other_info_video">
                     <a href="${trainer.vedioURL1!}"><iframe height=240 width=250 src='${trainer.vedioURL1!}' frameborder=0 'allowfullscreen'></iframe></a>
                     
                     <a href="${trainer.vedioURL2!}"><iframe height=240 width=250 src='${trainer.vedioURL2!}' frameborder=0 'allowfullscreen'></iframe></a>
                 </div>
-            </div>
+          </div>
 
             <!-- <div class="pxshi_wz">
               <div class="pxshi_bt">
@@ -106,7 +103,7 @@
                 <div class="people_other_info_bar"><h4>学员评论</h4></div>
                 <div class="add_comment_box">
                     <textarea id="add_comment"></textarea>
-                    <button onclick="addcomment()">提交</button>
+                    <button class="commonClickButton" onclick="addcomment()">提交</button>
                 </div>
             </div>
         </div>
@@ -147,6 +144,10 @@
         <div class="clear"></div>
     </div>
     </#if>
+<!-- main结束 -->    
+<#include "/assets/website/common/footer.html"> 
+
+<script src="<@url value="/assets/website/js/jquery1.42.min.js?v=1.1.0"/>"></script> 
 <script>
 function dianz(tid){
 var form_data={};
@@ -217,7 +218,6 @@ function showErrMsg(errMsg){
   alert(errMsg);
 } 
 </script>
-<!-- main结束 -->    
-<#include "/assets/website/common/footer.html">   
+  
 </body>   
 </html>

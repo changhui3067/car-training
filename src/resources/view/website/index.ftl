@@ -2,9 +2,9 @@
 <#escape x as x?html><html>
 <head>
     <title>培聘网</title>
-    <link rel="stylesheet" href="<@url value="/assets/website/css/style.css?v=1.1.0"/>" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<@url value="/assets/website/css/bootstrap.min.css?v=1.1.0"/>" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<@url value="/assets/website/css/iconfont.css"/>" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/website/css/iconfont.css" type="text/css" media="screen" />
 </head>
 
 <body>
@@ -152,7 +152,7 @@
          <li class="zp_box">
              <#if t?? && t.company??>
              <div class="qz"></div>
-                 <div class="pxxq_l left zp_box_l">
+                 <div class="left zp_box_l">
                     <a href="/website/jobDetail?jobs.id=${t.id!}"> <div class="zw_name">${t.name!}</div></a>
                     <div class="dy_box">
                         <span class="cn" style="padding-left:0px;">${t.salary!}</span>
@@ -160,10 +160,11 @@
                         <span style="background:none;"><#if t.region??>${t.region.fullname!}</#if></span>
                     </div>
                     <div class="fb_box">
-                        	<span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span><span style="background:none;">投递后：48小时反馈</span>
+                        	<span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span>
+                            <span style="background:none;">投递后：48小时反馈</span>
                     </div>
                 </div>
-                <div class="pxxq_r right zp_box_r">
+                <div class="right zp_box_r">
                     <div class="qy">
                           <a href="/website/autoCompany?company.id=${t.company.id!}">
                               <div class="qy_l left zp_box_r_l"><img src="${t.company.logo!}" /></div>
