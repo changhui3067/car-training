@@ -21,7 +21,7 @@
       <div class="ny_pxshi_l left">
           <div class="people_detail_basic_info">
               <div class="photo left">
-                  <img src="${trainer.userCenter.headLogo!}"/>
+                  <img src="${trainer.personInfo.avatarUrl!}"/>
               </div>
               <div class="detail left">
                   <div>
@@ -55,7 +55,7 @@
               <h4><span><a href="#">更多>></a></span>培训师简介</h4>
                 </div>
               <div class="pxshi_jj_box">
-                       　　${trainer.userCenter.intro!}
+                       　　${trainer.personInfo.intro!}
                 </div>
             </div> -->
           <div class="people_other_info_box">
@@ -79,9 +79,9 @@
           <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>视频链接</h4></div>
                 <div class="people_other_info_video">
-                    <a href="${trainer.vedioURL1!}"><iframe height=240 width=250 src='${trainer.vedioURL1!}' frameborder=0 'allowfullscreen'></iframe></a>
+                    <a href="${trainer.videoUrl1!}"><iframe height=240 width=250 src='${trainer.vedioURL1!}' frameborder=0 'allowfullscreen'></iframe></a>
                     
-                    <a href="${trainer.vedioURL2!}"><iframe height=240 width=250 src='${trainer.vedioURL2!}' frameborder=0 'allowfullscreen'></iframe></a>
+                    <a href="${trainer.videoUrl2!}"><iframe height=240 width=250 src='${trainer.vedioURL2!}' frameborder=0 'allowfullscreen'></iframe></a>
                 </div>
           </div>
 

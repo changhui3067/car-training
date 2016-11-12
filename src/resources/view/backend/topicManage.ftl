@@ -21,7 +21,7 @@
     <div class="pxshi_gl">
     	<div class="pxshi_gl_l left">
         
-          <#include "/assets/website/backend/common/menu.html">
+          <#include "/assets/website/backend/common/menu.ftl">
           <div class="tjzt"><a href="#"><img src="http://obu3flkwk.bkt.clouddn.com/backend/images/tjzt.jpg" /></a></div>
         <div class="pxshi_gl_r right">
        	  <table bgcolor="#dedede" border="0" cellpadding="4" cellspacing="1" align="center" width="860">

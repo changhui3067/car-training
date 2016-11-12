@@ -15,17 +15,17 @@
 </div>
 </div>
 <script type="text/javascript">
-    var oUrl = {
-        "information": "/website/trainerDetail?trainer.id=${Session["userDetails"].trainer.id!}",
+    /*var oUrl = {
+        "information": "/website/trainerDetail",
         "complete": "/backend/trainerCompleteResume",
         "record": "/backend/applyJobHistory",
         "publish": "/backend/publishArticle",
         "article": "/backend/articleManage",
         "password": "/backend/modifyPassword"
     };
-    navigate("record");
+    navigate("record");*/
     function navigate(id) {
-        var url = oUrl[id];
+        /*var url = oUrl[id];
         $.ajax({
             type : "GET",
             data : {},
@@ -34,7 +34,8 @@
                 $(".pxshi_gl_r")[0].innerHTML = result;
                 changeClass(id);
             }
-        });
+        });*/
+        changeClass(id);
         
     }
     function changeClass(id) {

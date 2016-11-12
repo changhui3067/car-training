@@ -15,9 +15,9 @@
 <div class="main">
 	<div class="content">
 	    <div class="pxshi_gl">
-	        <#if Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' && Session["loginType"]=='TRAINER'>
-	        <#include "/resources/view/website/trainerManager.ftl">
-	        <#elseIf Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' && Session["loginType"]=='AUTOBOT'>
+	        <#if Session?exists && '{}' != '${session}' && Session["loginVO"]?? && Session["loginVO"].userType=='TRAINER'>
+	        	<#include "/resources/view/website/trainerManager.ftl">
+	        <#elseIf Session?exists && '{}' != '${session}' && Session["loginVO"]?? && Session["loginVO"].userType=='AUTOBOT'>
 
 	        </#if>
 		</div>

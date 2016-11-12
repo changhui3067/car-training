@@ -8,12 +8,12 @@
 </head>
 
 <body>
-    <!-- 头部开始 -->   
+    <!-- 头部开始 -->
     <#include "/assets/website/common/header.html">
     <!-- 头部结束 -->
     <!-- banner开始 -->
     <div class="banner">
-        <#if '{}' == '${session}'|| Session["loginState"]!='Y' >
+        <#if '{}' == '${session}'|| !Session["loginVO"]?? >
         <div class="content">
             <div class="login-box">
                 <form action="" id="loginform" class="form-horizontal">
@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label  class="col-sm-3 control-label">账号：</label>
                     <div class="col-sm-9">
-                        <input class="form-control text-size" type="email" id="username" name="username" data-nick="login_user" value="" placeholder="请输入手机号" required validate-title="手机号" />
+                        <input class="form-control text-size" id="username" name="username" data-nick="login_user" value="" placeholder="请输入手机号" required validate-title="手机号" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -30,10 +30,13 @@
                     <div class="col-sm-9">
                         <input class="form-control text-size" type="password" name="password" id="password" data-nick="login_pwd" value=""   placeholder="请输入密码" required validate-title="密码" /></div>
                     </div>
-                <div class="errMsg"></div>
+                <div>
+                    <div class="errMsg col-sm-8"></div>
+                    <div class="forgetPswd col-sm-4"><a href='<@url value='/backend/forgetPswd'/>'>忘记密码?</a></div>
+                </div>
                 <div id="checkeRadio">
-                    <label class="radio-inline col-sm-5"> 
-                        <input name="userType" id="userType" type="radio"  value="PERSONAL" checked/>个人
+                    <label class="radio-inline col-sm-5">
+                        <input name="userType" id="userType" type="radio"  value="PERSON" checked/>个人
                     </label>
                     <label class="radio-inline col-sm-6">
                         <input type="radio" name="userType" id="userType" value="COMPANY" />企业
@@ -54,11 +57,11 @@
          <h4><span><a href="/website/trainer">更多>></a></span>推荐培训师</h4>
          <div class="pxshi">
              <div class="pxshi_l left">
-               <#if trainer?? && trainer.userCenter??>
-               <div class="pxshi_l_pic"><a href="/website/trainerDetail?trainer.id=${trainer.id!}"><img src="${trainer.userCenter.headLogo!}" /></a></div>
+               <#if trainer?? >
+               <div class="pxshi_l_pic"><a href="/website/trainerDetail?trainer.id=${trainer.id!}"><img src="${trainer.personInfo.avatarUrl!}" /></a></div>
                <div class="pxshi_l_intro">
                  <div class="pxshi_name">
-                     <div class="xm left">${trainer.userCenter.name!}</div>
+                     <div class="xm left">${trainer.personInfo.name!}</div>
                      <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if trainer.autobotsCommentList??> ${trainer.autobotsCommentList.size!}<#else>0</#if></div>
                      <div class="dz right"><i class="iconfont" title="点赞">&#xe717;</i>${trainer.starLevel!}</div>
                      <div class="clear"></div>
@@ -66,11 +69,11 @@
                  <div class="pxshi_zp">${trainer.currentPosition!} </div>
                  <div class="pxshi_rz">
                      <ul>
-                        <li><i class="iconfont" title="留言多">&#xe756;</i></li>
-                        <li><i class="iconfont" title="资料完整">&#xe69f;</i></li>
-                        <li><i class="iconfont" title="身份信息可靠">&#xe70a;</i></li>
-                        <li><i class="iconfont" title="培训经验超过10年">&#xe735;</i></li>
-                        <li><i class="iconfont" title="行业经验超过20年">&#xe726;</i></li>
+                         <li><i class="iconfont" title="留言多">&#xe756;</i></li>
+                         <li><i class="iconfont" title="资料完整">&#xe69f;</i></li>
+                         <li><i class="iconfont" title="身份信息可靠">&#xe70a;</i></li>
+                         <li><i class="iconfont" title="培训经验超过10年">&#xe735;</i></li>
+                         <li><i class="iconfont" title="行业经验超过20年">&#xe726;</i></li>
                      </ul>
                  </div>
              </div>
@@ -81,22 +84,24 @@
           <ul>
            <#list trainerList as t>
            <li class="oneBox">
-              <#if t?? && t.userCenter??>
-              <div class="picContainer"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
+              <#if t?? >
+              <div class="picContainer"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img src="${t.personInfo.avatarUrl!}" /></a></div>
               <div class="intro">
                 <div>
-                    <div class="name">${t.userCenter.name!}</div>
-                    <div class="right"><i class="iconfont" title="点赞">&#xe717;</i>${t.starLevel!}</div>
-                    <div class="right"><i class="iconfont" title="评论">&#xe69b;</i><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if></div>
+                    <div class="name">${t.personInfo.name!}</div>
+                    <div class="right">${t.starLevel!}</div>
+                    <div class="right"><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if>人</div>
                     <div class="clear"></div>
                 </div>
                 <div>${t.currentPosition!} </div>
                 <div>
-                    <span><i class="iconfont" title="留言多">&#xe756;</i></span>
-                    <span><i class="iconfont" title="资料完整">&#xe69f;</i></span>
-                    <span><i class="iconfont" title="身份信息可靠">&#xe70a;</i></span>
-                    <span><i class="iconfont" title="培训经验超过10年">&#xe735;</i></span>
-                    <span><i class="iconfont" title="行业经验超过20年">&#xe726;</i></span>
+              <ul>
+                  <li><span class="iconfont" title="留言多">&#xe756;</span></li>
+                  <li><span class="iconfont" title="资料完整">&#xe69f;</span></li>
+                  <li><span class="iconfont" title="身份信息可靠">&#xe70a;</span></li>
+                  <li><span class="iconfont" title="培训经验超过10年">&#xe735;</span></li>
+                  <li><span class="iconfont" title="行业经验超过20年">&#xe726;</span></li>
+                </ul>
                 </div>
             </div>
             </#if>
@@ -112,15 +117,15 @@
 <div class="pxsheng_box">
  <h4><span><a href="/website/autobot">更多>></a></span>推荐培训生</h4>
  <div class="pxsheng">
-     <#if autobotsList??>
+     <#if autobotList??>
      <ul>
-         <#list autobotsList as t>
+         <#list autobotList as t>
          <li class="oneBox">
-             <#if t?? && t.userCenter??>
-             <div class="picContainer"><a href="/website/autobotDetail?autobots.id=${t.id!}"><img src="${t.userCenter.headLogo!}" /></a></div>
+             <#if t??>
+             <div class="picContainer"><a href="/website/autobotDetail?autobots.id=${t.id!}"><img src="${t.personInfo.avatarUrl!}" /></a></div>
              <div class="intro">
                  <div>
-                     <div class="name">${t.userCenter.name!}</div>
+                     <div class="name">${t.personInfo.name!}</div>
                      <div class="right">34人</div>
                      <div class="right">${t.autoYears!}年</div>
                      <div class="clear"></div>
@@ -272,8 +277,8 @@
        <ul>
           <#list coursesList as t>
           <li class="oneBox">
-             <#if t?? && t.trainer ?? &&t.trainer.userCenter ?? >
-             <div class="picContainer"><a href="/website/courseDetail?course.id=${t.id!}"><img src="${t.trainer.userCenter.headLogo!}" /></a></div>
+             <#if t?? && t.trainer ?? &&t.trainer.personInfo ?? >
+             <div class="picContainer"><a href="/website/courseDetail?course.id=${t.id!}"><img src="${t.trainer.personInfo.headLogo!}" /></a></div>
              <div class="intro">
                  <div>
                      <div class="name"><a href="/website/courseDetail?course.id=${t.id!}">${t.courseName!}</a></div>
@@ -311,7 +316,7 @@ function login(){
         errMsg = $(".errMsg")[0];
     form_data["username"] = $("#loginform #username").val(),
     form_data["password"] = $("#loginform #password").val(),
-    form_data["userType"] = $('input:radio[name="userType"]:checked').val();
+    form_data["personOrCompany"] = $('input:radio[name="userType"]:checked').val();
     if(form_data.username == "" || form_data.username == null){
         errMsg.innerHTML = "请输入用户名";
         return false;
@@ -325,22 +330,20 @@ function login(){
     }
     $.ajax({
         type: "POST",
-        url: "/website/index/login",
+        url: "/backend/UserCenter/login",
         data: form_data,
         error: function(request) {
             errMsg.innerHTML = "网络出错啦!";
             return false;
         },
         success: function (data) {
-                if(data.target == "" || data.target == null){
-                    setTimeout(function(){
-                        window.location.href = "/website/index";
-                    },300);
-                }else{
-                    setTimeout(function(){
-                        window.location.href = data.target;
-                    },300);
-                }
+            if (data == 'success') {
+                setTimeout(function () {
+                    window.location.href = "/website/index";
+                }, 300);
+            } else {
+                errMsg.innerHTML = data.error;
+            }
 
         }
     });

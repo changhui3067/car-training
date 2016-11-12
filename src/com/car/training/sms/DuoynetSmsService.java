@@ -40,6 +40,7 @@ public class DuoynetSmsService implements SmsService {
         logger.info("sending '{}' to '{}'", message, phone);
         String callback = HttpClientUtils.get(sbf.toString());
         logger.info("return '{}'", callback);
+
         Map<String, String> map = RequestUtils.parseParametersFromQueryString(callback);
         String result = map.get("APIResult");
         if (!"0".equals(result))

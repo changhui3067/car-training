@@ -54,6 +54,7 @@ public class SmsManager {
             message = smsTemplate.getName(); // 特殊处理阿里大鱼短信通道把模板名丢给实现类处理
         }
         findSmsService().send(phone, message);
+        cacheManager.put(phone, random, CACHE_SMSCODE_EXPIRED_MINUTES, TimeUnit.MINUTES, CACHE_NAMESPACE_SMSCODE);
     }
 
     public void send(String phone, SmsTemplate smsTemplate, String code) throws IOException {
@@ -69,14 +70,14 @@ public class SmsManager {
 
     private String generateCode(String phone) {
         String random = CodecUtils.randomDigitalString(6);
-        cacheManager.put(phone, random, CACHE_SMSCODE_EXPIRED_MINUTES, TimeUnit.MINUTES, CACHE_NAMESPACE_SMSCODE);
         return random;
     }
 
     public boolean checkCode(String phone, String inputCode) {
-        if (inputCode == null)
-            return false;
-        return inputCode.equals(cacheManager.get(phone, CACHE_NAMESPACE_SMSCODE));
+        if(inputCode !=null){
+            return inputCode.equals(cacheManager.get(phone, CACHE_NAMESPACE_SMSCODE));
+        }
+        return false;
     }
 
 }

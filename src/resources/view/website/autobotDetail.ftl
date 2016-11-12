@@ -17,12 +17,12 @@
 <!-- main开始 -->
 
 <div class="content">
-<#if autobots?? && autobots.userCenter??>
+<#if autobot??>
 	<div class="ny_pxshi">
     	<div class="ny_pxshi_l left">
         	<div class="people_detail_basic_info">
             	<div class="photoleft">
-                	<img src="${autobots.userCenter.headLogo!}"/>
+                	<img src="${autobot.personInfo.avatarUrl!}"/>
                 </div>
                 <div class="detail right">
                	    <div>
@@ -37,13 +37,13 @@
                         <span class="paddingLeftNull">${autobots.currentPosition!}</span>
                         <span>大学本科</span>
                         <span>三年工作经验</span>
-                        <span>${autobots.userCenter.region!}</span>
+                        <span>${autobots.personInfo.regionId!}</span>
                     </div>
                     <div>
                         擅长领域：<span>售后</span><span>销售</span><span>客服</span>
                     </div>
                     <div>
-                        汽车品牌:<span class="paddingLeftNull">${autobots.autoBrand!}</span>
+                        汽车品牌:<span class="paddingLeftNull">${autobot.autoBrand!}</span>
                     </div>
                     <div>
                       联系方式: <span>1515000xxxxx</span><span>changhiu3067@sina.cn</span>
@@ -60,13 +60,13 @@
           <div class="people_other_info_box">
             	<div class="people_other_info_bar"><h4>所获认证</h4></div>
               <div class="people_other_info_list">
-            	   ${autobots.authHistroy!}
+            	   ${autobot.certRecords!}
             	</div>
           </div>
           <div class="people_other_info_box">
             	<div class="people_other_info_bar"><h4>工作经历</h4></div>
               <div class="people_other_info_list">
-                  ${autobots.workingHistroy!}
+                  ${autobot.workingHistroy!}
               </div>
           </div>
           

@@ -1,16 +1,13 @@
 package com.car.training.action.website;
 
-import com.car.training.domain.Autobots;
-import com.car.training.enums.PositionType;
-import com.car.training.service.AutobotsService;
+
+import com.car.training.bean.Autobot;
+import com.car.training.service.AutobotService;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @AutoConfig
 public class AutobotAction extends BaseAction {
@@ -18,103 +15,99 @@ public class AutobotAction extends BaseAction {
     private static final long serialVersionUID = 4839883380537115435L;
 
     @Autowired
-    private AutobotsService autobotsService;
+    private AutobotService autobotService;
 
     /**
      * 按条件筛选汽车人列表
      */
-    private List<Autobots> autobotsList;
+    private List<Autobot> autobotList;
 
-    /**
-     * 岗位类型
-     */
-    private PositionType positionType;
-    /**
-     * 执行类别
-     */
-    private Set<String> executionCategories;
+
+
+
+    private String executionCategories;
+    private String buisnessCategory;
+
+
     /**
      * 汽车行业经验
      */
-    private Integer autoYears;
+    private String autoYearRange;
     /**
      * 关健字
      */
     private String keyword;
 
-    /**
-     * 类别枚举
-     */
-    private Map<String, Object> positionTypeEnum;
 
     @Override
     public String execute() throws Exception {
-        Autobots autobots = new Autobots();
-        autobots.setPositionType(positionType);
-        autobots.setAutoYears(autoYears);
-        autobots.setCurrentPosition(keyword);
-        //按条件筛选培训师列表(包含分页)
-        autobotsList = autobotsService.findListByAutobots(autobots);
-        //设置类别枚举值
-        setPositionTypeEnumVal();
-
+        autobotList = autobotService.search(buisnessCategory,executionCategories,-1,Integer.MAX_VALUE,"");
+//        Autobots autobots = new Autobots();
+//        autobots.setPositionType(positionType);
+//        autobots.setAutoYears(autoYears);
+//        autobots.setCurrentPosition(keyword);
+//        //按条件筛选培训师列表(包含分页)
+//        autobotsList = autobotsService.findListByAutobots(autobots);
+//        //设置类别枚举值
+//        setPositionTypeEnumVal();
         return SUCCESS;
     }
 
-    public void setPositionTypeEnumVal() {
-        positionTypeEnum = new HashMap<>();
-        for (PositionType b : PositionType.values()) {
-            positionTypeEnum.put(b.getName(), b);
-        }
+//    public String search(){
+//        int minAutoYear;
+//        int maxAutoYear;
+//        try{
+//            String[] arr = autoYears.split(",");
+//            minAutoYear = Integer.valueOf(arr[0]);
+//            maxAutoYear = Integer.valueOf(arr[1]);
+//        } catch (Exception e){
+//            minAutoYear = -1;
+//            maxAutoYear = Integer.MAX_VALUE;
+//        }
+//        autobotList = autobotService.search(buisnessCategory,executionCategories,autoYearRange,keyword);
+//        return SUCCESS;
+//    }
+
+
+    public List<Autobot> getAutobotList() {
+        return autobotList;
     }
 
-    public List<Autobots> getAutobotsList() {
-        return autobotsList;
+    public void setAutobotList(List<Autobot> autobotList) {
+        this.autobotList = autobotList;
     }
 
-    public void setAutobotsList(List<Autobots> autobotsList) {
-        this.autobotsList = autobotsList;
-    }
-
-    public PositionType getPositionType() {
-        return positionType;
-    }
-
-    public void setPositionType(PositionType positionType) {
-        this.positionType = positionType;
-    }
-
-    public Set<String> getExecutionCategories() {
+    public String getExecutionCategories() {
         return executionCategories;
     }
 
-    public void setExecutionCategories(Set<String> executionCategories) {
+    public void setExecutionCategories(String executionCategories) {
         this.executionCategories = executionCategories;
     }
 
-    public Integer getAutoYears() {
-        return autoYears;
+    public String getBuisnessCategory() {
+        return buisnessCategory;
     }
 
-    public void setAutoYears(Integer autoYears) {
-        this.autoYears = autoYears;
+    public void setBuisnessCategory(String buisnessCategory) {
+        this.buisnessCategory = buisnessCategory;
     }
 
+    public String getAutoYearRange() {
+        return autoYearRange;
+    }
+
+    public void setAutoYearRange(String autoYearRange) {
+        this.autoYearRange = autoYearRange;
+    }
+
+    @Override
     public String getKeyword() {
         return keyword;
     }
 
+    @Override
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
-
-    public Map<String, Object> getPositionTypeEnum() {
-        return positionTypeEnum;
-    }
-
-    public void setPositionTypeEnum(Map<String, Object> positionTypeEnum) {
-        this.positionTypeEnum = positionTypeEnum;
-    }
-
-
 }

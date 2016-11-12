@@ -3,12 +3,12 @@
     <ul>
         <#list trainerList as t>
             <li class="oneBox">
-                <#if t?? && t.userCenter??>
-                    <div class="picContainer"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img
-                            src="${t.userCenter.headLogo!}"/></a></div>
+                <#if t?? ??>
+                    <div class="picContainer"><a href="/website/trainerDetail?trainerId=${t.id!}"><img
+                            src="${t.personInfo.avatarUrl!}"/></a></div>
                     <div class="intro">
                         <div>
-                            <div class="name">${t.userCenter.name!}</div>
+                            <div class="name">${t.personInfo.name!}</div>
                             <div class="right"><i class="iconfont" title="点赞">&#xe717;</i>${t.starLevel!}</div>
                             <div class="right"><i class="iconfont" title="评论">
                                 &#xe69b;</i><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if>

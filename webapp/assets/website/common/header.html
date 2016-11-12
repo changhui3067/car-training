@@ -15,18 +15,16 @@
                 </ul>
             </div>
         </div>
-        <#if Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' >
-        <div  class="dl_tel left" >欢迎您,${Session["userDetails"].username}</div>
-        </#if>
-        <#if Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' >
+        <#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>
+        <div  class="dl_tel left" >欢迎您,${Session["loginVO"].username}</div>
          <div class="dl_top right list-inline">
-         	<li style="background:none;"><#if Session?exists && '{}' != '${session}' && Session["loginState"]=='Y' && (Session["loginType"]=='TRAINER'||Session["loginType"]=='AUTOBOT') > <a href='<@url value='/backend/manageCenter'/>' ><#else> <a href='<@url value='/backend/companyJobManage'/>'> </#if>我的管理</a></li>
-         	<li><a href="#" onclick="javascript:logout();">退出</a></li>
+         	<li style="background:none;"><#if Session?exists && '{}' != '${session}' && Session["loginVO"]?? && (Session["loginVO"].userType=='TRAINER'||Session["loginVO"].userType=='AUTOBOT') > <a href='<@url value='/backend/manageCenter'/>' ><#else> <a href='<@url value='/backend/companyJobManage'/>'> </#if>我的管理</a></li>
+         	<li><a href="/backend/UserCenter/logout">退出</a></li>
          </div>
         <#else> 
             <div class="right register">
             	<ul>
-                    <li><a href='<@url value='/backend/register'/>'>免费注册</a></li>
+                    <li><a href='<@url value='/website/register'/>'>免费注册</a></li>
                 </ul>
             </div>
         </#if> 
@@ -67,23 +65,6 @@ function tabClick(index){
             location.href = '/website/index';
             break;
     }
-}
- 
-function logout(){
-	$.ajax({
-		type : "GET",
-		data : {},
-		dataType : "json",
-		url : "/website/index/logout",
-		success : function(data){
-			if(data.code == 200){
-				window.location = '/website/index';
-			}else{
-				alert('退出失败,请稍后再试');
-			}
-		}
-	});
-	
 }
 </script>
 <!-- 头部结束 -->	

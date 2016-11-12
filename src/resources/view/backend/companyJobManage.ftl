@@ -21,7 +21,7 @@
     </div>
     <div class="pxshi_gl">
     	<div class="pxshi_gl_l left">
-       <#include "/assets/website/backend/common/menu.html">
+       <#include "/assets/website/backend/common/menu.ftl">
        
         <div class="pxshi_gl_r right">
         <#if jobsList?? && jobsList.result??>

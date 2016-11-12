@@ -122,137 +122,185 @@
                 </div>
           </div>
         </div>
-        <div class="pxgs">
-        	<div class="pxgs_l left">
-            	<div class="pxxq">
-            	<#if jobsCompanyList?? && jobsCompanyList.result??>
-            	<ul>
-            		<#list jobsCompanyList.result as t>
-            		<#if t?? && t.company??>
-                	<li>
-                	<div class="qz"></div> <div class="pxxq_l left">
-                   	  <a href="/website/jobDetail?jobs.id=${t.id!}"><div class="zw_name">${t.name!}</div></a>
-                        <div class="dy_box">
-                        	<span class="cn" style="padding-left:0px;"><a href="#">${t.salary!}</a></span><span><a href="#">${t.workExprience!}年工作经验</a></span><span style="background:none;"><a href="#"><#if t.region??>${t.region.fullname}</#if></a></span>
-                        </div>
-                        <div class="fb_box">
-                        	<span  style="padding-left:0px;"><a href="#">发布于：${t.publishDate!?string("yyyy-MM-dd")}</a></span><span style="background:none;"><a href="#">投递后：48小时反馈 </a></span>
-                        </div>
-                    </div>
-                    <div class="pxxq_r right">
-                   	  <div class="qy">
-                        	<div class="qy_l left"><img src="${t.company.logo!}" style="width:100px;height:50px;"/></div>
-                          <div class="qy_r right">
-                            	<div class="qy_name"><span><a href="#">已有${t.company.bondsmanCount!}人担保</a></span><a href="/website/autoCompany?company.id=${t.company.id!}">${t.company.name!}</a></div>
-                                <div class="jyfw"><a href="#">${t.company.industry!}</a></div>
-                          </div>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="fl">
-                        	<#if t.welfare??>
-                        	<#list t.welfare as w>
-                        	<span><a href="#">${w!}</a></span>
-                            </#list>
-                        	</#if>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                 </li>
-                 </#if>
-            	</#list>
-              </ul>
-            	</#if>
+        <div class="pxxq_box">
+            <div class="pxxq pxgs_list">
+            <#if jobsCompanyList??>
+                <ul>
+                    <#list jobsCompanyList.result as t>
+                        <li class="zp_box">
+                            <#if t?? && t.company??>
+                                <div class="qz"></div>
+                                <div class="pxxq_l left zp_box_l">
+                                    <a href="/website/jobDetail?jobs.id=${t.id!}"> <div class="zw_name">${t.name!}</div></a>
+                                    <div class="dy_box">
+                                        <span class="cn" style="padding-left:0px;">${t.salary!}</span>
+                                        <span>${t.workExprience!}年工作经验</span>
+                                        <span style="background:none;"><#if t.region??>${t.region.fullname!}</#if></span>
+                                    </div>
+                                    <div class="fb_box">
+                                        <span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span><span style="background:none;">投递后：48小时反馈</span>
+                                    </div>
+                                </div>
+                                <div class="pxxq_r right zp_box_r">
+                                    <div class="qy">
+                                        <a href="/website/autoCompany?company.id=${t.company.id!}">
+                                            <div class="qy_l left zp_box_r_l"><img src="${t.company.logo!}" /></div>
+                                            <div class="qy_r right zp_box_r_r">
+                                                <div class="qy_name">
+                                                    <span>${t.company.name!}</span>
+                                                    <span>已有${t.company.bondsmanCount}人担保</span>
+                                                </div>
+                                                <div class="jyfw">${t.company.industry!}</div>
+                                                <div class="fl">
+                                                    <#if t.welfare??>
+                                                        <#list t.welfare as w><span>${w!}</span></#list>
+                                                    </#if>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+
+                            </#if>
+                        </li>
+                    </#list>
+                </ul>
+            </#if>
             </div>
-            	<#if jobsCompanyList?? && jobsCompanyList.result?? && jobsCompanyList.result?size gt 0>
-            	<div class="fypage" >
-            	
-            	<#if pageNo gt 5>
-            	<a data-class="p5" href="javascript:void(0)" onclick="prevFivePage()"">上五页</a>
-            	<#else>
-            	<span data-class="p5">上五页</span>
-            	</#if>
-            	<#if pageNo gt 1>
-            	<a data-class="p1" href="/website/recruit/?companyType=COMPANY&pageNo=${pageNo-1}">上一页</a>
-            	<#else>
-            	<span data-class="p1" class="">上一页</span>
-            	</#if>
-            	
-            	<div data-class="pag" style="padding:0px;margin:0px;display:inline;">
-            	<#if pageNo lt 6>
-            	<#list 1..5 as t>
-            	<#if t = pageNo>
-            	<span>${t!}</span>
-            	<#else>
-            	<a href="/website/recruit/?companyType=COMPANY&pageNo=${t!}">${t!}</a>
-            	</#if>
-            	<#if t = jobsCompanyList.totalPage>
-            	<#break>
-            	</#if>
-            	</#list>
-            	
-            	<#elseif pageNo%5 gt 0>
-            	<#list (pageNo/5)?floor*5+1..(pageNo/5)?floor*5+5 as t>
-            	<#if t = pageNo>
-            	<span>${t!}</span>
-            	<#else>
-            	<a href="/website/recruit/?companyType=COMPANY&pageNo=${t!}">${t!}</a>
-            	</#if>
-            	<#if t = jobsCompanyList.totalPage>
-            	<#break>
-            	</#if>
-            	</#list>
-            	
-            	<#elseif pageNo%5 = 0>
-            	<#list ((pageNo/5)?floor-1)*5+1..(pageNo/5)?floor*5 as t>
-            	<#if t = pageNo>
-            	<span>${t!}</span>
-            	<#else>
-            	<a href="/website/recruit/?companyType=COMPANY&pageNo=${t!}">${t!}</a>
-            	</#if>
-            	<#if t = jobsCompanyList.totalPage>
-            	<#break>
-            	</#if>
-            	</#list>
-            	</#if>
-            	</div>
-            	
-            	<#if (jobsCompanyList.totalPage - pageNo) gt 0>
-            	<a data-class="n1" href="/website/recruit/?companyType=COMPANY&pageNo=${pageNo+1}">下一页</a>
-            	<#else>
-            	<span data-class="n1" class="">下一页</span>
-            	</#if>
-            	<#if (jobsCompanyList.totalPage - ((pageNo/5)?ceiling * 5)) gt 4>
-            	<a data-class="n5" href="javascript:void(0)" onclick="nextFivePage()">下五页</a>
-            	<#else>
-            	<span data-class="n5">下五页</span>
-            	</#if>
-            	 
-            	跳转到 
-            	<select name="PageSelect" onchange="jumpPage()">
-            	<#list 1..jobsCompanyList.totalPage as t>
-            	<#if t = pageNo>
-            	<option selected="selected" value="${t!}">第${t!}页</option>
-            	<#else>
-            	<option value="${t!}">第${t!}页</option>
-            	</#if>
-            	</#list>
-               </select>
-               </div>
-               </#if>
-            </div>
-            <div class="pxgs_r right">
-            	<div class="qy_logo">
-                	<ul>
-                		<#list jobsCompanyList.result as t>
-            			<#if t?? && t.company?? && t ? size gt 0>
-                    	<li><a href="#"><img src="${t.company.logo!}" style="width:226px;height:76px;"/></a></li>
-                		</#if>
-                		</#list>
-                    </ul>
-                </div>
-            </div>
-            <div class="clear"></div>
         </div>
+        <#--<div class="pxgs">-->
+        	<#--<div class="pxgs_l left">-->
+            	<#--<div class="pxxq">-->
+            	<#--<#if jobsCompanyList?? && jobsCompanyList.result??>-->
+            	<#--<ul>-->
+            		<#--<#list jobsCompanyList.result as t>-->
+            		<#--<#if t?? && t.company??>-->
+                	<#--<li>-->
+                	<#--<div class="qz"></div> <div class="pxxq_l left">-->
+                   	  <#--<a href="/website/jobDetail?jobs.id=${t.id!}"><div class="zw_name">${t.name!}</div></a>-->
+                        <#--<div class="dy_box">-->
+                        	<#--<span class="cn" style="padding-left:0px;"><a href="#">${t.salary!}</a></span><span><a href="#">${t.workExprience!}年工作经验</a></span><span style="background:none;"><a href="#"><#if t.region??>${t.region.fullname}</#if></a></span>-->
+                        <#--</div>-->
+                        <#--<div class="fb_box">-->
+                        	<#--<span  style="padding-left:0px;"><a href="#">发布于：${t.publishDate!?string("yyyy-MM-dd")}</a></span><span style="background:none;"><a href="#">投递后：48小时反馈 </a></span>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                    <#--<div class="pxxq_r right">-->
+                   	  <#--<div class="qy">-->
+                        	<#--<div class="qy_l left"><img src="${t.company.logo!}" style="width:100px;height:50px;"/></div>-->
+                          <#--<div class="qy_r right">-->
+                            	<#--<div class="qy_name"><span><a href="#">已有${t.company.bondsmanCount!}人担保</a></span><a href="/website/autoCompany?company.id=${t.company.id!}">${t.company.name!}</a></div>-->
+                                <#--<div class="jyfw"><a href="#">${t.company.industry!}</a></div>-->
+                          <#--</div>-->
+                            <#--<div class="clear"></div>-->
+                        <#--</div>-->
+                        <#--<div class="fl">-->
+                        	<#--<#if t.welfare??>-->
+                        	<#--<#list t.welfare as w>-->
+                        	<#--<span><a href="#">${w!}</a></span>-->
+                            <#--</#list>-->
+                        	<#--</#if>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                    <#--<div class="clear"></div>-->
+                 <#--</li>-->
+                 <#--</#if>-->
+            	<#--</#list>-->
+              <#--</ul>-->
+            	<#--</#if>-->
+            <#--</div>-->
+            	<#--<#if jobsCompanyList?? && jobsCompanyList.result?? && jobsCompanyList.result?size gt 0>-->
+            	<#--<div class="fypage" >-->
+            	<#---->
+            	<#--<#if pageNo gt 5>-->
+            	<#--<a data-class="p5" href="javascript:void(0)" onclick="prevFivePage()"">上五页</a>-->
+            	<#--<#else>-->
+            	<#--<span data-class="p5">上五页</span>-->
+            	<#--</#if>-->
+            	<#--<#if pageNo gt 1>-->
+            	<#--<a data-class="p1" href="/website/recruit/?companyType=COMPANY&pageNo=${pageNo-1}">上一页</a>-->
+            	<#--<#else>-->
+            	<#--<span data-class="p1" class="">上一页</span>-->
+            	<#--</#if>-->
+            	<#---->
+            	<#--<div data-class="pag" style="padding:0px;margin:0px;display:inline;">-->
+            	<#--<#if pageNo lt 6>-->
+            	<#--<#list 1..5 as t>-->
+            	<#--<#if t = pageNo>-->
+            	<#--<span>${t!}</span>-->
+            	<#--<#else>-->
+            	<#--<a href="/website/recruit/?companyType=COMPANY&pageNo=${t!}">${t!}</a>-->
+            	<#--</#if>-->
+            	<#--<#if t = jobsCompanyList.totalPage>-->
+            	<#--<#break>-->
+            	<#--</#if>-->
+            	<#--</#list>-->
+            	<#---->
+            	<#--<#elseif pageNo%5 gt 0>-->
+            	<#--<#list (pageNo/5)?floor*5+1..(pageNo/5)?floor*5+5 as t>-->
+            	<#--<#if t = pageNo>-->
+            	<#--<span>${t!}</span>-->
+            	<#--<#else>-->
+            	<#--<a href="/website/recruit/?companyType=COMPANY&pageNo=${t!}">${t!}</a>-->
+            	<#--</#if>-->
+            	<#--<#if t = jobsCompanyList.totalPage>-->
+            	<#--<#break>-->
+            	<#--</#if>-->
+            	<#--</#list>-->
+            	<#---->
+            	<#--<#elseif pageNo%5 = 0>-->
+            	<#--<#list ((pageNo/5)?floor-1)*5+1..(pageNo/5)?floor*5 as t>-->
+            	<#--<#if t = pageNo>-->
+            	<#--<span>${t!}</span>-->
+            	<#--<#else>-->
+            	<#--<a href="/website/recruit/?companyType=COMPANY&pageNo=${t!}">${t!}</a>-->
+            	<#--</#if>-->
+            	<#--<#if t = jobsCompanyList.totalPage>-->
+            	<#--<#break>-->
+            	<#--</#if>-->
+            	<#--</#list>-->
+            	<#--</#if>-->
+            	<#--</div>-->
+            	<#---->
+            	<#--<#if (jobsCompanyList.totalPage - pageNo) gt 0>-->
+            	<#--<a data-class="n1" href="/website/recruit/?companyType=COMPANY&pageNo=${pageNo+1}">下一页</a>-->
+            	<#--<#else>-->
+            	<#--<span data-class="n1" class="">下一页</span>-->
+            	<#--</#if>-->
+            	<#--<#if (jobsCompanyList.totalPage - ((pageNo/5)?ceiling * 5)) gt 4>-->
+            	<#--<a data-class="n5" href="javascript:void(0)" onclick="nextFivePage()">下五页</a>-->
+            	<#--<#else>-->
+            	<#--<span data-class="n5">下五页</span>-->
+            	<#--</#if>-->
+            	 <#---->
+            	<#--跳转到 -->
+            	<#--<select name="PageSelect" onchange="jumpPage()">-->
+            	<#--<#list 1..jobsCompanyList.totalPage as t>-->
+            	<#--<#if t = pageNo>-->
+            	<#--<option selected="selected" value="${t!}">第${t!}页</option>-->
+            	<#--<#else>-->
+            	<#--<option value="${t!}">第${t!}页</option>-->
+            	<#--</#if>-->
+            	<#--</#list>-->
+               <#--</select>-->
+               <#--</div>-->
+               <#--</#if>-->
+            <#--</div>-->
+            <#--<div class="pxgs_r right">-->
+            	<#--<div class="qy_logo">-->
+                	<#--<ul>-->
+                		<#--<#list jobsCompanyList.result as t>-->
+            			<#--<#if t?? && t.company?? && t ? size gt 0>-->
+                    	<#--<li><a href="#"><img src="${t.company.logo!}" style="width:226px;height:76px;"/></a></li>-->
+                		<#--</#if>-->
+                		<#--</#list>-->
+                    <#--</ul>-->
+                <#--</div>-->
+            <#--</div>-->
+            <#--<div class="clear"></div>-->
+        <#--</div>-->
     </div>
         
         
