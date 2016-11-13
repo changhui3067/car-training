@@ -674,6 +674,20 @@ add our css below
     width:120px;
 }
 
+.forgetPsd {
+    height: 450px;
+    background:#fff; 
+    padding:120px 200px;
+}
+
+.forgetPsd button {
+    padding: 5px 20px 5px 20px;
+}
+
+#checkeRadio, #submit{
+    padding:8px 0px 8px;
+}
+
 
 
 
