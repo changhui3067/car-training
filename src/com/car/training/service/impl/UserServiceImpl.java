@@ -1,7 +1,5 @@
 package com.car.training.service.impl;
 
-import com.car.training.bean.LoginBean;
-import com.car.training.bean.LoginCompany;
 import com.car.training.bean.LoginUser;
 import com.car.training.dao.BaseDAO;
 import com.car.training.enums.UserType;
@@ -20,58 +18,45 @@ public class UserServiceImpl implements UserService {
     @Autowired
     BaseDAO baseDAO;
 
-    public LoginBean login(String username, boolean isUser, String password) {
+    public LoginUser login(String username, String password) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
         map.put("password", password);
-        if (isUser) {
-            return (LoginBean) baseDAO.findOne(LoginUser.class, map);
-        } else {
-            return (LoginBean) baseDAO.findOne(LoginCompany.class, map);
-        }
+        return (LoginUser) baseDAO.findOne(LoginUser.class, map);
     }
 
     @Override
     public boolean existUser(String username, UserType userType) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
-        if (userType == UserType.AUTOBOT || userType == UserType.TRAINER) {
-            return baseDAO.findOne(LoginUser.class, map) != null;
-        } else {
-            return baseDAO.findOne(LoginCompany.class, map) != null;
-        }
+        map.put("userType", userType);
+        return baseDAO.findOne(LoginUser.class, map) != null;
     }
 
     @Override
-    public LoginBean getUser(String username, UserType userType) {
+    public boolean existUser(String username) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
-        if (userType == UserType.AUTOBOT || userType == UserType.TRAINER) {
-            return (LoginBean) baseDAO.findOne(LoginUser.class, map);
-        } else {
-            return (LoginBean) baseDAO.findOne(LoginCompany.class, map);
-        }
+        return baseDAO.findOne(LoginUser.class, map) != null;
+    }
+
+    @Override
+    public LoginUser getUser(String username, UserType userType) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("username", username);
+        return (LoginUser) baseDAO.findOne(LoginUser.class, map);
     }
 
     @Override
     public boolean updatePassword(String username, UserType userType, String newPassword) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
-        if (userType == UserType.AUTOBOT || userType == UserType.TRAINER) {
-            LoginUser user = (LoginUser) baseDAO.findOne(LoginUser.class, map);
-            if (user == null) {
-                return false;
-            }
-            user.setPassword(newPassword);
-            baseDAO.update(user);
-        } else {
-            LoginCompany company = (LoginCompany) baseDAO.findOne(LoginCompany.class, map);
-            if (company == null) {
-                return false;
-            }
-            company.setPassword(newPassword);
-            baseDAO.update(company);
+        LoginUser user = (LoginUser) baseDAO.findOne(LoginUser.class, map);
+        if (user == null) {
+            return false;
         }
+        user.setPassword(newPassword);
+        baseDAO.update(user);
         return true;
     }
 

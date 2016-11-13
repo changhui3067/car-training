@@ -1,7 +1,9 @@
 package com.car.training.service.impl;
 
 import com.car.training.bean.Trainer;
+import com.car.training.dao.LikeDAO;
 import com.car.training.service.LikeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,43 +11,28 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LikeServiceImpl implements LikeService {
+
+    @Autowired
+    LikeDAO likeDAO;
+
+
     @Override
-    public boolean isLike(int uidA, int uidB) {
-        return true;
+    public boolean like(int uid, int targetUid) {
+        return likeDAO.like(uid,targetUid);
     }
 
     @Override
-    public boolean isLike(int targetUid) {
-        return true;
+    public boolean unLike(int uid, int targetUid) {
+        return likeDAO.unLike(uid,targetUid);
     }
 
     @Override
-    public boolean isLike(Trainer trainer) {
-        return true;
-    }
-
-    @Override
-    public boolean isLike(int uid, Trainer trainer) {
-        return isLike(uid,trainer.getPersonInfo().getId());
-    }
-
-    @Override
-    public boolean like(int targetUid) {
-        return true;
-    }
-
-    @Override
-    public boolean unLike(int targetUid) {
-        return true;
+    public boolean isLike(int uid, int targetUid) {
+        return likeDAO.isLike(uid,targetUid);
     }
 
     @Override
     public int likeNumber(int targetUid) {
-        return 30;
-    }
-
-    @Override
-    public int likeNumber(Trainer trainer) {
-        return 30;
+        return likeDAO.likeNumber(targetUid);
     }
 }

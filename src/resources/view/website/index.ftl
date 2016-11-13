@@ -33,14 +33,6 @@
                     <div class="errMsg col-sm-8"></div>
                     <div class="forgetPswd col-sm-4"><a href='<@url value='/backend/forgetPswd'/>'>忘记密码?</a></div>
                 </div>
-                <div id="checkeRadio">
-                    <label class="radio-inline col-sm-5">
-                        <input name="userType" id="userType" type="radio"  value="PERSON" checked/>个人
-                    </label>
-                    <label class="radio-inline col-sm-6">
-                        <input type="radio" name="userType" id="userType" value="COMPANY" />企业
-                    </label>
-                </div>
                 <div><button>登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button></div>
                 </form>
             </div>
@@ -86,18 +78,18 @@
          <div class="pxshi_r right">
           <#if trainerList??>
           <ul>
-           <#list trainerList as t>
+           <#list trainerList as a_trainer>
            <li class="oneBox">
-              <#if t?? >
-              <div class="picContainer"><a href="/website/trainerDetail?trainerId=${t.id!}"><img src="${t.personInfo.avatarUrl!}" /></a></div>
+              <#if a_trainer?? >
+              <div class="picContainer"><a href="/website/trainerDetail?trainerId=${a_trainer.id!}"><img src="${a_trainer.personInfo.avatarUrl!}" /></a></div>
               <div class="intro">
                 <div>
-                    <div class="name">${t.personInfo.name!}</div>
-                    <div class="right">${t.starLevel!}</div>
-                    <div class="right"><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if>人</div>
+                    <div class="name">${a_trainer.personInfo.name!}</div>
+                    <div class="right">${a_trainer.starLevel!}</div>
+                    <div class="right"><#if a_trainer.autobotsCommentList??> ${a_trainer.autobotsCommentList.size!}<#else>0</#if>人</div>
                     <div class="clear"></div>
                 </div>
-                <div>${t.currentPosition!} </div>
+                <div>${a_trainer.currentPosition!} </div>
                 <div>
               <ul>
                   <li><span class="iconfont" title="留言多">&#xe756;</span></li>
@@ -123,19 +115,19 @@
  <div class="pxsheng">
      <#if autobotList??>
      <ul>
-         <#list autobotList as t>
+         <#list autobotList as a_autobot>
          <li class="oneBox">
-             <#if t??>
-             <div class="picContainer"><a href="/website/autobotDetail?autobotId=${t.id!}"><img src="${t.personInfo.avatarUrl!}" /></a></div>
+             <#if a_autobot??>
+             <div class="picContainer"><a href="/website/autobotDetail?autobotId=${a_autobot.id!}"><img src="${a_autobot.personInfo.avatarUrl!}" /></a></div>
              <div class="intro">
                  <div>
-                     <div class="name">${t.personInfo.name!}</div>
+                     <div class="name">${a_autobot.personInfo.name!}</div>
                      <div class="right">34人</div>
-                     <div class="right">${t.autoYears!}年</div>
+                     <div class="right">${a_autobot.autoYears!}年</div>
                      <div class="clear"></div>
                  </div>
                  <div>
-                     <div>${t.currentPosition!}</div>
+                     <div>${a_autobot.currentPosition!}</div>
                      <div class="clear"></div>
                  </div>
                  <div>
@@ -344,12 +336,10 @@ function login(){
             return false;
         },
         success: function (data) {
-            if(data.error){
-                errMsg.innerHTML = data.error;
-            } else if(data.target){
-                window.location.href = data.target;
+            if (data == 'success') {
+                window.location = "/website/index";
             } else {
-                window.location.href = "/backend/applyJobHistory";
+                errMsg.innerHTML = data.error;
             }
         }
     });

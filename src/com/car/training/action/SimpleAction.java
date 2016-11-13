@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by bill on 11/7/16.
  */
-public class SimpleJsonAction extends BaseAction {
+public class SimpleAction extends BaseAction {
     private Object data;
 
     protected String successJSON(){

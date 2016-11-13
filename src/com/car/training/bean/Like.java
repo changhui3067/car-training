@@ -14,10 +14,10 @@ public class Like {
     private int id;
 
     @Column
-    private String userId;
+    private int userId;
 
     @Column
-    private String targetUserId;
+    private int targetUserId;
 
     public int getId() {
         return id;
@@ -27,19 +27,28 @@ public class Like {
         this.id = id;
     }
 
-    public String getUserId() {
+    public Like(int userId, int targetUserId) {
+        this.userId = userId;
+        this.targetUserId = targetUserId;
+    }
+
+    public Like(){
+
+    }
+
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public String getTargetUserId() {
+    public int getTargetUserId() {
         return targetUserId;
     }
 
-    public void setTargetUserId(String targetUserId) {
+    public void setTargetUserId(int targetUserId) {
         this.targetUserId = targetUserId;
     }
 }

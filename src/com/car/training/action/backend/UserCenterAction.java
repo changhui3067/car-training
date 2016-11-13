@@ -1,6 +1,6 @@
 package com.car.training.action.backend;
 
-import com.car.training.action.SimpleJsonAction;
+import com.car.training.action.SimpleAction;
 import com.car.training.bean.*;
 import com.car.training.dao.BaseDAO;
 import com.car.training.enums.UserType;
@@ -16,14 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by bill on 11/7/16.
  */
 @AutoConfig
-public class UserCenterAction extends SimpleJsonAction {
+public class UserCenterAction extends SimpleAction {
 
     private static final long serialVersionUID = 7654848347188004593L;
 
@@ -34,9 +32,11 @@ public class UserCenterAction extends SimpleJsonAction {
     @Autowired
     private SmsManager smsManager;
 
-    private UserType userType;
+    @Autowired
+    private UserService userService;
 
-    private String personOrCompany;
+
+    private UserType userType;
 
     private String password;
 
@@ -44,14 +44,11 @@ public class UserCenterAction extends SimpleJsonAction {
 
     private String vercode;
 
-    @Autowired
-    private UserService userService;
 
 
     @JsonConfig(root = "data")
     public String login() {
-        //TODO sync with frondend the paramater
-        LoginBean user = userService.login(username, "PERSON".equals(personOrCompany), password);
+        LoginUser user = userService.login(username, password);
         if (user == null) {
             return errorJSON("您的账号或密码错误！");
         } else {
@@ -75,24 +72,24 @@ public class UserCenterAction extends SimpleJsonAction {
 
     @JsonConfig(root = "data")
     public String register() {
-        if (userService.existUser(username, userType)) {
+        if (userService.existUser(username)) {
             return errorJSON("用户名已存在！");
         }
         if (!smsManager.checkCode(username, vercode)) {
             return errorJSON("wrong verification code");
         }
         PersonInfo personInfo = null;
-        LoginBean user;
+        LoginUser user;
+        user = new LoginUser();
+
         switch (userType) {
             case TRAINER:
             case AUTOBOT:
-                user = new LoginUser();
                 personInfo = new PersonInfo();
                 personInfo.setMobile(username);
                 break;
             case COMPANY:
             case STORE:
-                user = new LoginCompany();
                 break;
             default:
                 return errorJSON("wrong user type");
@@ -103,20 +100,20 @@ public class UserCenterAction extends SimpleJsonAction {
         switch (userType) {
             case TRAINER:
                 Trainer trainer = new Trainer();
-                trainer.setLoginUser((LoginUser) user);
+                trainer.setLoginUser(user);
                 trainer.setPersonInfo(personInfo);
                 baseDAO.save(trainer);
                 break;
             case AUTOBOT:
                 Autobot autobot = new Autobot();
-                autobot.setLoginUser((LoginUser) user);
+                autobot.setLoginUser(user);
                 autobot.setPersonInfo(personInfo);
                 baseDAO.save(autobot);
                 break;
             case COMPANY:
             case STORE:
                 Company company = new Company();
-                company.setLoginCompany((LoginCompany) user);
+                company.setLoginUser(user);
                 baseDAO.save(company);
                 break;
             default:
@@ -140,7 +137,7 @@ public class UserCenterAction extends SimpleJsonAction {
 
     @JsonConfig(root = "data")
     public String sendmsgForRegister() {
-        if (userService.existUser(username, userType)) {
+        if (userService.existUser(username)) {
             return errorJSON("手机账号已注册！");
         }
         try {
@@ -154,7 +151,7 @@ public class UserCenterAction extends SimpleJsonAction {
 
     @JsonConfig(root = "data")
     public String sendmsgForResetPassword() {
-        if (userService.existUser(username, userType)) {
+        if (userService.existUser(username)) {
             return errorJSON("user not exist");
         }
         try {
@@ -202,11 +199,4 @@ public class UserCenterAction extends SimpleJsonAction {
         this.userType = UserType.valueOf(userType);
     }
 
-    public String getPersonOrCompany() {
-        return personOrCompany;
-    }
-
-    public void setPersonOrCompany(String personOrCompany) {
-        this.personOrCompany = personOrCompany;
-    }
 }

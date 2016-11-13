@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "loginUser")
-public class LoginUser implements LoginBean{
+public class LoginUser{
     @Id
     @GeneratedValue
     @Column
