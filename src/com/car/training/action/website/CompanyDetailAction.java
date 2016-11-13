@@ -4,8 +4,11 @@ import com.car.training.action.SimpleJsonAction;
 import com.car.training.bean.Company;
 import com.car.training.dao.BaseDAO;
 import com.car.training.service.CompanyService;
+import com.car.training.bean.Job;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * Created by Bill on 11/13/2016.
@@ -21,13 +24,15 @@ public class CompanyDetailAction extends SimpleJsonAction {
 
     private Company company;
 
-
     private int companyId;
+
+    private List<Job> jobList;
 
     @Override
     public String execute() throws Exception {
         if(companyId!=0){
             company = companyService.findById(companyId);
+            //jobList = JobService.getJobsById();
         }else{
             return redirectToIndex();
         }
@@ -41,5 +46,17 @@ public class CompanyDetailAction extends SimpleJsonAction {
 
     public void setCompanyId(int companyId) {
         this.companyId = companyId;
+    }
+
+    public Company getCompany() { return company;}
+
+    public void setCompany(Company company) { this.company = company;}
+
+    public List<Job> getJobList() {
+        return jobList;
+    }
+
+    public void setJobList(List<Job> jobList) {
+        this.jobList = jobList;
     }
 }

@@ -24,6 +24,7 @@ button.commonClickButton{
     padding: 5px 10px;
     border: solid 1px #3D9CCC;
     background: #fff;
+    color: #3D9CCC;
 }
 
 button.commonClickButton:hover{

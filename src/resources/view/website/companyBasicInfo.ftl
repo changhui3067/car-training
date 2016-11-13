@@ -6,7 +6,7 @@
             <button class="commonClickButton">我为公司担保</button>
             <div><b>经营范围：</b>汽车销售/以及原厂配件/售后服务</div>
             <div><b>公司规模：</b>${company.scale!}</div>
-            <div><b>公司地址：</b><#if company.region??>${company.region.fullname!}</#if></div>
+            <div><b>公司地址：</b><#if company.region??>${company.address!}</#if></div>
         </div>
     </div>
     <div class="companyBasicInfoBox">

@@ -116,7 +116,7 @@ span.paddingLeftNull {
 
 /***************************** CSS for company detail page *********************************/
 .companyDetailTop {
-	height: 300px;
+	height: 210px;
     padding: 30px 20px 0px 30px;
     background-color: rgba(255,255,255,0.6);
 }
@@ -133,9 +133,11 @@ span.paddingLeftNull {
 .companyNameBox > div{
 	line-height: 50px;
 	margin-bottom: 15px;
+    min-width: 200px;
 }
 
 .companyNameBox h1 {
+    line-height: 50px;
 	font-size: 24px;
     color: #000;
 }
@@ -153,12 +155,14 @@ span.paddingLeftNull {
 }
 
 .companyBasicInfo {
-	width: 270px;
     padding: 15px;
+    background: #fff;
+    margin-top: 20px;
 }
 
 .companyBasicInfoBox {
 	margin-bottom: 30px;
+    width: 260px;
 }
 
 .companyBasicInfoBox h4 {
@@ -214,7 +218,6 @@ span.paddingLeftNull {
 }
 
 .companyDetailOther {
-	width: 860px;
 	margin-top: 20px;
     padding: 15px;
     background: #fff;
@@ -223,8 +226,9 @@ span.paddingLeftNull {
 
 .company_other_info_bar{ background:#f0f8fc; height:40px;   padding:0px 15px;}
 .company_other_info_bar h4{ display:block;height:40px; line-height:40px; padding-left:40px; font-size:16px; color:#000; font-weight:100; }
+.company_other_info_bar h4 > span { float: right; font-size: 12px; color: #777;}
 .company_other_info_box{ width: 860px; border-bottom:1px dotted #ccc; padding:20px 15px 20px 15px; margin-bottom:30px;}
-
+.company_other_info_text{ line-height:24px; padding:30px 15px 0px 15px; font-size:12px;}
 
 
 /***************************** end of CSS company detail page *********************************/
@@ -472,7 +476,7 @@ span.paddingLeftNull {
 .gongsi_jj h4 span{ display:block; float:right;color:#ff7f00; font-size:12px; font-weight:100;}
 .gongsi_jj h4 span a,.gongsi_jj h4 span a:hover{color:#ff7f00;}
 
-.gongsi_jj_box{ line-height:24px; padding:30px 15px 0px 15px; font-size:12px;}
+
 
 .qiye_zp{ padding:20px 10px 40px 10px; margin-bottom:30px;}
 .qiche_bt{ background:#f0f8fc; height:40px;   padding:0px 5px;}

@@ -24,7 +24,7 @@
     
     	<div class="companyDetailTop" >
         	<div class="companyLogo left">
-                <img src="http://obu3flkwk.bkt.clouddn.com/website/images/zpqy_logo.jpg" />
+                <img src="${company.logoUrl!}" />
             </div>
             <div class="companyNameBox left">
                 <div>
@@ -44,14 +44,14 @@
         </div>
         <div class="companyDetailContent">
         	<div class="companyDetailOther left">
-            	<div class="gongsi_jj">
+            	<div class="company_other_info_box">
                     <div class="company_other_info_bar"><h4>公司简介</h4></div>
-                	<div class="gongsi_jj_box">
-    	                 ${company.intro!}
+                	<div class="company_other_info_text">
+    	                 ${company.introduction!}
                	    </div>
                 </div>
-            	<div class="qiye_zp">
-            	   <div class="qiche_bt">
+            	<div class="company_other_info_box">
+            	   <div class="company_other_info_bar">
             	       <h4><span>共<#if jobsCompanyList??>${jobsCompanyList.totalResults!}<#else>0</#if>个职位</span>招聘职位</h4>
                     </div>
             	   <div class="autoCompany_zp">
