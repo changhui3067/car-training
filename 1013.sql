@@ -3,6 +3,7 @@
 -- Host: localhost    Database: car_training
 -- ------------------------------------------------------
 -- Server version	5.7.16-0ubuntu0.16.04.1
+use car_training;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
