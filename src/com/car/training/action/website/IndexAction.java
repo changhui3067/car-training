@@ -1,11 +1,9 @@
 package com.car.training.action.website;
 
 import com.car.training.bean.Autobot;
-import com.car.training.bean.PersonInfo;
 import com.car.training.bean.Trainer;
 import com.car.training.service.LikeService;
 import com.car.training.service.PromotionService;
-import com.car.training.vo.LikeVO;
 import com.car.training.vo.LoginVO;
 import org.apache.struts2.ServletActionContext;
 import org.ironrhino.core.metadata.AutoConfig;
@@ -117,10 +115,12 @@ public class IndexAction extends BaseAction {
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession();
         LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
-        if (loginVO != null && topTrainers != null) {
+        if (topTrainers != null) {
             for (Trainer trainer : topTrainers) {
-                likeNumberMap.put(trainer,30);
-                isLikeMap.put(trainer,likeService.isLike(trainer));
+                likeNumberMap.put(trainer,likeService.likeNumber(trainer.getId()));
+                if(loginVO !=null){
+                    isLikeMap.put(trainer,likeService.isLike(loginVO.getId(),trainer.getId()));
+                }
             }
         }
     }

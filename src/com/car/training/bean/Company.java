@@ -14,8 +14,8 @@ public class Company {
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(unique = true)
-    private LoginCompany loginCompany;
+    @JoinColumn(name = "loginCompany_id", unique = true)
+    private LoginUser loginUser;
 
 
     @Column
@@ -94,12 +94,11 @@ public class Company {
         this.introduction = introduction;
     }
 
-
-    public LoginCompany getLoginCompany() {
-        return loginCompany;
+    public LoginUser getLoginUser() {
+        return loginUser;
     }
 
-    public void setLoginCompany(LoginCompany loginCompany) {
-        this.loginCompany = loginCompany;
+    public void setLoginUser(LoginUser loginUser) {
+        this.loginUser = loginUser;
     }
 }

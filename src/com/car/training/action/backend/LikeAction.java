@@ -4,7 +4,7 @@ package com.car.training.action.backend;
  * Created by bill on 11/12/16.
  */
 
-import com.car.training.action.SimpleJsonAction;
+import com.car.training.action.SimpleAction;
 import com.car.training.enums.UserType;
 import com.car.training.service.LikeService;
 import com.car.training.vo.LoginVO;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @AutoConfig
-public class LikeAction extends SimpleJsonAction {
+public class LikeAction extends SimpleAction {
 
     private int targetUserId;
 
@@ -31,7 +31,7 @@ public class LikeAction extends SimpleJsonAction {
 
     @JsonConfig(root = "data")
     public String like() {
-        if (likeService.like(targetUserId)) {
+        if (likeService.like(loginVO.getId(),targetUserId)) {
             return successJSON();
         } else {
             return errorJSON("");
@@ -40,7 +40,7 @@ public class LikeAction extends SimpleJsonAction {
 
     @JsonConfig(root = "data")
     public String unLike() {
-        if (likeService.unLike(targetUserId)) {
+        if (likeService.unLike(loginVO.getId(),targetUserId)) {
             return successJSON();
         } else {
             return errorJSON("");
@@ -55,8 +55,7 @@ public class LikeAction extends SimpleJsonAction {
         if (loginVO !=null && loginVO.getUserType().equals(UserType.AUTOBOT)){
             return null;
         }else{
-            setTargetUrl("/website/index");
-            return REDIRECT;
+            return errorJSON("User not logged in");
         }
     }
 

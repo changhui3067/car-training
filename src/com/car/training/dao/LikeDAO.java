@@ -5,8 +5,10 @@ package com.car.training.dao;
  */
 public interface LikeDAO {
     boolean isLike(int uidA,int uidB);
-    boolean isLike(int targetUid);
-    boolean like(int targetUid);
-    boolean unLike(int targetUid);
+
+    boolean like(int uid ,int targetUid);
+
+    boolean unLike(int uid , int targetUid);
+
     int likeNumber(int targetUid);
 }
