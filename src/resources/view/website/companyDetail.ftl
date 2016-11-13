@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+从没panydetail<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <#escape x as x?html><html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -52,24 +52,23 @@
                 </div>
             	<div class="company_other_info_box">
             	   <div class="company_other_info_bar">
-            	       <h4><span>共<#if jobsCompanyList??>${jobsCompanyList.totalResults!}<#else>0</#if>个职位</span>招聘职位</h4>
+            	       <h4><span>共<#if jobList??>${jobList?size!}<#else>0</#if>个职位</span>招聘职位</h4>
                     </div>
             	   <div class="autoCompany_zp">
-                        <#if jobsCompanyList?? && jobsCompanyList.result??>
+                        <#if jobList??>
                         <ul>
-                        <#list jobsCompanyList.result as t>
-                        <#if t?? && t.company??>
+                        <#list jobList as t>
                         <li class="zp_box">
                             <div class="left zp_box_l autoCompany_zp_l">
-                                <a href="/website/jobDetail?jobs.id=${t.id!}"> <div class="zw_name">${t.name!}</div></a>
+                                <a href="/website/jobDetail?jobs.id=${t.id!}"> <div class="zw_name">${t.title!}</div></a>
                                 <div class="dy_box">
-                                    <span class="cn" style="padding-left:0px;">${t.salary!}</span>
-                                    <span>${t.workExprience!}年工作经验</span>
-                                    <span style="background:none;"><#if t.region??>${t.region.fullname}</#if></span>
+                                    <span class="cn" style="padding-left:0px;">${t.salary!}元</span>
+                                    <span>${t.workExperienceRequirement!}年工作经验</span>
+                                    <span style="background:none;"><#if t.regionId??>${t.regionId}</#if></span>
                                 </div>
                         
                                 <div class="fb_box">
-                                    <span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span>
+                                    <span  style="padding-left:0px;">发布于：<#if t.publishDate??>${t.publishDate!?string("yyyy-MM-dd")}</#if></span>
                                     <span style="background:none;">投递后：48小时反馈</span>
                                 </div>
                             </div>
@@ -78,7 +77,6 @@
                             </div>
                             <div class="clear"></div>
                         </li>
-                        </#if>
                         </#list>
                         </ul>
                         </#if>

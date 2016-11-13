@@ -5,6 +5,7 @@ import com.car.training.bean.Company;
 import com.car.training.dao.BaseDAO;
 import com.car.training.service.CompanyService;
 import com.car.training.bean.Job;
+import com.car.training.service.JobService;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,6 +21,9 @@ public class CompanyDetailAction extends SimpleJsonAction {
     CompanyService companyService;
 
     @Autowired
+    JobService jobService;
+
+    @Autowired
     BaseDAO baseDAO;
 
     private Company company;
@@ -32,7 +36,7 @@ public class CompanyDetailAction extends SimpleJsonAction {
     public String execute() throws Exception {
         if(companyId!=0){
             company = companyService.findById(companyId);
-            //jobList = JobService.getJobsById();
+            jobList = jobService.findJobsByTargetCompany(companyId);
         }else{
             return redirectToIndex();
         }

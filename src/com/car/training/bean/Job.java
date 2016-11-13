@@ -17,7 +17,7 @@ public class Job {
     private String title;
 
     @Column
-    private String publishCompanyId;
+    private int publishCompanyId;
 
     public int getId() {
         return id;
@@ -35,11 +35,11 @@ public class Job {
         this.title = title;
     }
 
-    public String getPublishCompanyId() {
+    public int getPublishCompanyId() {
         return publishCompanyId;
     }
 
-    public void setPublishCompanyId(String publishCompanyId) {
+    public void setPublishCompanyId(int publishCompanyId) {
         this.publishCompanyId = publishCompanyId;
     }
 

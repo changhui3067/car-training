@@ -38,7 +38,7 @@ public interface BaseDAO {
     void delete(Class c, String[] ids);
 
     //查找  满足attribute=value条件组的值
-    List find(Class c, HashMap<String, String> condition);
+    List find(Class clazz, HashMap<String, Object> condition);
 
     Object findOne(Class clazz, Map<String, Object> condition);
 

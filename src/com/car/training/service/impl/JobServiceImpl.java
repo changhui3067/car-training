@@ -24,7 +24,7 @@ public class JobServiceImpl implements JobService{
 //    JobDAO jobDAO;
 
     @Override
-    public Job findJobById(int id) {
+    public Job findById(int id) {
         HashMap<String,Object> map = new HashMap<>();
         map.put("id",id);
         return (Job) baseDAO.findOne(Job.class, map);
@@ -32,7 +32,9 @@ public class JobServiceImpl implements JobService{
 
     @Override
     public List<Job> findJobsByTargetCompany(int targetCid) {
-        return null;
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("publishCompanyId", targetCid);
+        return  baseDAO.find(Job.class, map);
     }
 
     @Override

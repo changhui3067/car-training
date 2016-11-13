@@ -156,8 +156,14 @@ public class HibernateBaseDAO implements BaseDAO {
     }
 
     @Override
-    public List find(Class c, HashMap<String, String> condition) {
-        return null;
+    public List find(Class clazz, HashMap<String, Object> condition) {
+        DetachedCriteria dc = DetachedCriteria.forClass(clazz);
+        for (String property : condition.keySet()) {
+            Object value = condition.get(property);
+            dc.add(Restrictions.eq(property, value));
+        }
+        Criteria criteria = dc.getExecutableCriteria(sessionFactory.getCurrentSession());
+        return criteria.list();
     }
 
     public void delete(Class c, HashMap<String, String> condition) {
