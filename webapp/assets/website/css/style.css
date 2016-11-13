@@ -109,7 +109,7 @@ button.commonClickButton:hover{
 /*培训师*//*培训生*//*培训需求*//*汽车人需求*/
 .pxshi_box, .pxsheng_box, .pxxq_box, .qcrxq_box{ padding:1px 0 10px 0;background:#ffffff; margin-bottom:20px;}
 .pxshi_box{ color:#ff7d00;}
-.pxsheng_box{ color:#3d9ccc;}
+.pxsheng_box, .unLike i{ color:#3d9ccc;}
 .pxxq_box{ color:#ff7d00;}
 .qcrxq_box{ color:#3d9ccc;}
 
@@ -329,7 +329,7 @@ button.commonClickButton:hover{
     padding: 10px 15px 10px 5px;
 }
 
-.zp_box_r:hover {
+.zp_box_r:hover, .praise:hover{
     cursor: pointer;
 }
 
@@ -685,7 +685,7 @@ add our css below
     padding: 5px 20px 5px 20px;
 }
 
-#checkeRadio, #submit{
+.forgetPsd #checkeRadio, .forgetPsd #submit{
     padding:8px 0px 8px;
 }
 

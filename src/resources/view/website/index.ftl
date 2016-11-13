@@ -63,7 +63,11 @@
                  <div class="pxshi_name">
                      <div class="xm left">${trainer.personInfo.name!}</div>
                      <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if trainer.autobotsCommentList??> ${trainer.autobotsCommentList.size!}<#else>0</#if></div>
-                     <div class="dz right"><i class="iconfont" title="点赞">&#xe717;</i>${likeNumberMap.get(trainer)!}</div>
+                     <#if trainer.isLike?? && trainer.isLike>
+                     <div id="trainerLike" class="dz right praise" value=${trainer.id!} onClick="like(this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
+                     <#else>
+                     <div id="trainerLike" class="dz right praise unLike" value=${trainer.id!} onClick="like(this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
+                     </#if>
                      <div class="clear"></div>
                  </div>
                  <div class="pxshi_zp">${trainer.currentPosition!} </div>
@@ -307,8 +311,11 @@
 </div>
 
 </div>
-    <script src="<@url value="/assets/website/js/jquery-3.1.1.min.js?v=1.1.0"/>"></script>
-    <script src="<@url value="/assets/website/js/bootstrap.min.js?v=1.1.0"/>"></script>
+<!-- main结束 -->
+<#include "/assets/website/common/footer.html">
+<script src="<@url value="/assets/website/js/jquery-3.1.1.min.js"/>"></script>
+<script src="<@url value="/assets/website/js/bootstrap.min.js"/>"></script>
+<script src="<@url value="/assets/website/backend/js/common.js"/>"></script>
 <script>
 function login(){
     var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
@@ -346,7 +353,5 @@ function login(){
     });
 }
 </script>
-<!-- main结束 -->
-<#include "/assets/website/common/footer.html">
 </body>
 </html></#escape>
