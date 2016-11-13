@@ -75,7 +75,6 @@ public class UserCenterAction extends SimpleJsonAction {
 
     @JsonConfig(root = "data")
     public String register() {
-        Map<String, Object> map = new HashMap<>();
         if (userService.existUser(username, userType)) {
             return errorJSON("用户名已存在！");
         }

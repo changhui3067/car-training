@@ -16,7 +16,7 @@
 <!-- main开始 -->   
 <div class="content">
 
-<#if trainer?? && trainer.userCenter??>
+<#if trainer??>
   <div class="ny_pxshi">
       <div class="ny_pxshi_l left">
           <div class="people_detail_basic_info">
@@ -25,10 +25,10 @@
               </div>
               <div class="detail left">
                   <div>
-                      <h1 class="left">${trainer.userCenter.name!}</h1>
+                      <h1 class="left">${trainer.personInfo.name!}</h1>
                       <div class="iconbox right">
                           <span><i class="iconfont" title="评论">&#xe69b;</i>0</span>
-                          <span><i class="iconfont" title="点赞">&#xe717;</i>${trainer.starLevel!}</span>
+                          <#--<span><i class="iconfont" title="点赞">&#xe717;</i>${trainer.starLevel!}</span>-->
                       </div>
                       <div class="clear"></div>
                   </div>
@@ -36,7 +36,7 @@
                       <span class="paddingLeftNull">${trainer.currentPosition!}</span>
                       <span>8年</span>
                       <span>${trainer.education!}</span>
-                      <span class="noBorder">${trainer.userCenter.region.fullname!}</span>
+                      <#--<span class="noBorder">${trainer.userCenter.region.fullname!}</span>-->
                   </div>
                   <div>
                       擅长形式: <span>${trainer.businessCategory}</span>
@@ -55,7 +55,7 @@
               <h4><span><a href="#">更多>></a></span>培训师简介</h4>
                 </div>
               <div class="pxshi_jj_box">
-                       　　${trainer.personInfo.intro!}
+                       　　${trainer.introduction!}
                 </div>
             </div> -->
           <div class="people_other_info_box">
@@ -90,13 +90,13 @@
               <h4><span><a href="#">更多>></a></span>原创文章</h4>
                 </div>
                 <div class="pxshi_wz_box">
-                <#if trainerEssayList??>
-                  <ul>
-                  <#list trainerEssayList as te>
-                      <li><span><a href="#">${te.publishDate!?string("yyyy-MM-dd")}</a></span><a href="/website/trainerEssayDetail?trainerEssay.id=${te.id!}" target="_blank">${te.title!}</a></li>
-                    </#list>
-                    </ul>
-                    </#if>
+                <#--<#if trainerEssayList??>-->
+                  <#--<ul>-->
+                  <#--<#list trainerEssayList as te>-->
+                      <#--<li><span><a href="#">${te.publishDate!?string("yyyy-MM-dd")}</a></span><a href="/website/trainerEssayDetail?trainerEssay.id=${te.id!}" target="_blank">${te.title!}</a></li>-->
+                    <#--</#list>-->
+                    <#--</ul>-->
+                    <#--</#if>-->
                 </div>
             </div> -->
             <div class="people_other_info_box">
@@ -111,11 +111,10 @@
            <!-- <div class="pxshi_lx"> -->
               <!-- <h4>联系方式</h4> -->
                 <!-- <div class="lx_box"> -->
-                  <!-- <div class="xingming">${trainer.userCenter.name!}(培训师本人)</div> -->
-                      <!-- <#if Session?exists && Session["loginState"]=='Y'> -->
-                          <!-- 电话：${trainer.userCenter.mobile!}<br /> -->
-                          <!-- 邮箱：${trainer.userCenter.email!}<br /> -->
-                          <!-- 微信：${trainer.userCenter.weixin!}<br /> -->
+                  <!-- <div class="xingming">${trainer.personInfo.name!}(培训师本人)</div> -->
+                      <!-- <#if Session?? && Session["loginVO"]??> -->
+                          <!-- 电话：${trainer.personInfo.mobile!}<br /> -->
+                          <!-- 邮箱：${trainer.personInfo.email!}<br /> -->
                       <!-- <#else>
                           请联系培训网  400-820-6666
                       </#if>
@@ -124,9 +123,9 @@
           <div class="people_comments">
               <h4>学员评价</h4>
               <div class="people_comments_list">
-                  <#if trainer.autobotsCommentList??>
+                  <#if commentList??>
                   <ul>
-                    <#list trainer.autobotsCommentList as c>
+                    <#list commentList as c>
                     <#if c?? && c.content??>
                       <li>
                           <div class="comments">

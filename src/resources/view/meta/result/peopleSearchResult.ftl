@@ -1,7 +1,7 @@
 <div class="pxshilist">
-<#if trainerList??>
+<#if peopleList??>
     <ul>
-        <#list trainerList as t>
+        <#list peopleList as t>
             <li class="oneBox">
                 <#if t?? ??>
                     <div class="picContainer"><a href="/website/trainerDetail?trainerId=${t.id!}"><img

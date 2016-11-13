@@ -16,8 +16,7 @@
         <#if '{}' == '${session}'|| !Session["loginVO"]?? >
         <div class="content">
             <div class="login-box">
-                <form action="" id="loginform" class="form-horizontal">
-                <input type="hidden" name="targetUrl" value=${targetUrl!} />
+                <form id="loginform" action="javascript:login()" class="form-horizontal">
                 <div class="dot-line">会员登录</div>
                 <div class="form-group">
                     <label  class="col-sm-3 control-label">账号：</label>
@@ -42,7 +41,8 @@
                         <input type="radio" name="userType" id="userType" value="COMPANY" />企业
                     </label>
                 </div>
-                <div><button onClick='javascript:login();'>登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button></div>
+                <div><button>登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button></div>
+                </form>
             </div>
         </div>
     <#else>
@@ -332,19 +332,16 @@ function login(){
         type: "POST",
         url: "/backend/UserCenter/login",
         data: form_data,
-        error: function(request) {
+        error: function() {
             errMsg.innerHTML = "网络出错啦!";
             return false;
         },
         success: function (data) {
             if (data == 'success') {
-                setTimeout(function () {
-                    window.location.href = "/website/index";
-                }, 300);
+                window.location = "/website/index";
             } else {
                 errMsg.innerHTML = data.error;
             }
-
         }
     });
 }

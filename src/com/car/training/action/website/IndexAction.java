@@ -2,13 +2,19 @@ package com.car.training.action.website;
 
 import com.car.training.bean.Autobot;
 import com.car.training.bean.Trainer;
+import com.car.training.service.LikeService;
 import com.car.training.service.PromotionService;
+import com.car.training.vo.LikeVO;
 import com.car.training.vo.LoginVO;
+import org.apache.struts2.ServletActionContext;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -20,6 +26,10 @@ public class IndexAction extends BaseAction {
     @Autowired
     PromotionService promotionService;
 
+    @Autowired
+    private LikeService likeService;
+
+
     /**
      * 首页推荐培训师大图
      */
@@ -30,8 +40,13 @@ public class IndexAction extends BaseAction {
     private List<Trainer> trainerList;
     /**
      * 首页推荐5个汽车人列表
-//     */
+     * //
+     */
     private List<Autobot> autobotList;
+
+    private HashMap<Integer, LikeVO> likeMap = new HashMap<>();
+
+
 //    /**
 //     * 首页2个培训需求列表
 //     */
@@ -57,7 +72,7 @@ public class IndexAction extends BaseAction {
 //    PromotionService promotionService;
 
     @Override
-    public String execute(){
+    public String execute() {
         //首页推荐培训师大图1个
         List<Trainer> topTrainers = promotionService.getTopTrainer(9);
 
@@ -66,15 +81,17 @@ public class IndexAction extends BaseAction {
         }
 
         if (topTrainers.size() > 1) {
-            trainerList = topTrainers.subList(1,topTrainers.size());
+            trainerList = topTrainers.subList(1, topTrainers.size());
         }
-
 
 
         //首页推荐培训师最上顶8位置
         if (topTrainers.size() > 1) {
             trainerList = topTrainers.subList(1, topTrainers.size() - 1);
         }
+
+        generateLikeMap();
+
         //首页推荐汽车人5个位置
         autobotList = promotionService.getTopAutobot(5);
 //        //首页培训师需求2个位置
@@ -89,6 +106,21 @@ public class IndexAction extends BaseAction {
 //        coursesList = coursesService.findByIndexPromoted(true, 2);
 
         return SUCCESS;
+    }
+
+    private void generateLikeMap() {
+
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpSession session = request.getSession();
+        LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
+        if (loginVO != null && trainerList != null) {
+            for (Trainer trainer : trainerList) {
+                LikeVO vo = new LikeVO();
+                vo.setLike(likeService.isLike(loginVO.getId(),trainer));
+                vo.setLikeNumber(likeService.likeNumber(trainer.getPersonInfo().getId()));
+                likeMap.put(trainer.getId(),vo);
+            }
+        }
     }
 
     public Trainer getTrainer() {
@@ -113,5 +145,13 @@ public class IndexAction extends BaseAction {
 
     public void setAutobotList(List<Autobot> autobotList) {
         this.autobotList = autobotList;
+    }
+
+    public HashMap<Integer, LikeVO> getLikeMap() {
+        return likeMap;
+    }
+
+    public void setLikeMap(HashMap<Integer, LikeVO> likeMap) {
+        this.likeMap = likeMap;
     }
 }

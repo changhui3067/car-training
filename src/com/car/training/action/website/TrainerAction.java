@@ -19,7 +19,7 @@ public class TrainerAction extends BaseAction {
     /**
      * 按条件筛选培训师列表
      */
-    private List<Trainer> trainerList;
+    private List<Trainer> peopleList;
 
     /**
      * 培训经验
@@ -38,7 +38,7 @@ public class TrainerAction extends BaseAction {
 
     @Override
     public String execute(){
-        trainerList = trainerService.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
+        peopleList = trainerService.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
         return SUCCESS;
     }
 
@@ -53,13 +53,14 @@ public class TrainerAction extends BaseAction {
             minAutoYear = -1;
             maxAutoYear = Integer.MAX_VALUE;
         }
-        trainerList = trainerService.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
+        peopleList = trainerService.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
         return "peopleSearchResult";
     }
 
 
-    public List<Trainer> getTrainerList() {
-        return trainerList;
+
+    public List<Trainer> getPeopleList() {
+        return peopleList;
     }
 
     public Integer getTrainingYears() {
@@ -87,8 +88,8 @@ public class TrainerAction extends BaseAction {
         this.businessCategory = businessCategory;
     }
 
-    public void setTrainerList(List<Trainer> trainerList) {
-        this.trainerList = trainerList;
+    public void setPeopleList(List<Trainer> peopleList) {
+        this.peopleList = peopleList;
     }
 
     public String getExecutionCategory() {

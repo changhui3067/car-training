@@ -41,7 +41,6 @@ public class TrainerDetailAction extends BaseAction {
      * 培训公开课列表
      */
     private List<Course> coursesList;
-    private String tid;
 
     private int trainerId;
 

@@ -20,7 +20,7 @@ public class AutobotAction extends BaseAction {
     /**
      * 按条件筛选汽车人列表
      */
-    private List<Autobot> autobotList;
+    private List<Autobot> peopleList;
 
 
 
@@ -41,7 +41,7 @@ public class AutobotAction extends BaseAction {
 
     @Override
     public String execute() throws Exception {
-        autobotList = autobotService.search(buisnessCategory,executionCategories,-1,Integer.MAX_VALUE,"");
+        peopleList = autobotService.search(buisnessCategory,executionCategories,-1,Integer.MAX_VALUE,"");
 //        Autobots autobots = new Autobots();
 //        autobots.setPositionType(positionType);
 //        autobots.setAutoYears(autoYears);
@@ -64,17 +64,17 @@ public class AutobotAction extends BaseAction {
 //            minAutoYear = -1;
 //            maxAutoYear = Integer.MAX_VALUE;
 //        }
-//        autobotList = autobotService.search(buisnessCategory,executionCategories,autoYearRange,keyword);
+//        peopleList = autobotService.search(buisnessCategory,executionCategories,autoYearRange,keyword);
 //        return SUCCESS;
 //    }
 
 
-    public List<Autobot> getAutobotList() {
-        return autobotList;
+    public List<Autobot> getPeopleList() {
+        return peopleList;
     }
 
-    public void setAutobotList(List<Autobot> autobotList) {
-        this.autobotList = autobotList;
+    public void setPeopleList(List<Autobot> peopleList) {
+        this.peopleList = peopleList;
     }
 
     public String getExecutionCategories() {
