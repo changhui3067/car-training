@@ -63,7 +63,7 @@
                  <div class="pxshi_name">
                      <div class="xm left">${trainer.personInfo.name!}</div>
                      <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if trainer.autobotsCommentList??> ${trainer.autobotsCommentList.size!}<#else>0</#if></div>
-                     <div class="dz right"><i class="iconfont" title="点赞">&#xe717;</i>${trainer.starLevel!}</div>
+                     <div class="dz right"><i class="iconfont" title="点赞">&#xe717;</i>${likeNumberMap.get(trainer)!}</div>
                      <div class="clear"></div>
                  </div>
                  <div class="pxshi_zp">${trainer.currentPosition!} </div>

@@ -43,4 +43,9 @@ public class LikeServiceImpl implements LikeService {
     public int likeNumber(int targetUid) {
         return 30;
     }
+
+    @Override
+    public int likeNumber(Trainer trainer) {
+        return 30;
+    }
 }
