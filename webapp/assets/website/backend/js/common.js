@@ -259,3 +259,38 @@ if(document.getElementById("jsfoot01")){
 	scrollup.Start();             //文字自动滚动
 	scrollup.Direction = "down"; //文字向下滚动
 }
+
+//点赞
+function like(id) {
+	var dom = $("#" + id),
+		number = new Number(dom[0].childNodes[1].innerHTML),
+		data = {};
+		data["targetUserId"] = dom[0].getAttribute("value");
+	if (dom.hasClass("unLike")) {
+		dom.removeClass("unLike");
+		dom[0].childNodes[1].innerHTML = number + 1;
+		$.ajax({
+	        type: "POST",
+	        url: "/backend/Like/like",
+	        data: data,
+	        error: function() {
+	            return false;
+	        },
+	        success: function (data) {
+	        }
+	    });
+	} else {
+		dom.addClass("unLike");
+		dom[0].childNodes[1].innerHTML = number - 1;
+		$.ajax({
+	        type: "POST",
+	        url: "/backend/Like/unLike",
+	        data: data,
+	        error: function() {
+	            return false;
+	        },
+	        success: function (data) {
+	        }
+	    });
+	}
+}
