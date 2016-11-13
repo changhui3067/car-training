@@ -158,3 +158,7 @@ a img {border: none;}
 	padding-left: 25px !important;
 	text-align: left !important;
 }
+
+#personal_loginform button, #company_loginform button {
+	padding:8px 20px;
+}

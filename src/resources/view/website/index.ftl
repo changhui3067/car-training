@@ -344,10 +344,12 @@ function login(){
             return false;
         },
         success: function (data) {
-            if (data == 'success') {
-                window.location = "/website/index";
-            } else {
+            if(data.error){
                 errMsg.innerHTML = data.error;
+            } else if(data.target){
+                window.location.href = data.target;
+            } else {
+                window.location.href = "/backend/applyJobHistory";
             }
         }
     });

@@ -10,7 +10,7 @@
 <div class="main">
     <div class="content">
             <div class="forgetPsd">
-                <form>
+                <div>
                     <div class="form-group row">
                         <label  class="col-sm-2 control-label">账号：</label>
                         <div class="col-sm-5">
@@ -19,10 +19,10 @@
                     </div>
                     <div class="form-group row">
                         <label class="radio-inline col-sm-offset-2 col-sm-2">
-                            <input name="userType" id="userType" type="radio"  value="PERSON" checked/>个人
+                            <input name="userType" id="userType" type="radio"  value="TRAINER" checked/>个人
                         </label>
                         <label class="radio-inline col-sm-2">
-                            <input type="radio" name="userType" id="userType" value="COMPANY" />企业
+                            <input type="radio" name="userType" id="userType" value="AUTOBOT" />企业
                         </label>
                     </div>
                     <div class="form-group row">
@@ -48,7 +48,7 @@
                           <button type="submit" class="btn btn-info" onClick="resetPsd()">提  交</button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="clear"></div>
     </div>
@@ -77,12 +77,10 @@
                 return false;
             },
             success: function (data) {
-                if (data == 'success') {
-                    window.location.href = "/website/index";
-                } else {
+                if (data.error) {
                     errMsg.innerHTML = data.error;
+                    return false;
                 }
-
             }
         });
     }
@@ -91,7 +89,7 @@
         var form_data={},
             errMsg = $(".errMsg")[0];
         form_data["username"] = $(".forgetPsd #username").val(),
-        form_data["personOrCompany"] = $('input:radio[name="userType"]:checked').val(),
+        form_data["userType"] = $('input:radio[name="userType"]:checked').val(),
         form_data["verCode"] = $(".forgetPsd #verCode").val()
         form_data["password"] = $(".forgetPsd #password").val();
         if(form_data.username == "" || form_data.username == null){
@@ -110,12 +108,13 @@
                 return false;
             },
             success: function (data) {
-                if (data == 'success') {
-                    window.location.href = "/website/index";
-                } else {
+                if (data.error) {
                     errMsg.innerHTML = data.error;
+                } if(data.target){
+                    window.location.href = data.target;
+                } else {
+                    window.location.href = "/backend/applyJobHistory";
                 }
-
             }
         });
     }
