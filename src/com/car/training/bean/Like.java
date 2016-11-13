@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Bill on 11/1/2016.
  */
 @Entity
-@Table
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"userId","targetUserId"}))
 public class Like {
     @Id
     @GeneratedValue

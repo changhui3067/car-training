@@ -9,6 +9,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -155,7 +156,7 @@ public class HibernateBaseDAO implements BaseDAO {
         return c.uniqueResult();
     }
 
-    @Override
+    @Transactional
     public List find(Class clazz, HashMap<String, Object> condition) {
         DetachedCriteria dc = DetachedCriteria.forClass(clazz);
         for (String property : condition.keySet()) {

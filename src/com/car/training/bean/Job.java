@@ -1,6 +1,11 @@
 package com.car.training.bean;
 
+import com.car.training.enums.JobType;
+import com.car.training.enums.UserType;
+import org.ironrhino.common.model.Region;
+
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by Bill on 11/1/2016.
@@ -18,6 +23,35 @@ public class Job {
 
     @Column
     private int publishCompanyId;
+
+    @Column
+    private int workExperienceRequirement;
+
+    @JoinColumn(name = "regionId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne()
+    private Region region;
+
+    @Column
+    private String educationRequirement;
+
+    @Column
+    private String salary;
+
+    @Column
+    private String jobDescription;
+
+    @Column
+    private Date createTime;
+
+    @Column
+    private String majorRequirement;
+
+    @Column
+    private String LanguageRequirement;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20, nullable = false)
+    private JobType type;
 
     public int getId() {
         return id;
@@ -51,13 +85,7 @@ public class Job {
         this.workExperienceRequirement = workExperienceRequirement;
     }
 
-    public String getRegionId() {
-        return regionId;
-    }
 
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
-    }
 
     public String getEducationRequirement() {
         return educationRequirement;
@@ -83,23 +111,43 @@ public class Job {
         this.jobDescription = jobDescription;
     }
 
-    @Column
-    private int workExperienceRequirement;
+    public Date getCreateTime() {
+        return createTime;
+    }
 
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-    @Column
-    private String regionId;
+    public String getMajorRequirement() {
+        return majorRequirement;
+    }
 
-    @Column
-    private String educationRequirement;
+    public void setMajorRequirement(String majorRequirement) {
+        this.majorRequirement = majorRequirement;
+    }
 
-    @Column
-    private String salary;
+    public String getLanguageRequirement() {
+        return LanguageRequirement;
+    }
 
-    @Column
-    private String jobDescription;
+    public void setLanguageRequirement(String languageRequirement) {
+        LanguageRequirement = languageRequirement;
+    }
 
+    public JobType getType() {
+        return type;
+    }
 
+    public void setType(JobType type) {
+        this.type = type;
+    }
 
+    public Region getRegion() {
+        return region;
+    }
 
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 }

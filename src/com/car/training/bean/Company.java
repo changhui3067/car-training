@@ -1,5 +1,7 @@
 package com.car.training.bean;
 
+import com.car.training.enums.ReactTime;
+
 import javax.persistence.*;
 
 /**
@@ -36,6 +38,12 @@ public class Company {
     @Column
     private String introduction;
 
+    @Enumerated(EnumType.STRING)
+    @Column
+    private ReactTime reactTime;
+
+    @Column
+    private String welfare;
 
     public int getId() {
         return id;
@@ -100,5 +108,21 @@ public class Company {
 
     public void setLoginUser(LoginUser loginUser) {
         this.loginUser = loginUser;
+    }
+
+    public ReactTime getReactTime() {
+        return reactTime;
+    }
+
+    public void setReactTime(ReactTime reactTime) {
+        this.reactTime = reactTime;
+    }
+
+    public String getWelfare() {
+        return welfare;
+    }
+
+    public void setWelfare(String welfare) {
+        this.welfare = welfare;
     }
 }

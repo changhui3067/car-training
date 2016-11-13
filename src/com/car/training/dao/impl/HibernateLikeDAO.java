@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -61,6 +62,7 @@ public class HibernateLikeDAO implements LikeDAO {
     }
 
     @Override
+    @Transactional
     public int likeNumber(int targetUid) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Like.class);
         criteria.add( Restrictions.eq("targetUserId", targetUid));

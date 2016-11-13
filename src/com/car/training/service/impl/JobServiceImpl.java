@@ -3,6 +3,7 @@ package com.car.training.service.impl;
 import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
 import com.car.training.dao.TrainerDAO;
+import com.car.training.enums.JobType;
 import com.car.training.enums.UserType;
 import com.car.training.dao.BaseDAO;
 import com.car.training.service.JobService;
@@ -20,14 +21,18 @@ public class JobServiceImpl implements JobService{
     @Autowired
     BaseDAO baseDAO;
 
-//    @Autowired
-//    JobDAO jobDAO;
-
     @Override
     public Job findById(int id) {
         HashMap<String,Object> map = new HashMap<>();
         map.put("id",id);
         return (Job) baseDAO.findOne(Job.class, map);
+    }
+
+    @Override
+    public List<Job> findAll(JobType jobType) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("type", jobType);
+        return  baseDAO.find(Job.class, map);
     }
 
     @Override

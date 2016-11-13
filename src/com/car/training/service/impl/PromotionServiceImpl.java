@@ -4,6 +4,8 @@ import com.car.training.bean.Autobot;
 import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
 import com.car.training.dao.BaseDAO;
+import com.car.training.enums.JobType;
+import com.car.training.service.JobService;
 import com.car.training.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ public class PromotionServiceImpl implements PromotionService {
 
     @Autowired
     BaseDAO baseDAO;
+    @Autowired
+    JobService jobService;
 
 
     @Override
@@ -32,11 +36,11 @@ public class PromotionServiceImpl implements PromotionService {
 
     @Override
     public List<Job> getTopTrainerJob(int number) {
-        return null;
+        return jobService.findAll(JobType.TRAINER);
     }
 
     @Override
     public List<Job> getTopAutobotJob(int number) {
-        return null;
+        return jobService.findAll(JobType.AUTOBOT);
     }
 }

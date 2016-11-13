@@ -147,44 +147,44 @@
 <div class="pxxq_box">
  <h4><span><a href="/website/recruit/?companyType=COMPANY">更多>></a></span>培训需求</h4>
  <div class="pxxq">
-     <#if jobsTrainerList??>
+     <#if trainerJobList??>
      <ul>
-         <#list jobsTrainerList as t>
+         <#list trainerJobList as trainerJob>
          <li class="zp_box">
-             <#if t?? && t.company??>
+             <#if trainerJob??>
              <div class="qz"></div>
                  <div class="left zp_box_l">
-                    <a href="/website/jobDetail?jobs.id=${t.id!}"> <div class="zw_name">${t.name!}</div></a>
+                    <a href="/website/jobDetail?jobDetail.id=${trainerJob.id!}"> <div class="zw_name">${trainerJob.title!}</div></a>
                     <div class="dy_box">
-                        <span class="cn" style="padding-left:0px;">${t.salary!}</span>
-                        <span>${t.workExprience!}年工作经验</span>
-                        <span style="background:none;"><#if t.region??>${t.region.fullname!}</#if></span>
+                        <span class="cn" style="padding-left:0px;">${trainerJob.salary!}</span>
+                        <span>${trainerJob.workExperienceRequirement!}年工作经验</span>
+                        <span style="background:none;"><#if trainerJob.region??>${trainerJob.region.fullname!}</#if></span>
                     </div>
                     <div class="fb_box">
-                        	<span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span>
+                        	<span  style="padding-left:0px;">发布于：${trainerJob.createTime!?string("yyyy-MM-dd")}</span>
                             <span style="background:none;">投递后：48小时反馈</span>
                     </div>
                 </div>
-                <div class="right zp_box_r">
-                    <div class="qy">
-                          <a href="/website/autoCompany?company.id=${t.company.id!}">
-                              <div class="qy_l left zp_box_r_l"><img src="${t.company.logo!}" /></div>
-                              <div class="qy_r right zp_box_r_r">
-                                  <div class="qy_name">
-                                      <span>${t.company.name!}</span>
-                                      <span>已有${t.company.bondsmanCount}人担保</span>
-                                  </div>
-                                  <div class="jyfw">${t.company.industry!}</div>
-                                  <div class="fl">
-                                      <#if t.welfare??>
-                                          <#list t.welfare as w><span>${w!}</span></#list>
-                                      </#if>
-                                  </div>
-                              </div>
-                          </a>
-                          <div class="clear"></div>
-                      </div>
-    </div>
+                 <#--<div class="right zp_box_r">-->
+                     <#--<div class="qy">-->
+                         <#--<a href="/website/autoCompany?company.id=${trainerJob.company.id!}">-->
+                             <#--<div class="qy_l left zp_box_r_l"><img src="${trainerJob.company.logo!}"/></div>-->
+                             <#--<div class="qy_r right zp_box_r_r">-->
+                                 <#--<div class="qy_name">-->
+                                     <#--<span>${trainerJob.company.name!}</span>-->
+                                     <#--<span>已有${trainerJob.company.bondsmanCount}人担保</span>-->
+                                 <#--</div>-->
+                                 <#--<div class="jyfw">${trainerJob.company.industry!}</div>-->
+                                 <#--<div class="fl">-->
+                                     <#--<#if trainerJob.welfare??>-->
+                                         <#--<#list trainerJob.welfare as w><span>${w!}</span></#list>-->
+                                     <#--</#if>-->
+                                 <#--</div>-->
+                             <#--</div>-->
+                         <#--</a>-->
+                         <#--<div class="clear"></div>-->
+                     <#--</div>-->
+                 <#--</div>-->
     <div class="clear"></div>
 
     </#if>

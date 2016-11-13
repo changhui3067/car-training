@@ -1,6 +1,7 @@
 package com.car.training.action.website;
 
 import com.car.training.bean.Autobot;
+import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
 import com.car.training.service.LikeService;
 import com.car.training.service.PromotionService;
@@ -46,17 +47,10 @@ public class IndexAction extends BaseAction {
     private HashMap<Object, Integer> likeNumberMap = new HashMap<>();
 
     private HashMap<Object, Boolean> isLikeMap = new HashMap<>();
+    private List<Job> autobotJobList;
+    private List<Job> trainerJobList;
 
 
-
-//    /**
-//     * 首页2个培训需求列表
-//     */
-//    private List<Job> jobsTrainerList;
-//    /**
-//     * 首页2个汽车人才需求列表
-//     */
-//    private List<Job> jobsAutobotsList;
 //    /**
 //     * 首页培训师原创文章列表
 //     */
@@ -96,10 +90,11 @@ public class IndexAction extends BaseAction {
 
         //首页推荐汽车人5个位置
         autobotList = promotionService.getTopAutobot(5);
-//        //首页培训师需求2个位置
-//        jobsTrainerList = jobsService.findListByIndexType(CompanyType.COMPANY, 2);
-//        //首页汽车人才需求2个位置
-//        jobsAutobotsList = jobsService.findListByIndexType(CompanyType.STORE, 2);
+
+        //首页培训师需求2个位置
+        trainerJobList = promotionService.getTopTrainerJob(2);
+        //首页汽车人才需求2个位置
+        autobotJobList = promotionService.getTopAutobotJob(2);
 //        //首页培训师原创文章列表6个位置
 //        trainerEssayList = trainerEssayService.findByIndexPromoted(true, 6);
 //        //首页热点专题列表6个位置
@@ -117,9 +112,9 @@ public class IndexAction extends BaseAction {
         LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
         if (topTrainers != null) {
             for (Trainer trainer : topTrainers) {
-                likeNumberMap.put(trainer,likeService.likeNumber(trainer.getId()));
-                if(loginVO !=null){
-                    isLikeMap.put(trainer,likeService.isLike(loginVO.getId(),trainer.getId()));
+                likeNumberMap.put(trainer, likeService.likeNumber(trainer.getId()));
+                if (loginVO != null) {
+                    isLikeMap.put(trainer, likeService.isLike(loginVO.getId(), trainer.getId()));
                 }
             }
         }
@@ -164,5 +159,21 @@ public class IndexAction extends BaseAction {
 
     public void setIsLikeMap(HashMap<Object, Boolean> isLikeMap) {
         this.isLikeMap = isLikeMap;
+    }
+
+    public List<Job> getAutobotJobList() {
+        return autobotJobList;
+    }
+
+    public void setAutobotJobList(List<Job> autobotJobList) {
+        this.autobotJobList = autobotJobList;
+    }
+
+    public List<Job> getTrainerJobList() {
+        return trainerJobList;
+    }
+
+    public void setTrainerJobList(List<Job> trainerJobList) {
+        this.trainerJobList = trainerJobList;
     }
 }
