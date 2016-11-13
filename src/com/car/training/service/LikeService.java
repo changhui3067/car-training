@@ -14,4 +14,5 @@ public interface LikeService {
     boolean like(int targetUid);
     boolean unLike(int targetUid);
     int likeNumber(int targetUid);
+    int likeNumber(Trainer trainer);
 }

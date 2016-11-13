@@ -1,6 +1,7 @@
 package com.car.training.action.website;
 
 import com.car.training.bean.Autobot;
+import com.car.training.bean.PersonInfo;
 import com.car.training.bean.Trainer;
 import com.car.training.service.LikeService;
 import com.car.training.service.PromotionService;
@@ -44,7 +45,10 @@ public class IndexAction extends BaseAction {
      */
     private List<Autobot> autobotList;
 
-    private HashMap<Integer, LikeVO> likeMap = new HashMap<>();
+    private HashMap<Object, Integer> likeNumberMap = new HashMap<>();
+
+    private HashMap<Object, Boolean> isLikeMap = new HashMap<>();
+
 
 
 //    /**
@@ -90,7 +94,7 @@ public class IndexAction extends BaseAction {
             trainerList = topTrainers.subList(1, topTrainers.size() - 1);
         }
 
-        generateLikeMap();
+        generateLikeMap(topTrainers);
 
         //首页推荐汽车人5个位置
         autobotList = promotionService.getTopAutobot(5);
@@ -108,17 +112,15 @@ public class IndexAction extends BaseAction {
         return SUCCESS;
     }
 
-    private void generateLikeMap() {
+    private void generateLikeMap(List<Trainer> topTrainers) {
 
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession();
         LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
-        if (loginVO != null && trainerList != null) {
-            for (Trainer trainer : trainerList) {
-                LikeVO vo = new LikeVO();
-                vo.setLike(likeService.isLike(loginVO.getId(),trainer));
-                vo.setLikeNumber(likeService.likeNumber(trainer.getPersonInfo().getId()));
-                likeMap.put(trainer.getId(),vo);
+        if (loginVO != null && topTrainers != null) {
+            for (Trainer trainer : topTrainers) {
+                likeNumberMap.put(trainer,30);
+                isLikeMap.put(trainer,likeService.isLike(trainer));
             }
         }
     }
@@ -147,11 +149,20 @@ public class IndexAction extends BaseAction {
         this.autobotList = autobotList;
     }
 
-    public HashMap<Integer, LikeVO> getLikeMap() {
-        return likeMap;
+    public HashMap<Object, Integer> getLikeNumberMap() {
+        return likeNumberMap;
     }
 
-    public void setLikeMap(HashMap<Integer, LikeVO> likeMap) {
-        this.likeMap = likeMap;
+    public void setLikeNumberMap(HashMap<Object, Integer> likeNumberMap) {
+        this.likeNumberMap = likeNumberMap;
+    }
+
+
+    public HashMap<Object, Boolean> getIsLikeMap() {
+        return isLikeMap;
+    }
+
+    public void setIsLikeMap(HashMap<Object, Boolean> isLikeMap) {
+        this.isLikeMap = isLikeMap;
     }
 }
