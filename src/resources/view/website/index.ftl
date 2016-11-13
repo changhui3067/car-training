@@ -58,7 +58,7 @@
          <div class="pxshi">
              <div class="pxshi_l left">
                <#if trainer?? >
-               <div class="pxshi_l_pic"><a href="/website/trainerDetail?trainer.id=${trainer.id!}"><img src="${trainer.personInfo.avatarUrl!}" /></a></div>
+               <div class="pxshi_l_pic"><a href="/website/trainerDetail?trainerId=${trainer.id!}"><img src="${trainer.personInfo.avatarUrl!}" /></a></div>
                <div class="pxshi_l_intro">
                  <div class="pxshi_name">
                      <div class="xm left">${trainer.personInfo.name!}</div>
@@ -89,7 +89,7 @@
            <#list trainerList as t>
            <li class="oneBox">
               <#if t?? >
-              <div class="picContainer"><a href="/website/trainerDetail?trainer.id=${t.id!}"><img src="${t.personInfo.avatarUrl!}" /></a></div>
+              <div class="picContainer"><a href="/website/trainerDetail?trainerId=${t.id!}"><img src="${t.personInfo.avatarUrl!}" /></a></div>
               <div class="intro">
                 <div>
                     <div class="name">${t.personInfo.name!}</div>
@@ -126,7 +126,7 @@
          <#list autobotList as t>
          <li class="oneBox">
              <#if t??>
-             <div class="picContainer"><a href="/website/autobotDetail?autobots.id=${t.id!}"><img src="${t.personInfo.avatarUrl!}" /></a></div>
+             <div class="picContainer"><a href="/website/autobotDetail?autobotId=${t.id!}"><img src="${t.personInfo.avatarUrl!}" /></a></div>
              <div class="intro">
                  <div>
                      <div class="name">${t.personInfo.name!}</div>

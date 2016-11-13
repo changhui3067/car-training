@@ -37,6 +37,11 @@ public class AutobotDetailAction extends BaseAction {
     public String execute(){
         autobot = autobotService.findById(autobotId);
 
+        if (autobot == null) {
+            setTargetUrl("/website/index");
+            return REDIRECT;
+        }
+
 //        for (String strId : autobots.getAttentionTrainer().split(",")) {
 //            if (StringUtils.isNotBlank(strId)) {
 //                Trainer trainer = trainerService.findById(strId);
@@ -51,4 +56,19 @@ public class AutobotDetailAction extends BaseAction {
         return SUCCESS;
     }
 
+    public Autobot getAutobot() {
+        return autobot;
+    }
+
+    public void setAutobot(Trainer trainer) {
+        this.autobot = autobot;
+    }
+
+    public void setAutobotId(int autobotId) {
+        this.autobotId = autobotId;
+    }
+
+    public int getAutobotId() {
+        return autobotId;
+    }
 }
