@@ -221,7 +221,7 @@ function sendAjax() {
             return false;
         },
         success: function (data) {
-            $('searchResult')[0].innerHTML = data;
+            $('#searchResult')[0].innerHTML = data;
         }
     });
 }

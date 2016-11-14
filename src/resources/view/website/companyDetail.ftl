@@ -60,11 +60,11 @@
                         <#list jobList as t>
                         <li class="zp_box">
                             <div class="left zp_box_l autoCompany_zp_l">
-                                <a href="/website/jobDetail?jobs.id=${t.id!}"> <div class="zw_name">${t.title!}</div></a>
+                                <a href="/website/jobDetail?jobId=${t.id!}"> <div class="zw_name">${t.title!}</div></a>
                                 <div class="dy_box">
                                     <span class="cn" style="padding-left:0px;">${t.salary!}元</span>
                                     <span>${t.workExperienceRequirement!}年工作经验</span>
-                                    <span style="background:none;"><#if t.regionId??>${t.regionId}</#if></span>
+                                    <span style="background:none;"><#if t.region.fullname??>${t.region.fullname}</#if></span>
                                 </div>
                         
                                 <div class="fb_box">

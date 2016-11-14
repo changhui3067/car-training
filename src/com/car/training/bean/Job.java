@@ -41,7 +41,7 @@ public class Job {
     private String jobDescription;
 
     @Column
-    private Date createTime;
+    private Date createDate;
 
     @Column
     private String majorRequirement;
