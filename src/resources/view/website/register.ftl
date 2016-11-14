@@ -106,7 +106,7 @@
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>验证码：</td>
                   <td width="100"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" type="text" name="verCode" id="verCode" /></td>
                   <td width="72" align="left"> 
-                   <input type="button" id="company" style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" value="免费获取验证码" onclick="settime(this);sendmsg(this.id)" /></td>
+                   <input type="button" id="company" style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" value="免费获取验证码" onclick="sendmsg(this)" /></td>
                   <td><font color="#999999">请输入手机验证码</font></td>
                 </tr>
                 <tr>
@@ -211,15 +211,15 @@ function register(id){
 	});
 }
   
- function sendmsg(id){
+ function sendmsg(obj){
 	var form_data={},
-      errMsg = $("#" + id + "_loginform .errMsg")[0];
-  form_data["username"] = $("#" + id + "_loginform #username").val(),
-  form_data["userType"]= $("input[name=\'" + id + "Type\']:checked").val();
+      errMsg = $("#" + obj.id + "_loginform .errMsg")[0];
+  form_data["username"] = $("#" + obj.id + "_loginform #username").val();
 	if(!form_data.username){
     errMsg.innerHTML = "请输入手机号";
 		return false;
 	}
+  settime(obj);
 	$.ajax({
 		 type: "POST",
 	     url: "/backend/UserCenter/sendmsgForRegister",
@@ -232,23 +232,6 @@ function register(id){
 				  errMsg.innerHTML = "发送成功！";
 	     }
 	});
-}
-
-var countdown=60; 
-function settime(obj) { 
-    if (countdown == 0) { 
-        obj.removeAttribute("disabled");    
-        obj.value="免费获取验证码"; 
-        countdown = 60; 
-        return;
-    } else { 
-        obj.setAttribute("disabled", true); 
-        obj.value="重新发送(" + countdown + ")"; 
-        countdown--; 
-    } 
-setTimeout(function() { 
-    settime(obj) }
-    ,1000) 
 }
 </script>
 </body>

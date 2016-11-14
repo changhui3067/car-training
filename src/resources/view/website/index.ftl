@@ -55,7 +55,7 @@
                  <div class="pxshi_name">
                      <div class="xm left">${trainer.personInfo.name!}</div>
                      <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if trainer.autobotsCommentList??> ${trainer.autobotsCommentList.size!}<#else>0</#if></div>
-                     <#if trainer.isLike?? && trainer.isLike>
+                     <#if isLikeMap?? && isLikeMap.get(trainer)??>
                      <div id="trainerLike" class="dz right praise" value=${trainer.id!} onClick="like(this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
                      <#else>
                      <div id="trainerLike" class="dz right praise unLike" value=${trainer.id!} onClick="like(this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>

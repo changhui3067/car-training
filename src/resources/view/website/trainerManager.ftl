@@ -5,8 +5,6 @@
 	<li id="information" onclick='navigate(this.id)'>个人资料</li>
 	<li id="complete" onclick='navigate(this.id)'>完善资料</li>
     <li id="record" onclick='navigate(this.id)'>申请记录</li>
-    <li id="publish" onclick='navigate(this.id)'>发布文章</li>
-    <li id="article" onclick='navigate(this.id)'>我的文章</li>
     <li id="password" onclick='navigate(this.id)'>修改密码</li>
 </ul>
 </div>
