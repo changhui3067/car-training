@@ -19,34 +19,36 @@
 
 
 <div class="content">
-	<#if jobs?? && jobs.company??>
+	<#if job??>
     <div class="ny_zhaopin">
     	<div class="zhaopin_l left">
         	<div class="zp_qy">
-            	<div class="zwmc">${jobs.name!}</div>
-                <div class="qymc"><span>${jobs.company.autoBrand!}</span><span>当前汽车品牌：</span></div>
+            	<div class="zwmc">${job.title!}</div>
+                <div class="qymc"><span><#--${jobs.company.autoBrand!}</span>--><span>当前汽车品牌：</span></div>
             </div>
             <div class="zhaopin_box">
             	<div class="xzdy">
-                	<div class="zwdy"><span><img style="border:none;"  name="yp" id="yp" src="http://obu3flkwk.bkt.clouddn.com/website/images/yp_an.jpg" onclick="applyJob('${jobs.id!}')" /></span></div>
+                	<div class="zwdy"><span><img style="border:none;"  name="yp" id="yp" src="http://obu3flkwk.bkt.clouddn.com/website/images/yp_an.jpg" onclick="applyJob('${job.id!}')" /></span></div>
                	 	<!--<div class="shoucang">收藏</div>-->
                 	<div class="gzdd">
-                	<div class="didian left"><#if jobs.region??>${jobs.region.fullname!}</#if></div>
-                    <div class="didian left">${jobs.salary!} （元/月）</div>
-                    <div class="fb_sj right">${jobs.publishDate!?string("yyyy-MM-dd")}</div>
+                	<div class="didian left"><#if job.regionId??>${job.regionId!}</#if></div>
+                    <div class="didian left">${job.salary!} （元/月）</div>
+                    <div class="fb_sj right">发布日期<#--${job.publishDate!?string("yyyy-MM-dd")}--></div>
                     <div class="clear"></div>
                 </div>
                 	<div class="zwyq">
                 	<ul>
-                    	<li>${jobs.education!}</li><li><#if jobs.workExprience=0 > 应界毕业生 <#else> ${jobs.workExprience!}年以上经验</#if></li><li>${jobs.languages!?replace(",","+")?replace("[","")?replace("]","")}</li>
+                    	<li>${job.educationRequirement!}</li>
+                        <li><#if job.workExperienceRequirement=0 > 应界毕业生 <#else> ${job.workExperienceRequirement!}年以上经验</#if></li>
+                        <li>语言需求<#--${job.languages!?replace(",","+")?replace("[","")?replace("]","")}--></li>
                     	<li style="background:none;"></li>
                     </ul>
                     <div class="clear"></div>
                 </div>
                 	<div class="fldy">
                 	<ul>
-                		<#if jobs.welfare??>
-                        	<#list jobs.welfare as w>
+                		<#if job.welfare??>
+                        	<#list job.welfare as w>
                         	<li>${w!}</li>
                             </#list>
                         </#if>
@@ -57,7 +59,7 @@
                 <div class="gwms">
                 	<h4>岗位描述：</h4>
                     <div class="gwms_box">
-                    	${jobs.jobDescription!}
+                    	${job.jobDescription!}
                     </div>
                 </div>
 
@@ -67,19 +69,13 @@
                     	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td width="8%">所属部门：</td>
-    <td width="42%">${jobs.department!}</td>
+    <td width="42%"><#--${jobs.department!}--></td>
     <td width="8%">专业要求：</td>
-    <td width="42%">${jobs.major!}</td>
+    <td width="42%"><#--${jobs.major!}--></td>
   </tr>
 </table>
 
                   </div>
-                </div>
-                <div class="qy_intro">
-                	<h4>企业简介：</h4>
-                    <div class="qy_intro_box">
-                    	${jobs.company.intro!}
-                    </div>
                 </div>
             </div>
         </div>
