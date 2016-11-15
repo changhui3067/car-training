@@ -1,12 +1,15 @@
 package com.car.training.action.website;
 
 
+import com.car.training.action.SimpleAction;
 import com.car.training.bean.Comment;
 import com.car.training.bean.Course;
 import com.car.training.bean.Trainer;
 import com.car.training.service.CommentService;
 import com.car.training.service.CourseService;
+import com.car.training.service.LikeService;
 import com.car.training.service.TrainerService;
+import com.car.training.vo.LoginVO;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,7 @@ import java.util.List;
 
 
 @AutoConfig
-public class TrainerDetailAction extends BaseAction {
+public class TrainerDetailAction extends SimpleAction {
 
     private static final long serialVersionUID = 4839883380537115435L;
 
@@ -27,6 +30,9 @@ public class TrainerDetailAction extends BaseAction {
 //    private TrainerEssayService trainerEssayService;
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private LikeService likeService;
 
     private Trainer trainer;
 //    /**
@@ -44,6 +50,11 @@ public class TrainerDetailAction extends BaseAction {
 
     private int trainerId;
 
+    private int likeNumber;
+
+    private boolean isLike;
+
+
     @Override
     public String execute(){
         trainer = trainerService.findById(trainerId);
@@ -51,9 +62,14 @@ public class TrainerDetailAction extends BaseAction {
             setTargetUrl("/website/index");
             return REDIRECT;
         }
-
-        coursesList = coursesService.findByTrainerId(trainerId);
-        commentList = commentService.findCommentByTargetUser(trainerId);
+        int tUid = trainer.getPersonInfo().getId();
+        coursesList = coursesService.findByTrainerId(tUid);
+        commentList = commentService.findCommentByTargetUser(tUid);
+        likeNumber = likeService.likeNumber(tUid);
+        LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
+        if(loginVO !=null){
+            isLike = likeService.isLike(loginVO.getId(),tUid);
+        }
         return SUCCESS;
 //
 //        TrainerEssay trainerEssay = new TrainerEssay();
@@ -116,5 +132,37 @@ public class TrainerDetailAction extends BaseAction {
 
     public int getTrainerId() {
         return trainerId;
+    }
+
+    public List<Course> getCoursesList() {
+        return coursesList;
+    }
+
+    public void setCoursesList(List<Course> coursesList) {
+        this.coursesList = coursesList;
+    }
+
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setLike(boolean like) {
+        isLike = like;
+    }
+
+    public int getLikeNumber() {
+        return likeNumber;
+    }
+
+    public void setLikeNumber(int likeNumber) {
+        this.likeNumber = likeNumber;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 }
