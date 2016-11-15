@@ -541,19 +541,18 @@ button.commonClickButton:hover{
 }
 
 /*培训领域*//*职位地址*//*培训形式*//*工作性质*//*培训时间*/
-.pxly, .scxs, .zwdz, .pxxs, .gzxz, .pxsj
+.scxs, .zwdz, .pxxs, .gzxz, .pxsj
 { font-size:12px; height:30px; line-height:30px; margin-bottom:5px;}
 
-.pxly h4, .scxs h4, .zwdz h4, .pxxs h4, .gzxz h4, .pxsj h4
+.scxs h4, .zwdz h4, .pxxs h4, .gzxz h4, .pxsj h4
 { display:block;font-size:12px; float:left; font-weight:100; width:65px; text-align:left; padding-left:30px; color:#3689b3;  }
 
-.pxly_box, .scxs_box, .zwdz_box, .pxxs_box, .gzxz_box, .pxsj_box
+.scxs_box, .zwdz_box, .pxxs_box, .gzxz_box, .pxsj_box
 { width:1030px;float:right;}
 
-.pxly_box li, .scxs_box li, .zwdz_box li, .pxxs_box li, .gzxz_box li, .pxsj_box li
+.scxs_box li, .zwdz_box li, .pxxs_box li, .gzxz_box li, .pxsj_box li
 { display:block; float:left; padding-right:40px;}
 
-.pxly h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pxly.jpg) no-repeat left 2px;}
 .scxs h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/scxs.jpg) no-repeat left 2px;}
 .zwdz h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/zwdz.jpg) no-repeat left 2px;}
 .pxxs h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pxxs.jpg) no-repeat left 4px;}

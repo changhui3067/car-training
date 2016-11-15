@@ -111,12 +111,12 @@ public class Job {
         this.jobDescription = jobDescription;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreateDate() {
+        return createDate;
     }
 
     public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+        this.createDate = createTime;
     }
 
     public String getMajorRequirement() {
