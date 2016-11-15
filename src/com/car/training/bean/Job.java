@@ -21,8 +21,9 @@ public class Job {
     @Column
     private String title;
 
-    @Column
-    private int publishCompanyId;
+    @JoinColumn(name = "companyId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne()
+    private Company company;
 
     @Column
     private int workExperienceRequirement;
@@ -69,14 +70,6 @@ public class Job {
         this.title = title;
     }
 
-    public int getPublishCompanyId() {
-        return publishCompanyId;
-    }
-
-    public void setPublishCompanyId(int publishCompanyId) {
-        this.publishCompanyId = publishCompanyId;
-    }
-
     public int getWorkExperienceRequirement() {
         return workExperienceRequirement;
     }
@@ -84,8 +77,6 @@ public class Job {
     public void setWorkExperienceRequirement(int workExperienceRequirement) {
         this.workExperienceRequirement = workExperienceRequirement;
     }
-
-
 
     public String getEducationRequirement() {
         return educationRequirement;
@@ -111,13 +102,6 @@ public class Job {
         this.jobDescription = jobDescription;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createDate = createTime;
-    }
 
     public String getMajorRequirement() {
         return majorRequirement;
@@ -149,5 +133,21 @@ public class Job {
 
     public void setRegion(Region region) {
         this.region = region;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
     }
 }

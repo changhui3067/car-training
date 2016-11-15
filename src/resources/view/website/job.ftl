@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <title>培聘网</title>
+    <link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/pxshi.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/iconfont.css" type="text/css"/>
@@ -14,8 +15,6 @@
 <#include "/assets/website/common/header.html">
 <!-- 头部结束 -->	
 <!-- main开始 -->
-
-
 <div class="content">
     <div class="ny">
      	<div class="searchBox">
@@ -39,18 +38,37 @@
             <div class="filterType">
             	<div class="filterName">职位地址:</div>
                 <div class="zwdz_box">
-
+                    <div class="dropdown" id="province">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            请选择省<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <#list provinces as t>
+                            <li ><a href='#' onclick="selectCities(this)" value="${t.id!}">${t.name!}</a></li>
+                            </#list>
+                        </ul>
+                    </div>
+                    <div class="dropdown" name="uregionId" id="city">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            请选择市<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <#if cities??><#list cities as city>
+                            <li><a href='#' onclick="selectCity(this);filter4Clicked(this, 'regionId');" value="${city.id!}">${city.name!}</a></li>
+                            </#list></#if>
+                        </ul>
+                    </div>
                 </div>
                 <div class="clear"></div>
             </div>
             <div class="filterType">
             	<div class="filterName">发布时间:</div>
                 <div class="filterItemList">
-                    	<span onclick="filter3Clicked(this, 'publishDate')">三天内</span>
-                        <span onclick="filter3Clicked(this, 'publishDate')">一周内</span>
-                        <span onclick="filter3Clicked(this, 'publishDate')">两周内</span>
-                        <span onclick="filter3Clicked(this, 'publishDate')">一个月以内</span>
-                        <span onclick="filter3Clicked(this, 'publishDate')">一个月以上</span>
+                    <span onclick="filter3Clicked(this, 'publishDate')">三天内</span>
+                    <span onclick="filter3Clicked(this, 'publishDate')">一周内</span>
+                    <span onclick="filter3Clicked(this, 'publishDate')">两周内</span>
+                    <span onclick="filter3Clicked(this, 'publishDate')">一个月以内</span>
+                    <span onclick="filter3Clicked(this, 'publishDate')">一个月以上</span>
                 </div>
             	
             </div>
@@ -87,6 +105,8 @@
 
 <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
+<script src="/assets/website/js/region.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 var filters = {};
 
@@ -149,6 +169,12 @@ function filter3Clicked(ele, category) {
             break;
     }
 
+    sendAjax();
+}
+
+function filter4Clicked(ele, category) {
+    filters[category] = filters[category] ? filters[category] : "";
+    filters[category] = $('#city button').val();
     sendAjax();
 }
 

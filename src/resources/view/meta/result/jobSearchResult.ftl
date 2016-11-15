@@ -6,7 +6,7 @@
 				<#if t??>
 					<div class="qz"></div>
 					<div class="left zp_box_l">
-						<a href="/website/jobDetail?jobDetail.id=${t.id!}">
+						<a href="/website/jobDetail?jobId=${t.id!}">
 							<div class="zw_name">${t.title!}</div>
 						</a>
 						<div class="dy_box">
@@ -22,7 +22,7 @@
 					<div class="right zp_box_r">
                     <div class="qy">
                         <#if t.company??>
-                         <a href="/website/autoCompany?company.id=${t.company.id!}">
+                         <a href="/website/companyDetail?companyId=${t.company.id!}">
                              <div class="qy_l left zp_box_r_l"><img src="${t.company.logo!}"/></div>
                              <div class="qy_r right zp_box_r_r">
                                  <div class="qy_name">
@@ -31,7 +31,7 @@
                                  </div>
                                  <div class="jyfw">${t.company.industry!}</div>
                                  <div class="fl">
-                                     <#if tr.welfare??>
+                                     <#if t.welfare??>
                                          <#list trainerJob.welfare as w><span>${w!}</span></#list>
                                      </#if>
                                  </div>
