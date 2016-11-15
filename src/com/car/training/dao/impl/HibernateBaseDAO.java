@@ -2,6 +2,7 @@ package com.car.training.dao.impl;
 
 import com.car.training.dao.BaseDAO;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaDelete;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +26,8 @@ public class HibernateBaseDAO implements BaseDAO {
     @Autowired
     protected SessionFactory sessionFactory;
 
+
+
     /**
      * gerCurrentSession 会自动关闭session，使用的是当前的session事务 * * @return
      */
@@ -36,14 +40,6 @@ public class HibernateBaseDAO implements BaseDAO {
      */
     public Session getNewSession() {
         return sessionFactory.openSession();
-    }
-
-    public void flush() {
-        getSession().flush();
-    }
-
-    public void clear() {
-        getSession().clear();
     }
 
     /**
@@ -87,24 +83,13 @@ public class HibernateBaseDAO implements BaseDAO {
     public void save(Object bean) {
         try {
             Session session = getNewSession();
-            session.save(bean);
+            session.saveOrUpdate(bean);
             session.flush();
             session.clear();
             session.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * 更新 * * @param bean *
-     */
-    public void update(Object bean) {
-        Session session = getNewSession();
-        session.update(bean);
-        session.flush();
-        session.clear();
-        session.close();
     }
 
     /**
@@ -119,18 +104,6 @@ public class HibernateBaseDAO implements BaseDAO {
         session.close();
     }
 
-    /**
-     * 根据ID删除 * * @param c 类 * * @param id ID *
-     */
-    @SuppressWarnings({"rawtypes"})
-    public void delete(Class c, Serializable id) {
-        Session session = getNewSession();
-        Object obj = session.get(c, id);
-        session.delete(obj);
-        session.flush();
-        session.clear();
-        session.close();
-    }
 
     /**
      * 批量删除 * * @param c 类 * * @param ids ID 集合 *
@@ -167,25 +140,4 @@ public class HibernateBaseDAO implements BaseDAO {
         return criteria.list();
     }
 
-    public void delete(Class c, HashMap<String, String> condition) {
-        Session session = getNewSession();
-        StringBuilder hql = new StringBuilder("delete  from " + c.getName()
-                + " where ");
-        addCondition(hql, condition);
-        session.createQuery(hql.toString()).executeUpdate();
-        session.close();
-    }
-
-    private void addCondition(StringBuilder hql, HashMap<String, String> condition) {
-        boolean isfirst = true;
-        for (String attribute : condition.keySet()) {
-            if (isfirst) {
-                isfirst = false;
-            } else {
-                hql.append(" and ");
-            }
-
-            hql.append(attribute).append("='").append(condition.get(attribute)).append("'");
-        }
-    }
 }

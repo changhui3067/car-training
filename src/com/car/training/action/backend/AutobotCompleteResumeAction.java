@@ -92,7 +92,7 @@ public class AutobotCompleteResumeAction extends BaseAction {
     @Override
     public String execute() throws Exception {
         provinces = regionUtils.getSubCities(-1);
-        userRegion = regionUtils.getRegionById(autobot.getPersonInfo().getRegionId());
+        userRegion = autobot.getPersonInfo().getRegion();
         cities = regionUtils.getSubCities(userRegion.getParent().getId());
         return SUCCESS;
     }
@@ -106,7 +106,7 @@ public class AutobotCompleteResumeAction extends BaseAction {
                 String headLogo = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, avatarUrl);
                 autobot.getPersonInfo().setAvatarUrl(headLogo);
             }
-            autobot.getPersonInfo().setRegionId(Integer.valueOf(regionId));
+            autobot.getPersonInfo().setRegion(regionUtils.getRegionById(Long.valueOf(regionId)));
 
             String[] autoProps = new String[]{
                     "certRecords",
