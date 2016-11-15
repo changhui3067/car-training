@@ -63,6 +63,9 @@ public class Autobot {
     @Column
     private String currentPosition;
 
+    @Column
+    private String trainingHistory;
+
     public LoginUser getLoginUser() {
         return loginUser;
     }
@@ -141,5 +144,13 @@ public class Autobot {
 
     public void setCurrentPosition(String currentPosition) {
         this.currentPosition = currentPosition;
+    }
+
+    public String getTrainingHistory() {
+        return trainingHistory;
+    }
+
+    public void setTrainingHistory(String trainingHistory) {
+        this.trainingHistory = trainingHistory;
     }
 }

@@ -1,5 +1,7 @@
 package com.car.training.bean;
 
+import org.ironrhino.common.model.Region;
+
 import javax.persistence.*;
 
 /**
@@ -31,8 +33,9 @@ public class PersonInfo {
     @Column
     private String marriageStatus;
 
-    @Column
-    private int regionId;
+    @JoinColumn(name = "regionId",foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne
+    private Region region;
 
     @Column
     private String avatarUrl;
@@ -94,14 +97,6 @@ public class PersonInfo {
         this.marriageStatus = marriageStatus;
     }
 
-    public int getRegionId() {
-        return regionId;
-    }
-
-    public void setRegionId(int regionId) {
-        this.regionId = regionId;
-    }
-
     public String getAvatarUrl() {
         return avatarUrl;
     }
@@ -110,4 +105,11 @@ public class PersonInfo {
         this.avatarUrl = avatarUrl;
     }
 
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 }

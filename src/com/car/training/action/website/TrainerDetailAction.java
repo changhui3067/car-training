@@ -24,15 +24,19 @@ public class TrainerDetailAction extends SimpleAction {
 
     @Autowired
     private TrainerService trainerService;
+
     @Autowired
     private CourseService coursesService;
-//    @Autowired
-//    private TrainerEssayService trainerEssayService;
+
     @Autowired
     private CommentService commentService;
 
     @Autowired
     private LikeService likeService;
+
+
+//    @Autowired
+//    private TrainerEssayService trainerEssayService;
 
     private Trainer trainer;
 //    /**
@@ -59,8 +63,7 @@ public class TrainerDetailAction extends SimpleAction {
     public String execute(){
         trainer = trainerService.findById(trainerId);
         if (trainer == null) {
-            setTargetUrl("/website/index");
-            return REDIRECT;
+            return redirectToIndex();
         }
         int tUid = trainer.getPersonInfo().getId();
         coursesList = coursesService.findByTrainerId(tUid);
