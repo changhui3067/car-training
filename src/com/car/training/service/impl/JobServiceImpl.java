@@ -1,5 +1,6 @@
 package com.car.training.service.impl;
 
+import com.car.training.bean.Company;
 import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
 import com.car.training.dao.TrainerDAO;
@@ -38,7 +39,9 @@ public class JobServiceImpl implements JobService{
     @Override
     public List<Job> findJobsByTargetCompany(int targetCid) {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("publishCompanyId", targetCid);
+        Company company = new Company();
+        company.setId(targetCid);
+        map.put("company", company);
         return  baseDAO.find(Job.class, map);
     }
 

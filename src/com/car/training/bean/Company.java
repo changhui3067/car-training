@@ -1,6 +1,7 @@
 package com.car.training.bean;
 
 import com.car.training.enums.ReactTime;
+import org.ironrhino.common.model.Region;
 
 import javax.persistence.*;
 
@@ -19,15 +20,15 @@ public class Company {
     @JoinColumn(name = "loginCompany_id", unique = true)
     private LoginUser loginUser;
 
-
     @Column
     private String name;
 
     @Column
     private String address;
 
-    @Column
-    private int regionId;
+    @JoinColumn(name = "regionId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne()
+    private Region region;
 
     @Column
     private String logoUrl;
@@ -68,14 +69,6 @@ public class Company {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public int getRegionId() {
-        return regionId;
-    }
-
-    public void setRegionId(int regionId) {
-        this.regionId = regionId;
     }
 
     public String getLogoUrl() {
@@ -124,5 +117,13 @@ public class Company {
 
     public void setWelfare(String welfare) {
         this.welfare = welfare;
+    }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
     }
 }
