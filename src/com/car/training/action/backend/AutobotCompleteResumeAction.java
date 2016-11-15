@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -125,6 +126,7 @@ public class AutobotCompleteResumeAction extends BaseAction {
             };
             setValue(this,autobot.getPersonInfo(),personProps);
         }
+        autobotService.save(autobot);
         Map<String, Object> map = new HashMap<>();
         map.put("code", "200");
         map.put("msg", "保存成功");

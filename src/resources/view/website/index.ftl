@@ -161,7 +161,7 @@
                         <span style="background:none;"><#if trainerJob.region??>${trainerJob.region.fullname!}</#if></span>
                     </div>
                     <div class="fb_box">
-                        	<span  style="padding-left:0px;">发布于：${trainerJob.createTime!?string("yyyy-MM-dd")}</span>
+                        	<span  style="padding-left:0px;">发布于：<#if trainerJob.createDate??>${trainerJob.createDate?string("yyyy-MM-dd")} </#if></span>
                             <span style="background:none;">投递后：48小时反馈</span>
                     </div>
                 </div>
