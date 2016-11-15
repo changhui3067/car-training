@@ -3,9 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<title>培聘网</title>
-    <link rel="stylesheet" href="<@url value="/assets/website/css/style.css"/>" type="text/css" media="screen" />
-<link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen" />
+    <title>培聘网</title>
+    <link rel="stylesheet" href="<@url value="/assets/website/css/style.css"/>" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="<@url value="/assets/website/css/iconfont.css"/>" type="text/css" media="screen"/>
 </head>
 
 <body>
@@ -17,7 +18,7 @@
 
 
 <div class="content">
-    <div class="ny">
+    <div class="ny autobotSearchColor">
      	<div class="sousuo_box">
         	<div class="pxly">
             	<h4>岗位类型:</h4>
@@ -75,7 +76,12 @@
                 </div>
           </div>
         </div>
-    	
+
+        <div id="searchResult" style="color:#3d9ccc">
+            <!-- search result start -->
+		<#include "/resources/view/meta/result/peopleSearchResult.ftl">
+            <!-- search result end -->
+        </div>
     	
     	<#if autobotsList??>
 	       	<#if positionTypeEnum??>

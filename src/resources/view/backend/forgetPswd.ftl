@@ -18,20 +18,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="radio-inline col-sm-offset-2 col-sm-2">
-                            <input name="userType" id="userType" type="radio"  value="TRAINER" checked/>个人
-                        </label>
-                        <label class="radio-inline col-sm-2">
-                            <input type="radio" name="userType" id="userType" value="AUTOBOT" />企业
-                        </label>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-sm-2 control-label">验证码：</label>
                         <div class="col-sm-3">
-                            <input class="form-control text-size" type="verCode" name="verCode" id="verCode" placeholder="请输入密码"/>
+                            <input class="form-control text-size" type="vercode" name="vercode" id="vercode" placeholder="请输入密码"/>
                         </div>
                         <div class="col-sm-2">
-                          <button type="submit" class="btn btn-default active" onClick="sendMsg()">获取验证码</button>
+                          <input type="button" class="btn btn-default active" value="获取验证码" onClick="sendMsg(this)"></input>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -54,13 +46,15 @@
     </div>
 </div>
 <#include "/assets/website/common/footer.html">
+<script src="<@url value="/assets/website/js/jquery-3.1.1.min.js"/>"></script>
+<script src="<@url value="/assets/website/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<@url value="/assets/website/backend/js/common.js"/>"></script>
 <script type="text/javascript">
     var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/;
-    function sendMsg () {
+    function sendMsg (obj) {
         var form_data={},
             errMsg = $(".errMsg")[0];
-        form_data["username"] = $(".forgetPsd #username").val(),
-        form_data["personOrCompany"] = $('input:radio[name="userType"]:checked').val();
+        form_data["username"] = $(".forgetPsd #username").val();
         if(form_data.username == "" || form_data.username == null){
             errMsg.innerHTML = "请输入用户名";
             return false;
@@ -68,6 +62,7 @@
             errMsg.innerHTML = "手机格式不正确";
             return false;
         }
+        settime(obj);
         $.ajax({
             type: "POST",
             url: "/backend/UserCenter/sendmsgForResetPassword",
@@ -89,8 +84,7 @@
         var form_data={},
             errMsg = $(".errMsg")[0];
         form_data["username"] = $(".forgetPsd #username").val(),
-        form_data["userType"] = $('input:radio[name="userType"]:checked').val(),
-        form_data["verCode"] = $(".forgetPsd #verCode").val()
+        form_data["vercode"] = $(".forgetPsd #vercode").val()
         form_data["password"] = $(".forgetPsd #password").val();
         if(form_data.username == "" || form_data.username == null){
             errMsg.innerHTML = "请输入用户名";
