@@ -1,6 +1,7 @@
 package com.car.training.action.website;
 
 import com.car.training.action.SimpleAction;
+import com.car.training.bean.Company;
 import com.car.training.bean.Job;
 import com.car.training.service.JobService;
 import org.ironrhino.core.metadata.AutoConfig;
@@ -16,12 +17,15 @@ public class JobDetailAction extends SimpleAction {
 
     private Job job;
 
+    private Company company;
+
     private int jobId;
 
     @Override
     public String execute() throws Exception {
         if(jobId!=0){
             job = jobService.findById(jobId);
+            company = job.getCompany();
         }else{
             return redirectToIndex();
         }
@@ -42,5 +46,14 @@ public class JobDetailAction extends SimpleAction {
 
     public void setJobId(int jobId) {
         this.jobId = jobId;
+    }
+
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }
