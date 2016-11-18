@@ -326,7 +326,7 @@ button.commonClickButton:hover{
 
 .zp_box_r {
     width: 49%;
-    padding: 10px 15px 10px 5px;
+    padding: 10px 5px 10px 5px;
 }
 
 .zp_box_r:hover, .praise:hover{
@@ -477,7 +477,6 @@ button.commonClickButton:hover{
     width: 100%;
     font-size: 14px;
     line-height: 30px;
-    overflow: auto;
 }
 
 .searchBox .filterType .filterName {
@@ -496,7 +495,7 @@ button.commonClickButton:hover{
     width: calc(100% - 65px);
 }
 
-.searchBox .filterType .filterItemList span{
+.searchBox .filterType .filterItemList > span{
     display: block;
     float: left;
     padding: 0 5px;
@@ -504,7 +503,7 @@ button.commonClickButton:hover{
     /*border: #3689b3 solid 1px;*/
 }
 
-.searchBox .filterType .filterItemList input {
+.searchBox .filterType .filterItemList > input {
     height: 30px;
     font-size: 14px;
     width: 500px;
@@ -529,6 +528,10 @@ button.commonClickButton:hover{
     background: #3689b3;
     color: #fff;
     cursor: pointer;
+}
+
+.searchBox .dropdown {
+    display: inline-block;
 }
 
 /***************************************End Search Box structure*******************************************************/

@@ -33,11 +33,12 @@
                     <span onclick="filterClicked(this,'businessCategory')">领导力</span>
                     <span onclick="filterClicked(this,'businessCategory')">新能源</span>
                 </div>
+                <div class="clear"></div>
             </div>
             
             <div class="filterType">
             	<div class="filterName">职位地址:</div>
-                <div class="zwdz_box">
+                <div class="filterItemList">
                     <div class="dropdown" id="province">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             请选择省<span class="caret"></span>
@@ -70,7 +71,7 @@
                     <span onclick="filter3Clicked(this, 'publishDate')">一个月以内</span>
                     <span onclick="filter3Clicked(this, 'publishDate')">一个月以上</span>
                 </div>
-            	
+            	<div class="clear"></div>
             </div>
 
             <div class="filterType">
@@ -82,15 +83,17 @@
                     <span onclick="filter2Clicked(this, 'workExperience')">15-20年</span>
                     <span onclick="filter2Clicked(this, 'workExperience')">20年以上</span>
                 </div>
+                <div class="clear"></div>
             </div>
             
             <div class="filterType">
-           	  <div class="filterName">关键字</div>
+           	    <div class="filterName">关键字</div>
                 <div class="filterItemList">
                     <input type="text" id="search_input"  placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" />
                     <button onclick="searchBtnClick()">搜索</button>
                 </div>
-          </div>
+                <div class="clear"></div>
+            </div>
         </div>
 
         <div id="searchResult">
