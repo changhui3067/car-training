@@ -15,4 +15,5 @@ public interface AutobotService {
 
     List<Autobot> search(String businessCategory, String executionCategory, int minAutoYears, int maxAutoYears, String keyword);
 
+    void save(Autobot autobot);
 }

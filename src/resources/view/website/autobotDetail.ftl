@@ -59,7 +59,7 @@
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>培训经历</h4></div>
                 <div class="people_other_info_list">
-                ${autobot.trainingHistroy!}
+                ${autobot.trainingHistory!}
                 </div>
             </div>
             <div class="people_other_info_box">

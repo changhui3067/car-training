@@ -1,12 +1,14 @@
 package com.car.training.service.impl;
 
 import com.car.training.bean.Autobot;
+import com.car.training.bean.Like;
 import com.car.training.bean.LoginUser;
 import com.car.training.dao.AutobotDAO;
 import com.car.training.dao.BaseDAO;
 import com.car.training.service.AutobotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,5 +44,10 @@ public class AutobotServiceImpl implements AutobotService {
     @Override
     public List<Autobot> search(String businessCategory, String executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
         return autobotDAO.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
+    }
+
+    @Override
+    public void save(Autobot autobot){
+        baseDAO.save(autobot);
     }
 }

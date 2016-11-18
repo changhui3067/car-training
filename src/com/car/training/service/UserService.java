@@ -14,8 +14,9 @@ public interface UserService {
     boolean existUser(String username);
 
 
-    LoginUser getUser(String username,UserType userType);
+    LoginUser getUser(String username);
 
-    boolean updatePassword(String username, UserType userType,String newPassword);
+    boolean updatePassword(String username, String newPassword);
 
+    boolean updatePassword(String username, String oldPassword, String newPassword);
 }

@@ -40,6 +40,9 @@ public class UserCenterAction extends SimpleAction {
 
     private String password;
 
+    private String oldPassword;
+
+
     private String username;
 
     private String vercode;
@@ -124,14 +127,26 @@ public class UserCenterAction extends SimpleAction {
 
     @JsonConfig(root = "data")
     public String resetPassword() {
-        if (!smsManager.checkCode(username, vercode)) {
-            return errorJSON("wrong verification code");
+        if(vercode!=null){
+            if (!smsManager.checkCode(username, vercode)) {
+                return errorJSON("wrong verification code");
+            }
+            if (userService.updatePassword(username, password)) {
+                return successJSON();
+            } else {
+                return errorJSON("user not exist");
+            }
+        } else if (oldPassword !=null){
+            if (userService.updatePassword(username,oldPassword, password)) {
+                return successJSON();
+            } else {
+                return errorJSON("wrong password or user not exist");
+            }
+        }else{
+            return errorJSON("wrong parameter");
         }
-        if (userService.updatePassword(username, userType, password)) {
-            return successJSON();
-        } else {
-            return errorJSON("user not exist");
-        }
+
+
 
     }
 
@@ -199,4 +214,11 @@ public class UserCenterAction extends SimpleAction {
         this.userType = UserType.valueOf(userType);
     }
 
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
 }

@@ -17,10 +17,6 @@ public interface BaseDAO {
 
     Session getNewSession();
 
-    void flush();
-
-    void clear();
-
     Object load(Class c, Serializable id);
 
     List getAllList(Class c);
@@ -29,11 +25,8 @@ public interface BaseDAO {
 
     void save(Object bean);
 
-    void update(Object bean);
-
     void delete(Object bean);
 
-    void delete(Class c, Serializable id);
 
     void delete(Class c, String[] ids);
 
@@ -41,7 +34,4 @@ public interface BaseDAO {
     List find(Class clazz, HashMap<String, Object> condition);
 
     Object findOne(Class clazz, Map<String, Object> condition);
-
-    //删除 满足 attribute=value条件组的值
-    void delete(Class c, HashMap<String, String> condition);
 }

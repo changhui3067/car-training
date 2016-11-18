@@ -1,7 +1,11 @@
 package com.car.training.action;
 
+import com.car.training.vo.LoginVO;
+import org.apache.struts2.ServletActionContext;
 import org.ironrhino.core.struts.BaseAction;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +38,11 @@ public class SimpleAction extends BaseAction {
 
     public Object getData() {
         return data;
+    }
+
+    protected HttpSession getHttpSession(){
+        HttpServletRequest request = ServletActionContext.getRequest();
+        return request.getSession();
     }
 
     public void setData(Object data) {

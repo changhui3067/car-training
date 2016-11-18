@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +93,7 @@ public class AutobotCompleteResumeAction extends BaseAction {
     @Override
     public String execute() throws Exception {
         provinces = regionUtils.getSubCities(-1);
-        userRegion = regionUtils.getRegionById(autobot.getPersonInfo().getRegionId());
+        userRegion = autobot.getPersonInfo().getRegion();
         cities = regionUtils.getSubCities(userRegion.getParent().getId());
         return SUCCESS;
     }
@@ -106,7 +107,7 @@ public class AutobotCompleteResumeAction extends BaseAction {
                 String headLogo = fileUploaderUtil.uploadFile(CARTRAINING_UPLOAD_FILEPATH, avatarUrl);
                 autobot.getPersonInfo().setAvatarUrl(headLogo);
             }
-            autobot.getPersonInfo().setRegionId(Integer.valueOf(regionId));
+            autobot.getPersonInfo().setRegion(regionUtils.getRegionById(Long.valueOf(regionId)));
 
             String[] autoProps = new String[]{
                     "certRecords",
@@ -125,6 +126,7 @@ public class AutobotCompleteResumeAction extends BaseAction {
             };
             setValue(this,autobot.getPersonInfo(),personProps);
         }
+        autobotService.save(autobot);
         Map<String, Object> map = new HashMap<>();
         map.put("code", "200");
         map.put("msg", "保存成功");
