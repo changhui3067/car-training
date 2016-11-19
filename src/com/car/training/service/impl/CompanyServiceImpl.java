@@ -25,4 +25,11 @@ public class CompanyServiceImpl implements CompanyService{
         map.put("id",id);
         return (Company) basedao.findOne(Company.class,map);
     }
+
+    @Override
+    public Company findByLoginUser(LoginUser loginUser) {
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("loginUser", loginUser);
+        return (Company) basedao.findOne(Company.class,map);
+    }
 }

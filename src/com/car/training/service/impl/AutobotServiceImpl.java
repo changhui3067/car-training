@@ -42,6 +42,13 @@ public class AutobotServiceImpl implements AutobotService {
     }
 
     @Override
+    public Autobot findByLoginUser(LoginUser loginUser) {
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("loginUser",loginUser);
+        return (Autobot) baseDAO.findOne(Autobot.class,map);
+    }
+
+    @Override
     public List<Autobot> search(String businessCategory, String executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
         return autobotDAO.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
     }

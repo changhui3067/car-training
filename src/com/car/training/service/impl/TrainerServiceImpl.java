@@ -1,5 +1,6 @@
 package com.car.training.service.impl;
 
+import com.car.training.bean.LoginUser;
 import com.car.training.bean.Trainer;
 import com.car.training.dao.BaseDAO;
 import com.car.training.dao.TrainerDAO;
@@ -27,6 +28,13 @@ public class TrainerServiceImpl implements TrainerService {
         HashMap<String,Object> map = new HashMap<>();
         map.put("id",id);
         return (Trainer) baseDAO.findOne(Trainer.class,map);
+    }
+
+    @Override
+    public  Trainer findByLoginUser(LoginUser loginUser) {
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("loginUser",loginUser);
+        return (Trainer) baseDAO.findOne(Trainer.class, map);
     }
 
     @Override

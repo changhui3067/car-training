@@ -18,13 +18,13 @@
         <#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>
         <div  class="dl_tel left" >欢迎您,${Session["loginVO"].username}</div>
          <div class="dl_top right list-inline">
-         	<li style="background:none;"><#if Session?exists && '{}' != '${session}' && Session["loginVO"]?? && (Session["loginVO"].userType=='TRAINER'||Session["loginVO"].userType=='AUTOBOT') > <a href='<@url value='/backend/manageCenter'/>' ><#else> <a href='<@url value='/backend/companyJobManage'/>'> </#if>我的管理</a></li>
+         	<li style="background:none;"><a href='/backend/manageCenter'/>我的管理</a></li>
          	<li><a href="/backend/UserCenter/logout">退出</a></li>
          </div>
         <#else> 
             <div class="right register">
             	<ul>
-                    <li><a href='<@url value='/website/register'/>'>免费注册</a></li>
+                    <li><a href='/website/register'/>'>免费注册</a></li>
                 </ul>
             </div>
         </#if> 

@@ -15,6 +15,10 @@ public class PersonInfo {
     @Column
     private int id;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "loginUser", unique = true)
+    private LoginUser loginUser;
+
     @Column
     private String birthday;
 

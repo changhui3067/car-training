@@ -3,10 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>培聘网</title>
-<link rel="stylesheet" href="<@url value='/assets/website/backend/css/style.css'/>" type="text/css" media="screen" />
-<link rel="stylesheet" href="<@url value="/assets/website/css/bootstrap.min.css?v=1.1.0"/>" type="text/css" media="screen" />
-<script src="<@url value="/assets/website/js/jquery-3.1.1.min.js?v=1.1.0"/>"></script>
-<script src="<@url value="/assets/website/js/bootstrap.min.js?v=1.1.0"/>"></script>
+<link rel="stylesheet" href="/assets/website/backend/css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css" media="screen" />
 </head>
 
 <body>
@@ -15,15 +14,17 @@
 <div class="main">
 	<div class="content">
 	    <div class="pxshi_gl">
-	        <#if Session?exists && '{}' != '${session}' && Session["loginVO"]?? && Session["loginVO"].userType=='TRAINER'>
-	        	<#include "/resources/view/website/trainerManager.ftl">
-	        <#elseIf Session?exists && '{}' != '${session}' && Session["loginVO"]?? && Session["loginVO"].userType=='AUTOBOT'>
+	    	<#include "/resources/view/website/trainerManager.ftl">
 
+	        <#if Session?exists && '{}' != '${session}' && Session["loginVO"]?? && Session["loginVO"].userType=='TRAINER'>
 	        </#if>
 		</div>
 	</div>
 	<div class="clear"></div>
 </div>
 <#include "/assets/website/backend/common/footer.html">
+
+<script src="/assets/website/js/jquery-3.1.1.min.js"></script>
+<script src="/assets/website/js/bootstrap.min.js"></script>
 </body>
 </html>
