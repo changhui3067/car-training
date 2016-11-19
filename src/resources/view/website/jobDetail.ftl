@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -24,37 +24,41 @@
     	<div class="zhaopin_l left">
         	<div class="zp_qy">
             	<div class="zwmc">${job.title!}</div>
-                <div class="qymc"><span><#--${jobs.company.autoBrand!}</span>--><span>当前汽车品牌：</span></div>
+                <div class="qymc"><span>${job.autoBrand!}</span><span>当前汽车品牌：[h]宝马</span></div>
             </div>
             <div class="zhaopin_box">
-            	<div class="xzdy">
-                	<div class="zwdy"><span><img style="border:none;"  name="yp" id="yp" src="http://obu3flkwk.bkt.clouddn.com/website/images/yp_an.jpg" onclick="applyJob('${job.id!}')" /></span></div>
-               	 	<!--<div class="shoucang">收藏</div>-->
-                	<div class="gzdd">
-                	<div class="didian left"><#if job.regionId??>${job.regionId!}</#if></div>
-                    <div class="didian left">${job.salary!} （元/月）</div>
-                    <div class="fb_sj right">发布日期<#--${job.publishDate!?string("yyyy-MM-dd")}--></div>
-                    <div class="clear"></div>
-                </div>
-                	<div class="zwyq">
-                	<ul>
-                    	<li>${job.educationRequirement!}</li>
-                        <li><#if job.workExperienceRequirement=0 > 应界毕业生 <#else> ${job.workExperienceRequirement!}年以上经验</#if></li>
-                        <li>语言需求<#--${job.languages!?replace(",","+")?replace("[","")?replace("]","")}--></li>
-                    	<li style="background:none;"></li>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
-                	<div class="fldy">
-                	<ul>
-                		<#if job.welfare??>
-                        	<#list job.welfare as w>
-                        	<li>${w!}</li>
-                            </#list>
+                <div class="xzdy">
+                    <div class="zwdy right">
+                        <span><button name="yp" id="yp" onclick="applyJob('${job.id!}')"/>我要应聘</button></span>
+                    </div>
+                    <!--<div class="shoucang">收藏</div>-->
+                    <div class="gzdd">
+                        <div class="didian left"><#if job.region??>${job.region.fullname!}</#if></div>
+                        <div class="didian left">${job.salary!} （元/月）</div>
+                        <div class="fb_sj left">发布日期：${job.createDate?string("yyyy-MM-dd")!}</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="zwyq">
+                        <ul>
+                            <li>${job.educationRequirement!}</li>
+                            <li><#if job.workExperienceRequirement=0 > 应界毕业生 <#else> ${job.workExperienceRequirement!}
+                                年以上经验</#if></li>
+                            <li>语言需求: ${job.languageRequirement!}</li>
+                            <li style="background:none;"></li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="fldy">
+                        <#if company.welfare??>
+                            <ul>
+                            <#--<#list company.welfare as w>-->
+                            <#--<li>${w!}</li>-->
+                            <#--</#list>-->
+                                <li>${company.welfare!}</li>
+                            </ul>
                         </#if>
-                    </ul>
-                    <div class="clear"></div>
-                </div>
+                        <div class="clear"></div>
+                    </div>
                 </div>
                 <div class="gwms">
                 	<h4>岗位描述：</h4>
@@ -66,14 +70,14 @@
                 <div class="rzyq">
                 	<h4>其他信息：</h4>
                     <div class="rzyq_box">
-                    	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td width="8%">所属部门：</td>
-    <td width="42%"><#--${jobs.department!}--></td>
-    <td width="8%">专业要求：</td>
-    <td width="42%"><#--${jobs.major!}--></td>
-  </tr>
-</table>
+                        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="8%">所属部门：</td>
+                                <td width="42%">[h]department<#--${jobs.department!}--></td>
+                                <td width="8%">专业要求：</td>
+                                <td width="42%">${job.majorRequirement!}</td>
+                            </tr>
+                        </table>
 
                   </div>
                 </div>

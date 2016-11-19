@@ -28,7 +28,7 @@
 span.paddingLeftNull { padding-left: 0!important;}
 .paddingLeftNull { padding-left: 0!important;;}
 
-.people_detail_basic_info .detail div span:nth-last-child {
+.people_detail_basic_info .detail > div > span:nth-last-child {
     border: none !important;
 }
 
@@ -328,7 +328,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 .dbr_gs a,.dbr_gs a:hover{color:#3d9ccc;}
 
 /*培训公司招聘信息——左侧   职位名称及企业名称*/
-.zp_qy{ height:88px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/zp_qy.jpg) no-repeat left top; padding:40px 30px 20px 25px;}
+.zp_qy{ height:120px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/zp_qy.jpg) no-repeat left top; padding:40px 30px 20px 25px;}
 .zwmc{ height:45px; line-height:45px; color:#fff; font-size:24px; font-weight:100; }
 .zwmc span{ display:block; float:right;font-size:16px; font-weight:100;}
 .qymc{ height:35px; line-height:35px; color:#fff; font-size:16px; font-weight:100; }
@@ -341,8 +341,9 @@ span.paddingLeftNull { padding-left: 0!important;}
 .xzdy, .zwms, .gwms, .sxjy, .gwyq, .nlsz, .gwyq, .rzyq, qtxx, .qy_intro, .qt_gw
 { border-bottom:1px  dotted #cccccc; padding-bottom:40px; margin-bottom:25px;}
 
-.zwdy{ height:40px; line-height:40px; color:#ff7f00; font-size:30px; font-weight:100;}
+.zwdy{ height:40px; line-height:40px; color:#ff7f00; font-size:18px; font-weight:100;}
 .zwdy span{display:block; float:right;}
+.zwdy button{ width:130px;height:35px;border:0;margin:4px 0 0 10px; line-height: 35px; color: white; background-color: #ffab00;}
 .shoucang{height:30px; line-height:30px; color:#3d9ccc; text-align:right;font-size:14px; font-weight:100;}
 
 .didian, .fb_sj{ height:30px; line-height:30px; font-size:14px; }
@@ -353,6 +354,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 .fldy{ padding-top:15px;}
 .zwyq li{ display:block; float:left;height:30px; line-height:30px; font-size:14px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/line2.jpg) no-repeat right center; padding:0px 15px; text-align:center;}
 .fldy li{ display:block; float:left;height:24px; line-height:24px; color:#3689b3; font-size:12px; border:1px solid #e1f2fa; background:#eef9ff; padding:0px 15px; text-align:center; margin:0px 10px 15px 0px;}
+.fldy ul{ padding-left: 15px;}
 
 /*培训公司招聘信息——左侧   职位描述*/
 .zwms h4, .gwms h4{ display:block; height:40px; line-height:40px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/zwms_h4.jpg) no-repeat left 5px; padding-left:45px; font-size:18px; color:#3689b3; font-weight:100;}
@@ -372,7 +374,8 @@ span.paddingLeftNull { padding-left: 0!important;}
 
 /*培训师个人信息*/
 .ny_pxshi{padding:30px 0px;}
-.ny_pxshi_l, .ny_pxshi_r{ border:1px solid #e1e1e1; background:#fff; padding:15px;}
+.ny_pxshi_l, .ny_pxshi_r{ border:1px solid #e1e1e1; background:#fff; padding:15px; min-height:500px;}
+
 
 /*培训师个人信息——左侧  培训师基本信息*/
 
@@ -449,6 +452,9 @@ span.paddingLeftNull { padding-left: 0!important;}
 .zwpj h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/zwpj_h4.jpg) no-repeat left center;}
 .zwpj_box li{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/icon.jpg) no-repeat 5px center;}
 .gzjl_box li{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/icon.jpg) no-repeat 5px center;}
+
+.autbotpeople_info h1, .autbotpeople_info .alignCenter {color:#3689b3!important; border-right: #3689b3!important;}
+.autbotpeople_info .alignCenter span{border-right: solid 1px #3689b3!important;}
 
 /*汽车人个人信息——右侧  关注*/
 .pxshi_gz{ margin-bottom:30px;}

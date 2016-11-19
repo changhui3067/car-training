@@ -23,29 +23,25 @@
                     <img src="${trainer.personInfo.avatarUrl!}"/>
                 </div>
                 <div class="detail left">
+                    <h1 class="left">${trainer.personInfo.name!}</h1>
                     <div>
-                        <h1 class="left">${trainer.personInfo.name!}</h1>
                         <div class="iconbox right alignCenter">
-                            <span class="alignCenter"><i class="iconfont" title="评论">&#xe69b;</i>0</span>
-                            <span class="alignCenter"><i class="iconfont" title="点赞">&#xe717;</i>${trainer.starLevel!}</span>
+                            <span class="alignCenter"><i class="iconfont" title="评论">&#xe69b;</i><#if commentList??> ${commentList.size()!}<#else>0</#if></span>
+                            <span class="alignCenter"><i class="iconfont" title="点赞">&#xe717;</i>${likeNumber!}</span>
                         </div>
                         <div class="clear"></div>
                     </div>
                     <div>
-                    <#--<span class="paddingLeftNull">${trainer.currentPosition!}</span>-->
-                    <#--<span>8年</span>-->
-                    <#--<span>${trainer.education!}</span>-->
-                    <#--<span class="noBorder">${trainer.personInfo.region.fullname!}</span>-->
-                        <span class="paddingLeftNull">培训师经理</span>
+                        <span class="paddingLeftNull">${trainer.currentPosition!}</span>
                         <span>${trainer.autoYears!}年</span>
                         <span>${trainer.education}</span>
-                        <span class="noBorder">${trainer.personInfo.regionId!}</span>
+                        <span class="noBorder">${trainer.personInfo.region.fullname!}</span>
                     </div>
                     <div>
                         擅长形式: <span>${trainer.businessCategory}</span>
                     </div>
                     <div>
-                        培训领域: <span>${trainer.executionCategory}</span><span>项目管理</span><span>经销商托管</span>
+                        培训领域: <span>${trainer.executionCategory}</span>
                     </div>
                     <div>
                         联系方式: <span>${trainer.personInfo.email!}</span><span>${trainer.personInfo.mobile!}</span>
@@ -53,30 +49,11 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            <div class="people_other_info_box">
-                <div class="people_other_info_bar"><h4>培训课程</h4></div>
-                <div class="people_other_info_list">
-                    [No received]the courseList
-                    <#if coursesList??>
-                        Fairy
-                        <ul>
-                            <#list coursesList as c>
-                                <li>
-                                    <a href="/website/courseDetail?course.id=${c.id!}" target="_blank">
-                                        <span class="info_name">${c.courseName!}（${c.longTime!}天</span>
-                                        <span class="info_date">${c.publishDate!?string("yyyy-MM-dd")}</span>
-                                    </a>
-                                </li>
-                            </#list>
-                        </ul>
-                    </#if>
-                </div>
-            </div>
 
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>视频链接</h4></div>
                 <div class="people_other_info_video">
-                    <p>${trainer.videoUrl1!}</p>
+                    <p>视频待处理</p>
                     <a href="${trainer.videoUrl1!}">
                         <iframe height=240 width=250 src='${trainer.videoUrl1!}' frameborder=0
                         'allowfullscreen'></iframe></a>
@@ -97,6 +74,26 @@
         <#--<ul>-->
         <#--<#list trainerEssayList as te>-->
         <#--<li><span><a href="#">${te.publishDate!?string("yyyy-MM-dd")}</a></span><a href="/website/trainerEssayDetail?trainerEssay.id=${te.id!}" target="_blank">${te.title!}</a></li>-->
+        <#--</#list>-->
+        <#--</ul>-->
+        <#--</#if>-->
+        <#--</div>-->
+        <#--</div>-->
+        <#--培训课程 暂时隐藏-->
+        <#--<div class="people_other_info_box">-->
+        <#--<div class="people_other_info_bar"><h4>培训课程</h4></div>-->
+        <#--<div class="people_other_info_list">-->
+        <#--[No received]the courseList-->
+        <#--<#if coursesList??>-->
+        <#--Fairy-->
+        <#--<ul>-->
+        <#--<#list coursesList as c>-->
+        <#--<li>-->
+        <#--<a href="/website/courseDetail?course.id=${c.id!}" target="_blank">-->
+        <#--<span class="info_name">${c.courseName!}（${c.longTime!}天</span>-->
+        <#--<span class="info_date">${c.publishDate!?string("yyyy-MM-dd")}</span>-->
+        <#--</a>-->
+        <#--</li>-->
         <#--</#list>-->
         <#--</ul>-->
         <#--</#if>-->
@@ -128,9 +125,19 @@
             <div class="people_comments people_other_info_bar">
                 <h4>学员评价</h4>
                 <div class="people_comments_list">
-                    [No received] people_comments_list
-                    <#if trainer.commentList??>
-                        Fairy
+                    <#if commentList??>
+                        <ul>
+                            <#list commentList as c>
+                                <#if c?? && c.content??>
+                                    <li>
+                                        <div class="comments">
+                                            <div class="comments_desc">${c.content}</div>
+                                            <div class="comments_date">${c.createTime?string("yyyy-MM-dd")}</div>
+                                        </div>
+                                    </li>
+                                </#if>
+                            </#list>
+                        </ul>
                     <#else>
                         <p>暂无数据</p>
                     </#if>
