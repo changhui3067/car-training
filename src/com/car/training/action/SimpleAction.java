@@ -55,12 +55,16 @@ public class SimpleAction extends BaseAction {
         if(!needLogin()){
             return null;
         }
-        LoginVO loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
+        LoginVO loginVO = getLoginVO();
         if (loginVO != null) {
             return null;
         } else {
             return redirectToIndex();
         }
+    }
+
+    public LoginVO getLoginVO(){
+        return (LoginVO) getHttpSession().getAttribute("loginVO");
     }
 
     protected boolean needLogin(){
