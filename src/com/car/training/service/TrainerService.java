@@ -11,6 +11,8 @@ import java.util.List;
 public interface TrainerService {
     Trainer findById(int id);
 
+    Trainer findByUId(int uid);
+
     Trainer findByLoginUser(LoginUser loginUser);
 
     List<Trainer> search(String businessCategory, String executionCategory, int minAutoYears, int maxAutoYears, String keyword);

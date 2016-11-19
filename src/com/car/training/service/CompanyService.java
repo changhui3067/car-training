@@ -9,5 +9,7 @@ import com.car.training.bean.LoginUser;
 public interface CompanyService {
     Company findById(int id);
 
+    Company findByUId(int uid);
+
     Company findByLoginUser(LoginUser loginUser);
 }

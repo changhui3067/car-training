@@ -21,8 +21,8 @@
 <script type="text/javascript">
     var oUrl = {
         // "information": "/website/trainerDetail",
-        "complete": "/backend/completeInfo",
-        "peopleRecord": "/backend/applyJobHistory",
+        "complete": "/website/completeInfo",
+        "peopleRecord": "/website/applyJobHistory",
         "companyRecord": "/backend/publishJobHistory",
         // "publish": "/backend/publishArticle",
         // "article": "/backend/articleManage",

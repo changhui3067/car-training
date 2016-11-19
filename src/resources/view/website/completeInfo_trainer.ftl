@@ -15,7 +15,7 @@
 	        <td width="292">
 	        <#if trainer?? && trainer.userCenter?? && trainer.userCenter.name?? >
 	        <input type="text" name="trainer.userCenter.name" value="${trainer.userCenter.name!}" />
-			<#else> 
+			<#else>
 			<input type="text" name="trainer.userCenter.name" value="" />
 			</#if></td>
 			</tr>
@@ -54,7 +54,7 @@
 	    </table></td>
 	    <td width="439" colspan="4" align="left" valign="top"><table width="400" border="0" cellspacing="0" cellpadding="0">
 	      <tr>
-	        <td><img id="trainer.userCenter.headLogo" src="<#if trainer.userCenter.headLogo??>${trainer.userCenter.headLogo!}<#else>http://obu3flkwk.bkt.clouddn.com/backend/images/zw.jpg</#if>" style="width:50px;height:50px;"/></td>
+	        <td><img id="trainer.userCenter.headLogo" src="<#if trainer.personInfo.avatarUrl??>${trainer.personInfo.avatarUrl!}<#else>http://obu3flkwk.bkt.clouddn.com/backend/images/zw.jpg</#if>" style="width:50px;height:50px;"/></td>
 	        </tr>
 	      <tr>
 	        <td>
@@ -72,8 +72,8 @@
 		        <td><font color="#CCCCCC">请上传宽度为180px,高度为150px,格式：jpg,gif, 大小&lt;500kb的图片</font></td>
 		        </tr>
 		      </table>
-		      
-		      
+
+
 	      </td>
 	  </tr>
 	  </table>
@@ -81,44 +81,13 @@
       <tr>
 	    <td height="40" align="right" valign="middle"><font color="#ff0000">*</font> 学历：</td>
 	    <td>
-	    <select name="trainer.education" id="education">
-	    <option value="">请选择</option>
-	   <#if trainer?? && trainer.education?? && trainer.education.name() = 'JUNIORHIGHSCHOOL'>
-		<option selected="selected" value="JUNIORHIGHSCHOOL">初中</option>
-		<#else>
-		<option value="JUNIORHIGHSCHOOL">初中</option>
-		</#if>
-		<#if trainer?? && trainer.education?? &&  trainer.education.name() = 'HIGHSCHOOL'>
-		<option selected="selected" value="HIGHSCHOOL">高中</option>
-		<#else>
-		<option value="HIGHSCHOOL">高中</option>
-		</#if>
-		<#if trainer?? && trainer.education?? &&  trainer.education.name() = 'COLLEGE'>
-		<option selected="selected" value="COLLEGE">大学</option>
-		<#else>
-		<option value="COLLEGE">大学</option>
-		</#if>
-		<#if trainer?? && trainer.education?? &&  trainer.education.name() = 'MASTER'>
-		<option selected="selected" value="MASTER">研究生</option>
-		<#else>
-		<option value="MASTER">研究生</option>
-		</#if>
-		<#if trainer?? && trainer.education?? &&  trainer.education.name() = 'DOCTOR'>
-		<option selected="selected" value="DOCTOR">博士</option>
-		<#else>
-		<option value="DOCTOR">博士</option>
-		</#if>
-		<#if trainer?? && trainer.education?? &&  trainer.education.name() = 'POSTDOCTOR'>
-		<option selected="selected" value="POSTDOCTOR">博士后</option>	
-		<#else>
-		<option value="POSTDOCTOR">博士后</option>
-		</#if>
-        </select></td>
-	    
+
+	    </td>
+
 	    <td align="right" valign="middle"><font color="#ff0000">*</font> 手机：</td>
 	    <td>
-	    <#if trainer?? && trainer.userCenter?? && trainer.userCenter.mobile??>
-	    <input type="tel" name="trainer.userCenter.mobile" value="${trainer.userCenter.mobile!}" />
+	    <#if trainer?? && trainer.personInfo?? && trainer.personInfo.mobile??>
+	    <input type="tel" name="trainer.userCenter.mobile" value="${trainer.personInfo.mobile!}" />
 	    <#else>
 	    <input type="tel" name="trainer.userCenter.mobile" value="" />
 	    </#if>
@@ -148,7 +117,7 @@
 		    	    <input type="email" name="trainer.userCenter.email" value=""  />
 		    	    </#if>
 		    	    </td>
-		    	   
+
 		    	    </tr>
 		    	     <tr>
             	   <td width="125" align="right" valign="middle"><font color="#ff0000">*</font> 汽车行业经验：</td>
@@ -157,7 +126,7 @@
             	    <option value="">请选择</option>
             	    <#if trainer?? && trainer.autoYears?? >
             	    <option selected="selected" value="${trainer.autoYears!}">${trainer.autoYears!}</option>
-					</#if>          	   
+					</#if>
             	    <#list 0..20 as t>
 					<option  value="${t}">${t}</option>
 					</#list>
@@ -211,11 +180,11 @@
             	    <td colspan="3">
             	    <#if trainer?? && trainer.vedioURL1?? >
 			        <input type="text" name="trainer.vedioURL1" value="${trainer.vedioURL1!}" style="width:400px;"/>
-					<#else> 
+					<#else>
 					<input type="text" name="trainer.vedioURL1" value="" style="width:400px;"/>
 					</#if>
             	    </td>
-            	    
+
           	    </tr>
           	     </tr>
           	    	<tr>
@@ -223,11 +192,11 @@
             	    <td colspan="3">
 					<#if trainer?? && trainer.vedioURL2?? >
 			        <input type="text" name="trainer.vedioURL2" value="${trainer.vedioURL2!}" style="width:400px;"/>
-					<#else> 
+					<#else>
 					<input type="text" name="trainer.vedioURL2" value="" style="width:400px;"/>
 					</#if>
             	    </td>
-            	    
+
           	    </tr>
 	  </table>
 </div>
@@ -282,7 +251,7 @@ function checkform(){
 	var mobile = $("input[name='trainer.userCenter.mobile']").val();
 	var intro = $("[name='trainer.userCenter.intro']").val();
 	var mainCourse = $("[name='trainer.mainCourse']").val();
-	
+
 	if(name == undefined || education == undefined || birthday == undefined || marryStatus == undefined || mobile == undefined || intro == undefined || mainCourse == undefined){
 		alert("带*的为必填字段 ");
 		return false;
@@ -319,14 +288,14 @@ function submitdata(){
 	var businessCategory = '';
 	$("input:checkbox[name='trainer.businessCategory']:checked").each(function(index, element) {
                          businessCategory += $(this).val() + ",";
-	}); 
+	});
 	var executionCategory = '';
 	$("input:checkbox[name='trainer.executionCategory']:checked").each(function(index, element) {
                          executionCategory += $(this).val() + ",";
-	}); 
+	});
 	var vedioURL1 = $("[name='trainer.vedioURL1']").val();
 	var vedioURL2 = $("[name='trainer.vedioURL2']").val();
-	
+
 	form_data.tid = tid;
 	form_data.uid = uid;
 	form_data.uname = uname;
@@ -345,7 +314,7 @@ function submitdata(){
 	form_data.vedioURL2 = vedioURL2;
 	form_data.businessCategory = businessCategory;
 	form_data.executionCategory = executionCategory;
-	
+
 	$.ajax({
 			 type: "POST",
 		     url: url,
@@ -391,13 +360,13 @@ var image = '';
 	 if(!file.files || !file.files[0]){
 		return;
 	}
-	
+
 	 var reader = new FileReader();
 	 reader.onload = function(evt){
 	 if(file.name=='headLogo'){
 		 document.getElementById('trainer.userCenter.headLogo').src = evt.target.result;
 	 }
-	 
+
 	 image = evt.target.result;
 	}
 	reader.readAsDataURL(file.files[0]);

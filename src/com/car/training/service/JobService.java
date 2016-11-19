@@ -2,8 +2,6 @@ package com.car.training.service;
 
 import com.car.training.bean.Job;
 import com.car.training.enums.JobType;
-import com.car.training.enums.UserType;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,7 +15,6 @@ public interface JobService {
     List<Job> findAll(JobType jobType);
 
     List<Job> findJobsByTargetCompany(int targetCid);
-    List<Job> findJobsByTargetCompanyType(UserType userType);
 
     List<Job> find(JobType jobType, String businessCategories, Integer regionId, String publishTime,
                    String workExperienceRequirement, String keyword);
