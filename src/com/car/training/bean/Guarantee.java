@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Bill on 11/1/2016.
  */
 @Entity
-@Table
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"userId","companyId"}))
 public class Guarantee {
     @Id
     @GeneratedValue
@@ -14,10 +14,10 @@ public class Guarantee {
     private int id;
 
     @Column
-    private String userId;
+    private int userId;
 
     @Column
-    private String companyId;
+    private int companyId;
 
     public int getId() {
         return id;
@@ -27,19 +27,28 @@ public class Guarantee {
         this.id = id;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public String getCompanyId() {
+    public int getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(String companyId) {
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
+    }
+
+    public Guarantee() {
+
+    }
+
+    public Guarantee(int uid, int companyId) {
+        this.userId = uid;
         this.companyId = companyId;
     }
 }

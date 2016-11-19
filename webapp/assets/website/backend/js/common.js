@@ -277,6 +277,7 @@ function like(id) {
 	            return false;
 	        },
 	        success: function (data) {
+	        	return true;
 	        }
 	    });
 	} else {
@@ -290,6 +291,7 @@ function like(id) {
 	            return false;
 	        },
 	        success: function (data) {
+	        	return true;
 	        }
 	    });
 	}
@@ -310,4 +312,38 @@ function settime(obj) {
     } 
 setTimeout(function() { 
     settime(obj)},1000) 
+}
+
+//点赞
+function guarantee(id) {
+	var dom = $("#" + id),
+		data = {};
+		data["companyId"] = dom[0].getAttribute("value");
+	if (dom.hasClass("guarantee")) {
+		dom.removeClass("guarantee");
+		$.ajax({
+	        type: "POST",
+	        url: "/backend/Guarantee/unGuarantee",
+	        data: data,
+	        error: function() {
+	            return false;
+	        },
+	        success: function (data) {
+	        	return true;
+	        }
+	    });
+	} else {
+		dom.addClass("guarantee");
+		$.ajax({
+	        type: "POST",
+	        url: "/backend/Guarantee/guarantee",
+	        data: data,
+	        error: function() {
+	            return false;
+	        },
+	        success: function (data) {
+	        	return true;
+	        }
+	    });
+	}
 }

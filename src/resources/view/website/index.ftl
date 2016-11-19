@@ -165,26 +165,26 @@
                             <span style="background:none;">投递后：48小时反馈</span>
                     </div>
                 </div>
-                 <#--<div class="right zp_box_r">-->
-                     <#--<div class="qy">-->
-                         <#--<a href="/website/autoCompany?company.id=${trainerJob.company.id!}">-->
-                             <#--<div class="qy_l left zp_box_r_l"><img src="${trainerJob.company.logo!}"/></div>-->
-                             <#--<div class="qy_r right zp_box_r_r">-->
-                                 <#--<div class="qy_name">-->
-                                     <#--<span>${trainerJob.company.name!}</span>-->
-                                     <#--<span>已有${trainerJob.company.bondsmanCount}人担保</span>-->
-                                 <#--</div>-->
-                                 <#--<div class="jyfw">${trainerJob.company.industry!}</div>-->
-                                 <#--<div class="fl">-->
-                                     <#--<#if trainerJob.welfare??>-->
-                                         <#--<#list trainerJob.welfare as w><span>${w!}</span></#list>-->
-                                     <#--</#if>-->
-                                 <#--</div>-->
-                             <#--</div>-->
-                         <#--</a>-->
-                         <#--<div class="clear"></div>-->
-                     <#--</div>-->
-                 <#--</div>-->
+                 <div class="right zp_box_r">
+                     <div class="qy">
+                         <a href="/website/companyDetail?companyId=${trainerJob.company.id!}">
+                             <div class="qy_l left zp_box_r_l"><img src="${trainerJob.company.logo!}"/></div>
+                             <div class="qy_r right zp_box_r_r">
+                                 <div class="qy_name">
+                                     <span>${trainerJob.company.name!}</span>
+                                     <span>已有${guaranteeNumberMap(trainerJob.company)}人担保</span>
+                                 </div>
+                                 <div class="jyfw">${trainerJob.company.industry!}</div>
+                                 <div class="fl">
+                                     <#if trainerJob.welfare??>
+                                         <#list trainerJob.welfare as w><span>${w!}</span></#list>
+                                     </#if>
+                                 </div>
+                             </div>
+                         </a>
+                         <div class="clear"></div>
+                     </div>
+                 </div>
     <div class="clear"></div>
 
     </#if>
@@ -222,12 +222,12 @@
 
             <div class="qcrxq_r right zp_box_r">
                 <div class="qcrxq_qy">
-                    <a href="/website/autoCompany?company.id=${t.company.id!}">
+                    <a href="/website/companyDetail?companyId=${t.company.id!}">
                         <div class="qcrxq_qy_l left zp_box_r_l"><img src="${t.company.logo!}" /></div>
                         <div class="qcrxq_qy_r right zp_box_r_r">
                             <div class="qcrxq_qy_name">
                                 <span>${t.company.name!}</span>
-                                <span>已有${t.company.bondsmanCount}人担保</span>
+                                <span>已有${guaranteeNumberMap(t.company)}人担保</span>
                             </div>
                             <div class="qcrxq_jyfw">${t.company.industry!}</div>
                             <div class="qcrxq_fl">

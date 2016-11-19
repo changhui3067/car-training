@@ -4,7 +4,11 @@
         <div class="companyBasicInfoBoxContent">
         <#if company??>
             <h5>${company.name!}</h5>
-            <button class="commonClickButton">我为公司担保</button>
+            <#if guarantee??>
+            <button id="companyGarantee" value=${company.id!} class="guarantee" onClick="guarantee(this.id)">我为公司担保</button>
+            <#else>
+            <button id="companyGarantee" value=${company.id!} onClick="guarantee(this.id)">我为公司担保</button>
+            </#if>
             <div><b>经营范围：</b>汽车销售/以及原厂配件/售后服务</div>
             <div><b>公司规模：</b>${company.scale!}</div>
             <div><b>公司地址：</b><#if company.region.fullname??>${company.region.fullname!}</#if></div>

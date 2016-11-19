@@ -99,8 +99,7 @@
 <!-- main结束 -->
 <#include "/assets/website/common/footer.html">
 
-<script src="<@url value='/assets/website/js/jquery1.42.min.js'/>" type="text/javascript"></script>
-<script src="<@url value='/assets/website/js/jquery.superslide.2.1.1.js'/>" type="text/javascript"></script>
+<script src="/assets/website/backend/js/common.js" type="text/javascript"></script>
 </body>
 </html>
 </#escape>

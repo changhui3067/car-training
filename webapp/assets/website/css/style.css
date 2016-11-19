@@ -20,16 +20,17 @@ a img {border: none;}
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-button.commonClickButton{
+
+button#companyGarantee.guarantee{
+    background-color: #3D9CCC;
+    color: #fff;
+}
+
+button#companyGarantee{
     padding: 5px 10px;
     border: solid 1px #3D9CCC;
     background: #fff;
     color: #3D9CCC;
-}
-
-button.commonClickButton:hover{
-    background-color: #3D9CCC;
-    color: #fff;
 }
 
 /*for Header*/

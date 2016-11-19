@@ -1,6 +1,7 @@
 package com.car.training.service;
 
 import com.car.training.bean.Autobot;
+import com.car.training.bean.Company;
 import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
 
@@ -14,5 +15,5 @@ public interface PromotionService {
     List<Autobot> getTopAutobot(int number);
     List<Job> getTopTrainerJob(int number);
     List<Job> getTopAutobotJob(int number);
-
+    List<Company> getTopCompany(int number);
 }

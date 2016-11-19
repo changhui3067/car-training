@@ -5,10 +5,15 @@ import com.car.training.bean.Company;
 import com.car.training.dao.BaseDAO;
 import com.car.training.service.CompanyService;
 import com.car.training.bean.Job;
+import com.car.training.service.GuaranteeService;
 import com.car.training.service.JobService;
+import com.car.training.vo.LoginVO;
+import org.apache.struts2.ServletActionContext;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -26,17 +31,28 @@ public class CompanyDetailAction extends SimpleAction {
     @Autowired
     BaseDAO baseDAO;
 
+    @Autowired
+    private GuaranteeService guaranteeService;
+
     private Company company;
 
     private int companyId;
 
     private List<Job> jobList;
 
+    private Boolean guarantee;
+
     @Override
     public String execute() throws Exception {
         if(companyId!=0){
             company = companyService.findById(companyId);
             jobList = jobService.findJobsByTargetCompany(companyId);
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpSession session = request.getSession();
+            LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
+            if (loginVO != null) {
+                guarantee = guaranteeService.isGuarantee(loginVO.getId(),companyId);
+            }
         }else{
             return redirectToIndex();
         }
@@ -62,5 +78,13 @@ public class CompanyDetailAction extends SimpleAction {
 
     public void setJobList(List<Job> jobList) {
         this.jobList = jobList;
+    }
+
+    public Boolean getGuarantee() {
+        return guarantee;
+    }
+
+    public void setGuarantee(Boolean guarantee) {
+        this.guarantee = guarantee;
     }
 }

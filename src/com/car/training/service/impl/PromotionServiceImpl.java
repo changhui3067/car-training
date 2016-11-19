@@ -1,6 +1,7 @@
 package com.car.training.service.impl;
 
 import com.car.training.bean.Autobot;
+import com.car.training.bean.Company;
 import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
 import com.car.training.dao.BaseDAO;
@@ -42,5 +43,9 @@ public class PromotionServiceImpl implements PromotionService {
     @Override
     public List<Job> getTopAutobotJob(int number) {
         return jobService.findAll(JobType.AUTOBOT);
+    }
+
+    public List<Company> getTopCompany(int number) {
+        return baseDAO.getAllList(Company.class);
     }
 }

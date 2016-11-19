@@ -1,8 +1,10 @@
 package com.car.training.action.website;
 
 import com.car.training.bean.Autobot;
+import com.car.training.bean.Company;
 import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
+import com.car.training.service.GuaranteeService;
 import com.car.training.service.LikeService;
 import com.car.training.service.PromotionService;
 import com.car.training.vo.LoginVO;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +52,12 @@ public class IndexAction extends BaseAction {
     private HashMap<Object, Boolean> isLikeMap = new HashMap<>();
     private List<Job> autobotJobList;
     private List<Job> trainerJobList;
+
+    private Company company;
+    private List<Company> companyList;
+    private GuaranteeService guaranteeService;
+    private HashMap<Object, Integer> guaranteeNumberMap = new HashMap<>();
+    private HashMap<Object, Boolean> isGuaranteeMap = new HashMap<>();
 
 
 //    /**
@@ -101,6 +110,14 @@ public class IndexAction extends BaseAction {
 //        topicList = topicService.findListByIndexTopic(6);
 //        //首页推荐公开课列表2个位置
 //        coursesList = coursesService.findByIndexPromoted(true, 2);
+        ArrayList<Company> companyList = new ArrayList<Company>();
+        for (Job job : trainerJobList) {
+            companyList.add(job.getCompany());
+        }
+        for (Job job : autobotJobList) {
+            companyList.add(job.getCompany());
+        }
+        generateGuaranteeMap(companyList);
 
         return SUCCESS;
     }
@@ -115,6 +132,21 @@ public class IndexAction extends BaseAction {
                 likeNumberMap.put(trainer, likeService.likeNumber(trainer.getId()));
                 if (loginVO != null) {
                     isLikeMap.put(trainer, likeService.isLike(loginVO.getId(), trainer.getId()));
+                }
+            }
+        }
+    }
+
+    private void generateGuaranteeMap(List<Company> companyList) {
+
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpSession session = request.getSession();
+        LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
+        if (companyList != null) {
+            for (Company company : companyList) {
+                guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getId()));
+                if (loginVO != null) {
+                    isGuaranteeMap.put(company, guaranteeService.isGuarantee(loginVO.getId(), company.getId()));
                 }
             }
         }
@@ -175,5 +207,45 @@ public class IndexAction extends BaseAction {
 
     public void setTrainerJobList(List<Job> trainerJobList) {
         this.trainerJobList = trainerJobList;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public List<Company> getCompanyList() {
+        return companyList;
+    }
+
+    public void setCompanyList(List<Company> companyList) {
+        this.companyList = companyList;
+    }
+
+    public GuaranteeService getGuaranteeService() {
+        return guaranteeService;
+    }
+
+    public void setGuaranteeService(GuaranteeService guaranteeService) {
+        this.guaranteeService = guaranteeService;
+    }
+
+    public HashMap<Object, Integer> getGuaranteeNumberMap() {
+        return guaranteeNumberMap;
+    }
+
+    public void setGuaranteeNumberMap(HashMap<Object, Integer> guaranteeNumberMap) {
+        this.guaranteeNumberMap = guaranteeNumberMap;
+    }
+
+    public HashMap<Object, Boolean> getIsGuaranteeMap() {
+        return isGuaranteeMap;
+    }
+
+    public void setIsGuaranteeMap(HashMap<Object, Boolean> isGuaranteeMap) {
+        this.isGuaranteeMap = isGuaranteeMap;
     }
 }
