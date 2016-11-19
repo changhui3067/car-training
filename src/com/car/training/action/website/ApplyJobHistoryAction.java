@@ -1,7 +1,9 @@
 package com.car.training.action.website;
 
 import com.car.training.action.SimpleAction;
+import com.car.training.bean.Apply;
 import com.car.training.bean.Job;
+import com.car.training.service.JobApplyService;
 import com.car.training.service.JobService;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,14 @@ public class ApplyJobHistoryAction extends SimpleAction {
     @Autowired
     JobService jobService;
 
-    private List<Job> jobList;
+    @Autowired
+    JobApplyService jobApplyService;
+
+    private List<Apply> applyList;
 
     @Override
     public String execute() throws Exception {
-
+        applyList = jobApplyService.getAppliedJobs();
         return SUCCESS;
     }
 
@@ -30,11 +35,11 @@ public class ApplyJobHistoryAction extends SimpleAction {
         return true;
     }
 
-    public List<Job> getJobList() {
-        return jobList;
+    public List<Apply> getApplyList() {
+        return applyList;
     }
 
-    public void setJobList(List<Job> jobList) {
-        this.jobList = jobList;
+    public void setApplyList(List<Apply> applyList) {
+        this.applyList = applyList;
     }
 }

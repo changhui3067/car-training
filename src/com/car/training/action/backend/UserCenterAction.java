@@ -47,6 +47,8 @@ public class UserCenterAction extends SimpleAction {
 
     private String vercode;
 
+    @Autowired
+    private LoginVO loginVO;
 
 
     @JsonConfig(root = "data")
@@ -57,7 +59,10 @@ public class UserCenterAction extends SimpleAction {
         } else {
             HttpServletRequest request = ServletActionContext.getRequest();
             HttpSession session = request.getSession();
-            LoginVO loginVO = new LoginVO(user.getId(), user.getUsername(), user.getType());
+            loginVO.setId(user.getId());
+            loginVO.setUsername(user.getUsername());
+            loginVO.setUserType(user.getType());
+            loginVO.setLoggedIn(true);
             session.setAttribute("loginVO", loginVO);
             return successJSON();
         }
@@ -69,6 +74,7 @@ public class UserCenterAction extends SimpleAction {
     public String logout() {
         HttpServletRequest request = ServletActionContext.getRequest();
         request.getSession().setAttribute("loginVO", null);
+        loginVO.logOut();
         return redirectToIndex();
     }
 

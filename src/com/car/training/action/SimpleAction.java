@@ -56,7 +56,7 @@ public class SimpleAction extends BaseAction {
             return null;
         }
         LoginVO loginVO = getLoginVO();
-        if (loginVO != null) {
+        if (loginVO != null && loginVO.isLoggedIn()) {
             return null;
         } else {
             return redirectToIndex();

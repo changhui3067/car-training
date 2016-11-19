@@ -1,5 +1,6 @@
 package com.car.training.action.website;
 
+import com.car.training.action.SimpleAction;
 import com.car.training.bean.Autobot;
 import com.car.training.bean.Company;
 import com.car.training.bean.Job;
@@ -22,7 +23,7 @@ import java.util.List;
 
 @Controller
 @AutoConfig
-public class IndexAction extends BaseAction {
+public class IndexAction extends SimpleAction {
 
     private static final long serialVersionUID = 2048090665437672391L;
 
@@ -95,7 +96,6 @@ public class IndexAction extends BaseAction {
             trainerList = topTrainers.subList(1, topTrainers.size() - 1);
         }
 
-        generateLikeMap(topTrainers);
 
         //首页推荐汽车人5个位置
         autobotList = promotionService.getTopAutobot(5);
@@ -110,35 +110,35 @@ public class IndexAction extends BaseAction {
 //        topicList = topicService.findListByIndexTopic(6);
 //        //首页推荐公开课列表2个位置
 //        coursesList = coursesService.findByIndexPromoted(true, 2);
-        ArrayList<Company> companyList = new ArrayList<Company>();
-        for (Job job : trainerJobList) {
-            companyList.add(job.getCompany());
-        }
-        for (Job job : autobotJobList) {
-            companyList.add(job.getCompany());
-        }
-        generateGuaranteeMap(companyList);
-
+        generateLikeMap(topTrainers);
+        generateGuaranteeMap();
         return SUCCESS;
     }
 
     private void generateLikeMap(List<Trainer> topTrainers) {
-
-        HttpServletRequest request = ServletActionContext.getRequest();
-        HttpSession session = request.getSession();
-        LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
         if (topTrainers != null) {
             for (Trainer trainer : topTrainers) {
                 likeNumberMap.put(trainer, likeService.likeNumber(trainer.getId()));
+                Object loginVO = getHttpSession().getAttribute("loginVO");
                 if (loginVO != null) {
-                    isLikeMap.put(trainer, likeService.isLike(loginVO.getId(), trainer.getId()));
+                    isLikeMap.put(trainer, likeService.isLike(1, trainer.getId()));
                 }
             }
         }
     }
 
-    private void generateGuaranteeMap(List<Company> companyList) {
-
+    private void generateGuaranteeMap() {
+        ArrayList<Company> companyList = new ArrayList<>();
+        for (Job job : trainerJobList) {
+            if (job.getCompany() != null) {
+                companyList.add(job.getCompany());
+            }
+        }
+        for (Job job : autobotJobList) {
+            if (job.getCompany() != null) {
+                companyList.add(job.getCompany());
+            }
+        }
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession();
         LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");

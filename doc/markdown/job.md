@@ -10,7 +10,7 @@
 
 - URL
 
-> http://localhost/job/search
+> http://localhost:8080/backend/job/search
 
 - Parameters
 
@@ -26,18 +26,18 @@
 - Response
  
 
-- Example ( Note:url has not been encoded  )
+- Example
  
-    - url :  http://localhost:8080/website/job
+    - url : http://localhost:8080/backend/job/search
     - post data: 
  
             {
-            jobType : "TRAINER",
-            businessCategory : aaa,bbb,ccc,
-            regionId : "1",
-            publishTime : ",3",
-            workExperienceRequirement : "5,10",
-            keyword : "lalala"
+                jobType : "TRAINER",
+                businessCategory : aaa,bbb,ccc,
+                regionId : "1",
+                publishTime : ",3",
+                workExperienceRequirement : "5,10",
+                keyword : "lalala"
             }
             
     - response : html file
