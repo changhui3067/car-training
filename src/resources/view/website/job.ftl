@@ -176,6 +176,7 @@ function filter3Clicked(ele, category) {
 }
 
 function filter4Clicked(ele, category) {
+
     filters[category] = filters[category] ? filters[category] : "";
     filters[category] = $('#city button').val();
     sendAjax();
@@ -191,7 +192,11 @@ function sendAjax() {
     var url  = "/website/job/search";
     var data_ = {};
     for (var props in filters) {
-        data_[props] = filters[props].join(',');
+        if(typeof filters[props] === 'string') {
+            data_[props] = filters[props]
+        } else {
+            data_[props] = filters[props].join(',');
+        }
     }
     $.ajax({
         type: "GET",

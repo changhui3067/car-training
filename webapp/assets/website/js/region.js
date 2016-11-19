@@ -19,8 +19,9 @@ function selectCities(ele) {
             var parent = $("#city ul");
             parent.empty();
             for (var i = 0; i < data.cities.length; i++) {
-                var liString = "<li value='" + data.cities[i].id + "'>" +
-                    "<a href='#' onclick='selectCity(this)'>" + data.cities[i].name + "</a></li>";
+                var liString = '<li value="' + data.cities[i].id + '">' +
+                    '<a href="#" onclick="selectCity(this);filter4Clicked(this, \''+'regionId'+'\');" value="'+data.cities[i].id+'">' +
+                     data.cities[i].name + '</a></li>';
                 parent.append(liString);
                 //$("#city ul").get(0).options[i + 1] = new Option(, );
             }
