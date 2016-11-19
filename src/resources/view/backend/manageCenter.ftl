@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/assets/website/backend/css/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/completeInfo.css" type="text/css" media="screen" />
 </head>
 
 <body>
