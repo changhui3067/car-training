@@ -25,12 +25,11 @@
                     <img src="${autobot.personInfo.avatarUrl!}"/>
                 </div>
                 <div class="detail right">
-                    <div>
+                    <div class="autbotpeople_info">
                         <h1 class="left">${autobot.personInfo.name!}</h1>
                         <div class="iconbox right alignCenter">
-                            <span><i class="iconfont" title="评论">&#xe69b;</i>0</span>
-                        <#--<span><i class="iconfont" title="点赞">&#xe717;</i>${autobot.starLevel!}</span>-->
-                            <span><i class="iconfont" title="点赞">&#xe717;</i>3</span>
+                            <span><i class="iconfont" title="评论">&#xe69b;</i><#if commentList??> ${commentList.size()!}<#else>0</#if></span>
+                            <span><i class="iconfont" title="点赞">&#xe717;</i>${likeNumber!}</span>
                         </div>
                         <div class="clear"></div>
                     </div>
@@ -39,13 +38,14 @@
                     <#--大学本科-->
                     <#--<span>三年工作经验</span>-->
                     <#--<span>${autobot.personInfo.regionId!}</span>-->
-                        <span class="paddingLeftNull">汽车人经理${autobot.currentPosition!}</span>
-                        <span>大学本科</span>
+                        <span class="paddingLeftNull">${autobot.currentPosition!}</span>
+                        <span>[h]大学本科${autobot.education!}</span>
                         <span>${autobot.autoYears!}年工作经验</span>
-                        <span>${autobot.personInfo.regionId!}</span>
+                        <span>${autobot.workingStatus!}</span>
+                        <span>${autobot.personInfo.region.fullname!}</span>
                     </div>
                     <div>
-                        擅长领域：<span>${autobot.businessCategory!}</span><span>销售</span><span>客服</span>
+                        擅长领域：<span>${autobot.businessCategory!}</span>
                     </div>
                     <div>
                         汽车品牌:<span>${autobot.autoBrand!}</span>
@@ -81,12 +81,27 @@
             <div class="people_comments people_other_info_bar">
                 <h4>学员评价</h4>
                 <div class="people_comments_list">
-                    [No received] people_comments_list
-                    <#if autobot.commentList??>
-                        Fairy
+                    <#if commentList??>
+                        <ul>
+                            <#list commentList as c>
+                                <#if c?? && c.content??>
+                                    <li>
+                                        <div class="comments">
+                                            <div class="comments_desc">${c.content}</div>
+                                            <div class="comments_date">${c.createTime?string("yyyy-MM-dd")}</div>
+                                        </div>
+                                    </li>
+                                </#if>
+                            </#list>
+                        </ul>
                     <#else>
                         <p>暂无数据</p>
                     </#if>
+                    <#--<#if commentList??>-->
+                        <#--Fairy-->
+                    <#--<#else>-->
+                        <#--<p>暂无数据</p>-->
+                    <#--</#if>-->
                 <#--<#if trainer.autobotsCommentList??>-->
                 <#--<ul>-->
                 <#--<#list trainer.autobotsCommentList as c>-->
