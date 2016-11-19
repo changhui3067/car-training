@@ -1,6 +1,7 @@
 package com.car.training.action;
 
 import com.car.training.vo.LoginVO;
+import com.opensymphony.xwork2.interceptor.annotations.Before;
 import org.apache.struts2.ServletActionContext;
 import org.ironrhino.core.struts.BaseAction;
 
@@ -15,8 +16,8 @@ import java.util.Map;
 public class SimpleAction extends BaseAction {
     private Object data;
 
-    protected String successJSON(){
-        this.data="success";
+    protected String successJSON() {
+        this.data = "success";
         return JSON;
     }
 
@@ -30,9 +31,9 @@ public class SimpleAction extends BaseAction {
         return REDIRECT;
     }
 
-    protected String errorJSON(String errMsg){
-        this.data = new HashMap<String,String>();
-        ((Map) data).put("error",errMsg);
+    protected String errorJSON(String errMsg) {
+        this.data = new HashMap<String, String>();
+        ((Map) data).put("error", errMsg);
         return JSON;
     }
 
@@ -40,12 +41,29 @@ public class SimpleAction extends BaseAction {
         return data;
     }
 
-    protected HttpSession getHttpSession(){
+    protected HttpSession getHttpSession() {
         HttpServletRequest request = ServletActionContext.getRequest();
         return request.getSession();
     }
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    @Before(priority = 20)
+    public String validateUser() {
+        if(!needLogin()){
+            return null;
+        }
+        LoginVO loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
+        if (loginVO != null) {
+            return null;
+        } else {
+            return redirectToIndex();
+        }
+    }
+
+    protected boolean needLogin(){
+        return false;
     }
 }

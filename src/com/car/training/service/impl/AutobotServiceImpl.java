@@ -1,7 +1,6 @@
 package com.car.training.service.impl;
 
 import com.car.training.bean.Autobot;
-import com.car.training.bean.Like;
 import com.car.training.bean.LoginUser;
 import com.car.training.dao.AutobotDAO;
 import com.car.training.dao.BaseDAO;
@@ -26,6 +25,7 @@ public class AutobotServiceImpl implements AutobotService {
     AutobotDAO autobotDAO;
 
     @Override
+    @Transactional
     public Autobot findById(int id) {
         HashMap<String,Object> map = new HashMap<>();
         map.put("id",id);
@@ -33,6 +33,7 @@ public class AutobotServiceImpl implements AutobotService {
     }
 
     @Override
+    @Transactional
     public Autobot findByUId(int uid) {
         HashMap<String,Object> map = new HashMap<>();
         LoginUser loginUser = new LoginUser();
@@ -42,6 +43,7 @@ public class AutobotServiceImpl implements AutobotService {
     }
 
     @Override
+    @Transactional
     public Autobot findByLoginUser(LoginUser loginUser) {
         HashMap<String,Object> map = new HashMap<>();
         map.put("loginUser",loginUser);
@@ -49,11 +51,13 @@ public class AutobotServiceImpl implements AutobotService {
     }
 
     @Override
+    @Transactional
     public List<Autobot> search(String businessCategory, String executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
         return autobotDAO.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
     }
 
     @Override
+    @Transactional
     public void save(Autobot autobot){
         baseDAO.save(autobot);
     }

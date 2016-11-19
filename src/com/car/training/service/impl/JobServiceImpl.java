@@ -5,7 +5,6 @@ import com.car.training.bean.Job;
 import com.car.training.dao.BaseDAO;
 import com.car.training.dao.JobDAO;
 import com.car.training.enums.JobType;
-import com.car.training.enums.UserType;
 import com.car.training.service.JobService;
 import com.car.training.utils.RegionUtils;
 import org.ironrhino.common.model.Region;
@@ -54,12 +53,6 @@ public class JobServiceImpl implements JobService {
         company.setId(targetCid);
         map.put("company", company);
         return baseDAO.find(Job.class, map);
-    }
-
-    @Override
-    @Transactional
-    public List<Job> findJobsByTargetCompanyType(UserType userType) {
-        return null;
     }
 
     @Override
