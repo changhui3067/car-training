@@ -154,7 +154,7 @@
              <#if trainerJob??>
              <div class="qz"></div>
                  <div class="left zp_box_l">
-                    <a href="/website/jobDetail?jobDetail.id=${trainerJob.id!}"> <div class="zw_name">${trainerJob.title!}</div></a>
+                    <a href="/website/jobDetail?jobId=${trainerJob.id!}"> <div class="zw_name">${trainerJob.title!}</div></a>
                     <div class="dy_box">
                         <span class="cn" style="padding-left:0px;">${trainerJob.salary!}</span>
                         <span>${trainerJob.workExperienceRequirement!}年工作经验</span>
