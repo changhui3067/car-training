@@ -33,6 +33,7 @@
                     <span onclick="filterClicked(this,'businessCategory')">领导力</span>
                     <span onclick="filterClicked(this,'businessCategory')">新能源</span>
                 </div>
+                <div class="clear"></div>
             </div>
 
             <div class="filterType">
@@ -44,6 +45,7 @@
                     <span onclick="filter2Clicked(this, 'workExperience')" >15-20年</span>
                     <span onclick="filter2Clicked(this, 'workExperience')">20年以上</span>
                 </div>
+                <div class="clear"></div>
             </div>
             <div class="filterType">
                 <div class="filterName">执行类型:</div>
@@ -54,6 +56,7 @@
                     <span onclick="filterClicked(this, 'excutionCategory')">项目管理</span>
                     <span onclick="filterClicked(this, 'excutionCategory')">经销商托管</span>
                 </div>
+                <div class="clear"></div>
             </div>
             <div class="filterType">
                 <div class="filterName">关键字:</div>
@@ -61,6 +64,7 @@
                     <input type="text" id="search_input"  placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" />
                     <button onclick="searchBtnClick()">搜索</button>
                 </div>
+                <div class="clear"></div>
             </div>
         </div>
 
@@ -208,7 +212,11 @@ function sendAjax() {
     var url  = "/website/trainer/search";
     var data_ = {};
     for (var props in filters) {
-        data_[props] = filters[props].join(',');
+        if(typeof filters[props] === 'string') {
+            data_[props] = filters[props]
+        } else {
+            data_[props] = filters[props].join(',');
+        }
     }
     $.ajax({
         type: "GET",
