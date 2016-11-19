@@ -191,6 +191,7 @@ function sendAjax() {
     console.log(filters);
     var url  = "/website/job/search";
     var data_ = {};
+    data_['jobType'] = "${jobType}";
     for (var props in filters) {
         if(typeof filters[props] === 'string') {
             data_[props] = filters[props]
