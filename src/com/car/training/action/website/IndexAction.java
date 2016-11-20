@@ -11,14 +11,13 @@ import com.car.training.service.PromotionService;
 import com.car.training.vo.LoginVO;
 import org.apache.struts2.ServletActionContext;
 import org.ironrhino.core.metadata.AutoConfig;
-import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 @Controller
@@ -128,26 +127,25 @@ public class IndexAction extends SimpleAction {
     }
 
     private void generateGuaranteeMap() {
-        ArrayList<Company> companyList = new ArrayList<>();
+        HashSet<Company> companySet = new HashSet<>();
+
         for (Job job : trainerJobList) {
             if (job.getCompany() != null) {
-                companyList.add(job.getCompany());
+                companySet.add(job.getCompany());
             }
         }
         for (Job job : autobotJobList) {
             if (job.getCompany() != null) {
-                companyList.add(job.getCompany());
+                companySet.add(job.getCompany());
             }
         }
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession();
         LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
-        if (companyList != null) {
-            for (Company company : companyList) {
-                guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getId()));
-                if (loginVO != null) {
-                    isGuaranteeMap.put(company, guaranteeService.isGuarantee(loginVO.getId(), company.getId()));
-                }
+        for (Company company : companySet) {
+            guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getId()));
+            if (loginVO != null) {
+                isGuaranteeMap.put(company, guaranteeService.isGuarantee(loginVO.getId(), company.getId()));
             }
         }
     }
