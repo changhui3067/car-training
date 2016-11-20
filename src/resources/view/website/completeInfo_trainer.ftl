@@ -1,12 +1,32 @@
 <form id="form1">
-<!--隐藏域-->
-<input type="hidden" name="trainer.userCenter.personalType" value="TRAINER">
-<input type="hidden" name="trainer.id" value="<#if trainer??>${trainer.id!}</#if>">
-<input type="hidden" name="trainer.userCenter.id" value="<#if trainer?? && trainer.userCenter??>${trainer.userCenter.id!}</#if>">
-<!--隐藏域-->
-	  <div class="pxshijl">
-   <h5>基本信息</h5>
-    <div class="pxshijl_box">
+	<div class="pxshijl">
+   		<h5>基本信息</h5>
+    	<div class="pxshijl_box">
+    		<div class="errMsg"></div>
+    		<div class="container">
+    			<div class="row">
+    				<div class="col-sm-7">
+    					<ul class="list-group">
+    						<li class="list-group-item pxshijl_li">
+                                <div class="form-group">
+                                    <label class="col-sm-3 pxshijl_label"><span
+                                            style="color: red">*</span>
+                                        姓名:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control"
+                                               placeholder="请输入姓名"
+                                               name="uname"
+                                               value="<#if trainer?? && trainer.personInfo.name??>${autobot.personInfo.name!}</#if>"/>
+                                    </div>
+                                </div>
+                            </li>
+    					</ul>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+
 	<table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td colspan="2"width="420" align="left" valign="top"><table width="400" border="0" cellspacing="0" cellpadding="0">
