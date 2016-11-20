@@ -139,14 +139,13 @@ public class IndexAction extends SimpleAction {
                 companyList.add(job.getCompany());
             }
         }
-        HttpServletRequest request = ServletActionContext.getRequest();
-        HttpSession session = request.getSession();
-        LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
+
+        Object loginVO = getHttpSession().getAttribute("loginVO");
         if (companyList != null) {
             for (Company company : companyList) {
                 guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getId()));
                 if (loginVO != null) {
-                    isGuaranteeMap.put(company, guaranteeService.isGuarantee(loginVO.getId(), company.getId()));
+                    isGuaranteeMap.put(company, guaranteeService.isGuarantee(((LoginVO)loginVO).getId(), company.getId()));
                 }
             }
         }
