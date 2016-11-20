@@ -4,6 +4,7 @@ import com.car.training.bean.Autobot;
 import com.car.training.bean.LoginUser;
 import com.car.training.enums.UserType;
 import com.car.training.service.AutobotService;
+import com.car.training.utils.BeanOperation;
 import com.car.training.utils.FileUploaderUtil;
 import com.car.training.utils.RegionUtils;
 import com.car.training.vo.LoginVO;
@@ -36,6 +37,8 @@ public class AutobotCompleteResumeAction extends BaseAction {
     private FileUploaderUtil fileUploaderUtil;
     @Autowired
     private RegionUtils regionUtils;
+    @Autowired
+    private BeanOperation beanOperation;
     /**
      * 汽车人
      */
@@ -124,7 +127,7 @@ public class AutobotCompleteResumeAction extends BaseAction {
                     "name",
                     "mobile",
             };
-            setValue(this,autobot.getPersonInfo(),personProps);
+            beanOperation.setValue(this,autobot.getPersonInfo(),personProps);
         }
         autobotService.save(autobot);
         Map<String, Object> map = new HashMap<>();
@@ -132,29 +135,6 @@ public class AutobotCompleteResumeAction extends BaseAction {
         map.put("msg", "保存成功");
         setData(map);
         return JSON;
-    }
-
-    private void setValue(Object from, Object to, String[] props) {
-        setValue(from,to,props,props);
-    }
-
-    private void setValue(Object from, Object to, String[] fromProps , String[] toProps) {
-        if(fromProps.length !=toProps.length){
-            return;
-        }
-        for ( int i = 0 ; i < fromProps.length ; i ++ ) {
-            try {
-                String fromProp = fromProps[i];
-                String toProp = toProps[i];
-                Field fromField = from.getClass().getDeclaredField(fromProp);
-                Field toField = to.getClass().getDeclaredField(toProp);
-                fromField.setAccessible(true);
-                toField.setAccessible(true);
-                toField.set(to, fromField.get(this));
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     @Before(priority = 20)

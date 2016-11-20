@@ -25,8 +25,7 @@ public class LikeAction extends SimpleAction {
     @Autowired
     private LikeService likeService;
 
-    private HttpSession session;
-
+    @Autowired
     private LoginVO loginVO;
 
     @JsonConfig(root = "data")
@@ -47,18 +46,10 @@ public class LikeAction extends SimpleAction {
         }
     }
 
-    @Before
-    public String beforeAction() {
-        HttpServletRequest request = ServletActionContext.getRequest();
-        session = request.getSession();
-        loginVO = (LoginVO) session.getAttribute("loginVO");
-        if (loginVO !=null){
-            return null;
-        }else{
-            return errorJSON("User not logged in");
-        }
+    @Override
+    protected boolean needLogin() {
+        return true;
     }
-
 
     public int getTargetUserId() {
         return targetUserId;
