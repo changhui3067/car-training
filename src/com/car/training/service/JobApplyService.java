@@ -1,6 +1,7 @@
 package com.car.training.service;
 
 import com.car.training.bean.Apply;
+import com.car.training.bean.Job;
 
 import java.util.List;
 
@@ -11,5 +12,6 @@ public interface JobApplyService {
 
     void apply(int jobId);
 
-    List<Apply> getAppliedJobs();
+    List<Apply> getApplyListByJob(Job job);
+    List<Apply> getApplyListByUser();
 }

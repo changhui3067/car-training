@@ -1,10 +1,11 @@
 package com.car.training.service.impl;
 
-import com.car.training.bean.Apply;
-import com.car.training.bean.Job;
-import com.car.training.bean.LoginUser;
+import com.car.training.bean.*;
 import com.car.training.dao.BaseDAO;
+import com.car.training.enums.UserType;
+import com.car.training.service.AutobotService;
 import com.car.training.service.JobApplyService;
+import com.car.training.service.TrainerService;
 import com.car.training.vo.LoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,12 @@ public class JobApplyServiceImpl implements JobApplyService {
     @Autowired
     LoginVO loginVO;
 
+    @Autowired
+    TrainerService trainerService;
+
+    @Autowired
+    AutobotService autobotService;
+
     @Override
     @Transactional
     public void apply(int jobId) {
@@ -34,7 +41,20 @@ public class JobApplyServiceImpl implements JobApplyService {
         Job job = new Job();
         loginUser.setId(loginVO.getId());
         job.setId(jobId);
-        apply.setLoginUser(loginUser);
+
+        switch (loginUser.getType()) {
+            case TRAINER:
+                Trainer trainer = trainerService.findByLoginUser(loginUser);
+                apply.setTrainer(trainer);
+                break;
+            case AUTOBOT:
+                Autobot autobot = autobotService.findByLoginUser(loginUser);
+                apply.setAutobot(autobot);
+                break;
+            default:
+                break;
+        }
+
         apply.setJob(job);
         apply.setApplyTime(new Date());
         baseDAO.save(apply);
@@ -42,11 +62,30 @@ public class JobApplyServiceImpl implements JobApplyService {
 
     @Override
     @Transactional
-    public List<Apply> getAppliedJobs() {
+    public List<Apply> getApplyListByUser() {
+        HashMap<String, Object> map = new HashMap<>();
+
         LoginUser loginUser = new LoginUser();
         loginUser.setId(loginVO.getId());
+        switch (loginUser.getType()) {
+            case TRAINER:
+                Trainer trainer = trainerService.findByLoginUser(loginUser);
+                map.put("trainer", trainer);
+            case AUTOBOT:
+                Autobot autobot = autobotService.findByLoginUser(loginUser);
+                map.put("autobot", autobot);
+            default:
+                break;
+        }
+
+        return (List<Apply>) baseDAO.find(Apply.class, map);
+    }
+
+    @Override
+    @Transactional
+    public List<Apply> getApplyListByJob(Job job) {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("loginUser", loginUser);
+        map.put("job", job);
         return (List<Apply>) baseDAO.find(Apply.class, map);
     }
 }
