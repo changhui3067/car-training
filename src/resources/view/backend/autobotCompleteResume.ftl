@@ -68,8 +68,7 @@
                                                         <div class="col-sm-9">
                                                             <input type="" class="form-control" name="ubirthday"
                                                                    onclick="laydate()"
-                                                                   <#--value="<#if autobot?? &&autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"-->
-                                                            />
+                                                                   value="<#if autobot?? && autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>
                                                         </div>
                                                     </div>
                                                 </li>

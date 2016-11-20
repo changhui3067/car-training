@@ -30,10 +30,7 @@
 
 <script src="/assets/website/js/jquery-3.1.1.min.js"></script>
 <script src="/assets/website/js/bootstrap.min.js"></script>
-<<<<<<< Updated upstream
 <script src="/assets/website/js/cropper.min.js"></script>
-=======
 <script src="/assets/website/js/laydate.js?v=1.1.0" type="text/javascript"></script>
->>>>>>> Stashed changes
 </body>
 </html>

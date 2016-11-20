@@ -1,15 +1,4 @@
 <form id="form1">
-<<<<<<< Updated upstream
-	<div class="pxshijl">
-   		<h5>基本信息</h5>
-    	<div class="pxshijl_box">
-    		<div class="errMsg"></div>
-    		<div class="container">
-    			<div class="row">
-    				<div class="col-sm-7">
-    					<ul class="list-group">
-    						<li class="list-group-item pxshijl_li">
-=======
 <!--隐藏域-->
 <#--<input type="hidden" name="trainer.userCenter.personalType" value="TRAINER">-->
 <#--<input type="hidden" name="trainer.id" value="<#if trainer??>${trainer.id!}</#if>">-->
@@ -24,7 +13,6 @@
                     <div class="col-sm-7">
                         <ul class="list-group">
                             <li class="list-group-item pxshijl_li">
->>>>>>> Stashed changes
                                 <div class="form-group">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
@@ -33,84 +21,6 @@
                                         <input type="text" class="form-control"
                                                placeholder="请输入姓名"
                                                name="uname"
-<<<<<<< Updated upstream
-                                               value="<#if trainer?? && trainer.personInfo.name??>${autobot.personInfo.name!}</#if>"/>
-                                    </div>
-                                </div>
-                            </li>
-    					</ul>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </div>
-
-	<table width="800" border="0" align="center" cellpadding="0" cellspacing="0">
-	  <tr>
-	    <td colspan="2"width="420" align="left" valign="top"><table width="400" border="0" cellspacing="0" cellpadding="0">
-	      <tr>
-	        <td width="69" height="40" align="right" valign="middle"><font color="#ff0000">*</font> 姓 名：</td>
-	        <td width="292">
-	        <#if trainer?? && trainer.userCenter?? && trainer.userCenter.name?? >
-	        <input type="text" name="trainer.userCenter.name" value="${trainer.userCenter.name!}" />
-			<#else>
-			<input type="text" name="trainer.userCenter.name" value="" />
-			</#if></td>
-			</tr>
-	      <tr>
-	        <td height="40" align="right" valign="middle"><font color="#ff0000">*</font>出生年月：</td>
-	        <td>
-	         <#if trainer?? && trainer.userCenter?? && trainer.userCenter.birthday?? >
-	        <input type="date" name="trainer.userCenter.birthday" value="${trainer.userCenter.birthday!?string("yyyy-MM-dd")}" onclick="laydate()" />
-	        <#else>
-	        <input type="date" name="trainer.userCenter.birthday" value=""  onclick="laydate()"/>
-	     	</#if>
-	      </td>
-	      </tr>
-	      <tr>
-	        <td height="40" align="right" valign="middle"><font color="#ff0000">*</font>婚姻状况：</td>
-	        <td>
-	       		<#if trainer?? && trainer.userCenter?? && trainer.userCenter.marryStatus?? && trainer.userCenter.marryStatus.name() = 'UNMARRIED' >
-	        	<input checked="checked" type="radio" name="trainer.userCenter.marryStatus" value="UNMARRIED" id="ty_per10" />
-	        	<#else>
-	        	<input type="radio" name="trainer.userCenter.marryStatus" value="UNMARRIED" id="ty_per10" />
-	        	</#if>
-				未婚
-				<#if trainer?? && trainer.userCenter?? && trainer.userCenter.marryStatus?? && trainer.userCenter.marryStatus.name() = 'MARRIED'>
-				<input checked="checked" type="radio" name="trainer.userCenter.marryStatus" value="MARRIED" id="ty_per11" />
-				<#else>
-				<input type="radio" name="trainer.userCenter.marryStatus" value="MARRIED" id="ty_per11" />
-				</#if>
-				已婚
-				<#if trainer?? && trainer.userCenter?? && trainer.userCenter.marryStatus?? && trainer.userCenter.marryStatus.name() = 'RAISED'>
-				<input checked="checked" type="radio" name="trainer.userCenter.marryStatus" value="RAISED" id="ty_per12" />
-				<#else>
-				<input type="radio" name="trainer.userCenter.marryStatus" value="RAISED" id="ty_per12" />
-				</#if>
-				已育</td>
-	      </tr>
-	    </table></td>
-	    <td width="439" colspan="4" align="left" valign="top"><table width="400" border="0" cellspacing="0" cellpadding="0">
-	      <tr>
-	        <td><img id="trainer.userCenter.headLogo" src="<#if trainer.personInfo.avatarUrl??>${trainer.personInfo.avatarUrl!}<#else>http://obu3flkwk.bkt.clouddn.com/backend/images/zw.jpg</#if>" style="width:50px;height:50px;"/></td>
-	        </tr>
-	      <tr>
-	        <td>
-	        
-	        
-		        <table width="400" border="0" cellspacing="0" cellpadding="0">
-		          <tr>
-		            <td  width="15%" height="40" align="left" valign="middle"><input type="file" name="headLogo" id="headLogo" value="浏 览" onChange="selectImage(this)"/></td>
-		            <td width="23%" align="left" valign="middle"></td>
-		            <td width="62%" align="left" valign="middle"></td>
-		            </tr>
-		          </table></td>
-		        </tr>
-		      <tr>
-		        <td><font color="#CCCCCC">请上传宽度为180px,高度为150px,格式：jpg,gif, 大小&lt;500kb的图片</font></td>
-		        </tr>
-		      </table>
-=======
                                                value="<#if trainer?? && trainer.personInfo.name??>${trainer.personInfo.name!}</#if>"/>
                                     </div>
                                 </div>
@@ -237,8 +147,6 @@
 											</#list>
                                             </ul>
                                         </div>
->>>>>>> Stashed changes
-
                                     </div>
                                 </div>
                             </li>
@@ -276,7 +184,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
                                                name="trainer.vedioURL2"
-                                               placeholder="请输入视频链接1"
+                                               placeholder="请输入视频链接2"
                                                value="<#if trainer?? && trainer.videoUrl2?? >${trainer.videoUrl2!}</#if>"/>
                                     </div>
                                 </div>
