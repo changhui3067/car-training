@@ -143,7 +143,6 @@
                                         擅长领域:</label>
                                     <div class="col-sm-9">
                                         <input type="hidden" name="autobot.businessCategory"/>
-                                    <#--<#if autobot ?? && autobot.businessCategory??>-->
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("销售")!=-1>checked</#if>"
                                               value="销售" onclick="categoryClicked(this)">销售</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("售后")!=-1>checked</#if>"
@@ -160,24 +159,6 @@
                                               value="行政" onclick="categoryClicked(this)">行政</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("生产研发")!=-1>checked</#if>"
                                               value="生产研发" onclick="categoryClicked(this)">生产研发</span>
-                                    <#--<#else>-->
-                                    <#--<input type="checkBox" name="autobot.businessCategory"-->
-                                    <#--id="autobot.businessCategory" value="销售"/>销售-->
-                                    <#--<input type="checkBox" name="autobot.businessCategory"-->
-                                    <#--id="autobot.businessCategory" value="售后"/>售后-->
-                                    <#--<input type="checkBox" name="autobot.businessCategory"-->
-                                    <#--id="autobot.businessCategory" value="客服"/>客服-->
-                                    <#--<input type="checkBox" name="autobot.businessCategory"-->
-                                    <#--id="autobot.businessCategory" value="市场"/>市场-->
-                                    <#--<input type="checkBox" name="autobot.businessCategory"-->
-                                    <#--id="autobot.businessCategory" value="管理"/>管理-->
-                                    <#--<input type="checkBox" name="autobot.businessCategory"-->
-                                    <#--id="autobot.businessCategory" value="内训"/>内训-->
-                                    <#--<input type="checkBox" name="autobot.businessCategory"-->
-                                    <#--id="autobot.businessCategory" value="生产研发"/>生产研发-->
-                                    <#--<input type="checkBox" name="autobot.businessCategory"-->
-                                    <#--id="autobot.businessCategory" value="行政"/>行政-->
-                                    <#--</#if>-->
                                     </div>
                                 </div>
                             </li>
