@@ -2,6 +2,7 @@ package com.car.training.action.website;
 
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Company;
+import com.car.training.bean.PersonInfo;
 import com.car.training.dao.BaseDAO;
 import com.car.training.service.CompanyService;
 import com.car.training.bean.Job;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,11 +44,14 @@ public class CompanyDetailAction extends SimpleAction {
 
     private Boolean guarantee;
 
+    private List<PersonInfo> personList;
+
     @Override
     public String execute() throws Exception {
         if(companyId!=0){
             company = companyService.findById(companyId);
             jobList = jobService.findJobsByTargetCompany(companyId);
+            personList = guaranteeService.findPeronByCompanyId(companyId);
             HttpServletRequest request = ServletActionContext.getRequest();
             HttpSession session = request.getSession();
             LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
@@ -86,5 +91,13 @@ public class CompanyDetailAction extends SimpleAction {
 
     public void setGuarantee(Boolean guarantee) {
         this.guarantee = guarantee;
+    }
+
+    public List<PersonInfo> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<PersonInfo> personList) {
+        this.personList = personList;
     }
 }

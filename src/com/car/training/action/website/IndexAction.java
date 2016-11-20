@@ -54,10 +54,8 @@ public class IndexAction extends SimpleAction {
     private List<Job> trainerJobList;
 
     private Company company;
-    private List<Company> companyList;
     private GuaranteeService guaranteeService;
     private HashMap<Object, Integer> guaranteeNumberMap = new HashMap<>();
-    private HashMap<Object, Boolean> isGuaranteeMap = new HashMap<>();
 
 
 //    /**
@@ -143,9 +141,6 @@ public class IndexAction extends SimpleAction {
         Object loginVO = getHttpSession().getAttribute("loginVO");
         for (Company company : companySet) {
             guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getId()));
-            if (loginVO != null) {
-                isGuaranteeMap.put(company, guaranteeService.isGuarantee(((LoginVO) loginVO).getId(), company.getId()));
-            }
         }
     }
 
@@ -214,14 +209,6 @@ public class IndexAction extends SimpleAction {
         this.company = company;
     }
 
-    public List<Company> getCompanyList() {
-        return companyList;
-    }
-
-    public void setCompanyList(List<Company> companyList) {
-        this.companyList = companyList;
-    }
-
     public GuaranteeService getGuaranteeService() {
         return guaranteeService;
     }
@@ -236,13 +223,5 @@ public class IndexAction extends SimpleAction {
 
     public void setGuaranteeNumberMap(HashMap<Object, Integer> guaranteeNumberMap) {
         this.guaranteeNumberMap = guaranteeNumberMap;
-    }
-
-    public HashMap<Object, Boolean> getIsGuaranteeMap() {
-        return isGuaranteeMap;
-    }
-
-    public void setIsGuaranteeMap(HashMap<Object, Boolean> isGuaranteeMap) {
-        this.isGuaranteeMap = isGuaranteeMap;
     }
 }

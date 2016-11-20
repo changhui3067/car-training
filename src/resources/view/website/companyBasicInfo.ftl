@@ -4,7 +4,7 @@
         <div class="companyBasicInfoBoxContent">
         <#if company??>
             <h5>${company.name!}</h5>
-            <#if guarantee??>
+            <#if guarantee?? && guarantee>
             <button id="companyGarantee" value=${company.id!} class="guarantee" onClick="guarantee(this.id)">我为公司担保</button>
             <#else>
             <button id="companyGarantee" value=${company.id!} onClick="guarantee(this.id)">我为公司担保</button>
@@ -18,10 +18,10 @@
     <div class="companyBasicInfoBox">
         <h4>担保人列表</h4>
         <div class="companyGuaranteeList">
-            <#if bondsmanList??>
-            <#list bondsmanList as b>
+            <#if personList??>
+            <#list personList as person>
                 <div class="guaranteeInfo left">
-                    <a href="#"><img src="${b.headLogo!}" title="guarentee name"/></a>
+                    <a href="#"><img src="${person.personInfo.avatarUrl!}" title="guarentee name"/></a>
                 </div>
             </#list>
             </#if>

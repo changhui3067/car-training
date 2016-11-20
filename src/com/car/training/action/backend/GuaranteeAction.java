@@ -1,6 +1,7 @@
 package com.car.training.action.backend;
 
 import com.car.training.action.SimpleAction;
+import com.car.training.bean.PersonInfo;
 import com.car.training.enums.UserType;
 import com.car.training.service.GuaranteeService;
 import com.car.training.vo.LoginVO;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @AutoConfig
 public class GuaranteeAction extends SimpleAction {
@@ -23,6 +25,8 @@ public class GuaranteeAction extends SimpleAction {
 	private HttpSession session;
 
 	private LoginVO loginVO;
+
+//	private List<PersonInfo> personInfoList;
 
 	@JsonConfig(root="data")
 	public String guarantee() {
@@ -61,4 +65,11 @@ public class GuaranteeAction extends SimpleAction {
 		this.companyId = companyId;
 	}
 
+//	public List<PersonInfo> getPersonInfoList() {
+//		return personInfoList;
+//	}
+//
+//	public void setPersonInfoList(List<PersonInfo> personInfoList) {
+//		this.personInfoList = personInfoList;
+//	}
 }
