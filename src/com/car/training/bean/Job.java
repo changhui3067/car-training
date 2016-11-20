@@ -50,6 +50,12 @@ public class Job {
     @Column
     private String LanguageRequirement;
 
+    @Column
+    private String department;
+
+    @Column
+    private String autoBrand;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
     private JobType type;
@@ -149,5 +155,21 @@ public class Job {
 
     public Date getCreateDate() {
         return createDate;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getAutoBrand() {
+        return autoBrand;
+    }
+
+    public void setAutoBrand(String autoBrand) {
+        this.autoBrand = autoBrand;
     }
 }
