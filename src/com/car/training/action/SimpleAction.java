@@ -64,7 +64,12 @@ public class SimpleAction extends BaseAction {
     }
 
     public LoginVO getLoginVO(){
-        return (LoginVO) getHttpSession().getAttribute("loginVO");
+        Object loginVO = getHttpSession().getAttribute("loginVO");
+        if(loginVO instanceof LoginVO){
+            return (LoginVO) loginVO;
+        }else{
+            return null;
+        }
     }
 
     protected boolean needLogin(){

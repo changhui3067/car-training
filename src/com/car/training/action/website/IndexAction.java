@@ -141,12 +141,10 @@ public class IndexAction extends SimpleAction {
         }
 
         Object loginVO = getHttpSession().getAttribute("loginVO");
-        if (companyList != null) {
-            for (Company company : companyList) {
-                guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getId()));
-                if (loginVO != null) {
-                    isGuaranteeMap.put(company, guaranteeService.isGuarantee(((LoginVO)loginVO).getId(), company.getId()));
-                }
+        for (Company company : companySet) {
+            guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getId()));
+            if (loginVO != null) {
+                isGuaranteeMap.put(company, guaranteeService.isGuarantee(((LoginVO) loginVO).getId(), company.getId()));
             }
         }
     }
