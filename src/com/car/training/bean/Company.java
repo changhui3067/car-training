@@ -4,6 +4,7 @@ import com.car.training.enums.ReactTime;
 import org.ironrhino.common.model.Region;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Bill on 11/1/2016.
@@ -43,8 +44,15 @@ public class Company {
     @Column
     private ReactTime reactTime;
 
+    @JoinColumn(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne()
+    private Welfare welfare;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> businessCategory;
+
     @Column
-    private String welfare;
+    private String photoUrl;
 
     public int getId() {
         return id;
@@ -111,11 +119,11 @@ public class Company {
         this.reactTime = reactTime;
     }
 
-    public String getWelfare() {
+    public Welfare getWelfare() {
         return welfare;
     }
 
-    public void setWelfare(String welfare) {
+    public void setWelfare(Welfare welfare) {
         this.welfare = welfare;
     }
 
@@ -125,5 +133,21 @@ public class Company {
 
     public void setRegion(Region region) {
         this.region = region;
+    }
+
+    public Set<String> getBusinessCategory() {
+        return businessCategory;
+    }
+
+    public void setBusinessCategory(Set<String> businessCategory) {
+        this.businessCategory = businessCategory;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

@@ -1,4 +1,4 @@
-<form id="form1">
+<form id="form1" xmlns="http://www.w3.org/1999/html">
     <div class="pxshijl">
         <h5>基本信息</h5>
         <div class="pxshijl_box">
@@ -24,12 +24,50 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
+                                        性别:</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="ugender">
+                                            <option value="男" <#if autobot.personInfo.gender = "男">selected</#if>>男</option>
+                                            <option value="女" <#if autobot.personInfo.gender = "女">selected</#if>>女</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item pxshijl_li">
+                                <div class="form-group">
+                                    <label class="col-sm-3 pxshijl_label"><span
+                                            style="color: red">*</span>
                                         出生年月:</label>
                                     <div class="col-sm-9">
                                         <input type="" class="form-control" name="ubirthday"
                                                onclick="laydate()"
-                                        <#--value="<#if autobot?? &&autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"-->
-                                        />
+                                        value="<#if autobot?? && autobot.personInfo.birthday??>${autobot.personInfo.birthday!}</#if>"/>
+                                        <#--value="<#if autobot?? && autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>-->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item pxshijl_li">
+                                <div class="form-group">
+                                    <label class="col-sm-3 pxshijl_label"><span
+                                            style="color: red">*</span>
+                                        联系方式:</label>
+                                    <div class="col-sm-9">
+                                        <#--<input type="text" class="form-control" name="umobile"-->
+                                               <#--placeholder="请输入联系方式"-->
+                                               <#--value="<#if autobot?? && autobot.personInfo.mobile??>${autobot.personInfo.mobile!}</#if>"/>-->
+                                           <label class="pxshijl_label"><#if autobot?? && autobot.personInfo.mobile??>${autobot.personInfo.mobile!}</#if><label/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item pxshijl_li">
+                                <div class="form-group">
+                                    <label class="col-sm-3 pxshijl_label"><span
+                                            style="color: red">*</span>
+                                        邮箱:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="uemail"
+                                               placeholder="请输入邮箱"
+                                               value="<#if autobot?? && autobot.personInfo.email??>${autobot.personInfo.email!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -40,8 +78,8 @@
                                         工作状态:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="currentWorkStatus">
-                                            <option>在职</option>
-                                            <option>求职</option>
+                                            <option value="在职" <#if autobot.workingStatus = "在职">selected</#if>>在职</option>
+                                            <option value="求职" <#if autobot.workingStatus = "求职">selected</#if>>求职</option>
                                         </select>
                                     </div>
                                 </div>
@@ -53,9 +91,9 @@
                                         婚姻状况:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="umarryStatus">
-                                            <option value="UNMARRIED">未婚</option>
-                                            <option value="MARRIED">已婚</option>
-                                            <option value="RAISED">离异</option>
+                                            <option value="UNMARRIED" <#if autobot.personInfo.marriageStatus = "未婚">selected</#if>>未婚</option>
+                                            <option value="MARRIED" <#if autobot.personInfo.marriageStatus = "已婚">selected</#if>>已婚</option>
+                                            <option value="RAISED" <#if autobot.personInfo.marriageStatus = "离异">selected</#if>>离异</option>
                                         </select>
                                     </div>
                                 </div>
@@ -77,25 +115,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
-                                        联系方式:</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="umobile"
-                                               placeholder="请输入联系方式"
-                                               value="<#if autobot?? && autobot.personInfo.mobile??>${autobot.personInfo.mobile!}</#if>"/>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item pxshijl_li">
-                                <div class="form-group">
-                                    <label class="col-sm-3 pxshijl_label"><span
-                                            style="color: red">*</span>
                                         目前地区:</label>
                                     <div class="col-sm-9">
                                         <div class="dropdown" id="province">
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-                                            <#if userRegion?? >${userRegion.parent.name}<#else>请选择省</#if>
+                                            <#if autobot.personInfo.region.parent?? >${autobot.personInfo.region.parent.name}<#else>请选择省</#if>
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -109,7 +135,7 @@
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-                                            <#if userRegion?? >${userRegion.name}<#else>请选择市</#if>
+                                            <#if autobot.personInfo.region?? >${autobot.personInfo.region.name}<#else>请选择市</#if>
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -140,11 +166,23 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
+                                        当前职位:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="currentPosition"
+                                               placeholder="请输入当前职位"
+                                               value="<#if autobot?? && autobot.currentPosition?? >${autobot.currentPosition!}</#if>"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item pxshijl_li">
+                                <div class="form-group">
+                                    <label class="col-sm-3 pxshijl_label"><span
+                                            style="color: red">*</span>
                                         擅长领域:</label>
                                     <div class="col-sm-9">
                                         <input type="hidden" name="autobot.businessCategory"/>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("销售")!=-1>checked</#if>"
-                                              value="销售" onclick="categoryClicked(this)">销售</span>
+                                              value="销售" onclick="categoryClicked(this)">[h]销售</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("售后")!=-1>checked</#if>"
                                               value="售后" onclick="categoryClicked(this)">售后</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("客服")!=-1>checked</#if>"
@@ -168,7 +206,7 @@
                         <ul class="list-group">
                             <li class="list-group-item pxshijl_li">
                                 <div class="form-group">
-                                    <img id="workPhotoURL1_show" src="${autobot.workPhotoURL1!}">
+                                    <img id="workPhotoURL1_show" src="${autobot.personInfo.avatarUrl!}">
                                     <button type="button" class="btn btn-primary btn-lg adminPageBtn"
                                             data-toggle="modal" data-target="#myModal">
                                         上传照片
@@ -190,20 +228,20 @@
         <div class="pxshijl_box">
                                 <textarea style="width:800px;margin-left:15px;resize:none" name="authHistroy"
                                           id="autobot.authHistroy" cols="45"
-                                          rows="5"><#if autobot?? && autobot.authHistroy??> ${autobot.authHistroy!}<#else>
+                                          rows="5"><#if autobot?? && autobot.certRecords??> ${autobot.certRecords!}<#else>
                                     请输入所获认证</#if></textarea>
         </div>
     </div>
     <div class="pxshijl">
         <h5>工作经历</h5>
         <div class="pxshijl_box">
-                                <textarea style="width:800px;margin-left:15px" name="workingHistroy"
+                                <textarea style="width:800px;margin-left:15px;resize:none" name="workingHistroy"
                                           id="autobot.authHistroy" cols="45"
-                                          rows="5"><#if autobot?? && autobot.workingHistroy??> ${autobot.workingHistroy!}<#else>
-                                    请输入</#if></textarea>
+                                          rows="5"><#if autobot?? && autobot.workingHistory??> ${autobot.workingHistory!}<#else>
+                                    请输入工作经历</#if></textarea>
         </div>
     </div>
     <div class="tj">
-        <button type="button" onclick="submitdata()" style="adminPageBtn"/>
+        <button type="button" class="btn btn-primary" onclick="submitdata()" style=""/>
         保存</button>
     </div>

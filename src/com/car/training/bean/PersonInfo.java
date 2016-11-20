@@ -3,6 +3,7 @@ package com.car.training.bean;
 import org.ironrhino.common.model.Region;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by Bill on 11/1/2016.
@@ -20,7 +21,7 @@ public class PersonInfo {
     private LoginUser loginUser;
 
     @Column
-    private String birthday;
+    private Date birthday;
 
     @Column
     private String name;
@@ -33,6 +34,9 @@ public class PersonInfo {
 
     @Column
     private String email;
+
+    @Column
+    private String scale;
 
     @Column
     private String marriageStatus;
@@ -53,13 +57,6 @@ public class PersonInfo {
         this.id = id;
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
 
     public String getName() {
         return name;
@@ -115,5 +112,29 @@ public class PersonInfo {
 
     public void setRegion(Region region) {
         this.region = region;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public LoginUser getLoginUser() {
+        return loginUser;
+    }
+
+    public void setLoginUser(LoginUser loginUser) {
+        this.loginUser = loginUser;
+    }
+
+    public String getScale() {
+        return scale;
+    }
+
+    public void setScale(String scale) {
+        this.scale = scale;
     }
 }

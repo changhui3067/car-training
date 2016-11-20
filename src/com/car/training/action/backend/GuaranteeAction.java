@@ -1,6 +1,7 @@
 package com.car.training.action.backend;
 
 import com.car.training.action.SimpleAction;
+import com.car.training.bean.PersonInfo;
 import com.car.training.enums.UserType;
 import com.car.training.service.GuaranteeService;
 import com.car.training.vo.LoginVO;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @AutoConfig
 public class GuaranteeAction extends SimpleAction {
@@ -20,33 +22,32 @@ public class GuaranteeAction extends SimpleAction {
 	@Autowired
 	private GuaranteeService guaranteeService;
 
-	private HttpSession session;
-
+	@Autowired
 	private LoginVO loginVO;
 
-	@JsonConfig(root="data")
+	private List<PersonInfo> personList;
+
 	public String guarantee() {
 		if (guaranteeService.guarantee(loginVO.getId(),companyId)) {
-            return successJSON();
+			personList = guaranteeService.findPeronByCompanyId(companyId);
+            return "guaranteeResult";
         } else {
-            return errorJSON("");
+            return "error";
         }
 	}
 
-	@JsonConfig(root="data")
 	public String unGuarantee() {
 		if (guaranteeService.unGuarantee(loginVO.getId(),companyId)) {
-            return successJSON();
+			personList = guaranteeService.findPeronByCompanyId(companyId);
+            return "guaranteeResult";
         } else {
-            return errorJSON("");
+            return "error";
         }
 	}
 
 	@Before
 	public String beforeAction() {
-		HttpServletRequest request = ServletActionContext.getRequest();
-        session = request.getSession();
-        loginVO = (LoginVO) session.getAttribute("loginVO");
+        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
         if (loginVO == null){
             return errorJSON("User not logged in");
         }
@@ -61,4 +62,11 @@ public class GuaranteeAction extends SimpleAction {
 		this.companyId = companyId;
 	}
 
+	public List<PersonInfo> getPersonList() {
+		return personList;
+	}
+
+	public void setPersonList(List<PersonInfo> personList) {
+		this.personList = personList;
+	}
 }

@@ -1,6 +1,7 @@
 package com.car.training.dao.impl;
 
 import com.car.training.bean.Guarantee;
+import com.car.training.bean.PersonInfo;
 import com.car.training.dao.BaseDAO;
 import com.car.training.dao.GuaranteeDAO;
 import org.hibernate.Criteria;
@@ -23,9 +24,9 @@ public class HibernateGuaranteeDAO implements GuaranteeDAO {
     BaseDAO baseDAO;
 
     @Override
-    public boolean isGuarantee(int uid, int companyId) {
+    public boolean isGuarantee(PersonInfo personInfo, int companyId) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Guarantee.class);
-        criteria.add( Restrictions.eq("userId", uid));
+        criteria.add( Restrictions.eq("personInfo", personInfo));
         criteria.add( Restrictions.eq("companyId", companyId));
         criteria.setProjection(Projections.rowCount());
         int count = Math.toIntExact((long)criteria.uniqueResult());
@@ -33,8 +34,8 @@ public class HibernateGuaranteeDAO implements GuaranteeDAO {
     }
 
     @Override
-    public boolean guarantee(int uid, int companyId) {
-        Guarantee guarantee = new Guarantee(uid, companyId);
+    public boolean guarantee(PersonInfo personInfo, int companyId) {
+        Guarantee guarantee = new Guarantee(personInfo, companyId);
         try {
             baseDAO.save(guarantee);
             return true;
@@ -44,11 +45,11 @@ public class HibernateGuaranteeDAO implements GuaranteeDAO {
     }
 
     @Override
-    public boolean unGuarantee(int uid, int companyId) {
+    public boolean unGuarantee(PersonInfo personInfo, int companyId) {
         try{
             Session session= sessionFactory.getCurrentSession();
-            String hql = "delete from Guarantee where userId = :uid and companyId = : companyId";
-            session.createQuery(hql).setInteger("userId", uid).setInteger("companyId",companyId).executeUpdate();
+            String hql = "delete from Guarantee where personInfo = :personInfo and companyId = :companyId";
+            session.createQuery(hql).setParameter("personInfo", personInfo).setInteger("companyId",companyId).executeUpdate();
             return true;
         }catch (Exception e){
             e.printStackTrace();

@@ -10,6 +10,10 @@ import javax.persistence.*;
 @Table
 public class Welfare {
     @Id
+    @Column
+    @GeneratedValue
+    private int id;
+
     @Column(unique = true)
     private String name;
 
@@ -30,5 +34,13 @@ public class Welfare {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

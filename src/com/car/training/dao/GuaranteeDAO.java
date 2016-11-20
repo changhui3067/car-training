@@ -1,11 +1,13 @@
 package com.car.training.dao;
 
+import com.car.training.bean.PersonInfo;
+
 public interface GuaranteeDAO {
-    boolean isGuarantee(int uid,int companyId);
+    boolean isGuarantee(PersonInfo uid, int companyId);
 
-    boolean guarantee(int uid ,int companyId);
+    boolean guarantee(PersonInfo uid ,int companyId);
 
-    boolean unGuarantee(int uid , int companyId);
+    boolean unGuarantee(PersonInfo uid , int companyId);
 
     int guaranteeNumber(int companyId);
 }

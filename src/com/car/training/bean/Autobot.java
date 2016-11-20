@@ -1,6 +1,7 @@
 package com.car.training.bean;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Bill on 11/1/2016.
@@ -44,8 +45,8 @@ public class Autobot {
     /**
      * 擅长领域
      */
-    @Column
-    private String businessCategory;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> businessCategory;
 
 
     /**
@@ -65,6 +66,10 @@ public class Autobot {
 
     @Column
     private String trainingHistory;
+
+    @Column
+    private String education;
+
 
     public LoginUser getLoginUser() {
         return loginUser;
@@ -106,14 +111,6 @@ public class Autobot {
         this.autoBrand = autoBrand;
     }
 
-    public String getBusinessCategory() {
-        return businessCategory;
-    }
-
-    public void setBusinessCategory(String businessCategory) {
-        this.businessCategory = businessCategory;
-    }
-
     public String getCertRecords() {
         return certRecords;
     }
@@ -152,5 +149,21 @@ public class Autobot {
 
     public void setTrainingHistory(String trainingHistory) {
         this.trainingHistory = trainingHistory;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public Set<String> getBusinessCategory() {
+        return businessCategory;
+    }
+
+    public void setBusinessCategory(Set<String> businessCategory) {
+        this.businessCategory = businessCategory;
     }
 }

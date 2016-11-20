@@ -328,7 +328,8 @@ function guarantee(id) {
 	        error: function() {
 	            return false;
 	        },
-	        success: function (data) {
+	        success: function (result) {
+	        	$(".companyGuaranteeList")[0].innerHTML = result;
 	        	return true;
 	        }
 	    });
@@ -341,7 +342,8 @@ function guarantee(id) {
 	        error: function() {
 	            return false;
 	        },
-	        success: function (data) {
+	        success: function (result) {
+	        	$(".companyGuaranteeList")[0].innerHTML = result;
 	        	return true;
 	        }
 	    });

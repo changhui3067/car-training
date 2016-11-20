@@ -41,13 +41,16 @@ public class HibernateAutobotDAO implements AutobotDAO {
 
 
     private Criterion getRestriction(String categoryName, String cats){
-        Criterion criterion = Restrictions.and();
         if (!StringUtils.isEmpty(cats)) {
             String[] categories = cats.split(",");
+            String sql = "this_.id in (select distinct Autobot_id from autobot_%s where %s in(%s))";
+            StringBuilder sb = new StringBuilder("''");
             for (String category : categories) {
-                criterion = Restrictions.or(criterion,Restrictions.like(categoryName, "%"+category+"%"));
+                sb.append(",\"").append(category).append("\"");
             }
+            sql = String.format(sql,categoryName,categoryName,sb.toString());
+            return Restrictions.sqlRestriction(sql);
         }
-        return criterion;
+        return Restrictions.and();
     }
 }

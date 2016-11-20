@@ -1,6 +1,7 @@
 package com.car.training.bean;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Bill on 11/1/2016.
@@ -27,11 +28,11 @@ public class Trainer {
     @Column
     private String education;
 
-    @Column
-    private String executionCategory;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> executionCategory;
 
-    @Column
-    private String businessCategory;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> businessCategory;
 
     @Column
     private int autoYears;
@@ -66,21 +67,6 @@ public class Trainer {
         this.education = education;
     }
 
-    public String getExecutionCategory() {
-        return executionCategory;
-    }
-
-    public void setExecutionCategory(String executionCategory) {
-        this.executionCategory = executionCategory;
-    }
-
-    public String getBusinessCategory() {
-        return businessCategory;
-    }
-
-    public void setBusinessCategory(String businessCategory) {
-        this.businessCategory = businessCategory;
-    }
 
     public int getAutoYears() {
         return autoYears;
@@ -144,5 +130,21 @@ public class Trainer {
 
     public void setCurrentPosition(String currentPosition) {
         this.currentPosition = currentPosition;
+    }
+
+    public Set<String> getExecutionCategory() {
+        return executionCategory;
+    }
+
+    public void setExecutionCategory(Set<String> executionCategory) {
+        this.executionCategory = executionCategory;
+    }
+
+    public Set<String> getBusinessCategory() {
+        return businessCategory;
+    }
+
+    public void setBusinessCategory(Set<String> businessCategory) {
+        this.businessCategory = businessCategory;
     }
 }

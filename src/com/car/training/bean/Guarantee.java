@@ -6,15 +6,16 @@ import javax.persistence.*;
  * Created by Bill on 11/1/2016.
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"userId","companyId"}))
+@Table
 public class Guarantee {
     @Id
     @GeneratedValue
     @Column
     private int id;
 
-    @Column
-    private int userId;
+    @JoinColumn(name = "userId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @ManyToOne()
+    private PersonInfo personInfo;
 
     @Column
     private int companyId;
@@ -25,14 +26,6 @@ public class Guarantee {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public int getCompanyId() {
@@ -47,8 +40,16 @@ public class Guarantee {
 
     }
 
-    public Guarantee(int uid, int companyId) {
-        this.userId = uid;
+    public Guarantee(PersonInfo personInfo, int companyId) {
+        this.personInfo = personInfo;
         this.companyId = companyId;
+    }
+
+    public PersonInfo getPersonInfo() {
+        return personInfo;
+    }
+
+    public void setPersonInfo(PersonInfo personInfo) {
+        this.personInfo = personInfo;
     }
 }
