@@ -22,35 +22,32 @@ public class GuaranteeAction extends SimpleAction {
 	@Autowired
 	private GuaranteeService guaranteeService;
 
-	private HttpSession session;
-
+	@Autowired
 	private LoginVO loginVO;
 
-//	private List<PersonInfo> personInfoList;
+	private List<PersonInfo> personList;
 
-	@JsonConfig(root="data")
 	public String guarantee() {
 		if (guaranteeService.guarantee(loginVO.getId(),companyId)) {
-            return successJSON();
+			personList = guaranteeService.findPeronByCompanyId(companyId);
+            return "guaranteeResult";
         } else {
-            return errorJSON("");
+            return "error";
         }
 	}
 
-	@JsonConfig(root="data")
 	public String unGuarantee() {
 		if (guaranteeService.unGuarantee(loginVO.getId(),companyId)) {
-            return successJSON();
+			personList = guaranteeService.findPeronByCompanyId(companyId);
+            return "guaranteeResult";
         } else {
-            return errorJSON("");
+            return "error";
         }
 	}
 
 	@Before
 	public String beforeAction() {
-		HttpServletRequest request = ServletActionContext.getRequest();
-        session = request.getSession();
-        loginVO = (LoginVO) session.getAttribute("loginVO");
+        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
         if (loginVO == null){
             return errorJSON("User not logged in");
         }
@@ -65,11 +62,11 @@ public class GuaranteeAction extends SimpleAction {
 		this.companyId = companyId;
 	}
 
-//	public List<PersonInfo> getPersonInfoList() {
-//		return personInfoList;
-//	}
-//
-//	public void setPersonInfoList(List<PersonInfo> personInfoList) {
-//		this.personInfoList = personInfoList;
-//	}
+	public List<PersonInfo> getPersonList() {
+		return personList;
+	}
+
+	public void setPersonList(List<PersonInfo> personList) {
+		this.personList = personList;
+	}
 }

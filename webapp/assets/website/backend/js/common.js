@@ -329,7 +329,7 @@ function guarantee(id) {
 	            return false;
 	        },
 	        success: function (result) {
-	        	// $(".companyGuaranteeList")[0].innerHTML = result;
+	        	$(".companyGuaranteeList")[0].innerHTML = result;
 	        	return true;
 	        }
 	    });
@@ -343,7 +343,7 @@ function guarantee(id) {
 	            return false;
 	        },
 	        success: function (result) {
-	        	// $(".companyGuaranteeList")[0].innerHTML = result;
+	        	$(".companyGuaranteeList")[0].innerHTML = result;
 	        	return true;
 	        }
 	    });

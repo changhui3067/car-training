@@ -18,14 +18,7 @@
     <div class="companyBasicInfoBox">
         <h4>担保人列表</h4>
         <div class="companyGuaranteeList">
-            <#if personList??>
-            <#list personList as person>
-                <div class="guaranteeInfo left">
-                    <a href="#"><img src="${person.personInfo.avatarUrl!}" title="guarentee name"/></a>
-                </div>
-            </#list>
-            </#if>
-            <div class="clear"></div>
+            <#include "/resources/view/meta/result/guaranteeResult.ftl">
         </div>
     </div>
 </div>
