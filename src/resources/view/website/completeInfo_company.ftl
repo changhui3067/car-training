@@ -1,7 +1,7 @@
 <form id="form1">
     <div class="pxshijl">
         <h5>基本信息</h5>
-        <div class="pxshijl_box">
+        <div class="pxshijl_box companyInfoComplete">
             <div class="errMsg"></div>
                 <div class="container">
                     <div class="row">
@@ -15,7 +15,7 @@
                                         <input type="text" class="form-control"
                                                placeholder="请输入企业名称"
                                                name="uname"
-                                               value="<#if company?? && cpmany.name??>${company.name!}</#if>"/>
+                                               value="<#if companyInfo?? && companyInfo.name??>${companyInfo.name!}</#if>"/>
                                     </div>
                                 </li>
 
@@ -27,7 +27,7 @@
                                         <input type="text" class="form-control"
                                                placeholder="请输入企业拥有的汽车品牌"
                                                name="uname"
-                                               value="<#if company?? && cpmany.autoBrand??>${company.autoBrand!}</#if>"/>
+                                               value="<#if companyInfo?? && companyInfo.autoBrand??>${companyInfo.autoBrand!}</#if>"/>
                                     </div>
                                 </li>
 
@@ -104,8 +104,9 @@
                                         <input type="text" class="form-control"
                                                placeholder="请填入具体地址"
                                                name="uaddress"
-                                               value="<#if company?? && cpmany.address??>${company.address!}</#if>"/>
+                                               value="<#if companyInfo?? && companyInfo.address??>${companyInfo.address!}</#if>"/>
                                     </div>
+                                    <div class="clear"></div>
                                 </div>
                                 </li>
 
@@ -115,21 +116,21 @@
                                             style="color: red">*</span>
                                         公司福利:</label>
                                     <div class="col-sm-9">
-                                        <input type="hidden" name="company.welfare"/>
-                                        <span class="checkBox <#if company.welfare ? index_of("工作餐")!=-1>checked</#if>"
-                                              value="销售" onclick="categoryClicked(this)">工作餐</span>
-                                        <span class="checkBox <#if company.welfare ? index_of("五险一金")!=-1>checked</#if>"
-                                              value="售后" onclick="categoryClicked(this)">五险一金</span>
-                                        <span class="checkBox <#if company.welfare ? index_of("免费班车")!=-1>checked</#if>"
-                                              value="客服" onclick="categoryClicked(this)">免费班车</span>
-                                        <span class="checkBox <#if company.welfare ? index_of("股票期权")!=-1>checked</#if>"
-                                              value="市场" onclick="categoryClicked(this)">股票期权</span>
-                                        <span class="checkBox <#if company.welfare ? index_of("带薪休假")!=-1>checked</#if>"
-                                              value="管理" onclick="categoryClicked(this)">带薪休假</span>
-                                        <span class="checkBox <#if company.welfare ? index_of("绩效奖金")!=-1>checked</#if>"
-                                              value="内训" onclick="categoryClicked(this)">绩效奖金</span>
-                                        <span class="checkBox <#if company.welfare ? index_of("定期体检")!=-1>checked</#if>"
-                                              value="行政" onclick="categoryClicked(this)">定期体检</span>
+                                        <input type="hidden" name="companyInfo.welfare"/>
+                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("工作餐")!=-1>checked</#if>"-->
+                                              <#--value="销售" onclick="categoryClicked(this)">工作餐</span>-->
+                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("五险一金")!=-1>checked</#if>"-->
+                                              <#--value="售后" onclick="categoryClicked(this)">五险一金</span>-->
+                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("免费班车")!=-1>checked</#if>"-->
+                                              <#--value="客服" onclick="categoryClicked(this)">免费班车</span>-->
+                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("股票期权")!=-1>checked</#if>"-->
+                                              <#--value="市场" onclick="categoryClicked(this)">股票期权</span>-->
+                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("带薪休假")!=-1>checked</#if>"-->
+                                              <#--value="管理" onclick="categoryClicked(this)">带薪休假</span>-->
+                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("绩效奖金")!=-1>checked</#if>"-->
+                                              <#--value="内训" onclick="categoryClicked(this)">绩效奖金</span>-->
+                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("定期体检")!=-1>checked</#if>"-->
+                                              <#--value="行政" onclick="categoryClicked(this)">定期体检</span>-->
                                     </div>
                                 </div>
                             </li>
@@ -139,8 +140,8 @@
                         <div class="col-sm-5">
                             <ul class="list-group">
                                 <li class="list-group-item pxshijl_li">
-                                    <div class="form-group">
-                                        <img id="workPhotoURL1_show" src="${autobot.workPhotoURL1!}">
+                                    <div class="form-group photo">
+                                        <img id="workPhotoURL1_show" src="${companyInfo.logoUrl!}">
                                         <button type="button" class="btn btn-primary btn-lg adminPageBtn"
                                             data-toggle="modal" data-target="#myModal">上传照片</button>
                                         <div class="col-sm-9">
@@ -150,8 +151,8 @@
                                 </li>
 
                                 <li class="list-group-item pxshijl_li">
-                                    <div class="form-group">
-                                        <img id="workPhotoURL2_show" src="${autobot.workPhotoURL1!}">
+                                    <div class="form-group photo">
+                                        <img id="workPhotoURL2_show" src="${companyInfo.logoUrl!}">
                                         <button type="button" class="btn btn-primary btn-lg adminPageBtn"
                                             data-toggle="modal" data-target="#myModal">上传工商营业执照副本</button>
                                         <div class="col-sm-9">
@@ -172,16 +173,12 @@
         <h5>企业介绍</h5>
         <div class="pxshijl_box">
             <textarea style="width:800px;margin-left:15px;resize:none" name="introduction"
-                id="company.introduction" cols="45" rows="5" placeholder="请输入企业介绍">
-                <#if company?? && company.introduction??> ${company.introduction!}</#if>
+                id="companyInfo.introduction" cols="45" rows="5" placeholder="请输入企业介绍">
+                <#if companyInfo?? && companyInfo.introduction??> ${companyInfo.introduction!}</#if>
             </textarea>
         </div>
     </div>
+    <div class="tj">
+        <button type="button" onclick="submitdata()" class="btn btn-primary"/>保存</button>
+    </div>
 </form>
-
-					      <!-- <tr>company.name</tr>
-					      <tr>company.autoBrand</tr>
-					      <tr>company.scale</tr>
-                <tr>company.industry.name()</tr>
-                <tr>company.address</tr>
-                <tr>company.welfare</tr> -->

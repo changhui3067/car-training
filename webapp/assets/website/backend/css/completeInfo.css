@@ -1,0 +1,60 @@
+
+.pxshijl .container{ width:100%}
+
+.pxshijl .label { padding-left: 0px; padding-right: 0px; font-size: 14px; font-weight:normal}
+label.pxshijl_label { padding-left: 0px; padding-right: 0px; font-size: 14px; font-weight:normal;     line-height: 34px;}
+
+.pxshijl .li{ border:none; height: auto; padding-left: 0px}
+li.pxshijl_li{ border:none; list-style:none; min-height: 50px; padding-left: 0px}
+
+.pxshijl .placeholder{ font-size: 14px;}
+
+#cropperimg{
+    max-width: 100%;
+}
+
+.pxshijl .container .row span.checkBox {
+    height: 30px;
+    display: inline-block;
+    border: #3689b3 1px solid;
+    padding: 0 5px;
+    margin: 5px;
+    color: #000;
+    cursor: pointer;
+}
+
+.form-group img{
+    width: 100%;
+    height: 100%;
+}
+
+.pxshijl .container .row span.checkBox:hover, .pxshijl .container .row span.checked {
+    background: #428bca;
+    color: #fff;
+}
+
+.pxshijl_box .errMsg{
+    padding-left:15px;
+    height: 30px;
+    color:#FA5506;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.adminPageBtn {
+    font-size: 14px;
+    margin: 5px auto;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.companyInfoComplete .photo {
+    width: 200px;
+    height: 200px;
+}
+
+.tj {
+    text-align: center;
+}

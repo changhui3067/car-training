@@ -97,11 +97,10 @@ public class CompleteInfoAction extends SimpleAction {
                 target = "autobot";
                 break;
             case COMPANY:
-                target = "company";
             case STORE:
                 companyInfo = companyService.findByUId(loginVO.getId());
                 userRegion = companyInfo.getRegion();
-                target = "store";
+                target = "company";
                 break;
             default:
                 return redirectToIndex();

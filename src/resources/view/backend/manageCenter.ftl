@@ -27,5 +27,6 @@
 
 <script src="/assets/website/js/jquery-3.1.1.min.js"></script>
 <script src="/assets/website/js/bootstrap.min.js"></script>
+<script src="/assets/website/js/cropper.min.js"></script>
 </body>
 </html>

@@ -172,7 +172,7 @@
                              <div class="qy_r right zp_box_r_r">
                                  <div class="qy_name">
                                      <span>${trainerJob.company.name!}</span>
-                                     <span>已有${guaranteeNumberMap(trainerJob.company)}人担保</span>
+                                     <#--<span>已有${guaranteeNumberMap(trainerJob.company)}人担保</span>-->
                                  </div>
                                  <div class="jyfw">${trainerJob.company.industry!}</div>
                                  <div class="fl">
