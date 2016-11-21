@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Bill on 11/19/2016.
  */
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"job_id","loginUser_id"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"job_id","trainer_id","autobot_id"}))
 @Entity
 public class Apply {
 
