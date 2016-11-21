@@ -38,6 +38,9 @@ public class Company {
     private String companyType;
 
     @Column
+    private String scale;
+
+    @Column
     private String introduction;
 
     @Enumerated(EnumType.STRING)
@@ -150,4 +153,13 @@ public class Company {
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
+
+    public String getScale() {
+        return scale;
+    }
+
+    public void setScale(String scale) {
+        this.scale = scale;
+    }
+
 }

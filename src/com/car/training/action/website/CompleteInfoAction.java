@@ -4,25 +4,33 @@ import com.car.training.action.SimpleAction;
 import com.car.training.bean.Autobot;
 import com.car.training.bean.Company;
 import com.car.training.bean.Trainer;
+import com.car.training.dao.BaseDAO;
 import com.car.training.service.AutobotService;
 import com.car.training.service.CompanyService;
 import com.car.training.service.TrainerService;
 import com.car.training.utils.RegionUtils;
 import com.car.training.vo.LoginVO;
 import com.opensymphony.xwork2.interceptor.annotations.Before;
+import org.apache.commons.lang3.StringUtils;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
+import org.ironrhino.core.metadata.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Bill on 11/19/2016.
  */
 @AutoConfig
 public class CompleteInfoAction extends SimpleAction {
+
+    @Autowired
+    private LoginVO loginVO;
 
     @Autowired
     private TrainerService trainerService;
@@ -50,22 +58,6 @@ public class CompleteInfoAction extends SimpleAction {
 
     private Region userRegion;
 
-    private static String[] autoProps = new String[]{
-            "certRecords",
-            "autoBrand",
-            "businessCategory",
-            "workingHistory",
-            "workingStatus"
-    };
-
-    private static String[] personProps = new String[]{
-            "birthday",
-            "email",
-            "marriageStatus",
-            "name",
-            "mobile",
-    };
-
     @Override
     public String execute() throws Exception {
         provinces = regionUtils.getSubCities(-1);
@@ -80,9 +72,7 @@ public class CompleteInfoAction extends SimpleAction {
 
     @Before(priority = 20)
     public String validateUser() {
-        HttpSession session = getHttpSession();
-        LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
-        if (loginVO == null) {
+        if(!loginVO.isLoggedIn()) {
             return redirectToIndex();
         }
         switch (loginVO.getUserType()) {
@@ -130,29 +120,6 @@ public class CompleteInfoAction extends SimpleAction {
 
     public void setCompanyInfo(Company companyInfo) {
         this.companyInfo = companyInfo;
-    }
-
-    private void setValue(Object from, Object to, String[] props) {
-        setValue(from, to, props, props);
-    }
-
-    private void setValue(Object from, Object to, String[] fromProps, String[] toProps) {
-        if (fromProps.length != toProps.length) {
-            return;
-        }
-        for (int i = 0; i < fromProps.length; i++) {
-            try {
-                String fromProp = fromProps[i];
-                String toProp = toProps[i];
-                Field fromField = from.getClass().getDeclaredField(fromProp);
-                Field toField = to.getClass().getDeclaredField(toProp);
-                fromField.setAccessible(true);
-                toField.setAccessible(true);
-                toField.set(to, fromField.get(this));
-            } catch (NoSuchFieldException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public List<Region> getProvinces() {

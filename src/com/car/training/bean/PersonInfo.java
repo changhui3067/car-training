@@ -36,9 +36,6 @@ public class PersonInfo {
     private String email;
 
     @Column
-    private String scale;
-
-    @Column
     private String marriageStatus;
 
     @JoinColumn(name = "regionId",foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
@@ -128,13 +125,5 @@ public class PersonInfo {
 
     public void setLoginUser(LoginUser loginUser) {
         this.loginUser = loginUser;
-    }
-
-    public String getScale() {
-        return scale;
-    }
-
-    public void setScale(String scale) {
-        this.scale = scale;
     }
 }

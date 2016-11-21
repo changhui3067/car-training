@@ -51,8 +51,8 @@ public class HibernateLikeDAO implements LikeDAO {
     public boolean unLike(int uid, int targetUid) {
         try{
             Session session= sessionFactory.getCurrentSession();
-            String hql = "delete from Like where userId = :userId and targetUserId = : targetUserId";
-            session.createQuery(hql).setInteger("userId", uid).setInteger("targetUserId",targetUid).executeUpdate();
+            String hql = "delete from Like where userId = :uid and targetUserId = :targetUserId";
+            session.createQuery(hql).setInteger("uid", uid).setInteger("targetUserId",targetUid).executeUpdate();
             return true;
         }catch (Exception e){
             e.printStackTrace();
