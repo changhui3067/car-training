@@ -37,8 +37,7 @@ public class PublishJobHistoryAction extends SimpleAction {
     public String execute() throws Exception {
         Object loginVO = getLoginVO();
         if(loginVO != null) {
-            int companyId = ((LoginVO) loginVO).getId();
-            jobList = jobService.findJobsByTargetCompany(companyId);
+            jobList = jobService.findJobsByTargetCompany();
             generateJobApplyMap();
         }
 

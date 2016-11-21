@@ -1,7 +1,10 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-    <div class="panel-heading">Panel heading</div>
-    <div class="panel-body"></div>
+    <div class="panel-heading">
+        职位列表
+        <button class="btn btn-primary right">发布新职位</button>
+        <div class="clear"></div>
+      </div>
     <#if jobList?? >
     <table class="table table-hover">
         <tr>
@@ -18,22 +21,22 @@
         </tr>
         <#list jobList as job>
         <tr>
-            <td>${job.title}</td>
-            <td>${job.type}</td>
-            <td>${job.region.fullname}</td>
-            <td>${job.educationRequirement}</td>
-            <td>${job.majorRequirement}</td>
-            <td>${job.workExperienceRequirement}</td>
-            <td>${job.LanguageRequirement}</td>
-            <td>${job.salary}</td>
-            <td>${job.createDate}</td>
-            <#if jobApplyMap?? && jobApplayMap.get(job)>
+            <td><#if job.title??>${job.title}<#else>无</#if></td>
+            <td><#if job.type??>${job.type}<#else>无</#if></td>
+            <td><#if job.region.fullname??>${job.region.fullname}<#else>无</#if></td>
+            <td><#if job.educationRequirement??>${job.educationRequirement}<#else>无</#if></td>
+            <td><#if job.majorRequirement??>${job.majorRequirement}><#else>无</#if></td>
+            <td><#if job.workExperienceRequirement??>${job.workExperienceRequirement}<#else>无</#if></td>
+            <td><#if job.LanguageRequirement??>${job.LanguageRequirement}<#else>无</#if></td>
+            <td><#if job.salary??>${job.salary}<#else>无</#if></td>
+            <td><#if job.createDate??>${job.createDate}<#else>无</#if></td>
+            <#if jobApplyMap?? && jobApplyMap.get(job)??>
             <td>
-                <#list jobApplayMap.get(job) as apply>
+                <#list jobApplyMap.get(job) as apply>
                   <#if apply?? && apply.trainer??>
-                  <a href="/website/trainerDetail?trainerId=${apply.trainer.id}"><span>${apply.trainer.name}</span></a>
+                  <a href="/website/trainerDetail?trainerId=${apply.trainer.id}"><span>${apply.trainer.personInfo.name}</span></a>
                   <#elseif apply?? && apply.autobot??>
-                  <a href="/website/autobotDetail?autobotId=${apply.autobot.id}"><span>${apply.autobot.name}</span></a>
+                  <a href="/website/autobotDetail?autobotId=${apply.autobot.id}"><span>${apply.autobot.personInfo.name}</span></a>
                   </#if>
                 </#list>
             </td>

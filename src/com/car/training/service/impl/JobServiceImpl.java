@@ -2,11 +2,15 @@ package com.car.training.service.impl;
 
 import com.car.training.bean.Company;
 import com.car.training.bean.Job;
+import com.car.training.bean.LoginUser;
 import com.car.training.dao.BaseDAO;
 import com.car.training.dao.JobDAO;
 import com.car.training.enums.JobType;
+import com.car.training.service.CompanyService;
 import com.car.training.service.JobService;
+import com.car.training.service.UserService;
 import com.car.training.utils.RegionUtils;
+import com.car.training.vo.LoginVO;
 import org.ironrhino.common.model.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +28,19 @@ public class JobServiceImpl implements JobService {
     BaseDAO baseDAO;
 
     @Autowired
+    LoginVO loginVO;
+
+    @Autowired
     JobDAO jobDAO;
 
     @Autowired
     RegionUtils regionUtils;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    CompanyService companyService;
 
     @Override
     @Transactional
@@ -47,10 +60,21 @@ public class JobServiceImpl implements JobService {
 
     @Override
     @Transactional
+    public List<Job> findJobsByTargetCompany() {
+        String username = loginVO.getUsername();
+        LoginUser loginUser = userService.getUser(username);
+
+        Company company = companyService.findByLoginUser(loginUser);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("company", company);
+        return baseDAO.find(Job.class, map);
+    }
+
+    @Override
+    @Transactional
     public List<Job> findJobsByTargetCompany(int targetCid) {
         HashMap<String, Object> map = new HashMap<>();
-        Company company = new Company();
-        company.setId(targetCid);
+        Company company = companyService.findById(targetCid);
         map.put("company", company);
         return baseDAO.find(Job.class, map);
     }
