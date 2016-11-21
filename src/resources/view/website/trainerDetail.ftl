@@ -104,7 +104,7 @@
                 <div class="people_other_info_bar"><h4>学员评论</h4></div>
                 <div class="add_comment_box">
                     <textarea id="add_comment"></textarea>
-                    <button class="commonClickButton" onclick="addcomment()">提交</button>
+                    <button id=${trainer.id!} class="commonClickButton btn btn-info" onclick="addComment(this.id)">提交</button>
                 </div>
             </div>
         </div>
@@ -125,36 +125,7 @@
             <div class="people_comments people_other_info_bar">
                 <h4>学员评价</h4>
                 <div class="people_comments_list">
-                    <#if commentList??>
-                        <ul>
-                            <#list commentList as c>
-                                <#if c?? && c.content??>
-                                    <li>
-                                        <div class="comments">
-                                            <div class="comments_desc">${c.content}</div>
-                                            <div class="comments_date">${c.createTime?string("yyyy-MM-dd")}</div>
-                                        </div>
-                                    </li>
-                                </#if>
-                            </#list>
-                        </ul>
-                    <#else>
-                        <p>暂无数据</p>
-                    </#if>
-                <#--<#if trainer.autobotsCommentList??>-->
-                <#--<ul>-->
-                <#--<#list trainer.autobotsCommentList as c>-->
-                <#--<#if c?? && c.content??>-->
-                <#--<li>-->
-                <#--<div class="comments">-->
-                <#--<div class="comments_desc">${c.content}</div>-->
-                <#--<div class="comments_date">2016-10-12</div>-->
-                <#--</div>-->
-                <#--</li>-->
-                <#--</#if>-->
-                <#--</#list>-->
-                <#--</ul>-->
-                <#--</#if>-->
+                    <#include "/resources/view/meta/result/commentListResult.ftl">
                 </div>
             </div>
         </div>
@@ -163,78 +134,8 @@
 </#if>
     <!-- main结束 -->
 <#include "/assets/website/common/footer.html">
-
-    <script src="<@url value="/assets/website/js/jquery1.42.min.js?v=1.1.0"/>"></script>
-    <script>
-        function dianz(tid){
-            var form_data={};
-            var tid = tid;
-
-            if(tid==''||tid==null){
-                alert('该培训师已不存在');
-                return false;
-            }
-
-            form_data.tid = tid;
-
-            $.ajax({
-                type: "POST",
-                url: "/website/trainerDetail/dianzan",
-                data: form_data,
-                error: function(request) {
-                    showErrMsg("网络出错啦！");
-                    return false;
-                },
-                success: function (data) {
-                    setTimeout(function(){
-                        if(jid==''||jid==null){
-                            window.location.href = "/website/trainerDetail?trainer.id=tid";
-                        }
-                    },300);
-                    window.location.reload();
-                }
-            });
-        }
-        function addcomment(tid){
-            var form_data={};
-            var tid = tid;
-            var content = $("#content").val();
-
-            if(tid==''||tid==null){
-                alert('该培训师已不存在');
-                return false;
-            }
-            if(content==''||content==null){
-                alert('请填写评论内容');
-                return false;
-            }
-
-            form_data.content = content;
-            form_data.tid = tid;
-
-            $.ajax({
-                type: "POST",
-                url: "/website/trainerDetail/commentTrainer",
-                data: form_data,
-                error: function(request) {
-                    showErrMsg("网络出错啦！");
-                    return false;
-                },
-                success: function (data) {
-                    showErrMsg("添加评论成功！");
-                    setTimeout(function(){
-                        if(jid==''||jid==null){
-                            window.location.href = "/website/trainerDetail?trainer.id=tid";
-                        }
-                    },300);
-
-                }
-            });
-        }
-        function showErrMsg(errMsg){
-            alert(errMsg);
-        }
-    </script>
-
+<script src="<@url value="/assets/website/js/jquery-3.1.1.min.js"/>"></script>
+<script src="<@url value="/assets/website/js/bootstrap.min.js"/>"></script>
+<script src="<@url value="/assets/website/backend/js/common.js"/>"></script>
 </body>
 </html>

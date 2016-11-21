@@ -30,7 +30,7 @@ public class GuaranteeAction extends SimpleAction {
 	public String guarantee() {
 		if (guaranteeService.guarantee(loginVO.getId(),companyId)) {
 			personList = guaranteeService.findPeronByCompanyId(companyId);
-            return "guaranteeResult";
+            return "guaranteePersonListResult";
         } else {
             return "error";
         }
@@ -39,7 +39,7 @@ public class GuaranteeAction extends SimpleAction {
 	public String unGuarantee() {
 		if (guaranteeService.unGuarantee(loginVO.getId(),companyId)) {
 			personList = guaranteeService.findPeronByCompanyId(companyId);
-            return "guaranteeResult";
+            return "guaranteePersonListResult";
         } else {
             return "error";
         }
