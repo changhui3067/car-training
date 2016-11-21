@@ -5,11 +5,13 @@ import com.car.training.bean.Company;
 import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
 import com.car.training.dao.BaseDAO;
+import com.car.training.dao.PromotionDAO;
 import com.car.training.enums.JobType;
 import com.car.training.service.JobService;
 import com.car.training.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,28 +26,58 @@ public class PromotionServiceImpl implements PromotionService {
     @Autowired
     JobService jobService;
 
+    @Autowired
+    PromotionDAO promotionDAO;
+
+    final static String PROMOTION_TRAINER = "TRAINER";
+    final static String PROMOTION_AUTOBOT = "AUTOBOT";
+    final static String PROMOTION_COMPANY = "COMPANY";
+    final static String PROMOTION_STORE = "STORE";
+    final static String PROMOTION_AUTOBOT_JOB = "AUTOBOT_JOB";
+    final static String PROMOTION_TRAINER_JOB = "TRAINER_JOB";
+
 
     @Override
+    @Transactional
     public List<Trainer> getTopTrainer(int number) {
-        return baseDAO.getAllList(Trainer.class);
+        return promotionDAO.getTopUser(Trainer.class);
     }
 
     @Override
+    @Transactional
     public List<Autobot> getTopAutobot(int number) {
-        return baseDAO.getAllList(Autobot.class);
+        return promotionDAO.getTopUser(Autobot.class);
     }
 
     @Override
+    @Transactional
     public List<Job> getTopTrainerJob(int number) {
-        return jobService.findAll(JobType.TRAINER);
+        return promotionDAO.getTopJob("TRAINER_JOB");
     }
 
     @Override
+    @Transactional
     public List<Job> getTopAutobotJob(int number) {
-        return jobService.findAll(JobType.AUTOBOT);
+        return promotionDAO.getTopJob("AUTOBOT_JOB");
     }
 
+    @Override
+    @Transactional
     public List<Company> getTopCompany(int number) {
         return baseDAO.getAllList(Company.class);
+    }
+
+    @Override
+    @Transactional
+    public void checkUpdate(){
+        if( !promotionDAO.isUpTodate() ){
+            update();
+        }
+    }
+
+    private synchronized void update(){
+        if(!promotionDAO.isUpTodate()){
+            promotionDAO.updatePromotion();
+        }
     }
 }

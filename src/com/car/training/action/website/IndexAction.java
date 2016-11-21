@@ -8,14 +8,10 @@ import com.car.training.bean.Trainer;
 import com.car.training.service.GuaranteeService;
 import com.car.training.service.LikeService;
 import com.car.training.service.PromotionService;
-import com.car.training.vo.LoginVO;
-import org.apache.struts2.ServletActionContext;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -76,6 +72,7 @@ public class IndexAction extends SimpleAction {
 
     @Override
     public String execute() {
+        promotionService.checkUpdate();
         //首页推荐培训师大图1个
         List<Trainer> topTrainers = promotionService.getTopTrainer(9);
 
