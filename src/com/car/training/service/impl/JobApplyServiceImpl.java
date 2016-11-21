@@ -42,7 +42,7 @@ public class JobApplyServiceImpl implements JobApplyService {
         loginUser.setId(loginVO.getId());
         job.setId(jobId);
 
-        switch (loginUser.getType()) {
+        switch (loginVO.getUserType()) {
             case TRAINER:
                 Trainer trainer = trainerService.findByLoginUser(loginUser);
                 apply.setTrainer(trainer);
@@ -67,7 +67,7 @@ public class JobApplyServiceImpl implements JobApplyService {
 
         LoginUser loginUser = new LoginUser();
         loginUser.setId(loginVO.getId());
-        switch (loginUser.getType()) {
+        switch (loginVO.getUserType()) {
             case TRAINER:
                 Trainer trainer = trainerService.findByLoginUser(loginUser);
                 map.put("trainer", trainer);
