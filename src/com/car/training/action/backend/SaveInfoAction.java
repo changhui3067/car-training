@@ -87,14 +87,15 @@ public class SaveInfoAction extends SimpleAction {
     }
 
     private void savePersonInfo(PersonInfo personInfo) {
+        avatarUrl = fileUploaderUtil.uploadImg(avatarUrl);
         region = regionUtils.getRegionById(regionId);
         beanOperation.setValue(this, personInfo, personProps);
         personInfo.setBirthday(new Date());
-
-
     }
 
     private String saveCompany() {
+        logoUrl = fileUploaderUtil.uploadImg(logoUrl);
+        photoUrl =  fileUploaderUtil.uploadImg(photoUrl);
         region = regionUtils.getRegionById(regionId);
         company.setBusinessCategory(getCategories(businessCategory));
         beanOperation.setValue(this, company, companyProps);

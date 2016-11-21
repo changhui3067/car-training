@@ -1,5 +1,6 @@
 package com.car.training.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ironrhino.core.fs.FileStorage;
 import org.ironrhino.rest.RestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class FileUploaderUtil {
             throw RestStatus.valueOf(RestStatus.CODE_FIELD_INVALID, "参数有误");
         }
 
-        String returnUrl = "";
+        String returnUrl = null;
         String imgPath;
         // 使用BASE64对图片文件数据进行解码操作
         try {
@@ -57,4 +58,11 @@ public class FileUploaderUtil {
     }
 
 
+    public String uploadImg(String imgData) {
+        if (StringUtils.isNotBlank(imgData) && !imgData.startsWith("http")) {
+            return uploadFile(Constants.CARTRAINING_UPLOAD_FILEPATH, imgData);
+        } else {
+            return null;
+        }
+    }
 }
