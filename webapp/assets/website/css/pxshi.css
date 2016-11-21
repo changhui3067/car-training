@@ -39,8 +39,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 .people_other_info_bar{ background:#f0f8fc; height:40px;   padding:0px 15px;}
 .people_other_info_bar h4{ display:block;height:40px; line-height:40px; padding-left:40px; font-size:16px; color:#000; font-weight:100; }
 .people_other_info_video {
-	padding: 40px 0px 0px 50px;
-    height: 245px;
+	padding: 20px 0px 0px 50px;
 }
 
 .people_other_info_list {

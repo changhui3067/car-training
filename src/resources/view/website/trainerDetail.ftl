@@ -53,14 +53,12 @@
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>视频链接</h4></div>
                 <div class="people_other_info_video">
-                    <p>视频待处理</p>
-                    <a href="${trainer.videoUrl1!}">
-                        <iframe height=240 width=250 src='${trainer.videoUrl1!}' frameborder=0
-                        'allowfullscreen'></iframe></a>
+                    <embed src="${rainer.videoUrl1!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
 
-                    <a href="${trainer.videoUrl2!}">
-                        <iframe height=240 width=250 src='${trainer.videoUrl2!}' frameborder=0
-                        'allowfullscreen'></iframe></a>
+                    <!-- http://player.youku.com/player.php/sid/XMTgyNzI5NTY5Mg==/v.swf -->
+
+                    <embed src="${rainer.videoUrl2!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
+
                 </div>
             </div>
 
