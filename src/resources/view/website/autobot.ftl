@@ -4,9 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <title>培聘网</title>
-    <link rel="stylesheet" href="<@url value="/assets/website/css/style.css"/>" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="<@url value="/assets/website/css/pxshi.css"/>" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="<@url value="/assets/website/css/iconfont.css"/>" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/website/css/pxshi.css" type="text/css"/>
+    <link rel="stylesheet" href="/assets/website/css/iconfont.css" type="text/css"/>
 </head>
 
 <body>
@@ -15,22 +15,18 @@
 <!-- 头部结束 -->		
 
 <!-- main开始 -->
-
-
 <div class="content">
     <div class="ny autobotSearchColor">
-     	<div class="sousuo_box">
-        	<div class="pxly">
-            	<h4>岗位类型:</h4>
-                <div class="pxly_box">
-                	<ul>
-                    	<li><a href="#">销售市场</a></li>
-                        <li><a href="#">售后客服</a></li>
-                        <li><a href="#">高级管理</a></li>
-                        <li><a href="#">人事财务</a></li>
-                        <li><a href="#">内训</a></li>
-                        <li><a href="#">生产研发</a></li>
-                    </ul>
+     	<div class="searchBox">
+        	<div class="filterType">
+            	<div class="filterName">岗位类型:</div>
+                <div class="filterItemList">
+                    	<span>销售市场</span>
+                        <span>售后客服</span>
+                        <span>高级管理</span>
+                        <span>人事财务</span>
+                        <span>内训</span>
+                        <span>生产研发</span>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -48,33 +44,26 @@
                 </div>
                 <div class="clear"></div>
             </div>-->
-            <div class="pxsj">
-            	<h4>培训时间:</h4>
-                <div class="pxly_box">
-                	<ul>
-                		<li><a href="#">应界毕业生</a></li>
-                    	<li><a href="#">5年内</a></li>
-                        <li><a href="#">5-10年</a></li>
-                        <li><a href="#">10-15年</a></li>
-                        <li><a href="#">15-20年</a></li>
-                        <li><a href="#">20年以上</a></li>
-                        
-                    </ul>
+            <div class="fitlerType">
+            	<div class="filterName">培训时间:</div>
+                <div class="filterItemList">
+                		<span>应界毕业生</span>
+                    	<span>5年内</span>
+                        <span>5-10年</span>
+                        <span>10-15年</span>
+                        <span>15-20年</span>
+                        <span>20年以上</span>
                 </div>
                 <div class="clear"></div>
-            	
             </div>
-            <div class="sou">
-           	  <h4>关键字</h4>
-                <div class="sou_box">
-                  <table width="590px" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="505px"><input style=" background:url(http://obu3flkwk.bkt.clouddn.com/website/images/ss_bg.jpg) no-repeat left 1px; height:35px; line-height:35px;  width:501px; border:none; padding-left:4px; " type="text" name="user_login"  placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" /></td>
-                      <td width="85px" height="35px"  ><input style="border:none; " type="image" src="http://obu3flkwk.bkt.clouddn.com/website/images/ss.jpg" /></td>
-                    </tr>
-                  </table>
+            <div class="filterType">
+                <div class="filterName">关键字:</div>
+                <div class="filterItemList">
+                    <input type="text" id="search_input"  placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" />
+                    <button onclick="searchBtnClick()">搜索</button>
                 </div>
-          </div>
+                <div class="clear"></div>
+            </div>
         </div>
 
         <div id="searchResult" style="color:#3d9ccc">
