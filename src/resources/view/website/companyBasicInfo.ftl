@@ -18,7 +18,7 @@
     <div class="companyBasicInfoBox">
         <h4>担保人列表</h4>
         <div class="companyGuaranteeList">
-            <#include "/resources/view/meta/result/guaranteeResult.ftl">
+            <#include "/resources/view/meta/result/guaranteePersonListResult.ftl">
         </div>
     </div>
 </div>

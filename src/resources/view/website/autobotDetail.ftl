@@ -81,41 +81,7 @@
             <div class="people_comments people_other_info_bar">
                 <h4>学员评价</h4>
                 <div class="people_comments_list">
-                    <#if commentList??>
-                        <ul>
-                            <#list commentList as c>
-                                <#if c?? && c.content??>
-                                    <li>
-                                        <div class="comments">
-                                            <div class="comments_desc">${c.content}</div>
-                                            <div class="comments_date">${c.createTime?string("yyyy-MM-dd")}</div>
-                                        </div>
-                                    </li>
-                                </#if>
-                            </#list>
-                        </ul>
-                    <#else>
-                        <p>暂无数据</p>
-                    </#if>
-                    <#--<#if commentList??>-->
-                        <#--Fairy-->
-                    <#--<#else>-->
-                        <#--<p>暂无数据</p>-->
-                    <#--</#if>-->
-                <#--<#if trainer.autobotsCommentList??>-->
-                <#--<ul>-->
-                <#--<#list trainer.autobotsCommentList as c>-->
-                <#--<#if c?? && c.content??>-->
-                <#--<li>-->
-                <#--<div class="comments">-->
-                <#--<div class="comments_desc">${c.content}</div>-->
-                <#--<div class="comments_date">2016-10-12</div>-->
-                <#--</div>-->
-                <#--</li>-->
-                <#--</#if>-->
-                <#--</#list>-->
-                <#--</ul>-->
-                <#--</#if>-->
+                    <#include "/resources/view/meta/result/commentListResult.ftl">
                 </div>
             </div>
         </div>

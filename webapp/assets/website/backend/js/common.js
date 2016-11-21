@@ -349,3 +349,24 @@ function guarantee(id) {
 	    });
 	}
 }
+
+//评论
+function addComment (id) {
+    var data = {};
+    data["content"] = $("#add_comment").val(),
+    data["targetId"] = id;
+    if (data.content) {
+        $.ajax({
+            type: "POST",
+            url: "/backend/Comment/addComment",
+            data: data,
+            error: function() {
+                return false;
+            },
+            success: function (result) {
+                $(".people_comments_list")[0].innerHTML = result;
+                return true;
+            }
+        });
+    }
+}
