@@ -2,14 +2,14 @@
   <!-- Default panel contents -->
     <div class="panel-heading">
         职位列表
-        <button class="btn btn-primary right">发布新职位</button>
+        <button class="btn btn-primary right" data-toggle="modal" data-target="#newJob">发布新职位</button>
         <div class="clear"></div>
       </div>
     <#if jobList?? >
     <table class="table table-hover">
         <tr>
             <th>职位名称</th>
-            <th>工作类型</th>
+            <th>所属部门</th>
             <th>工作地点</th>
             <th>学历要求</th>
             <th>专业要求</th>
@@ -21,8 +21,8 @@
         </tr>
         <#list jobList as job>
         <tr>
-            <td><#if job.title??>${job.title}<#else>无</#if></td>
-            <td><#if job.type??>${job.type}<#else>无</#if></td>
+            <td><#if job.title??><a href="/website/jobDetail?jobId=${job.id}">${job.title}</a><#else>无</#if></td>
+            <td><#if job.department??>${job.department}<#else>无</#if></td>
             <td><#if job.region.fullname??>${job.region.fullname}<#else>无</#if></td>
             <td><#if job.educationRequirement??>${job.educationRequirement}<#else>无</#if></td>
             <td><#if job.majorRequirement??>${job.majorRequirement}><#else>无</#if></td>
@@ -47,49 +47,115 @@
     </#if> 
 </div>
 
+<div class="modal fade" id="newJob" tabindex="-1" role="dialog" aria-labelledby="myModelLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">发布新职位</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="newJobForm">
+                        <div class="form-group">
+                            <label for="inputTitle" class="col-sm-2 control-label">职位名称</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="inputTitle" name="title" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputType" class="col-sm-2 control-label">工作类型</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="type" value=""/>
+                                <select class="form-control" id="inputType">
+                                    <option value="TRAINER">培训师</option>
+                                    <option value="AUTOBOT">汽车人</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEducationRequired" class="col-sm-2 control-label">学历要求</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="educationRequirement" value=""/>
+                                <select class="form-control" id="inputEducationRequired">
+                                    <option value="初中">初中</option>
+                                    <option value="高中">高中</option>
+                                    <option value="大学">大学</option>
+                                    <option value="研究生">研究生</option>
+                                    <option value="博士">博士</option>
+                                    <option value="博士后">博士后</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputExperienceRequirement" class="col-sm-2 control-label">经验要求</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" name="workExperienceRequirement" value="" id="inputExperienceRequirement" placeholder="请输入数字">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLanguageRequirement" class="col-sm-2 control-label">语言要求</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" name="LanguageRequirement" value="" id="inputLanguageRequirement" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress" class="col-sm-2 control-label">工作地点</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputAddress" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSalary" class="col-sm-2 control-label">工作待遇</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="salary" value="" id="inputSalary" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSalary" class="col-sm-2 control-label">详细介绍</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="4" name="salary" value="" id="inputSalary" placeholder=""></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">发布</button>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" id="save_btn" class="btn btn-primary" onclick="save()">保存</button>
+                </div> -->
+            </div>
+        </div>
+   
+</div>
+
    	  
 <!-- main结束 -->
 <script>
-$("#chk_all").click(function(){
-	if($("#chk_all").attr("checked")){
-     	$("input[name='chk_list']").attr("checked",true);
-     }else{
-     	$("input[name='chk_list']").attr("checked",false);
-     }
-});
+$("#newJob").on("shown.bs.modal"， function() {
+    $("input[name='type']").val();
+    $("input[name='educationRequirement']").val();
 
-function deleteAll(){
-if(confirm('确认删除选择记录吗')){
-var ids = '';
-$("input:checkbox[name='chk_list']:checked").each(function(index, element) {
-                         ids += $(this).val() + ",";
-});
-if(ids==''||ids==null){
-	showErrMsg('请选择记录');
-	return false;
-}
-form_data={};
-form_data.ids = ids;
-var url  = "/backend/applyJobHistory/delall";
-$.ajax({
-		 type: "POST",
-	     url: url,
-	     data: form_data,
-	     error: function(request) {
-            showErrMsg("网络出错啦！");
+    var form_data = $("#newJobForm").serialize();
+    var url = "/backend/publishJobHistory/add"
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: form_data,
+        error: function (request) {
+            alert("网络出错啦！");
             return false;
-         },
-	     success: function (data) {
-             showErrMsg("删除成功！");
-             window.location.href = "/backend/applyJobHistory";
-	     }
-	});
-}else{
-	return false;
-}
-}
-function showErrMsg(errMsg){
-    	alert(errMsg);
-}
+        },
+        success: function (data) {
+            alert(data.msg);
+            //window.location.href = "/backend/autobotCompleteResume";
+        }
+    });
+});
 </script>
 

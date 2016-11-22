@@ -44,6 +44,10 @@ public class PublishJobHistoryAction extends SimpleAction {
         return "publishJobHistory";
     }
 
+    public String add() throws Exception {
+        return null;
+    }
+
     private void generateJobApplyMap() {
         for(Job job : jobList) {
             List<Apply> applyList = jobApplyService.getApplyListByJob(job);
