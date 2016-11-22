@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label for="inputType" class="col-sm-2 control-label">工作类型</label>
                             <div class="col-sm-10">
-                                <input type="hidden" name="type" value=""/>
+                                <input type="hidden" name="type" value="培训师"/>
                                 <select class="form-control" id="inputType">
                                     <option value="TRAINER">培训师</option>
                                     <option value="AUTOBOT">汽车人</option>
@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <label for="inputEducationRequired" class="col-sm-2 control-label">学历要求</label>
                             <div class="col-sm-10">
-                                <input type="hidden" name="educationRequirement" value=""/>
+                                <input type="hidden" name="educationRequirement" value="初中"/>
                                 <select class="form-control" id="inputEducationRequired">
                                     <option value="初中">初中</option>
                                     <option value="高中">高中</option>
@@ -119,7 +119,7 @@
                         </div>
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">发布</button>
+                            <button type="submit" class="btn btn-primary" onclick="addNewJob()">发布</button>
                           </div>
                         </div>
                     </form>
@@ -134,13 +134,13 @@
 </div>
 
    	  
-<!-- main结束 -->
-<script>
-$("#newJob").on("shown.bs.modal"， function() {
+<script type="text/javascript">
+function addNewJob() {
     $("input[name='type']").val();
     $("input[name='educationRequirement']").val();
 
     var form_data = $("#newJobForm").serialize();
+    console.log(form_data);
     var url = "/backend/publishJobHistory/add"
 
     $.ajax({

@@ -1,5 +1,14 @@
 <div class="pxshi_gl_l left">
-<h4>培训师管理中心</h4>
+    
+    <#if Session["loginVO"].userType=='TRAINER'>
+        <h4>培训师管理中心</h4>
+    <#elseif Session["loginVO"].userType=='AUTOBOT'>
+        <h4>汽车人管理中心</h4>
+    <#elseif Session["loginVO"].userType=='COMPANY'>
+        <h4>培训公司管理中心</h4>
+    <#elseif Session["loginVO"].userType=='STORE'>
+        <h4>汽车公司管理中心</h4>
+    </#if>
 <div class="lanmu">
 <ul id="menuTab">
 	<!-- <li id="information" onclick='navigate(this.id)'>个人资料</li> -->
