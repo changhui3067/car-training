@@ -166,6 +166,7 @@
                     </div>
                 </div>
                  <div class="right zp_box_r">
+                     <#if trainerJob.company??>
                      <div class="qy">
                          <a href="/website/companyDetail?companyId=${trainerJob.company.id!}">
                              <div class="qy_l left zp_box_r_l"><img src="${trainerJob.company.logo!}"/></div>
@@ -184,6 +185,7 @@
                          </a>
                          <div class="clear"></div>
                      </div>
+                     </#if>
                  </div>
     <div class="clear"></div>
 

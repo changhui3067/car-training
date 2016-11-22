@@ -4,6 +4,7 @@ import com.car.training.bean.Autobot;
 import com.car.training.bean.Company;
 import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,4 +17,7 @@ public interface PromotionService {
     List<Job> getTopTrainerJob(int number);
     List<Job> getTopAutobotJob(int number);
     List<Company> getTopCompany(int number);
+
+    @Transactional
+    void checkUpdate();
 }

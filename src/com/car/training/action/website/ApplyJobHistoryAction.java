@@ -27,7 +27,7 @@ public class ApplyJobHistoryAction extends SimpleAction {
     @Override
     public String execute() throws Exception {
         applyList = jobApplyService.getApplyListByUser();
-        return SUCCESS;
+        return "applyJobHistory";
     }
 
     @Override
