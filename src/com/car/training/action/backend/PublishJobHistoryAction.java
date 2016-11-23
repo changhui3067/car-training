@@ -110,14 +110,16 @@ public class PublishJobHistoryAction extends SimpleAction {
         this.title = title;
     }
 
-    public String getType() {
+    public JobType getType() {
         return type;
     }
 
     public void setType(String type) {
+        this.type = JobType.valueOf(type);
+    }
+    public void setType(JobType type) {
         this.type = type;
     }
-
     public String getEducationRequirement() {
         return educationRequirement;
     }
