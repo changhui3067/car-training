@@ -141,13 +141,13 @@ button#companyGarantee{
 .pxshi_l_pic{ width:382px; height:322px;}
 .pxshi_l_pic img{ width:382px; height:322px;}
 .pxshi_l_intro{ padding:15px 10px; height:112px;}
-.pxshi_name{ height:40px; line-height:40px;margin-bottom:5px;}
+.pxshi_name{ height:40px; line-height:40px;margin-bottom:5px;font-size:25px;}
 .pxshi_zp{ height:30px; line-height:30px;font-size:16px;margin-bottom:5px;}
 
-.xm{ color:#ff7f00; font-size:24px; margin-right:150px;   }
-.pl{ color:#ffa757; font-size:25px;}
+.xm{ color:#ff7f00; margin-right:150px;   }
+.pl{ color:#ffa757;}
 .pl span{ color:#818180;}
-.dz{ padding-left:35px;font-size:25px;}
+.dz{ padding-left:35px;}
 
 .pxshi_rz li{ display:block; float:left; margin-right:5px; font-size: 25px;}
 
@@ -439,13 +439,13 @@ button#companyGarantee{
 .oneBox .intro>div:nth-child(1) .name{
     float: left;
     font-size: 16px;
-    margin: 0;
+    margin-right: 58px;
 }
 
 .oneBox .intro>div:nth-child(1) .right{
     float: right;
     font-size: 12px;
-    margin-left: 10px;
+    margin-left: 0px;
 }
 
 .oneBox .intro>div:nth-child(2) {
