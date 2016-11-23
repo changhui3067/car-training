@@ -6,6 +6,7 @@ import com.car.training.bean.LoginUser;
 import com.car.training.dao.BaseDAO;
 import com.car.training.dao.JobDAO;
 import com.car.training.enums.JobType;
+import com.car.training.enums.UserType;
 import com.car.training.service.CompanyService;
 import com.car.training.service.JobService;
 import com.car.training.service.UserService;
@@ -138,5 +139,14 @@ public class JobServiceImpl implements JobService {
             }
         }
         return jobDAO.find(jobType, Arrays.asList(businessCategoryArray), region, minPublishTime, maxPublishTime, minWorkExperienceRequirement, maxWorkExperienceRequirement, keyword);
+    }
+
+
+    @Override
+    @Transactional
+    public void save(Job job) {
+
+
+        baseDAO.save(job);
     }
 }

@@ -13,10 +13,9 @@ public interface JobService {
 
     Job findById(int id);
     List<Job> findAll(JobType jobType);
-
     List<Job> findJobsByTargetCompany();
     List<Job> findJobsByTargetCompany(int targetCid);
-
     List<Job> find(JobType jobType, String businessCategories, Integer regionId, String publishTime,
                    String workExperienceRequirement, String keyword);
+    void save(Job job);
 }

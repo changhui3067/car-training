@@ -28,9 +28,10 @@
 </div>
 <#include "/assets/website/backend/common/footer.html">
 
-<script src="/assets/website/js/jquery-3.1.1.min.js"></script>
-<script src="/assets/website/js/bootstrap.min.js"></script>
-<script src="/assets/website/js/cropper.min.js"></script>
-<script src="/assets/website/js/laydate.js?v=1.1.0" type="text/javascript"></script>
+<script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="/assets/website/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/website/js/cropper.min.js" type="text/javascript"></script>
+<script src="/assets/website/js/laydate.js" type="text/javascript"></script>
+<script src="/assets/website/backend/js/common.js" type="text/javascript"></script>
 </body>
 </html>

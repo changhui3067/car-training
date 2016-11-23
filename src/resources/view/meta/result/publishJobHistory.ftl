@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label for="inputType" class="col-sm-2 control-label">工作类型</label>
                             <div class="col-sm-10">
-                                <input type="hidden" name="type" value="培训师"/>
+                                <input type="hidden" name="type" value="TRAINER"/>
                                 <select class="form-control" id="inputType">
                                     <option value="TRAINER">培训师</option>
                                     <option value="AUTOBOT">汽车人</option>
@@ -114,7 +114,7 @@
                         <div class="form-group">
                             <label for="inputSalary" class="col-sm-2 control-label">详细介绍</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="4" name="salary" value="" id="inputSalary" placeholder=""></textarea>
+                                <textarea class="form-control" rows="4" name="introduction" value="" id="inputSalary" placeholder=""></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -132,30 +132,4 @@
         </div>
    
 </div>
-
-   	  
-<script type="text/javascript">
-function addNewJob() {
-    $("input[name='type']").val();
-    $("input[name='educationRequirement']").val();
-
-    var form_data = $("#newJobForm").serialize();
-    console.log(form_data);
-    var url = "/backend/publishJobHistory/add"
-
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: form_data,
-        error: function (request) {
-            alert("网络出错啦！");
-            return false;
-        },
-        success: function (data) {
-            alert(data.msg);
-            //window.location.href = "/backend/autobotCompleteResume";
-        }
-    });
-});
-</script>
 
