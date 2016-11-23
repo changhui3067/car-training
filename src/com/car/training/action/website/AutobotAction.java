@@ -3,11 +3,16 @@ package com.car.training.action.website;
 
 import com.car.training.bean.Autobot;
 import com.car.training.service.AutobotService;
+import com.car.training.utils.CategoriesTransformer;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AutoConfig
 public class AutobotAction extends BaseAction {
@@ -25,8 +30,8 @@ public class AutobotAction extends BaseAction {
 
 
 
-    private String executionCategories;
-    private String buisnessCategory;
+    private Set<String> executionCategories;
+    private Set<String> businessCategories;
 
 
     /**
@@ -41,7 +46,7 @@ public class AutobotAction extends BaseAction {
 
     @Override
     public String execute() throws Exception {
-        peopleList = autobotService.search(buisnessCategory,executionCategories,-1,Integer.MAX_VALUE,"");
+        peopleList = autobotService.search(businessCategories,executionCategories,-1,Integer.MAX_VALUE,"");
 //        Autobots autobots = new Autobots();
 //        autobots.setPositionType(positionType);
 //        autobots.setAutoYears(autoYears);
@@ -64,7 +69,7 @@ public class AutobotAction extends BaseAction {
 //            minAutoYear = -1;
 //            maxAutoYear = Integer.MAX_VALUE;
 //        }
-//        peopleList = autobotService.search(buisnessCategory,executionCategories,autoYearRange,keyword);
+//        peopleList = autobotService.search(businessCategories,executionCategories,autoYearRange,keyword);
 //        return SUCCESS;
 //    }
 
@@ -77,20 +82,26 @@ public class AutobotAction extends BaseAction {
         this.peopleList = peopleList;
     }
 
-    public String getExecutionCategories() {
+    public Set<String> getExecutionCategories() {
         return executionCategories;
     }
 
-    public void setExecutionCategories(String executionCategories) {
+    public void setExecutionCategories(Set<String> executionCategories) {
         this.executionCategories = executionCategories;
     }
-
-    public String getBuisnessCategory() {
-        return buisnessCategory;
+    public void setExecutionCategories(String executionCategories) {
+        this.executionCategories = CategoriesTransformer.transform(executionCategories);
+    }
+    public Set<String> getBusinessCategories() {
+        return businessCategories;
     }
 
-    public void setBuisnessCategory(String buisnessCategory) {
-        this.buisnessCategory = buisnessCategory;
+    public void setBusinessCategories(Set<String> businessCategory) {
+        this.businessCategories = businessCategory;
+    }
+    
+    public void setBusinessCategories(String businessCategory) {
+        this.businessCategories = CategoriesTransformer.transform(businessCategory);
     }
 
     public String getAutoYearRange() {

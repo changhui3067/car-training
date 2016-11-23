@@ -1,7 +1,6 @@
 package com.car.training.dao.impl;
 
 import com.car.training.bean.Autobot;
-import com.car.training.bean.Autobot;
 import com.car.training.dao.AutobotDAO;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by bill on 11/12/16.
@@ -23,34 +23,34 @@ public class HibernateAutobotDAO implements AutobotDAO {
     @Autowired
     SessionFactory sessionFactory;
 
-    public List<Autobot> search(String businessCategory, String executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
+    @Override
+    public List<Autobot> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
         Session session = sessionFactory.getCurrentSession();
-        DetachedCriteria dc = DetachedCriteria.forClass(Autobot.class,"Autobot");
+        DetachedCriteria dc = DetachedCriteria.forClass(Autobot.class, "Autobot");
         Criteria criteria = dc.getExecutableCriteria(session);
 
-        criteria.add(getRestriction("businessCategory",businessCategory));
-        criteria.add(getRestriction("executionCategory",executionCategory));
+        criteria.add(getRestriction("businessCategory", businessCategory));
+        criteria.add(getRestriction("executionCategory", executionCategory));
         criteria.add(Restrictions.between("autoYears", minAutoYears, maxAutoYears));
         criteria.createAlias("Autobot.personInfo", "personInfo");
         if (!StringUtils.isEmpty(keyword)) {
-            criteria.add(Restrictions.like("personInfo.name", "%"+keyword+"%"));
+            criteria.add(Restrictions.like("personInfo.name", "%" + keyword + "%"));
         }
 
         return criteria.list();
     }
 
 
-    private Criterion getRestriction(String categoryName, String cats){
-        if (!StringUtils.isEmpty(cats)) {
-            String[] categories = cats.split(",");
-            String sql = "this_.id in (select distinct Autobot_id from autobot_%s where %s in(%s))";
-            StringBuilder sb = new StringBuilder("''");
-            for (String category : categories) {
-                sb.append(",\"").append(category).append("\"");
-            }
-            sql = String.format(sql,categoryName,categoryName,sb.toString());
-            return Restrictions.sqlRestriction(sql);
+    private Criterion getRestriction(String categoryName, Set<String> categories) {
+        if(categories ==null){
+            return Restrictions.and();
         }
-        return Restrictions.and();
+        String sql = "this_.id in (select distinct Autobot_id from autobot_%s where %s in(%s))";
+        StringBuilder sb = new StringBuilder("''");
+        for (String category : categories) {
+            sb.append(",\"").append(category).append("\"");
+        }
+        sql = String.format(sql, categoryName, categoryName, sb.toString());
+        return Restrictions.sqlRestriction(sql);
     }
 }

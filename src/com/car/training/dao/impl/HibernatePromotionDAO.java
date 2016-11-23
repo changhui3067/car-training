@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,7 +37,9 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(time);
                 calendar.add(Calendar.DATE, 1);
-                if (calendar.after(time)) {
+                Calendar c2 = Calendar.getInstance();
+                c2.setTime(new Date());
+                if (calendar.after(c2)) {
                     return true;
                 }
             }
@@ -48,10 +51,10 @@ public class HibernatePromotionDAO implements PromotionDAO {
     public List getTopUser(Class tClass) {
         String hql;
         if (tClass == Trainer.class) {
-            hql = "select trainer from Trainer as trainer left outer join trainer.loginUser as loginUser right  outer join Promotion as pro on loginUser.id=pro.entityId where pro.entityType='TRAINER' order by pro.ord";
+            hql = "select trainer from Trainer as trainer join trainer.loginUser as loginUser, Promotion pro where loginUser.id=pro.entityId and pro.entityType='TRAINER' order by pro.ord";
 
         } else if (tClass == Autobot.class) {
-            hql = "select autobot from Autobot as autobot left outer join autobot.loginUser as loginUser right  outer join Promotion as pro on loginUser.id=pro.entityId where pro.entityType='AUTOBOT' order by pro.ord";
+            hql = "select autobot from Autobot as autobot join autobot.loginUser as loginUser, Promotion pro where loginUser.id=pro.entityId and pro.entityType='AUTOBOT' order by pro.ord";
         } else {
             return null;
         }
@@ -61,7 +64,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
 
     @Override
     public List<Job> getTopJob(String type) {
-        String hql = "select job from Job as job right  outer join Promotion as pro on job.id=pro.entityId where pro.entityType=:type order by pro.ord";
+        String hql = "select job from Job as job ,Promotion pro where job.id=pro.entityId and pro.entityType=:type order by pro.ord";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
         query.setString("type",type);
         return query.list();
@@ -100,7 +103,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                        GROUP BY targetUserId) lk ON lk.targetUserId = login.id)\n" +
                 "         WHERE login.type = 'TRAINER'\n" +
                 "         ORDER BY weight DESC\n" +
-                "         LIMIT 5) t, (SELECT @rownum\\:=0) r;";
+                "         LIMIT 10) t, (SELECT @rownum\\:=0) r;";
 
         String autobot = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
                 "  SELECT\n" +
@@ -129,7 +132,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                        GROUP BY targetUserId) lk ON lk.targetUserId = login.id)\n" +
                 "         WHERE login.type = 'AUTOBOT'\n" +
                 "         ORDER BY weight\n" +
-                "         LIMIT 5) t, (SELECT @rownum\\:=0) r;";
+                "         LIMIT 10) t, (SELECT @rownum\\:=0) r;";
 
         String company = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
                 "  SELECT\n" +
@@ -150,7 +153,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                     GROUP BY companyId) gua ON com.id = gua.companyId\n" +
                 "        WHERE login.type = \"COMPANY\"\n" +
                 "        ORDER BY g_num\n" +
-                "        LIMIT 5) t, (SELECT @rownum\\:=0) r;";
+                "        LIMIT 10) t, (SELECT @rownum\\:=0) r;";
 
         String store = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
                 "  SELECT\n" +
@@ -171,7 +174,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                     GROUP BY companyId) gua ON com.id = gua.companyId\n" +
                 "        WHERE login.type = \"STORE\"\n" +
                 "        ORDER BY g_num DESC\n" +
-                "        LIMIT 5) t,(SELECT @rownum\\:=0) r;";
+                "        LIMIT 10) t,(SELECT @rownum\\:=0) r;";
 
         String autobot_job = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
                 "  SELECT\n" +
@@ -189,7 +192,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "         WHERE com.companyType = \"STORE\"\n" +
                 "         GROUP BY com.id\n" +
                 "         ORDER BY ford\n" +
-                "         LIMIT 4\n" +
+                "         LIMIT 10\n" +
                 "       ) t, (SELECT @rownum\\:=0) r;";
 
         String trainer_job = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
@@ -208,7 +211,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "         WHERE com.companyType = \"COMPANY\"\n" +
                 "         GROUP BY com.id\n" +
                 "         ORDER BY ford\n" +
-                "         LIMIT 4\n" +
+                "         LIMIT 10\n" +
                 "       ) t, (SELECT @rownum\\:=0) r;";
 
         Session session = sessionFactory.getCurrentSession();
