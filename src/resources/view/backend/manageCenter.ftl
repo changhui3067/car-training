@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/assets/website/css/completeInfo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/backend/css/laydate.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/backend/css/date-molv.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/cropper.css" type="text/css" media="screen"/>
 
 </head>
 

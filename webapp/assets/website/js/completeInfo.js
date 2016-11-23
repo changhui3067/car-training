@@ -1,22 +1,4 @@
-// No handle for checkform
-function checkform(){
-    // var name = $("[name='trainer.userCenter.name']").val();
-    // var education = $("[name='trainer.education']").val();
-    // var birthday = $("[name='trainer.userCenter.birthday']").val();
-    // var marryStatus = $("[name='trainer.userCenter.marryStatus']").val();
-    // var mobile = $("input[name='trainer.userCenter.mobile']").val();
-    // var intro = $("[name='trainer.userCenter.intro']").val();
-    // var mainCourse = $("[name='trainer.mainCourse']").val();
-    //
-    // if(name == undefined || education == undefined || birthday == undefined || marryStatus == undefined || mobile == undefined || intro == undefined || mainCourse == undefined){
-    //     alert("带*的为必填字段 ");
-    //     return false;
-    // }
-    // if(name == '' || education == '' || birthday == '' || marryStatus == '' || mobile == '' || intro == '' || mainCourse == ''){
-    //     alert("带*的为必填字段 ");
-    //     return false;
-    // }
-    //
+function checkform() {
     return true;
 }
 
@@ -28,23 +10,6 @@ function categoryClicked(that){
     }
 }
 
-var image = '';
-function selectImage(file){
-    if(!file.files || !file.files[0]){
-        return;
-    }
-
-    var reader = new FileReader();
-    reader.onload = function(evt){
-        if(file.name=='headLogo'){
-            document.getElementById('trainer.userCenter.headLogo').src = evt.target.result;
-        }
-
-        image = evt.target.result;
-    }
-    reader.readAsDataURL(file.files[0]);
-}
-
 function submitdata() {
     if (!checkform()) {
         return;
@@ -54,7 +19,8 @@ function submitdata() {
         businessCategoryValue += (businessCategoryValue === '') ? $(this).val() : (','+$(this).val());
     });
     $("input[name='autobot.businessCategory']").val(businessCategoryValue);
-    var url = "/backend/autobotCompleteResume/save";
+    // var url = "/backend/autobotCompleteResume/save";
+    var url = "/website/completeInfo/save";
     var form_data = $("#form1").serialize();
 
     //validate if any required field is null
@@ -75,10 +41,139 @@ function submitdata() {
         },
         success: function (data) {
             alert(data.msg);
-            window.location.href = "/backend/autobotCompleteResume";
+            window.location.href = "/website/completeInfo";
         }
     });
 }
+
+// Picture
+var BLANK_IMG_URL = "/assets/website/images/blank.jpg";
+function showCrop(url) {
+    if (!!window.cropper && !!url) { // reset url
+        cropper.replace(url);
+        $("#save_btn").removeClass("disabled");
+    } else if (!!window.cropper) { //second open reset url
+        cropper.replace(BLANK_IMG_URL);
+    } else {//first open need init
+        var image = document.getElementById('cropperimg');
+        image.src = BLANK_IMG_URL;
+        cropper = new Cropper(image, {
+            aspectRatio: 1,
+            toggleDragModeOnDblclick: false,
+            zoomable: false,
+            movable: false,
+            minCropBoxWidth: 100,
+            minCropBoxHeight: 100,
+            dragMode: 'none',
+            checkCrossOrigin: true,
+            autoCrop: true
+        });
+    }
+}
+
+$("#myModal").on("shown.bs.modal", function () {
+    showCrop();
+    $("#save_btn").addClass("disabled");
+});
+
+function save() {
+    var url = cropper.getCroppedCanvas().toDataURL();
+    $("[name='workPhotoURL1']").val(url);
+    $("#workPhotoURL1_show").attr("src", url);
+    $('#myModal').modal('hide');
+}
+
+function selectImage(file) {
+    if (file.files && file.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            showCrop(evt.target.result);
+        };
+        reader.readAsDataURL(file.files[0]);
+    }
+}
+
+// function checkform(){
+//     // var name = $("[name='trainer.userCenter.name']").val();
+//     // var education = $("[name='trainer.education']").val();
+//     // var birthday = $("[name='trainer.userCenter.birthday']").val();
+//     // var marryStatus = $("[name='trainer.userCenter.marryStatus']").val();
+//     // var mobile = $("input[name='trainer.userCenter.mobile']").val();
+//     // var intro = $("[name='trainer.userCenter.intro']").val();
+//     // var mainCourse = $("[name='trainer.mainCourse']").val();
+//     //
+//     // if(name == undefined || education == undefined || birthday == undefined || marryStatus == undefined || mobile == undefined || intro == undefined || mainCourse == undefined){
+//     //     alert("带*的为必填字段 ");
+//     //     return false;
+//     // }
+//     // if(name == '' || education == '' || birthday == '' || marryStatus == '' || mobile == '' || intro == '' || mainCourse == ''){
+//     //     alert("带*的为必填字段 ");
+//     //     return false;
+//     // }
+//     //
+//     return true;
+// }
+//
+// function categoryClicked(that){
+//     if($(that).hasClass('checked')){
+//         $(that).removeClass('checked');
+//     } else {
+//         $(that).addClass('checked');
+//     }
+// }
+//
+// var image = '';
+// function selectImage(file){
+//     if(!file.files || !file.files[0]){
+//         return;
+//     }
+//
+//     var reader = new FileReader();
+//     reader.onload = function(evt){
+//         if(file.name=='headLogo'){
+//             document.getElementById('trainer.userCenter.headLogo').src = evt.target.result;
+//         }
+//
+//         image = evt.target.result;
+//     }
+//     reader.readAsDataURL(file.files[0]);
+// }
+//
+// function submitdata() {
+//     if (!checkform()) {
+//         return;
+//     }
+//     var businessCategoryValue = '';
+//     $('span.checkBox.checked').each(function (index, element) {
+//         businessCategoryValue += (businessCategoryValue === '') ? $(this).val() : (','+$(this).val());
+//     });
+//     $("input[name='autobot.businessCategory']").val(businessCategoryValue);
+//     var url = "/backend/autobotCompleteResume/save";
+//     var form_data = $("#form1").serialize();
+//
+//     //validate if any required field is null
+//     if(form_data.indexOf('=&')>0) {
+//         $('.errMsg')[0].innerHTML = '必填项不能为空';
+//         return;
+//     } else {
+//         $('.errMsg')[0].innerHTML = '';
+//     }
+//
+//     $.ajax({
+//         type: "POST",
+//         url: url,
+//         data: form_data,
+//         error: function (request) {
+//             alert("网络出错啦！");
+//             return false;
+//         },
+//         success: function (data) {
+//             alert(data.msg);
+//             window.location.href = "/backend/autobotCompleteResume";
+//         }
+//     });
+// }
+
 
 // function submitdata(){
 //
