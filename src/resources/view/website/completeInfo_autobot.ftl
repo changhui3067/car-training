@@ -159,7 +159,7 @@
                                         <input type="text" class="form-control" name="autoBrand"
                                                placeholder="请输入汽车品牌"
                                                value="<#if autobot?? && autobot.autoBrand?? >${autobot.autoBrand!}</#if>"/>
-                                    </div>
+                                </div>
                                 </div>
                             </li>
                             <li class="list-group-item pxshijl_li">
@@ -181,6 +181,7 @@
                                         擅长领域:</label>
                                     <div class="col-sm-9">
                                         <input type="hidden" name="autobot.businessCategory"/>
+                                    <#if autobot ?? && autobot.businessCategory??>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("销售")!=-1>checked</#if>"
                                               value="销售" onclick="categoryClicked(this)">[h]销售</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("售后")!=-1>checked</#if>"
@@ -197,6 +198,7 @@
                                               value="行政" onclick="categoryClicked(this)">行政</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("生产研发")!=-1>checked</#if>"
                                               value="生产研发" onclick="categoryClicked(this)">生产研发</span>
+                                    </#if>
                                     </div>
                                 </div>
                             </li>
@@ -244,4 +246,28 @@
     <div class="tj">
         <button type="button" class="btn btn-primary" onclick="submitdata()" style=""/>
         保存</button>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">上传图片</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="file" inputmode="" accept=".jpeg,.jpg,.png,.bmp" onchange="selectImage(this)">
+                    <input type="hidden" id="input_url">
+                    <div>
+                        <img id="cropperimg" src="/assets/website/images/blank.jpg">
+                    </div>
+                    <!-- sadjkfj -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" id="save_btn" class="btn btn-primary" onclick="save()">保存</button>
+                </div>
+            </div>
+        </div>
     </div>

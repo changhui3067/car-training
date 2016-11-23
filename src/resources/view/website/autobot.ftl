@@ -21,41 +21,41 @@
         	<div class="filterType">
             	<div class="filterName">岗位类型:</div>
                 <div class="filterItemList">
-                    	<span>销售市场</span>
-                        <span>售后客服</span>
-                        <span>高级管理</span>
-                        <span>人事财务</span>
-                        <span>内训</span>
-                        <span>生产研发</span>
+                    <span onclick="filterClicked(this,'businessCategory')">销售市场</span>
+                    <span onclick="filterClicked(this,'businessCategory')">售后客服</span>
+                    <span onclick="filterClicked(this,'businessCategory')">高级管理</span>
+                    <span onclick="filterClicked(this,'businessCategory')">人事财务</span>
+                    <span onclick="filterClicked(this,'businessCategory')">内训</span>
+                    <span onclick="filterClicked(this,'businessCategory')">生产研发</span>
                 </div>
                 <div class="clear"></div>
             </div>
-            <!--<div class="scxs">
-            	<h4>擅长形式:</h4>
-                <div class="pxly_box">
-                	<ul>
-                    	<li><a href="#">开发</a></li>
-                        <li><a href="#">培训</a></li>
-                        <li><a href="#">辅导</a></li>
-                        <li><a href="#">项目管理</a></li>
-                        <li><a href="#">经销商托管</a></li>
-                        
-                    </ul>
-                </div>
-                <div class="clear"></div>
-            </div>-->
-            <div class="fitlerType">
-            	<div class="filterName">培训时间:</div>
+
+            <div class="filterType">
+                <div class="filterName">擅长形式:</div>
                 <div class="filterItemList">
-                		<span>应界毕业生</span>
-                    	<span>5年内</span>
-                        <span>5-10年</span>
-                        <span>10-15年</span>
-                        <span>15-20年</span>
-                        <span>20年以上</span>
+                    <span onclick="filterClicked(this,'businessCategory')">开发</span>
+                    <span onclick="filterClicked(this,'businessCategory')">培训</span>
+                    <span onclick="filterClicked(this,'businessCategory')">辅导</span>
+                    <span onclick="filterClicked(this,'businessCategory')">项目管理</span>
+                    <span onclick="filterClicked(this,'businessCategory')">经销商托管</span>
                 </div>
                 <div class="clear"></div>
             </div>
+
+            <div class="filterType">
+                <div class="filterName">培训时间:</div>
+                <div class="filterItemList">
+                    <span onclick="filter2Clicked(this, 'workExperience')">应界毕业生</span>
+                    <span onclick="filter2Clicked(this, 'workExperience')">5年内</span>
+                    <span onclick="filter2Clicked(this, 'workExperience')">5-10年</span>
+                    <span onclick="filter2Clicked(this, 'workExperience')">10-15年</span>
+                    <span onclick="filter2Clicked(this, 'workExperience')" >15-20年</span>
+                    <span onclick="filter2Clicked(this, 'workExperience')">20年以上</span>
+                </div>
+                <div class="clear"></div>
+            </div>
+
             <div class="filterType">
                 <div class="filterName">关键字:</div>
                 <div class="filterItemList">
@@ -152,5 +152,79 @@
 
 <!-- main结束 -->
 <#include "/assets/website/common/footer.html">
+
+<script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
+<script type="text/javascript">
+
+    var filters = {};
+
+    function filterClicked(ele, category) {
+        filters[category] = filters[category] ? filters[category] : [];
+        if($(ele).hasClass('checked')){
+            $(ele).removeClass('checked');
+            filters[category].splice($.inArray(ele.innerHTML), 1);
+        } else {
+            $(ele).addClass('checked');
+            filters[category].push(ele.innerHTML)
+        }
+
+        sendAjax();
+    }
+
+    function filter2Clicked(ele, category) {
+        filters[category] = filters[category] ? filters[category] : "";
+        if(!$(ele).hasClass('checked')){
+            $(ele).addClass('checked').siblings('span').removeClass('checked');
+        }
+
+        switch(ele.innerHTML) {
+            case '5年内':
+                filters[category] = "0,5"; break;
+            case '5-10年':
+                filters[category] = "5,10"; break;
+            case '10-15年':
+                filters[category] = "10,15"; break;
+            case '15-20年':
+                filters[category] = "15,20"; break;
+            case '20年以上':
+                filters[category] = "20,100"; break;
+            default:
+                break;
+        }
+
+        sendAjax();
+    }
+
+    function searchBtnClick() {
+        filters['keyWord'] = $('#search_input').val();
+        sendAjax();
+    }
+
+    function sendAjax() {
+        console.log(filters);
+        var url  = "/website/trainer/search";
+        var data_ = {};
+        for (var props in filters) {
+            if(typeof filters[props] === 'string') {
+                data_[props] = filters[props]
+            } else {
+                data_[props] = filters[props].join(',');
+            }
+        }
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: data_,
+            error: function(request) {
+                console.log("网络出错啦！");
+                return false;
+            },
+            success: function (data) {
+                $('#searchResult')[0].innerHTML = data;
+            }
+        });
+    }
+</script>
 </body>
 </html>

@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/assets/website/css/completeInfo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/backend/css/laydate.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/backend/css/date-molv.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/cropper.css" type="text/css" media="screen"/>
 
 </head>
 
@@ -28,6 +29,8 @@
 </div>
 <#include "/assets/website/backend/common/footer.html">
 
+<script src="/assets/website/js/completeInfo.js" type="text/javascript"></script>
+<script src="/assets/website/js/region.js" type="text/javascript"></script>
 <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="/assets/website/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/assets/website/js/cropper.min.js" type="text/javascript"></script>
