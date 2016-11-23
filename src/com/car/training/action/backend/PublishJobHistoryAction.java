@@ -5,6 +5,7 @@ import com.car.training.bean.Apply;
 import com.car.training.bean.Job;
 import com.car.training.bean.PersonInfo;
 import com.car.training.bean.Trainer;
+import com.car.training.enums.JobType;
 import com.car.training.service.JobApplyService;
 import com.car.training.service.JobService;
 import com.car.training.utils.BeanOperation;
@@ -39,7 +40,7 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     //史上最丑的代码
     private String title;
-    private String type;
+    private JobType type;
     private String educationRequirement;
     private String workExperienceRequirement;
     private String LanguageRequirement;
@@ -61,6 +62,7 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     public String add() throws Exception {
         Job job = new Job();
+
         beanOperation.setValue(this, job, jobProps);
         jobService.save(job);
         return "publishJobHistory";
