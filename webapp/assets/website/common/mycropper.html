@@ -1,0 +1,77 @@
+<script src="/assets/website/js/cropper.min.js"></script>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">上传图片</h4>
+            </div>
+            <div class="modal-body">
+                <input type="file" inputmode="" accept=".jpeg,.jpg,.png,.bmp" onchange="selectImage(this)">
+                <input type="hidden" id="input_url">
+                <div>
+                    <img id="cropperimg" src="/assets/website/images/blank.jpg">
+                </div>
+                <!-- sadjkfj -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" id="save_btn" class="btn btn-primary" onclick="save()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var BLANK_IMG_URL = "/assets/website/images/blank.jpg";
+    function showCrop(url) {
+        if (!!window.cropper && !!url) { // reset url
+            cropper.replace(url);
+            $("#save_btn").removeClass("disabled");
+        } else if (!!window.cropper) { //second open reset url
+            cropper.replace(BLANK_IMG_URL);
+        } else {//first open need init
+            var image = document.getElementById('cropperimg');
+            image.src = BLANK_IMG_URL;
+            cropper = new Cropper(image, {
+                aspectRatio: 1,
+                toggleDragModeOnDblclick: false,
+                zoomable: false,
+                movable: false,
+                minCropBoxWidth: 100,
+                minCropBoxHeight: 100,
+                dragMode: 'none',
+                checkCrossOrigin: true,
+                autoCrop: true
+            });
+        }
+    }
+
+    function save() {
+        var url = cropper.getCroppedCanvas().toDataURL();
+        $("[name="+  +"]").val(url);
+        $("#"+window.cropper_show_id+"").attr("src", url);
+        $('#myModal').modal('hide');
+    }
+
+    function selectImage(file) {
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                showCrop(evt.target.result);
+            };
+            reader.readAsDataURL(file.files[0]);
+        }
+    }
+    $("#myModal").on("shown.bs.modal", function () {
+        showCrop();
+
+        $("#save_btn").addClass("disabled");
+    });
+
+    function setCropper(input_name,show_id) {
+        window.cropper_input_name = input_name;
+        window.cropper_show_id = show_id;
+    }
+</script>
