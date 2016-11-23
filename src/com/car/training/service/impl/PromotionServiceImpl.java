@@ -6,7 +6,6 @@ import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
 import com.car.training.dao.BaseDAO;
 import com.car.training.dao.PromotionDAO;
-import com.car.training.enums.JobType;
 import com.car.training.service.JobService;
 import com.car.training.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,43 +39,64 @@ public class PromotionServiceImpl implements PromotionService {
     @Override
     @Transactional
     public List<Trainer> getTopTrainer(int number) {
-        return promotionDAO.getTopUser(Trainer.class);
+        List<Trainer> list = promotionDAO.getTopUser(Trainer.class);
+        if(list.size()>number){
+            return list.subList(0, number - 1);
+        }else {
+            return list;
+        }
     }
 
     @Override
     @Transactional
     public List<Autobot> getTopAutobot(int number) {
-        return promotionDAO.getTopUser(Autobot.class);
-    }
+        List<Autobot> list = promotionDAO.getTopUser(Autobot.class);
+        if(list.size()>number){
+            return list.subList(0, number - 1);
+        }else {
+            return list;
+        }    }
 
     @Override
     @Transactional
     public List<Job> getTopTrainerJob(int number) {
-        return promotionDAO.getTopJob("TRAINER_JOB");
-    }
+        List<Job> list = promotionDAO.getTopJob("TRAINER_JOB");
+        if(list.size()>number){
+            return list.subList(0, number - 1);
+        }else {
+            return list;
+        }    }
 
     @Override
     @Transactional
     public List<Job> getTopAutobotJob(int number) {
-        return promotionDAO.getTopJob("AUTOBOT_JOB");
-    }
+        List<Job> list = promotionDAO.getTopJob("AUTOBOT_JOB");
+        if(list.size()>number){
+            return list.subList(0, number - 1);
+        }else {
+            return list;
+        }    }
 
     @Override
     @Transactional
     public List<Company> getTopCompany(int number) {
-        return baseDAO.getAllList(Company.class);
-    }
+        List<Company> list= baseDAO.getAllList(Company.class);
+        if(list.size()>number){
+            return list.subList(0, number - 1);
+        }else {
+            return list;
+        }    }
 
     @Override
     @Transactional
-    public void checkUpdate(){
-        if( !promotionDAO.isUpTodate() ){
+    public void checkUpdate() {
+        if (!promotionDAO.isUpTodate()) {
             update();
         }
     }
 
-    private synchronized void update(){
-        if(!promotionDAO.isUpTodate()){
+    private synchronized void update() {
+        if (!promotionDAO.isUpTodate()) {
             promotionDAO.updatePromotion();
         }
     }
