@@ -32,5 +32,7 @@
 <script src="/assets/website/js/bootstrap.min.js"></script>
 <script src="/assets/website/js/cropper.min.js"></script>
 <script src="/assets/website/js/laydate.js?v=1.1.0" type="text/javascript"></script>
+<script src="/assets/website/js/completeInfo.js" type="text/javascript"></script>
+<script src="/assets/website/js/region.js" type="text/javascript"></script>
 </body>
 </html>

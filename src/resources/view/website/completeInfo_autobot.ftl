@@ -159,7 +159,7 @@
                                         <input type="text" class="form-control" name="autoBrand"
                                                placeholder="请输入汽车品牌"
                                                value="<#if autobot?? && autobot.autoBrand?? >${autobot.autoBrand!}</#if>"/>
-                                    </div>
+                                </div>
                                 </div>
                             </li>
                             <li class="list-group-item pxshijl_li">
@@ -181,6 +181,7 @@
                                         擅长领域:</label>
                                     <div class="col-sm-9">
                                         <input type="hidden" name="autobot.businessCategory"/>
+                                    <#if autobot ?? && autobot.businessCategory??>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("销售")!=-1>checked</#if>"
                                               value="销售" onclick="categoryClicked(this)">[h]销售</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("售后")!=-1>checked</#if>"
@@ -197,6 +198,7 @@
                                               value="行政" onclick="categoryClicked(this)">行政</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("生产研发")!=-1>checked</#if>"
                                               value="生产研发" onclick="categoryClicked(this)">生产研发</span>
+                                    </#if>
                                     </div>
                                 </div>
                             </li>
