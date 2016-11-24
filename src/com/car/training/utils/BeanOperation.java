@@ -17,11 +17,11 @@ public class BeanOperation {
         if (checkProps == null) {
             return false;
         }
-        for(String prop : checkProps){
+        for (String prop : checkProps) {
             try {
                 Field field = object.getClass().getDeclaredField(prop);
                 field.setAccessible(true);
-                if(field.get(object) ==null){
+                if (field.get(object) == null) {
                     return true;
                 }
             } catch (NoSuchFieldException | IllegalAccessException e) {
@@ -43,7 +43,10 @@ public class BeanOperation {
                 Field toField = to.getClass().getDeclaredField(toProp);
                 fromField.setAccessible(true);
                 toField.setAccessible(true);
-                toField.set(to, fromField.get(from));
+                Object val = fromField.get(from);
+                if (val != null) {
+                    toField.set(to, val);
+                }
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 e.printStackTrace();
             }
