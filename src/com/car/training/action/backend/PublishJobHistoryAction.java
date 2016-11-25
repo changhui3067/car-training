@@ -88,7 +88,7 @@ public class PublishJobHistoryAction extends BaseAction {
 
     private final static String[] jobProps = new String[]{
             "title",
-            "type",
+            "businessCategory",
             "educationRequirement",
             "workExperienceRequirement",
             "LanguageRequirement",
