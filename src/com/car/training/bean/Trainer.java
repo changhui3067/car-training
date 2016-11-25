@@ -28,10 +28,10 @@ public class Trainer {
     @Column
     private String education;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     private Set<String> executionCategory;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     private Set<String> businessCategory;
 
     @Column

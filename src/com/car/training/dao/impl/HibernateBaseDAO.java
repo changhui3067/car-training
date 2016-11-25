@@ -126,7 +126,6 @@ public class HibernateBaseDAO implements BaseDAO {
         }
         Criteria c = dc.getExecutableCriteria(sessionFactory.getCurrentSession());
         c.setMaxResults(1);
-        c.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
         return c.uniqueResult();
     }
 

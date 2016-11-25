@@ -45,7 +45,7 @@ public class Autobot {
     /**
      * 擅长领域
      */
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     private Set<String> businessCategory;
 
 

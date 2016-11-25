@@ -51,7 +51,7 @@ public class Company {
     @ManyToOne()
     private Welfare welfare;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     private Set<String> businessCategory;
 
     @Column
