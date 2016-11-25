@@ -18,8 +18,8 @@ function selectTag(showContent,selfObj){
 
 
 //点赞   author: Xiu  
-function like(prix, id) {
-	var dom = $(prix + " #" + id),
+function like(id) {
+	var dom = $("#" + id),
 		number = new Number(dom[0].childNodes[1].innerHTML),
 		data = {};
 		data["targetUserId"] = dom[0].getAttribute("value");

@@ -56,9 +56,9 @@
                      <div class="xm left">${trainer.personInfo.name!}</div>
                      <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if trainer.autobotsCommentList??> ${trainer.autobotsCommentList.size!}<#else>0</#if></div>
                      <#if isLikeMap?? && isLikeMap.get(trainer)??>
-                     <div id=${trainer.id!} class="dz right praise" value=${trainer.id!} onClick="like('.pxshi_l .pxshi_l_intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
+                     <div id="trainerLike" class="dz right praise" value=${trainer.id!} onClick="like(this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
                      <#else>
-                     <div id=${trainer.id!} class="dz right praise unLike" value=${trainer.id!} onClick="like('.pxshi_l .pxshi_l_intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
+                     <div id="trainerLike" class="dz right praise unLike" value=${trainer.id!} onClick="like(this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
                      </#if>
                      <div class="clear"></div>
                  </div>
@@ -85,12 +85,8 @@
               <div class="intro">
                 <div>
                     <div class="name">${a_trainer.personInfo.name!}</div>
-                    <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if a_trainer.autobotsCommentList??> ${a_trainer.autobotsCommentList.size!}<#else>0</#if></div>
-                     <#if isLikeMap?? && isLikeMap.get(a_trainer)??>
-                     <div id=${a_trainer.id!} class="dz right praise" value=${a_trainer.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
-                     <#else>
-                     <div id=${a_trainer.id!} class="dz right praise unLike" value=${a_trainer.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
-                     </#if>
+                    <div class="right">${a_trainer.starLevel!}</div>
+                    <div class="right"><#if a_trainer.autobotsCommentList??> ${a_trainer.autobotsCommentList.size!}<#else>0</#if>人</div>
                     <div class="clear"></div>
                 </div>
                 <div>${a_trainer.currentPosition!} </div>
