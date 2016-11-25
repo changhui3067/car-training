@@ -2,8 +2,7 @@ package com.car.training.dao.impl;
 
 import com.car.training.bean.Autobot;
 import com.car.training.dao.AutobotDAO;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
+import com.car.training.utils.PaginationUtil;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
@@ -25,10 +24,24 @@ public class HibernateAutobotDAO implements AutobotDAO {
 
     @Override
     public List<Autobot> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
-        Session session = sessionFactory.getCurrentSession();
-        DetachedCriteria dc = DetachedCriteria.forClass(Autobot.class, "Autobot");
-        Criteria criteria = dc.getExecutableCriteria(session);
+        return search(businessCategory, executionCategory, minAutoYears, maxAutoYears, keyword, 1);
+    }
 
+    @Override
+    public List<Autobot> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword, int pageNo) {
+        DetachedCriteria dc = getCriteria(businessCategory, executionCategory, minAutoYears, maxAutoYears, keyword);
+        return PaginationUtil.listAtPage(dc, pageNo, sessionFactory.getCurrentSession());
+    }
+
+    @Override
+    public int rowCount(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword, int pageNo) {
+        DetachedCriteria dc = getCriteria(businessCategory, executionCategory, minAutoYears, maxAutoYears, keyword);
+        return PaginationUtil.rowCount(dc, sessionFactory.getCurrentSession());
+    }
+
+
+    private DetachedCriteria getCriteria(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Autobot.class, "Autobot");
         criteria.add(getRestriction("businessCategory", businessCategory));
         criteria.add(getRestriction("executionCategory", executionCategory));
         criteria.add(Restrictions.between("autoYears", minAutoYears, maxAutoYears));
@@ -36,13 +49,11 @@ public class HibernateAutobotDAO implements AutobotDAO {
         if (!StringUtils.isEmpty(keyword)) {
             criteria.add(Restrictions.like("personInfo.name", "%" + keyword + "%"));
         }
-
-        return criteria.list();
+        return criteria;
     }
 
-
     private Criterion getRestriction(String categoryName, Set<String> categories) {
-        if(categories ==null){
+        if (categories == null) {
             return Restrictions.and();
         }
         String sql = "this_.id in (select distinct Autobot_id from autobot_%s where %s in(%s))";

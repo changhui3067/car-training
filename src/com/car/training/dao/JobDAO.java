@@ -15,4 +15,12 @@ public interface JobDAO {
     List<Job> find(JobType jobType, Iterable<String> businessCategories, Region region,
                    Date minPublishTime, Date maxPublishTime,
                    Integer minWorkExperienceRequirement, Integer maxWorkExperienceRequirement, String keyword);
+
+    List<Job> find(JobType jobType, Iterable<String> businessCategories, Region region,
+                   Date minPublishTime, Date maxPublishTime,
+                   Integer minWorkExperienceRequirement, Integer maxWorkExperienceRequirement, String keyword, int pageNo);
+
+    int rowCount(JobType jobType, Iterable<String> businessCategories, Region region,
+                 Date minPublishTime, Date maxPublishTime,
+                 Integer minWorkExperienceRequirement, Integer maxWorkExperienceRequirement, String keyword, int pageNo);
 }
