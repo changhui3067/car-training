@@ -43,7 +43,10 @@ public class BeanOperation {
                 Field toField = to.getClass().getDeclaredField(toProp);
                 fromField.setAccessible(true);
                 toField.setAccessible(true);
-                toField.set(to, fromField.get(from));
+                Object val = fromField.get(from);
+                if (val != null) {
+                    toField.set(to, val);
+                }
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 e.printStackTrace();
             }

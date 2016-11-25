@@ -129,7 +129,8 @@ function addComment (id) {
 }
 
 
-function addNewJob() {
+function addNewJob(e) {
+	e.preventDefault();
     $("input[name='businessCategory']").val($('#inputType').val());
     $("input[name='educationRequirement']").val($('#inputEducationRequired').val());
 
@@ -141,12 +142,13 @@ function addNewJob() {
         type: "POST",
         url: url,
         data: form_data,
+        cache: false,
         error: function (request) {
             alert("网络出错啦！");
             return false;
         },
         success: function (data) {
-            alert(data.msg);
+            $('#manageCenterContent').innerHTML = data;
             //window.location.href = "/backend/autobotCompleteResume";
         }
     });

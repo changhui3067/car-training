@@ -99,19 +99,19 @@
                         <div class="form-group">
                             <label for="inputExperienceRequirement" class="col-sm-2 control-label">经验要求</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" name="workExperienceRequirement" value="" id="inputExperienceRequirement" placeholder="请输入数字">
+                              <input type="text" class="form-control" name="workExperienceRequirement" value="" id="inputExperienceRequirement" placeholder="请输入数字"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputLanguageRequirement" class="col-sm-2 control-label">语言要求</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" name="LanguageRequirement" value="" id="inputLanguageRequirement" placeholder="">
+                              <input type="text" class="form-control" name="LanguageRequirement" value="" id="inputLanguageRequirement" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputAddress" class="col-sm-2 control-label">工作地点</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputAddress" placeholder="">
+                                <input type="text" class="form-control" name="address" id="inputAddress" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -123,12 +123,12 @@
                         <div class="form-group">
                             <label for="inputSalary" class="col-sm-2 control-label">详细介绍</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="4" name="introduction" value="" id="inputSalary" placeholder=""></textarea>
+                                <textarea class="form-control" rows="4" name="jobDescription" value="" id="inputJobDescription" placeholder=""></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary" onclick="addNewJob()">发布</button>
+                            <button type="submit" class="btn btn-primary" onclick="addNewJob(event)">发布</button>
                           </div>
                         </div>
                     </form>

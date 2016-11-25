@@ -45,11 +45,11 @@ public class PublishJobHistoryAction extends BaseAction {
     private String title;
     private String businessCategory;
     private String educationRequirement;
-    private String workExperienceRequirement;
+    private int workExperienceRequirement;
     private String LanguageRequirement;
     private String address;
     private String salary;
-    private String introduction;
+    private String jobDescription;
 
 
     @Override
@@ -76,6 +76,8 @@ public class PublishJobHistoryAction extends BaseAction {
                 break;
         }
         jobService.save(job);
+        jobList = jobService.findJobsByTargetCompany();
+        generateJobApplyMap();
         return "publishJobHistory";
     }
 
@@ -94,7 +96,7 @@ public class PublishJobHistoryAction extends BaseAction {
             "LanguageRequirement",
             "address",
             "salary",
-            "introduction"
+            "jobDescription"
     };
 
     public List<Job> getJobList() {
@@ -136,11 +138,11 @@ public class PublishJobHistoryAction extends BaseAction {
         this.educationRequirement = educationRequirement;
     }
 
-    public String getWorkExperienceRequirement() {
+    public int getWorkExperienceRequirement() {
         return workExperienceRequirement;
     }
 
-    public void setWorkExperienceRequirement(String workExperienceRequirement) {
+    public void setWorkExperienceRequirement(int workExperienceRequirement) {
         this.workExperienceRequirement = workExperienceRequirement;
     }
 
@@ -168,11 +170,11 @@ public class PublishJobHistoryAction extends BaseAction {
         this.salary = salary;
     }
 
-    public String getIntroduction() {
-        return introduction;
+    public String getJobDescription() {
+        return jobDescription;
     }
 
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
     }
 }

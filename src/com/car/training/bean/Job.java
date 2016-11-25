@@ -33,6 +33,9 @@ public class Job {
     private Region region;
 
     @Column
+    private String address;
+
+    @Column
     private String educationRequirement;
 
     @Column
@@ -182,5 +185,13 @@ public class Job {
 
     public void setBusinessCategory(String businessCategory) {
         this.businessCategory = businessCategory;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
