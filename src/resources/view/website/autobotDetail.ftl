@@ -34,18 +34,19 @@
                         <div class="clear"></div>
                     </div>
                     <div>
-                    <#--<span class="paddingLeftNull">${autobot.currentPosition!}</span>-->
-                    <#--大学本科-->
-                    <#--<span>三年工作经验</span>-->
-                    <#--<span>${autobot.personInfo.regionId!}</span>-->
                         <span class="paddingLeftNull">${autobot.currentPosition!}</span>
-                        <span>[h]大学本科${autobot.education!}</span>
+                        <span>${autobot.education!}</span>
                         <span>${autobot.autoYears!}年工作经验</span>
                         <span>${autobot.workingStatus!}</span>
                         <span>${autobot.personInfo.region.fullname!}</span>
                     </div>
                     <div>
-                        擅长领域：<span>${autobot.businessCategory!}</span>
+                        擅长领域：
+                        <#list autobot.businessCategory as c>
+                            <tr>
+                                <span>${c}</span>
+                            </tr>
+                        </#list>
                     </div>
                     <div>
                         汽车品牌:<span>${autobot.autoBrand!}</span>
