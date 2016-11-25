@@ -41,8 +41,7 @@
                                     <div class="col-sm-9">
                                         <input type="" class="form-control" name="ubirthday"
                                                onclick="laydate()"
-                                        value="<#if autobot?? && autobot.personInfo.birthday??>${autobot.personInfo.birthday!}</#if>"/>
-                                        <#--value="<#if autobot?? && autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>-->
+                                        value="<#if autobot?? && autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -52,9 +51,6 @@
                                             style="color: red">*</span>
                                         联系方式:</label>
                                     <div class="col-sm-9">
-                                        <#--<input type="text" class="form-control" name="umobile"-->
-                                               <#--placeholder="请输入联系方式"-->
-                                               <#--value="<#if autobot?? && autobot.personInfo.mobile??>${autobot.personInfo.mobile!}</#if>"/>-->
                                            <label class="pxshijl_label"><#if autobot?? && autobot.personInfo.mobile??>${autobot.personInfo.mobile!}</#if><label/>
                                     </div>
                                 </div>
@@ -182,8 +178,9 @@
                                     <div class="col-sm-9">
                                         <input type="hidden" name="autobot.businessCategory"/>
                                     <#if autobot ?? && autobot.businessCategory??>
+                                        <#--<span class="checkBox <#if autobot.businessCategory ? index_of("Sales")!=-1>checked</#if>"-->
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("销售")!=-1>checked</#if>"
-                                              value="销售" onclick="categoryClicked(this)">[h]销售</span>
+                                              value="销售" onclick="categoryClicked(this)">销售</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("售后")!=-1>checked</#if>"
                                               value="售后" onclick="categoryClicked(this)">售后</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("客服")!=-1>checked</#if>"
