@@ -24,7 +24,7 @@
     	<div class="zhaopin_l left">
         	<div class="zp_qy">
             	<div class="zwmc">${job.title!}</div>
-                <div class="qymc"><span>${job.autoBrand!}</span><span>当前汽车品牌：[h]宝马</span></div>
+                <div class="qymc"><span>${job.autoBrand!}</span><span>当前汽车品牌：</span></div>
             </div>
             <div class="zhaopin_box">
                 <div class="xzdy">
@@ -52,9 +52,9 @@
                         <#if company.welfare??>
                             <ul>
                             <#--<#list company.welfare as w>-->
-                            <#--<li>${w!}</li>-->
+                            <#--<li>${w.name!}</li>-->
                             <#--</#list>-->
-                                <li>${company.welfare!}</li>
+                                <li>${company.welfare.description!}</li>
                             </ul>
                         </#if>
                         <div class="clear"></div>
@@ -73,7 +73,7 @@
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td width="8%">所属部门：</td>
-                                <td width="42%">[h]department<#--${jobs.department!}--></td>
+                                <td width="42%">${job.department!}</td>
                                 <td width="8%">专业要求：</td>
                                 <td width="42%">${job.majorRequirement!}</td>
                             </tr>

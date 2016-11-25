@@ -38,10 +38,20 @@
                         <span class="noBorder"><#if trainer.personInfo?? && trainer.personInfo.region??>${trainer.personInfo.region.fullname!}</#if></span>
                     </div>
                     <div>
-                        擅长形式: <span>${trainer.businessCategory}</span>
+                        擅长形式:
+                        <#list trainer.businessCategory as c>
+                        <tr>
+                            <span>${c}</span>
+                        </tr>
+                    </#list>
                     </div>
                     <div>
-                        培训领域: <span>${trainer.executionCategory}</span>
+                        培训领域:
+                        <#list trainer.businessCategory as c>
+                            <tr>
+                                <span>${c}</span>
+                            </tr>
+                        </#list>
                     </div>
                     <div>
                         联系方式: <span>${trainer.personInfo.email!}</span><span>${trainer.personInfo.mobile!}</span>

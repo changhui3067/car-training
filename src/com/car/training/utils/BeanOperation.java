@@ -17,11 +17,11 @@ public class BeanOperation {
         if (checkProps == null) {
             return false;
         }
-        for(String prop : checkProps){
+        for (String prop : checkProps) {
             try {
                 Field field = object.getClass().getDeclaredField(prop);
                 field.setAccessible(true);
-                if(field.get(object) ==null){
+                if (field.get(object) == null) {
                     return true;
                 }
             } catch (NoSuchFieldException | IllegalAccessException e) {
