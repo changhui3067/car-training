@@ -210,7 +210,7 @@
                                 <div class="form-group">
                                     <img id="workPhotoURL1_show" src="${autobot.personInfo.avatarUrl!}">
                                     <button type="button" class="btn btn-primary btn-lg adminPageBtn"
-                                            data-toggle="modal" data-target="#myModal">
+                                            data-toggle="modal" data-target="#myModal" onclick="setCropper('workPhotoURL1','workPhotoURL1_show')">
                                         上传照片
                                     </button>
                                     <div class="col-sm-9">

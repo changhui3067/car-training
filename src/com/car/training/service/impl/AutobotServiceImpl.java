@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by bill on 11/4/16.
@@ -52,7 +53,7 @@ public class AutobotServiceImpl implements AutobotService {
 
     @Override
     @Transactional
-    public List<Autobot> search(String businessCategory, String executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
+    public List<Autobot> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
         return autobotDAO.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
     }
 

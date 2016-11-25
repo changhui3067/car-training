@@ -33,8 +33,9 @@
 <script src="/assets/website/js/region.js" type="text/javascript"></script>
 <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="/assets/website/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="/assets/website/js/cropper.min.js" type="text/javascript"></script>
 <script src="/assets/website/js/laydate.js" type="text/javascript"></script>
 <script src="/assets/website/backend/js/common.js" type="text/javascript"></script>
+<#include "/assets/website/common/mycropper.html">
+
 </body>
 </html>

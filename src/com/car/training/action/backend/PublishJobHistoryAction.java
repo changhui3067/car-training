@@ -88,7 +88,7 @@ public class PublishJobHistoryAction extends BaseAction {
 
     private final static String[] jobProps = new String[]{
             "title",
-            "businessCategory",
+            "type",
             "educationRequirement",
             "workExperienceRequirement",
             "LanguageRequirement",
@@ -128,7 +128,6 @@ public class PublishJobHistoryAction extends BaseAction {
     public void setBusinessCategory(String businessCategory) {
         this.businessCategory = businessCategory;
     }
-
     public String getEducationRequirement() {
         return educationRequirement;
     }

@@ -2,11 +2,13 @@ package com.car.training.action.website;
 
 import com.car.training.bean.Trainer;
 import com.car.training.service.TrainerService;
+import com.car.training.utils.CategoriesTransformer;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Set;
 
 @AutoConfig
 public class TrainerAction extends BaseAction {
@@ -30,9 +32,9 @@ public class TrainerAction extends BaseAction {
      */
     private String keyword;
 
-    private String businessCategory;
+    private Set<String> businessCategory;
 
-    private String executionCategory;
+    private Set<String> executionCategory;
 
     private String autoYears;
 
@@ -57,10 +59,12 @@ public class TrainerAction extends BaseAction {
         return "peopleSearchResult";
     }
 
-
-
     public List<Trainer> getPeopleList() {
         return peopleList;
+    }
+
+    public void setPeopleList(List<Trainer> peopleList) {
+        this.peopleList = peopleList;
     }
 
     public Integer getTrainingYears() {
@@ -71,33 +75,34 @@ public class TrainerAction extends BaseAction {
         this.trainingYears = trainingYears;
     }
 
+    @Override
     public String getKeyword() {
         return keyword;
     }
 
+    @Override
     public void setKeyword(String keyword) {
         this.keyword = keyword;
     }
 
-
-    public String getBusinessCategory() {
+    public Set<String> getBusinessCategory() {
         return businessCategory;
     }
 
-    public void setBusinessCategory(String businessCategory) {
+    public void setBusinessCategory(Set<String> businessCategory) {
         this.businessCategory = businessCategory;
     }
-
-    public void setPeopleList(List<Trainer> peopleList) {
-        this.peopleList = peopleList;
+    
+    public void setBusinessCategory(String businessCategory) {
+        this.businessCategory = CategoriesTransformer.transform(businessCategory);
     }
-
-    public String getExecutionCategory() {
+    
+    public Set<String> getExecutionCategory() {
         return executionCategory;
     }
 
     public void setExecutionCategory(String executionCategory) {
-        this.executionCategory = executionCategory;
+        this.executionCategory = CategoriesTransformer.transform(executionCategory);
     }
 
     public String getAutoYears() {

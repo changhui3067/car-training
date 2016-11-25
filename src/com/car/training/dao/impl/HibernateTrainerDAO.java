@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Bill on 11/5/2016.
@@ -22,7 +23,8 @@ public class HibernateTrainerDAO implements TrainerDAO{
     @Autowired
     SessionFactory sessionFactory;
 
-    public List<Trainer> search(String businessCategory, String executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
+    @Override
+    public List<Trainer> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
         Session session = sessionFactory.getCurrentSession();
         DetachedCriteria dc = DetachedCriteria.forClass(Trainer.class,"trainer");
         Criteria criteria = dc.getExecutableCriteria(session);
@@ -40,10 +42,9 @@ public class HibernateTrainerDAO implements TrainerDAO{
     }
 
 
-    private Criterion getRestriction(String categoryName, String cats){
-        if (!StringUtils.isEmpty(cats)) {
-            String[] categories = cats.split(",");
-            String sql = "this_.id in (select distinct Trainer_id from trainer_%s where %s in(%s))";
+    private Criterion getRestriction(String categoryName, Set<String> categories){
+        if (categories !=null) {
+            String sql = "this_.id in (select distinct Trainer_id from Trainer_%s where %s in(%s))";
             StringBuilder sb = new StringBuilder("''");
             for (String category : categories) {
                 sb.append(",\"").append(category).append("\"");
