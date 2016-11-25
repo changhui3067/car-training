@@ -60,6 +60,9 @@ public class Job {
     @Column(length = 20, nullable = false)
     private JobType type;
 
+    @Column
+    private String businessCategory;
+
     public int getId() {
         return id;
     }
@@ -171,5 +174,13 @@ public class Job {
 
     public void setAutoBrand(String autoBrand) {
         this.autoBrand = autoBrand;
+    }
+
+    public String getBusinessCategory() {
+        return businessCategory;
+    }
+
+    public void setBusinessCategory(String businessCategory) {
+        this.businessCategory = businessCategory;
     }
 }

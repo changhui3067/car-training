@@ -66,10 +66,19 @@
                         <div class="form-group">
                             <label for="inputType" class="col-sm-2 control-label">工作类型</label>
                             <div class="col-sm-10">
-                                <input type="hidden" name="type" value="TRAINER"/>
+                                <input type="hidden" name="businessCategory" value="销售"/>
                                 <select class="form-control" id="inputType">
-                                    <option value="TRAINER">培训师</option>
-                                    <option value="AUTOBOT">汽车人</option>
+                                    <option value="销售">销售</option>
+                                    <option value="产品">产品</option>
+                                    <option value="技术">技术</option>
+                                    <option value="管理">管理</option>
+                                    <option value="产品">产品</option>
+                                    <option value="财务">财务</option>
+                                    <option value="人事">人事</option>
+                                    <option value="生产">生产</option>
+                                    <option value="新能源">新能源</option>
+                                    <option value="市场营销">市场营销</option>
+                                    <option value="客户关系">客户关系</option>
                                 </select>
                             </div>
                         </div>

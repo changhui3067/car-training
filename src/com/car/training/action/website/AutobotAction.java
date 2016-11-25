@@ -22,9 +22,6 @@ public class AutobotAction extends BaseAction {
      */
     private List<Autobot> peopleList;
 
-
-
-
     private String executionCategories;
     private String buisnessCategory;
 

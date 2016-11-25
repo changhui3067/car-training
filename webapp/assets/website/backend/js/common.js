@@ -130,7 +130,7 @@ function addComment (id) {
 
 
 function addNewJob() {
-    $("input[name='type']").val($('#inputType').val());
+    $("input[name='businessCategory']").val($('#inputType').val());
     $("input[name='educationRequirement']").val($('#inputEducationRequired').val());
 
     var form_data = $("#newJobForm").serialize();

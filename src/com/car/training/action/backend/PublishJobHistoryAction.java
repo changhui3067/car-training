@@ -24,7 +24,10 @@ import java.util.List;
  * Created by freyjachang on 11/19/16.
  */
 @AutoConfig
-public class PublishJobHistoryAction extends SimpleAction {
+public class PublishJobHistoryAction extends BaseAction {
+    @Autowired
+    private LoginVO loginVO;
+
     @Autowired
     private JobService jobService;
 
@@ -40,7 +43,7 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     //史上最丑的代码
     private String title;
-    private JobType type;
+    private String businessCategory;
     private String educationRequirement;
     private String workExperienceRequirement;
     private String LanguageRequirement;
@@ -51,7 +54,7 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     @Override
     public String execute() throws Exception {
-        Object loginVO = getLoginVO();
+        //Object loginVO = getLoginVO();
         if(loginVO != null) {
             jobList = jobService.findJobsByTargetCompany();
             generateJobApplyMap();
@@ -64,6 +67,14 @@ public class PublishJobHistoryAction extends SimpleAction {
         Job job = new Job();
 
         beanOperation.setValue(this, job, jobProps);
+        switch (loginVO.getUserType()) {
+            case COMPANY:
+                job.setType(JobType.TRAINER);
+                break;
+            case STORE:
+                job.setType(JobType.AUTOBOT);
+                break;
+        }
         jobService.save(job);
         return "publishJobHistory";
     }
@@ -77,7 +88,7 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     private final static String[] jobProps = new String[]{
             "title",
-            "type",
+            "businessCategory",
             "educationRequirement",
             "workExperienceRequirement",
             "LanguageRequirement",
@@ -110,12 +121,12 @@ public class PublishJobHistoryAction extends SimpleAction {
         this.title = title;
     }
 
-    public String getType() {
-        return type;
+    public String getBusinessCategory() {
+        return businessCategory;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setBusinessCategory(String businessCategory) {
+        this.businessCategory = businessCategory;
     }
 
     public String getEducationRequirement() {
