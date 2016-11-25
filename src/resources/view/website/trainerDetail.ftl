@@ -35,7 +35,7 @@
                         <span class="paddingLeftNull">${trainer.currentPosition!}</span>
                         <span>${trainer.autoYears!}年</span>
                         <span>${trainer.education}</span>
-                        <span class="noBorder">${trainer.personInfo.region.fullname!}</span>
+                        <span class="noBorder"><#if trainer.personInfo?? && trainer.personInfo.region??>${trainer.personInfo.region.fullname!}</#if></span>
                     </div>
                     <div>
                         擅长形式: <span>${trainer.businessCategory}</span>
@@ -53,11 +53,11 @@
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>视频链接</h4></div>
                 <div class="people_other_info_video">
-                    <embed src="${rainer.videoUrl1!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
+                    <embed src="${trainer.videoUrl1!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
 
                     <!-- http://player.youku.com/player.php/sid/XMTgyNzI5NTY5Mg==/v.swf -->
 
-                    <embed src="${rainer.videoUrl2!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
+                    <embed src="${trainer.videoUrl2!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
 
                 </div>
             </div>
