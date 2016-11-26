@@ -89,6 +89,8 @@
 
 .icon-text:before { content: "\e6fc"; }
 
+.icon-icon02:before { content: "\e615"; }
+
 .icon-office:before { content: "\e705"; }
 
 .icon-assessedbadge:before { content: "\e70a"; }
@@ -128,4 +130,3 @@
 .icon-data:before { content: "\e757"; }
 
 .icon-onepage48:before { content: "\e75a"; }
-
