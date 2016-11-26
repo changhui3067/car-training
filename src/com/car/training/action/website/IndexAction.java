@@ -96,9 +96,9 @@ public class IndexAction extends SimpleAction {
         autobotList = promotionService.getTopAutobot(5);
 
         //首页培训师需求2个位置
-        trainerJobList = promotionService.getTopTrainerJob(2);
+        trainerJobList = promotionService.getTopTrainerJob(4);
         //首页汽车人才需求2个位置
-        autobotJobList = promotionService.getTopAutobotJob(2);
+        autobotJobList = promotionService.getTopAutobotJob(4);
 //        //首页培训师原创文章列表6个位置
 //        trainerEssayList = trainerEssayService.findByIndexPromoted(true, 6);
 //        //首页热点专题列表6个位置

@@ -7,6 +7,7 @@ import com.car.training.utils.PaginationUtil;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Conjunction;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Restrictions;
 import org.ironrhino.common.model.Region;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,11 +54,11 @@ public class HibernateJobDAO implements JobDAO {
                                          Integer minWorkExperienceRequirement, Integer maxWorkExperienceRequirement, String keyword) {
         DetachedCriteria criteria = DetachedCriteria.forClass(Job.class);
         criteria.add(Restrictions.eq("type", jobType));
-        Conjunction conjunction = Restrictions.and();
+        Disjunction disjunction = Restrictions.or();
         for (String businessCategory : businessCategories) {
-            conjunction.add(Restrictions.like("businessCategory", "%" + businessCategory + "%"));
+            disjunction.add(Restrictions.like("businessCategory", "%" + businessCategory + "%"));
         }
-        criteria.add(conjunction);
+        criteria.add(disjunction);
         if (region != null) {
             criteria.add(Restrictions.eq("region", region));
         }
