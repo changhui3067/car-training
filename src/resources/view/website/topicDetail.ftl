@@ -4,7 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <title>培聘网</title>
-<link rel="stylesheet" href="<@url value="/assets/website/css/zt.css"/>" type="text/css" media="screen" />
     <link rel="stylesheet" href="<@url value="/assets/website/css/style.css"/>" type="text/css" media="screen" />
 <link rel="stylesheet" type="text/css" href="<@url value="/assets/website/css/lrtk.css"/>" />
 <script src="<@url value="/assets/website/js/jquery1.42.min.js?v=1.1.0"/>"></script>

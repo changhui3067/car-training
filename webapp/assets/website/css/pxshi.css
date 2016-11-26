@@ -337,7 +337,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 /*培训公司招聘信息——左侧   职位详情*/
 .zhaopin_box{ border:1px solid #e1e1e1; border-top:0px; background:#fff; padding:25px 20px; margin-left:14px;  }
 
-.xzdy, .zwms, .gwms, .sxjy, .gwyq, .nlsz, .gwyq, .rzyq, qtxx, .qy_intro, .qt_gw
+.xzdy, .zwms, .gwms, .sxjy, .gwyq, .nlsz, .gwyq, .rzyq, .qtxx, .qy_intro, .qt_gw
 { border-bottom:1px  dotted #cccccc; padding-bottom:40px; margin-bottom:25px;}
 
 .zwdy{ height:40px; line-height:40px; color:#ff7f00; font-size:18px; font-weight:100;}
@@ -393,14 +393,6 @@ span.paddingLeftNull { padding-left: 0!important;}
 
 /*培训师个人信息——左侧  培训师简介*/
 
-
-/*汽车人个人信息——左侧  所获认证*/
-/*.shrz h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/rz_h4.jpg) no-repeat left center;}
-.pxshi_wz h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/wz_h4.jpg) no-repeat left center;}
-.pxshi_xypl h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pl_h4.jpg) no-repeat left center;}
-.pxshi_lx h4{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/pxshi_lx.jpg) no-repeat left center;}*/
-
-.
 /*培训列表*/
 .pxsheng_zw{ margin-bottom:5px;}
 

@@ -3,12 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>培聘网</title>
-<link rel="stylesheet" href="/assets/website/backend/css/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/css/completeInfo.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/assets/website/backend/css/laydate.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/assets/website/backend/css/date-molv.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/laydate.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/date-molv.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/css/cropper.css" type="text/css" media="screen"/>
 
 </head>
@@ -27,7 +26,7 @@
 	</div>
 	<div class="clear"></div>
 </div>
-<#include "/assets/website/backend/common/footer.html">
+<#include "/assets/website/common/footer.html">
 
 <script src="/assets/website/js/completeInfo.js" type="text/javascript"></script>
 <script src="/assets/website/js/region.js" type="text/javascript"></script>

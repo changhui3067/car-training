@@ -4,15 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <title>培聘网</title>
-    <link rel="stylesheet" href="<@url value='/assets/website/backend/css/style.css'/>" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="<@url value='/assets/website/backend/css/laydate.css'/>" type="text/css"
-          media="screen"/>
-    <link rel="stylesheet" href="<@url value='/assets/website/backend/css/date-molv.css'/>" type="text/css"
-          media="screen"/>
-    <link rel="stylesheet" href="<@url value='/assets/website/backend/css/autobotCompleteResume.css'/>" type="text/css"
-          media="screen"/>
-    <link rel="stylesheet" href="<@url value='/assets/website/css/bootstrap.min.css'/>" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/assets/website/css/cropper.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/assets/website/backend/css/style.css'/>" type="text/css" />
+    <link rel="stylesheet" href="/assets/website/css/laydate.css'/>" type="text/css" />
+    <link rel="stylesheet" href="/assets/website/css/date-molv.css'/>" type="text/css" />
+    <link rel="stylesheet" href="/assets/website/backend/css/autobotCompleteResume.css'/>" type="text/css" />
+    <link rel="stylesheet" href="/assets/website/css/bootstrap.min.css'/>" type="text/css" />
+    <link rel="stylesheet" href="/assets/website/css/cropper.css" type="text/css" />
 
 </head>
 
@@ -260,7 +257,7 @@
     <script src="/assets/website/js/cropper.js" type="text/javascript"></script>
     <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
-    <script src="/assets/website/js/laydate.js?v=1.1.0" type="text/javascript"></script>
+    <script src="/assets/website/js/laydate.js" type="text/javascript"></script>
     <script src="/assets/website/js/region.js" type="text/javascript"></script>
 
     <script>

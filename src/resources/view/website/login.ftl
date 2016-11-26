@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <title>培聘网</title>
-<link rel="stylesheet" href="<@url value='/assets/website/backend/css/login_style.css'/>" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" />
 
 </head>
 
@@ -73,9 +73,9 @@
 
 
 <!-- main结束 -->
-<#include "/assets/website/backend/common/footer.html">
-<script type="text/javascript" src="<@url value='/assets/website/backend/js/jquery-1.8.0.min.js'/>"></script>
-<script type="text/javascript" src="<@url value='/assets/website/backend/js/common.js'/>"></script>
+<#include "/assets/website/common/footer.html">
+<script type="text/javascript" src="/assets/website/backend/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/assets/website/backend/js/common.js"></script>
 <script>
     function gr_login(){
 		var form_data={};

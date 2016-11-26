@@ -4,9 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <title>培聘网</title>
-<link rel="stylesheet" href="<@url value="/assets/website/css/style.css?v=1.1.0"/>" type="text/css" media="screen" />
-<link rel="stylesheet" href="<@url value='/assets/website/backend/css/login_style.css'/>" type="text/css" media="screen" />
-<link rel="stylesheet" href="<@url value="/assets/website/css/bootstrap.min.css?v=1.1.0"/>" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" />
+<link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css" />
 
 </head>
 
@@ -145,10 +144,10 @@
     </div>
 </div>
 <!-- main结束 -->
-<#include "/assets/website/backend/common/footer.html">
-<script src="<@url value="/assets/website/js/jquery-3.1.1.min.js?v=1.1.0"/>"></script>
-<script src="<@url value="/assets/website/js/bootstrap.min.js?v=1.1.0"/>"></script>
-<script type="text/javascript" src="<@url value="/assets/website/backend/js/common.js"/>"></script>
+<#include "/assets/website/common/footer.html">
+<script src="/assets/website/js/jquery-3.1.1.min.js"></script>
+<script src="/assets/website/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/website/js/common.js"></script>
 <script>
 var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
     passwordReg = /^[\w]{6,12}$/;

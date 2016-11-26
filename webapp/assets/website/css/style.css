@@ -52,6 +52,28 @@ button#companyGarantee{
 /*banner*/
 .banner{height:310px; padding-top:25px; background:url(../images/banner0.jpg) no-repeat center top; }
 
+/*注册*/
+.zc{ background:#fff; padding:20px;}
+.zc_l{ width:850px; border-right:1px solid #e7e6eb;}
+
+
+.links {width:820px;border:1px solid #ddd;margin-top:10px;}
+.linksTop {height:32px;line-height:32px;background:url(http://obu3flkwk.bkt.clouddn.com/website/images/bg06.gif) repeat-x;border-bottom:1px solid #ddd;}
+.linksTop li {display:inline;float:left;padding:0 20px;font-size:14px;cursor:pointer;}
+.linksTop li.cn {background:url(http://obu3flkwk.bkt.clouddn.com/website/images/bg09.gif) repeat-x;color:#fff;}
+.linksmain {height:100%;overflow:hidden; padding:50px 20px;}
+.linksmain li {display:inline;float:left;width:158px;}
+
+.zc_r{ padding-right:50px; height:30px; line-height:30px;}
+.zc_r a,.zc_r a:hover{ color:#3689b3;}
+
+.caozuo a,.caozuo a:hover{ color:#0d84d1;}
+.sq a:hover{ color:#0d84d1;}
+.quanxuan{ font-weight:700;}
+.quanxuan a,.quanxuan a:hover{color:#3689b3;}
+
+/*登录*/
+.denglu{ background:#fff; padding:40px 190px;}
 
 .dl_box{  margin-left:900px;width:260px; height:245px; padding:10px 20px 0px 20px; background:#383633;filter:alpha(opacity=80);   
       -moz-opacity:0.8;   
@@ -76,6 +98,10 @@ button#companyGarantee{
 .wjpwd a,.wjpwd a:hover{ color:#fff;}
 .dl{ height:37px; line-height:37px;  padding-bottom:4px;  border-bottom:1px dotted #ccc;}
 
+.lanmu{ padding:20px 30px 30px 30px;}
+.lanmu li{ display:block; height:40px; font-size:16px; line-height:40px; border-bottom:1px dotted #e1e1e1; text-align: center; cursor: pointer;}
+.lanmu li:hover, .lanmu .cn {background: #3689b3; color: #fff;}
+
 .phonecode {
     display: inline-block;
     background: #ccc;
@@ -88,9 +114,25 @@ button#companyGarantee{
     vertical-align: middle;
 }
 
+#personal_loginform table tr:nth-child(n+2):nth-child(-n+6) td:nth-child(1),
+#company_loginform table tr:nth-child(n+2):nth-child(-n+6) td:nth-child(1) {
+    padding-left: 25px !important;
+    text-align: left !important;
+}
+
+#personal_loginform button, #company_loginform button {
+    padding:8px 20px;
+}
+
 /*main*/
 .main{ padding:20px 0px; width:100%; }
 .ny{padding:30px 15px; background:#fff;}
+
+.dqwz{ height:30px; line-height:30px; padding:15px 0px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/home.jpg) no-repeat left center; padding-left:20px;}
+.pxshi_gl{ background:#fff; padding:20px;overflow:auto;}
+.pxshi_gl_l{ width:235px; border:1px solid #e1e1e1; }
+.pxshi_gl_l h4{ display:block; height:40px; padding-top:1px; line-height:40px; background: #3689b3; text-align:center; font-size:20px; color:#fff; font-weight:100;}
+.pxshi_gl_r{width:900px; border:1px solid #e1e1e1; padding:20px; font-size:12px; }
 
 /*搜索*/
 .sousuo_box{ border:1px solid #e3e3e3; background:#f9fbfb; padding:20px; height:100%; margin-bottom:25px;}
@@ -257,12 +299,6 @@ button#companyGarantee{
 .ycwz h4 span a,.ycwz h4 span a:hover{color:#ffcf67;}
 .yiti h4 span a,.yiti h4 span a:hover{color:#a1c25a;}
 
-/*公开课*/
-.gkk{ width:790px; height:350px; background:#fff;}
-.gkk h4{ display:block;font-weight:100; height:40px;padding-top:10px; border-bottom:2px solid #d76b63; background:url(../images/gkk_h4.jpg) no-repeat 10px center; font-size:18px; color:#d76b63;font-weight:700; padding-left:60px;  }
-.gkk h4 span{ display:block; float:right; padding-right:15px;color:#a1c25a; font-size:14px; font-weight:100;}
-.gkk h4 span a,.yiti h4 span a:hover{color:#d76b63;}
-.gkk_box{ padding:10px 0px 0px 15px;}
 
 /*底部信息*/
 .footer{ width:100%; background:url(../images/footer_bg.jpg) repeat-x left top;height:90px; padding-top:40px;}
