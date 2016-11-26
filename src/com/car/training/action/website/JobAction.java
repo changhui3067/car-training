@@ -48,7 +48,7 @@ public class JobAction extends SimpleAction {
     }
 
     public String search() {
-        jobList = jobService.find(jobType, businessCategories,regionId,publishTime,workExperienceRequirement,keyword);
+        jobList = jobService.find(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword);
         return "jobSearchResult";
     }
 
