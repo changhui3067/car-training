@@ -20,5 +20,11 @@ public interface AutobotService {
 
     List<Autobot> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword);
 
+    @Transactional
+    List<Autobot> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword, int pageNo);
+
+    @Transactional
+    int rowCount(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword);
+
     void save(Autobot autobot);
 }

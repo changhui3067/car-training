@@ -40,15 +40,21 @@ public class JobAction extends SimpleAction {
 
     private JobType jobType;
 
+    private int totalPage;
+
+    private int pn=1;
+
     @Override
     public String execute() throws Exception {
-        jobList = jobService.findAll(jobType);
+        jobList = jobService.find(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword);
+        totalPage = jobService.rowCount(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword);
         provinces = regionUtils.getSubCities(-1);
         return SUCCESS;
     }
 
     public String search() {
         jobList = jobService.find(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword);
+        totalPage = jobService.rowCount(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword);
         return "jobSearchResult";
     }
 
@@ -128,5 +134,21 @@ public class JobAction extends SimpleAction {
     @Override
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public int getPn() {
+        return pn;
+    }
+
+    public void setPn(int pn) {
+        this.pn = pn;
     }
 }

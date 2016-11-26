@@ -18,18 +18,10 @@ public class TrainerAction extends BaseAction {
     @Autowired
     private TrainerService trainerService;
 
-    /**
-     * 按条件筛选培训师列表
-     */
     private List<Trainer> peopleList;
 
-    /**
-     * 培训经验
-     */
     private Integer trainingYears;
-    /**
-     * 关健字
-     */
+
     private String keyword;
 
     private Set<String> businessCategory;
@@ -38,9 +30,14 @@ public class TrainerAction extends BaseAction {
 
     private String autoYears;
 
+    private int totalPage;
+
+    private int pn=1;
+
     @Override
     public String execute(){
         peopleList = trainerService.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
+        totalPage = trainerService.rowCount(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
         return SUCCESS;
     }
 
@@ -55,7 +52,8 @@ public class TrainerAction extends BaseAction {
             minAutoYear = -1;
             maxAutoYear = Integer.MAX_VALUE;
         }
-        peopleList = trainerService.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
+        peopleList = trainerService.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword,pn);
+        totalPage = trainerService.rowCount(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
         return "peopleSearchResult";
     }
 
@@ -111,5 +109,25 @@ public class TrainerAction extends BaseAction {
 
     public void setAutoYears(String autoYears) {
         this.autoYears = autoYears;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public void setExecutionCategory(Set<String> executionCategory) {
+        this.executionCategory = executionCategory;
+    }
+
+    public int getPn() {
+        return pn;
+    }
+
+    public void setPn(int pn) {
+        this.pn = pn;
     }
 }

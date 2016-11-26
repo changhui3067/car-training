@@ -2,6 +2,7 @@ package com.car.training.service;
 
 import com.car.training.bean.Job;
 import com.car.training.enums.JobType;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,5 +18,12 @@ public interface JobService {
     List<Job> findJobsByTargetCompany(int targetCid);
     List<Job> find(JobType jobType, String businessCategories, Integer regionId, String publishTime,
                    String workExperienceRequirement, String keyword);
+
+    @Transactional
+    List<Job> find(JobType jobType, String businessCategories, Integer regionId, String publishTime,
+                   String workExperienceRequirement, String keyword, int pageNo);
+
     void save(Job job);
+
+    int rowCount(JobType jobType, String businessCategories, Integer regionId, String publishTime, String workExperienceRequirement, String keyword);
 }

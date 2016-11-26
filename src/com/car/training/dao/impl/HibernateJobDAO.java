@@ -4,6 +4,7 @@ import com.car.training.bean.Job;
 import com.car.training.dao.JobDAO;
 import com.car.training.enums.JobType;
 import com.car.training.utils.PaginationUtil;
+import com.car.training.vo.JobFilter;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Conjunction;
 import org.hibernate.criterion.DetachedCriteria;
@@ -24,7 +25,7 @@ import java.util.List;
 public class HibernateJobDAO implements JobDAO {
 
     @Autowired
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     @Override
     public List<Job> find(JobType jobType, Iterable<String> businessCategories, Region region,
@@ -32,6 +33,28 @@ public class HibernateJobDAO implements JobDAO {
                           Integer minWorkExperienceRequirement, Integer maxWorkExperienceRequirement, String keyword) {
         return find(jobType, businessCategories, region, minPublishTime, maxPublishTime, minWorkExperienceRequirement, maxWorkExperienceRequirement, keyword, 1);
     }
+
+    @Override
+    public List<Job> find(JobFilter jobFilter, int pageNo) {
+        return find(jobFilter.getJobType(), jobFilter.getBusinessCategories(),
+                jobFilter.getRegion(), jobFilter.getMinPublishTime(), jobFilter.getMaxPublishTime(),
+                jobFilter.getMinWorkExperienceRequirement(),
+                jobFilter.getMaxWorkExperienceRequirement(), jobFilter.getKeyword(), pageNo);
+    }
+
+    @Override
+    public List<Job> find(JobFilter jobFilter) {
+        return find(jobFilter, 1);
+    }
+
+    @Override
+    public int rowCount(JobFilter jobFilter) {
+        return rowCount(jobFilter.getJobType(), jobFilter.getBusinessCategories(),
+                jobFilter.getRegion(), jobFilter.getMinPublishTime(), jobFilter.getMaxPublishTime(),
+                jobFilter.getMinWorkExperienceRequirement(), jobFilter.getMaxWorkExperienceRequirement(),
+                jobFilter.getKeyword());
+    }
+
 
     @Override
     public List<Job> find(JobType jobType, Iterable<String> businessCategories, Region region,
@@ -44,7 +67,7 @@ public class HibernateJobDAO implements JobDAO {
     @Override
     public int rowCount(JobType jobType, Iterable<String> businessCategories, Region region,
                         Date minPublishTime, Date maxPublishTime,
-                        Integer minWorkExperienceRequirement, Integer maxWorkExperienceRequirement, String keyword, int pageNo) {
+                        Integer minWorkExperienceRequirement, Integer maxWorkExperienceRequirement, String keyword) {
         DetachedCriteria criteria = getCriteria(jobType, businessCategories, region, minPublishTime, maxPublishTime, minWorkExperienceRequirement, maxWorkExperienceRequirement, keyword);
         return PaginationUtil.rowCount(criteria, sessionFactory.getCurrentSession());
     }

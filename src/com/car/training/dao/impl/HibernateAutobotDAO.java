@@ -34,7 +34,7 @@ public class HibernateAutobotDAO implements AutobotDAO {
     }
 
     @Override
-    public int rowCount(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword, int pageNo) {
+    public int rowCount(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
         DetachedCriteria dc = getCriteria(businessCategory, executionCategory, minAutoYears, maxAutoYears, keyword);
         return PaginationUtil.rowCount(dc, sessionFactory.getCurrentSession());
     }

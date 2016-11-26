@@ -22,56 +22,40 @@ public class AutobotAction extends BaseAction {
     @Autowired
     private AutobotService autobotService;
 
-    /**
-     * 按条件筛选汽车人列表
-     */
     private List<Autobot> peopleList;
-
-
-
 
     private Set<String> executionCategories;
     private Set<String> businessCategories;
 
-
-    /**
-     * 汽车行业经验
-     */
     private String autoYearRange;
-    /**
-     * 关健字
-     */
     private String keyword;
 
+    private int totalPage;
+    private int pn=1;
 
     @Override
     public String execute() throws Exception {
         peopleList = autobotService.search(businessCategories,executionCategories,-1,Integer.MAX_VALUE,"");
-//        Autobots autobots = new Autobots();
-//        autobots.setPositionType(positionType);
-//        autobots.setAutoYears(autoYears);
-//        autobots.setCurrentPosition(keyword);
-//        //按条件筛选培训师列表(包含分页)
-//        autobotsList = autobotsService.findListByAutobots(autobots);
-//        //设置类别枚举值
-//        setPositionTypeEnumVal();
+        totalPage = autobotService.rowCount(businessCategories,executionCategories,-1,Integer.MAX_VALUE,"");
         return SUCCESS;
     }
 
-//    public String search(){
-//        int minAutoYear;
-//        int maxAutoYear;
-//        try{
-//            String[] arr = autoYears.split(",");
-//            minAutoYear = Integer.valueOf(arr[0]);
-//            maxAutoYear = Integer.valueOf(arr[1]);
-//        } catch (Exception e){
-//            minAutoYear = -1;
-//            maxAutoYear = Integer.MAX_VALUE;
-//        }
-//        peopleList = autobotService.search(businessCategories,executionCategories,autoYearRange,keyword);
-//        return SUCCESS;
-//    }
+    public String search(){
+        int minAutoYear;
+        int maxAutoYear;
+        try{
+            String[] arr = autoYearRange.split(",");
+            minAutoYear = Integer.valueOf(arr[0]);
+            maxAutoYear = Integer.valueOf(arr[1]);
+        } catch (Exception e){
+            minAutoYear = -1;
+            maxAutoYear = Integer.MAX_VALUE;
+        }
+
+        peopleList = autobotService.search(businessCategories,executionCategories,minAutoYear,maxAutoYear,keyword,pn);
+        totalPage = autobotService.rowCount(businessCategories,executionCategories,minAutoYear,maxAutoYear,keyword);
+        return SUCCESS;
+    }
 
 
     public List<Autobot> getPeopleList() {
@@ -120,5 +104,21 @@ public class AutobotAction extends BaseAction {
     @Override
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
+
+    public int getPn() {
+        return pn;
+    }
+
+    public void setPn(int pn) {
+        this.pn = pn;
     }
 }

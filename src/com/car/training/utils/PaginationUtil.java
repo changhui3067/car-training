@@ -16,7 +16,7 @@ public class PaginationUtil {
     public static int rowCount(DetachedCriteria dc , Session session) {
         Criteria criteria = dc.getExecutableCriteria(session);
         criteria.setProjection(Projections.rowCount());
-        return (int) criteria.uniqueResult();
+        return (int)(long) criteria.uniqueResult();
     }
 
     public static List listAtPage(DetachedCriteria dc, int pageNo,Session session) {

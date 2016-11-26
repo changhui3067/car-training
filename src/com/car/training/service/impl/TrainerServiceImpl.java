@@ -52,7 +52,19 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
+    @Transactional
     public List<Trainer> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
-        return trainerDAO.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
+        return trainerDAO.search(businessCategory,executionCategory,minAutoYears,maxAutoYears,keyword);
+    }
+
+    @Override
+    @Transactional
+    public List<Trainer> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword, int pageNo) {
+        return trainerDAO.search(businessCategory,executionCategory,minAutoYears,maxAutoYears,keyword,pageNo);
+    }
+
+    @Override
+    public int rowCount(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
+        return trainerDAO.rowCount(businessCategory,executionCategory,minAutoYears,maxAutoYears,keyword);
     }
 }
