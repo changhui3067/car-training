@@ -22,7 +22,7 @@ public class JobAction extends SimpleAction {
     @Autowired
     private RegionUtils regionUtils;
 
-    private String businessCategories;
+    private String businessCategory;
 
     private Integer regionId = null;
 
@@ -88,12 +88,12 @@ public class JobAction extends SimpleAction {
         this.provinces = provinces;
     }
 
-    public String getBusinessCategories() {
-        return businessCategories;
+    public String getBusinessCategory() {
+        return businessCategory;
     }
 
-    public void setBusinessCategories(String businessCategories) {
-        this.businessCategories = businessCategories;
+    public void setBusinessCategory(String businessCategory) {
+        this.businessCategory = businessCategory;
     }
 
     public Integer getRegionId() {

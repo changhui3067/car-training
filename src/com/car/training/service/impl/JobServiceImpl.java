@@ -146,7 +146,7 @@ public class JobServiceImpl implements JobService {
     @Transactional
     public void save(Job job) {
 
-
+        job.setCreateDate(new Date());
         baseDAO.save(job);
     }
 }

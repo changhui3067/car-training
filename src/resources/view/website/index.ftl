@@ -254,58 +254,58 @@
 </#if>
 </div>
 </div>
-<div class="art_box">
- <div class="yiti left">
-     <h4>培训学院热点议题<span><a href="/website/topic">更多>></a></span></h4>
-     <div class="yiti_box">
-         <#if topicList??>
-         <ul>
-             <#list topicList as t>
-             <li>
-                 <#if t??>
-                 <span><a href="#">${t.publishDate?string("yyyy-MM-dd")}</a></span><a href="/website/topicDetail?topic.id=${t.id!}">${t.title!}</a>
-                 </#if>
-             </li>
-             </#list>
-         </ul>
-         </#if>
-     </div>
- </div>
+<#--<div class="art_box">-->
+ <#--<div class="yiti left">-->
+     <#--<h4>培训学院热点议题<span><a href="/website/topic">更多>></a></span></h4>-->
+     <#--<div class="yiti_box">-->
+         <#--<#if topicList??>-->
+         <#--<ul>-->
+             <#--<#list topicList as t>-->
+             <#--<li>-->
+                 <#--<#if t??>-->
+                 <#--<span><a href="#">${t.publishDate?string("yyyy-MM-dd")}</a></span><a href="/website/topicDetail?topic.id=${t.id!}">${t.title!}</a>-->
+                 <#--</#if>-->
+             <#--</li>-->
+             <#--</#list>-->
+         <#--</ul>-->
+         <#--</#if>-->
+     <#--</div>-->
+ <#--</div>-->
 
- <div class="gkk right">
-     <h4><span><a href="/website/courses">更多>></a></span>公开课</h4>
-     <div class="gkk_box">
-       <#if coursesList??>
-       <ul>
-          <#list coursesList as t>
-          <li class="oneBox">
-             <#if t?? && t.trainer ?? &&t.trainer.personInfo ?? >
-             <div class="picContainer"><a href="/website/courseDetail?course.id=${t.id!}"><img src="${t.trainer.personInfo.headLogo!}" /></a></div>
-             <div class="intro">
-                 <div>
-                     <div class="name"><a href="/website/courseDetail?course.id=${t.id!}">${t.courseName!}</a></div>
-                     <div class="clear"></div>
-                 </div>
-                 <div class="">
-                     <div class="left"><#if t.region??></#if>${t.region.fullname!}</div>
-                     <div class="right">2016-6-18</div>
-                     <div class="clear"></div>
-                 </div>
-                 <div class="">
-                     <div class="left">${t.price!}元</div>
-                     <div class="right">${t.willnum!}人</div>
-                     <div class="clear"></div>
-                 </div>
-             </div>
-             </#if>
-         </li>
-         </#list>
-     </ul>
-     </#if>
- </div>
-</div>
-<div class="clear"></div>
-</div>
+ <#--<div class="gkk right">-->
+     <#--<h4><span><a href="/website/courses">更多>></a></span>公开课</h4>-->
+     <#--<div class="gkk_box">-->
+       <#--<#if coursesList??>-->
+       <#--<ul>-->
+          <#--<#list coursesList as t>-->
+          <#--<li class="oneBox">-->
+             <#--<#if t?? && t.trainer ?? &&t.trainer.personInfo ?? >-->
+             <#--<div class="picContainer"><a href="/website/courseDetail?course.id=${t.id!}"><img src="${t.trainer.personInfo.headLogo!}" /></a></div>-->
+             <#--<div class="intro">-->
+                 <#--<div>-->
+                     <#--<div class="name"><a href="/website/courseDetail?course.id=${t.id!}">${t.courseName!}</a></div>-->
+                     <#--<div class="clear"></div>-->
+                 <#--</div>-->
+                 <#--<div class="">-->
+                     <#--<div class="left"><#if t.region??></#if>${t.region.fullname!}</div>-->
+                     <#--<div class="right">2016-6-18</div>-->
+                     <#--<div class="clear"></div>-->
+                 <#--</div>-->
+                 <#--<div class="">-->
+                     <#--<div class="left">${t.price!}元</div>-->
+                     <#--<div class="right">${t.willnum!}人</div>-->
+                     <#--<div class="clear"></div>-->
+                 <#--</div>-->
+             <#--</div>-->
+             <#--</#if>-->
+         <#--</li>-->
+         <#--</#list>-->
+     <#--</ul>-->
+     <#--</#if>-->
+ <#--</div>-->
+<#--</div>-->
+<#--<div class="clear"></div>-->
+<#--</div>-->
 </div>
 
 </div>

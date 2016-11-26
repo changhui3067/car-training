@@ -4,8 +4,15 @@
         <#list peopleList as t>
             <li class="oneBox">
                 <#if t?? ??>
-                    <div class="picContainer"><a href="/website/trainerDetail?trainerId=${t.id!}"><img
-                            src="${t.personInfo.avatarUrl!}"/></a></div>
+                    <div class="picContainer">
+                        <#if t.loginUser.type=='TRAINER'>
+                        <a href="/website/trainerDetail?trainerId=${t.id!}">
+                        <#elseif t.loginUser.type=='AUTOBOT'>
+                        <a href="/website/autobotDetail?autobotId=${t.id!}">
+                        </#if>
+                            <img src="${t.personInfo.avatarUrl!}"/>
+                        </a>
+                    </div>
                     <div class="intro">
                         <div>
                             <div class="name">${t.personInfo.name!}</div>
