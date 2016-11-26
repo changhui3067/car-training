@@ -8,6 +8,7 @@ import com.car.training.bean.Trainer;
 import com.car.training.service.GuaranteeService;
 import com.car.training.service.LikeService;
 import com.car.training.service.PromotionService;
+import com.car.training.vo.LoginVO;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -113,9 +114,18 @@ public class IndexAction extends SimpleAction {
         if (topTrainers != null) {
             for (Trainer trainer : topTrainers) {
                 likeNumberMap.put(trainer, likeService.likeNumber(trainer.getId()));
-                Object loginVO = getHttpSession().getAttribute("loginVO");
+                LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
                 if (loginVO != null) {
-                    isLikeMap.put(trainer, likeService.isLike(1, trainer.getId()));
+                    isLikeMap.put(trainer, likeService.isLike(loginVO.getId(), trainer.getId()));
+                }
+            }
+        }
+        if (autobotList != null) {
+            for (Autobot autobot : autobotList) {
+                likeNumberMap.put(autobot, likeService.likeNumber(autobot.getId()));
+                LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
+                if (loginVO != null) {
+                    isLikeMap.put(autobot, likeService.isLike(loginVO.getId(), autobot.getId()));
                 }
             }
         }

@@ -28,8 +28,12 @@
                     <div class="autbotpeople_info">
                         <h1 class="left">${autobot.personInfo.name!}</h1>
                         <div class="iconbox right alignCenter">
-                            <span><i class="iconfont" title="评论">&#xe69b;</i><#if commentList??> ${commentList.size()!}<#else>0</#if></span>
-                            <span><i class="iconfont" title="点赞">&#xe717;</i>${likeNumber!}</span>
+                            <span><i class="iconfont alignCenter" title="评论">&#xe69b;</i><#if commentList??><span id="commentNumber">${commentList.size()!}</span><#else><span id="commentNumber">0</span></#if></span>
+                            <#if like?? && like>
+                            <span class="alignCenter like" id="autobotDetailLike" value=${autobot.id!} onClick="like('',this.id)"><i class="iconfont praise" title="点赞">&#xe717;</i><span>${likeNumber!}</span></span>
+                            <#else>
+                            <span class="alignCenter unLike" id="autobotDetailLike" value=${autobot.id!} onClick="like('',this.id)"><i class="iconfont praise" title="点赞">&#xe717;</i><span>${likeNumber!}</span></span>
+                            </#if>
                         </div>
                         <div class="clear"></div>
                     </div>
@@ -75,8 +79,13 @@
                 ${autobot.workingHistory!}
                 </div>
             </div>
-
-
+            <div class="people_other_info_box">
+                <div class="people_other_info_bar"><h4>学员评论</h4></div>
+                <div class="add_comment_box">
+                    <textarea id="add_comment"></textarea>
+                    <button id=${autobot.id!} class="commonClickButton btn btn-info" onclick="addComment(this.id)">提交</button>
+                </div>
+            </div>
         </div>
         <div class="ny_pxshi_r right">
             <div class="people_comments people_other_info_bar">
@@ -93,5 +102,6 @@
 
 <!-- main结束 -->
 <#include "/assets/website/common/footer.html">
+<script src="<@url value="/assets/website/backend/js/common.js"/>"></script>
 </body>
 </html>

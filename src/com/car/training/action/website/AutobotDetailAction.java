@@ -46,7 +46,7 @@ public class AutobotDetailAction extends SimpleAction {
 
     private int likeNumber;
 
-    private boolean isLike;
+    private boolean like;
 
     private List<Comment> commentList;
 
@@ -60,10 +60,10 @@ public class AutobotDetailAction extends SimpleAction {
         }
         int aUid = autobot.getPersonInfo().getId();
         commentList = commentService.findCommentByTargetUser(aUid);
-        likeNumber = likeService.likeNumber(aUid);
+        likeNumber = likeService.likeNumber(autobotId);
         LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
         if(loginVO !=null){
-            isLike = likeService.isLike(loginVO.getId(),aUid);
+            like = likeService.isLike(loginVO.getId(),autobotId);
         }
 
 //        for (String strId : autobots.getAttentionTrainer().split(",")) {
@@ -100,19 +100,19 @@ public class AutobotDetailAction extends SimpleAction {
         return likeNumber;
     }
 
-    public boolean isLike() {
-        return isLike;
-    }
-
-    public void setLike(boolean like) {
-        isLike = like;
-    }
-
     public List<Comment> getCommentList() {
         return commentList;
     }
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
+    }
+
+    public boolean isLike() {
+        return like;
+    }
+
+    public void setLike(boolean like) {
+        this.like = like;
     }
 }

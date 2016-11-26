@@ -20,7 +20,7 @@
 	color: #ff7f00;
 }
 
-.people_detail_basic_info .detail div span{
+.people_detail_basic_info .detail div >span{
 	padding: 0px 15px;
     border-right: solid 1px #aaa;
 }
@@ -33,7 +33,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 }
 
 .people_detail_basic_info .alignCenter {line-height: 48px; color:#ff7f00;}
-.people_detail_basic_info .alignCenter span{ border-right: solid 1px #ff7f00!important;}
+.people_detail_basic_info span.alignCenter{ border-right: solid 1px #ff7f00!important;}
 
 .people_other_info_box{ width: 860px; border-bottom:1px dotted #ccc; padding:20px 15px 20px 15px; margin-bottom:30px;}
 .people_other_info_bar{ background:#f0f8fc; height:40px;   padding:0px 15px;}
@@ -453,7 +453,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 .gzjl_box li{ background:url(http://obu3flkwk.bkt.clouddn.com/website/images/icon.jpg) no-repeat 5px center;}
 
 .autbotpeople_info h1, .autbotpeople_info .alignCenter {color:#3689b3!important; border-right: #3689b3!important;}
-.autbotpeople_info .alignCenter span{border-right: solid 1px #3689b3!important;}
+.autbotpeople_info span.alignCenter{border-right: solid 1px #3689b3!important;}
 
 /*汽车人个人信息——右侧  关注*/
 .pxshi_gz{ margin-bottom:30px;}

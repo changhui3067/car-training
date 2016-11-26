@@ -55,7 +55,7 @@
                  <div class="pxshi_name">
                      <div class="xm left">${trainer.personInfo.name!}</div>
                      <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if trainer.autobotsCommentList??> ${trainer.autobotsCommentList.size!}<#else>0</#if></div>
-                     <#if isLikeMap?? && isLikeMap.get(trainer)??>
+                     <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(trainer)>
                      <div id=${trainer.id!} class="dz right praise" value=${trainer.id!} onClick="like('.pxshi_l .pxshi_l_intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
                      <#else>
                      <div id=${trainer.id!} class="dz right praise unLike" value=${trainer.id!} onClick="like('.pxshi_l .pxshi_l_intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
@@ -86,7 +86,7 @@
                 <div>
                     <div class="name">${a_trainer.personInfo.name!}</div>
                     <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if a_trainer.autobotsCommentList??> ${a_trainer.autobotsCommentList.size!}<#else>0</#if></div>
-                     <#if isLikeMap?? && isLikeMap.get(a_trainer)??>
+                     <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(a_trainer)>
                      <div id=${a_trainer.id!} class="right praise" value=${a_trainer.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
                      <#else>
                      <div id=${a_trainer.id!} class="right praise unLike" value=${a_trainer.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
@@ -126,7 +126,7 @@
              <div class="intro">
                  <div>
                      <div class="name">${a_autobot.personInfo.name!}</div>
-                     <div class="right">34人</div>
+                     <div class="right">${likeNumberMap.get(a_autobot)!}人</div>
                      <div class="right">${a_autobot.autoYears!}年</div>
                      <div class="clear"></div>
                  </div>

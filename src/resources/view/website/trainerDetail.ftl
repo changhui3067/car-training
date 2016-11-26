@@ -26,8 +26,12 @@
                     <h1 class="left">${trainer.personInfo.name!}</h1>
                     <div>
                         <div class="iconbox right alignCenter">
-                            <span class="alignCenter"><i class="iconfont" title="评论">&#xe69b;</i><#if commentList??> ${commentList.size()!}<#else>0</#if></span>
-                            <span class="alignCenter"><i class="iconfont" title="点赞">&#xe717;</i>${likeNumber!}</span>
+                            <span class="alignCenter"><i class="iconfont" title="评论">&#xe69b;</i><#if commentList??><span id="commentNumber">${commentList.size()!}</span><#else><span id="commentNumber">0</span></#if></span>
+                            <#if like?? && like>
+                            <span class="alignCenter" id="trainerDetailLike" value=${trainer.id!} onClick="like('',this.id)"><i class="iconfont praise" title="点赞">&#xe717;</i><span>${likeNumber!}</span></span>
+                            <#else>
+                            <span class="alignCenter unLike" id="trainerDetailLike" value=${trainer.id!} onClick="like('',this.id)"><i class="iconfont praise" title="点赞">&#xe717;</i><span>${likeNumber!}</span></span>
+                            </#if>
                         </div>
                         <div class="clear"></div>
                     </div>

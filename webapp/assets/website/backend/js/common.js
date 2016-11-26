@@ -25,6 +25,7 @@ function like(prix, id) {
 		data["targetUserId"] = dom[0].getAttribute("value");
 	if (dom.hasClass("unLike")) {
 		dom.removeClass("unLike");
+		dom.addClass("like");
 		dom[0].childNodes[1].innerHTML = number + 1;
 		$.ajax({
 	        type: "POST",
@@ -39,6 +40,7 @@ function like(prix, id) {
 	    });
 	} else {
 		dom.addClass("unLike");
+		dom.removeClass("like");
 		dom[0].childNodes[1].innerHTML = number - 1;
 		$.ajax({
 	        type: "POST",
@@ -109,7 +111,9 @@ function guarantee(id) {
 
 //评论
 function addComment (id) {
-    var data = {};
+    var data = {},
+    number = new Number($("#commentNumber")[0].innerHTML);
+    $("#commentNumber")[0].innerHTML = number + 1;
     data["content"] = $("#add_comment").val(),
     data["targetId"] = id;
     if (data.content) {

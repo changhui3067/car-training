@@ -56,7 +56,7 @@ public class TrainerDetailAction extends SimpleAction {
 
     private int likeNumber;
 
-    private boolean isLike;
+    private boolean like;
 
 
     @Override
@@ -67,11 +67,11 @@ public class TrainerDetailAction extends SimpleAction {
         }
         int tUid = trainer.getPersonInfo().getId();
         coursesList = coursesService.findByTrainerId(tUid);
-        commentList = commentService.findCommentByTargetUser(tUid);
-        likeNumber = likeService.likeNumber(tUid);
+        commentList = commentService.findCommentByTargetUser(trainerId);
+        likeNumber = likeService.likeNumber(trainerId);
         LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
         if(loginVO !=null){
-            isLike = likeService.isLike(loginVO.getId(),tUid);
+            like = likeService.isLike(loginVO.getId(),trainerId);
         }
         return SUCCESS;
 //
@@ -145,14 +145,6 @@ public class TrainerDetailAction extends SimpleAction {
         this.coursesList = coursesList;
     }
 
-    public boolean isLike() {
-        return isLike;
-    }
-
-    public void setLike(boolean like) {
-        isLike = like;
-    }
-
     public int getLikeNumber() {
         return likeNumber;
     }
@@ -167,5 +159,13 @@ public class TrainerDetailAction extends SimpleAction {
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
+    }
+
+    public boolean isLike() {
+        return like;
+    }
+
+    public void setLike(boolean like) {
+        this.like = like;
     }
 }
