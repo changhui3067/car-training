@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <title>培聘网</title>
+    <link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/pxshi.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/iconfont.css" type="text/css"/>
@@ -19,32 +20,20 @@
     <div class="ny autobotSearchColor">
      	<div class="searchBox">
         	<div class="filterType">
-            	<div class="filterName">岗位类型:</div>
+            	<div class="filterName">领域类型:</div>
                 <div class="filterItemList">
+                    <span onclick="filterClicked(this,'businessCategory')">内训</span>
                     <span onclick="filterClicked(this,'businessCategory')">销售市场</span>
                     <span onclick="filterClicked(this,'businessCategory')">售后客服</span>
                     <span onclick="filterClicked(this,'businessCategory')">高级管理</span>
                     <span onclick="filterClicked(this,'businessCategory')">人事财务</span>
-                    <span onclick="filterClicked(this,'businessCategory')">内训</span>
                     <span onclick="filterClicked(this,'businessCategory')">生产研发</span>
                 </div>
                 <div class="clear"></div>
             </div>
 
             <div class="filterType">
-                <div class="filterName">擅长形式:</div>
-                <div class="filterItemList">
-                    <span onclick="filterClicked(this,'businessCategory')">开发</span>
-                    <span onclick="filterClicked(this,'businessCategory')">培训</span>
-                    <span onclick="filterClicked(this,'businessCategory')">辅导</span>
-                    <span onclick="filterClicked(this,'businessCategory')">项目管理</span>
-                    <span onclick="filterClicked(this,'businessCategory')">经销商托管</span>
-                </div>
-                <div class="clear"></div>
-            </div>
-
-            <div class="filterType">
-                <div class="filterName">培训时间:</div>
+                <div class="filterName">工作经验:</div>
                 <div class="filterItemList">
                     <span onclick="filter2Clicked(this, 'workExperience')">应界毕业生</span>
                     <span onclick="filter2Clicked(this, 'workExperience')">5年内</span>

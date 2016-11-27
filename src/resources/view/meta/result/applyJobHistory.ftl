@@ -7,11 +7,6 @@
             <th>职位名称</th>
             <th>工作类型</th>
             <th>工作地点</th>
-            <th>学历要求</th>
-            <th>专业要求</th>
-            <th>经验要求</th>
-            <th>语言要求</th>
-            <th>工作待遇</th>
             <th>发布日期</th>
         </tr>
 		<#list applyList as apply>
@@ -19,11 +14,6 @@
                 <td><#if apply.job.title??>${apply.job.title}<#else>无</#if></td>
                 <td><#if apply.job.type??>${apply.job.type}<#else>无</#if></td>
                 <td><#if apply.job.region.fullname??>${apply.job.region.fullname}<#else>无</#if></td>
-                <td><#if apply.job.educationRequirement??>${apply.job.educationRequirement}<#else>无</#if></td>
-                <td><#if apply.job.majorRequirement??>${apply.job.majorRequirement}<#else>无</#if></td>
-                <td><#if apply.job.workExperienceRequirement??>${apply.job.workExperienceRequirement}<#else>无</#if></td>
-                <td><#if apply.job.LanguageRequirement??>${apply.job.LanguageRequirement}<#else>无</#if></td>
-                <td><#if apply.job.salary??>${apply.job.salary}<#else>无</#if></td>
                 <td><#if apply.job.createDate??>${apply.job.createDate?string("yyyy-MM-dd")}<#else>无</#if></td>
             </tr>
 		</#list>
@@ -31,50 +21,7 @@
 </#if>
 </div>
 
-              <#--<#if deliveryResumeList?? && deliveryResumeList.result??>-->
-         		<#--<table bgcolor="#dedede" border="0" cellpadding="4" cellspacing="1" align="center" width="860">-->
-                    <#--<tbody>-->
-                      <#--<tr>-->
-                        <#--<td width="40" height="50" align="center" valign="middle" bgcolor="#f0faff"><strong>选择</strong></td>-->
-                        <#--<td width="200" align="center" valign="middle" bgcolor="#f0faff"> <strong>企业名称</strong></td>-->
-                        <#--<td width="100" align="center" valign="middle" bgcolor="#f0faff"><strong>职位名称</strong></td>-->
-                        <#--<td width="55" align="center" valign="middle" bgcolor="#f0faff"><strong>工作类型</strong></td>-->
-                        <#--<td width="55" align="center" valign="middle" bgcolor="#f0faff"><strong>工作性质</strong></td>-->
-                        <#--<td width="200" align="center" valign="middle" bgcolor="#f0faff"><strong>工作地点</strong></td>-->
-                        <#--<td width="60" align="center" valign="middle" bgcolor="#f0faff"><strong>申请日期</strong></td>-->
-                        <#--<td width="70" align="center" valign="middle" bgcolor="#f0faff"> <strong> 操作 </strong></td>-->
-                      <#--</tr>-->
-                      <#---->
-                      <#--<#if deliveryResumeList.result?size gt 0>-->
-                      <#--<#list deliveryResumeList.result as t>-->
-                      <#--<#if t?? && t.jobs??>-->
-                      <#--<tr>-->
-                        <#--<td  height="40" align="center" valign="middle" bgcolor="#ffffff"><input type="checkBox" name="chk_list" id="chk_list" value="${t.id!}"/></td>-->
-                        <#--<td  align="center" valign="middle" bgcolor="#ffffff" class="sq"><a href="#">${t.jobs.company.name!} </a></td>-->
-                        <#--<td align="center" valign="middle" bgcolor="#ffffff"class="sq"><a href="#">${t.jobs.name!}</a></td>-->
-                        <#--<td  align="center" valign="middle" bgcolor="#ffffff">销售</td>-->
-                        <#--<td align="center" valign="middle" bgcolor="#ffffff">${t.jobs.jobType!}</td>-->
-                        <#--<td  align="center" valign="middle" bgcolor="#ffffff">${t.jobs.region.fullname!}</td>-->
-                        <#--<td  align="center" valign="middle" bgcolor="#ffffff">${t.createDate!?string("yyyy-MM-dd")}</td>-->
-                        <#--<td align="center" valign="middle" bgcolor="#ffffff"  class="caozuo"><a href="/website/jobDetail?jobs.id=${t.jobs.id!}" target="blank">查看</a>&nbsp;&nbsp;  <a href="/backend/applyJobHistory/delete?dr.id=${t.id!}" onclick="javascript:if(confirm('确认要删除该记录吗?')==false) return false;">删除</a></td>-->
-                      <#--</tr>-->
-                      <#--</#if>-->
-                      <#--</#list>-->
-                      <#--</#if>-->
-                      <#---->
-                      <#--<tr>-->
-                        <#--<td  height="40" align="center" valign="middle" bgcolor="#ffffff"><input type="checkBox" name="chk_all" id="chk_all" /></td>-->
-                        <#--<td colspan="7"  align="left" valign="middle" bgcolor="#ffffff" class="sq"><table width="200" border="0" cellspacing="0" cellpadding="0">-->
-                          <#--<tr>-->
-                            <#--<td width="80" align="center" valign="middle" class="quanxuan"><img onclick="deleteAll()" src="http://obu3flkwk.bkt.clouddn.com/backend/images/sc.jpg" /></td>-->
-                            <#--<td width="163"></td>-->
-                          <#--</tr
-                          >-->
-                        <#--</table></td>-->
-                      <#--</tr>-->
-                    <#--</tbody>-->
-                  <#--</table>-->
-              <#--</#if>-->
+
 
             <#--分页逻辑 - 暂时不做-->
 			<#--<#if deliveryResumeList?? && deliveryResumeList.result?? && deliveryResumeList.result?size gt 0>-->

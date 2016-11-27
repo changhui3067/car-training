@@ -305,6 +305,20 @@ button#companyGarantee{
 
 
 /*freyja add*/
+/********************************style for MsgToast**********************************************************/
+.toastBox {
+    display: none;
+    text-align: center;
+}
+
+.toastBox .alert {
+    position: fixed;
+    bottom: 10px;
+    font-size: 14px;
+    padding: 8px 15px;
+}
+
+
 /***************************************2 row structure********************************************************/
 .zp_box {
     display: inline-block;
@@ -549,9 +563,10 @@ button#companyGarantee{
 
 .searchBox .filterType .filterItemList button {
     background: transparent;
-    padding: 7px 9px 8px;
+    padding: 4px 9px 4px;
     border: #3689b3 solid 1px;
     font-size: 14px;
+    line-height: normal;
 }
 
 .searchBox .filterType .filterItemList button:hover {

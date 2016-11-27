@@ -89,26 +89,6 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
-                                        婚姻状况:</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" name="marriageStatus">
-                                            <option value="UNMARRIED"
-                                                    <#if autobot.personInfo.marriageStatus = "未婚">selected</#if>>未婚
-                                            </option>
-                                            <option value="MARRIED"
-                                                    <#if autobot.personInfo.marriageStatus = "已婚">selected</#if>>已婚
-                                            </option>
-                                            <option value="RAISED"
-                                                    <#if autobot.personInfo.marriageStatus = "离异">selected</#if>>离异
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item pxshijl_li">
-                                <div class="form-group">
-                                    <label class="col-sm-3 pxshijl_label"><span
-                                            style="color: red">*</span>
                                         行业经验:</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
@@ -192,20 +172,16 @@
                                         <input type="hidden" name="businessCategory"/>
                                     <#if autobot ?? && autobot.businessCategory??>
                                     <#--<span class="checkBox <#if autobot.businessCategory ? index_of("Sales")!=-1>checked</#if>"-->
-                                        <span class="checkBox <#if autobot.businessCategory ? index_of("销售")!=-1>checked</#if>"
-                                              value="销售" onclick="categoryClicked(this)">销售</span>
-                                        <span class="checkBox <#if autobot.businessCategory ? index_of("售后")!=-1>checked</#if>"
-                                              value="售后" onclick="categoryClicked(this)">售后</span>
-                                        <span class="checkBox <#if autobot.businessCategory ? index_of("客服")!=-1>checked</#if>"
-                                              value="客服" onclick="categoryClicked(this)">客服</span>
-                                        <span class="checkBox <#if autobot.businessCategory ? index_of("市场")!=-1>checked</#if>"
-                                              value="市场" onclick="categoryClicked(this)">市场</span>
-                                        <span class="checkBox <#if autobot.businessCategory ? index_of("管理")!=-1>checked</#if>"
-                                              value="管理" onclick="categoryClicked(this)">管理</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("内训")!=-1>checked</#if>"
                                               value="内训" onclick="categoryClicked(this)">内训</span>
-                                        <span class="checkBox <#if autobot.businessCategory ? index_of("行政")!=-1>checked</#if>"
-                                              value="行政" onclick="categoryClicked(this)">行政</span>
+                                        <span class="checkBox <#if autobot.businessCategory ? index_of("销售市场")!=-1>checked</#if>"
+                                              value="销售市场" onclick="categoryClicked(this)">销售市场</span>
+                                        <span class="checkBox <#if autobot.businessCategory ? index_of("售后客服")!=-1>checked</#if>"
+                                              value="售后客服" onclick="categoryClicked(this)">售后客服</span>
+                                        <span class="checkBox <#if autobot.businessCategory ? index_of("高级管理")!=-1>checked</#if>"
+                                              value="高级管理" onclick="categoryClicked(this)">高级管理</span>
+                                        <span class="checkBox <#if autobot.businessCategory ? index_of("人事财务")!=-1>checked</#if>"
+                                              value="人事财务" onclick="categoryClicked(this)">人事财务</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("生产研发")!=-1>checked</#if>"
                                               value="生产研发" onclick="categoryClicked(this)">生产研发</span>
                                     </#if>

@@ -84,20 +84,6 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
-                                        婚姻状况:</label>
-                                    <div class="col-sm-9">
-                                        <select class="form-control" name="marriageStatus">
-                                            <option value="UNMARRIED" <#if trainer.personInfo.marriageStatus = "未婚">selected</#if>>未婚</option>
-                                            <option value="MARRIED" <#if trainer.personInfo.marriageStatus = "已婚">selected</#if>>已婚</option>
-                                            <option value="RAISED" <#if trainer.personInfo.marriageStatus = "离异">selected</#if>>离异</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item pxshijl_li">
-                                <div class="form-group">
-                                    <label class="col-sm-3 pxshijl_label"><span
-                                            style="color: red">*</span>
                                         行业经验:</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
@@ -195,20 +181,30 @@
                                         <#--<span class="checkBox <#if trainer.businessCategory ? index_of("Sales")!=-1>checked</#if>"-->
                                         <span class="checkBox <#if trainer.businessCategory ? index_of("销售")!=-1>checked</#if>"
                                               value="销售" onclick="categoryClicked(this)">销售</span>
-                                        <span class="checkBox <#if trainer.businessCategory ? index_of("售后")!=-1>checked</#if>"
-                                              value="售后" onclick="categoryClicked(this)">售后</span>
-                                        <span class="checkBox <#if trainer.businessCategory ? index_of("客服")!=-1>checked</#if>"
-                                              value="客服" onclick="categoryClicked(this)">客服</span>
-                                        <span class="checkBox <#if trainer.businessCategory ? index_of("市场")!=-1>checked</#if>"
-                                              value="市场" onclick="categoryClicked(this)">市场</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("产品")!=-1>checked</#if>"
+                                              value="产品" onclick="categoryClicked(this)">产品</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("技术")!=-1>checked</#if>"
+                                              value="技术" onclick="categoryClicked(this)">技术</span>
                                         <span class="checkBox <#if trainer.businessCategory ? index_of("管理")!=-1>checked</#if>"
                                               value="管理" onclick="categoryClicked(this)">管理</span>
-                                        <span class="checkBox <#if trainer.businessCategory ? index_of("内训")!=-1>checked</#if>"
-                                              value="内训" onclick="categoryClicked(this)">内训</span>
-                                        <span class="checkBox <#if trainer.businessCategory ? index_of("行政")!=-1>checked</#if>"
-                                              value="行政" onclick="categoryClicked(this)">行政</span>
-                                        <span class="checkBox <#if trainer.businessCategory ? index_of("生产研发")!=-1>checked</#if>"
-                                              value="生产研发" onclick="categoryClicked(this)">生产研发</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("财务")!=-1>checked</#if>"
+                                              value="财务" onclick="categoryClicked(this)">财务</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("人事")!=-1>checked</#if>"
+                                              value="人事" onclick="categoryClicked(this)">人事</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("生产")!=-1>checked</#if>"
+                                              value="生产" onclick="categoryClicked(this)">生产</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("非技术")!=-1>checked</#if>"
+                                              value="非技术" onclick="categoryClicked(this)">非技术</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("领导力")!=-1>checked</#if>"
+                                              value="领导力" onclick="categoryClicked(this)">领导力</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("新能源")!=-1>checked</#if>"
+                                              value="新能源" onclick="categoryClicked(this)">新能源</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("市场营销")!=-1>checked</#if>"
+                                              value="市场营销" onclick="categoryClicked(this)">市场营销</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("客户关系")!=-1>checked</#if>"
+                                              value="客户关系" onclick="categoryClicked(this)">客户关系</span>
+                                        <span class="checkBox <#if trainer.businessCategory ? index_of("其他")!=-1>checked</#if>"
+                                              value="其他" onclick="categoryClicked(this)">其他</span>
 									</#if>
                                     </div>
                                 </div>
@@ -221,18 +217,16 @@
                                     <div class="col-sm-9 executionCategoryFather">
                                         <input type="hidden" name="executionCategory"/>
 									  <#if trainer ?? && trainer.executionCategory??>
-                                        <span class="checkBox <#if trainer.executionCategory ? index_of("销售")!=-1>checked</#if>"
-                                              value="销售" onclick="categoryClicked(this)">销售</span>
-                                        <span class="checkBox <#if trainer.executionCategory ? index_of("售后")!=-1>checked</#if>"
-                                              value="售后" onclick="categoryClicked(this)">售后</span>
-                                        <span class="checkBox <#if trainer.executionCategory ? index_of("客服")!=-1>checked</#if>"
-                                              value="客服" onclick="categoryClicked(this)">客服</span>
-                                        <span class="checkBox <#if trainer.executionCategory ? index_of("市场")!=-1>checked</#if>"
-                                              value="市场" onclick="categoryClicked(this)">市场</span>
-                                        <span class="checkBox <#if trainer.executionCategory ? index_of("管理")!=-1>checked</#if>"
-                                              value="管理" onclick="categoryClicked(this)">管理</span>
-                                        <span class="checkBox <#if trainer.executionCategory ? index_of("内训")!=-1>checked</#if>"
-                                              value="内训" onclick="categoryClicked(this)">内训</span>
+                                        <span class="checkBox <#if trainer.executionCategory ? index_of("开发")!=-1>checked</#if>"
+                                              value="开发" onclick="categoryClicked(this)">开发</span>
+                                        <span class="checkBox <#if trainer.executionCategory ? index_of("培训")!=-1>checked</#if>"
+                                              value="培训" onclick="categoryClicked(this)">培训</span>
+                                        <span class="checkBox <#if trainer.executionCategory ? index_of("辅导")!=-1>checked</#if>"
+                                              value="辅导" onclick="categoryClicked(this)">辅导</span>
+                                        <span class="checkBox <#if trainer.executionCategory ? index_of("项目管理")!=-1>checked</#if>"
+                                              value="项目管理" onclick="categoryClicked(this)">项目管理</span>
+                                        <span class="checkBox <#if trainer.executionCategory ? index_of("经销商托管")!=-1>checked</#if>"
+                                              value="经销商托管" onclick="categoryClicked(this)">经销商托管</span>
 									  </#if>
                                     </div>
                                 </div>

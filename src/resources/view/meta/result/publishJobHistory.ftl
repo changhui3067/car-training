@@ -11,24 +11,15 @@
             <th>职位名称</th>
             <th>所属部门</th>
             <th>工作地点</th>
-            <th>学历要求</th>
-            <th>专业要求</th>
-            <th>经验要求</th>
-            <th>语言要求</th>
-            <th>工作待遇</th>
             <th>发布日期</th>
             <th>申请纪录</th>
+            <th>操作</th>
         </tr>
         <#list jobList as job>
         <tr>
             <td><#if job.title??><a href="/website/jobDetail?jobId=${job.id}">${job.title}</a><#else>无</#if></td>
             <td><#if job.department??>${job.department}<#else>无</#if></td>
             <td><#if job.region.fullname??>${job.region.fullname}<#else>无</#if></td>
-            <td><#if job.educationRequirement??>${job.educationRequirement}<#else>无</#if></td>
-            <td><#if job.majorRequirement??>${job.majorRequirement}><#else>无</#if></td>
-            <td><#if job.workExperienceRequirement??>${job.workExperienceRequirement}<#else>无</#if></td>
-            <td><#if job.LanguageRequirement??>${job.LanguageRequirement}<#else>无</#if></td>
-            <td><#if job.salary??>${job.salary}<#else>无</#if></td>
             <td><#if job.createDate??>${job.createDate}<#else>无</#if></td>
             <#if jobApplyMap?? && jobApplyMap.get(job)??>
             <td>
@@ -41,6 +32,9 @@
                 </#list>
             </td>
             </#if>
+            <#--<td>-->
+                <#--<i class="iconfont" title="作废">&#xe69d;</i>-->
+            <#--</td>-->
         </tr>
         </#list>
     </table>
@@ -67,19 +61,33 @@
                             <label for="inputType" class="col-sm-2 control-label">工作类型</label>
                             <div class="col-sm-10">
                                 <input type="hidden" name="businessCategory" value="销售"/>
-                                <select class="form-control" id="inputType">
-                                    <option value="销售">销售</option>
-                                    <option value="产品">产品</option>
-                                    <option value="技术">技术</option>
-                                    <option value="管理">管理</option>
-                                    <option value="产品">产品</option>
-                                    <option value="财务">财务</option>
-                                    <option value="人事">人事</option>
-                                    <option value="生产">生产</option>
-                                    <option value="新能源">新能源</option>
-                                    <option value="市场营销">市场营销</option>
-                                    <option value="客户关系">客户关系</option>
-                                </select>
+                                <#if Session["loginVO"].userType=='COMPANY'>
+                                    <select class="form-control" id="inputType">
+                                        <option value="销售">销售</option>
+                                        <option value="产品">产品</option>
+                                        <option value="技术">技术</option>
+                                        <option value="管理">管理</option>
+                                        <option value="产品">产品</option>
+                                        <option value="财务">财务</option>
+                                        <option value="人事">人事</option>
+                                        <option value="生产">生产</option>
+                                        <option value="非技术">非技术</option>
+                                        <option value="新能源">新能源</option>
+                                        <option value="市场营销">市场营销</option>
+                                        <option value="客户关系">客户关系</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                <#elseif Session["loginVO"].userType=='STORE'>
+                                    <select class="form-control" id="inputType">
+                                        <option value="销售">销售市场</option>
+                                        <option value="产品">售后客服</option>
+                                        <option value="技术">高级管理</option>
+                                        <option value="管理">人事财务</option>
+                                        <option value="产品">内训</option>
+                                        <option value="财务">生产研发</option>
+                                    </select>
+                                </#if>
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -100,12 +108,6 @@
                             <label for="inputExperienceRequirement" class="col-sm-2 control-label">经验要求</label>
                             <div class="col-sm-10">
                               <input type="text" class="form-control" name="workExperienceRequirement" value="" id="inputExperienceRequirement" placeholder="请输入数字"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputLanguageRequirement" class="col-sm-2 control-label">语言要求</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" name="LanguageRequirement" value="" id="inputLanguageRequirement" placeholder=""/>
                             </div>
                         </div>
                         <div class="form-group">

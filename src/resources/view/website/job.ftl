@@ -21,17 +21,28 @@
         	<div class="filterType">
             	<div class="filterName">职位类型:</div>
                 <div class="filterItemList">
-                	<span onclick="filterClicked(this,'businessCategory')">销售</span>
-                    <span onclick="filterClicked(this,'businessCategory')">产品</span>
-                    <span onclick="filterClicked(this,'businessCategory')">技术</span>
-                    <span onclick="filterClicked(this,'businessCategory')">管理</span>
-                    <span onclick="filterClicked(this,'businessCategory')">财务</span>
-                    <span onclick="filterClicked(this,'businessCategory')">市场营销</span>
-                    <span onclick="filterClicked(this,'businessCategory')">客户关系</span>
-                    <span onclick="filterClicked(this,'businessCategory')">人事</span>
-                    <span onclick="filterClicked(this,'businessCategory')">生产</span>
-                    <span onclick="filterClicked(this,'businessCategory')">领导力</span>
-                    <span onclick="filterClicked(this,'businessCategory')">新能源</span>
+                    <#if jobType=="TRAINER">
+                        <span onclick="filterClicked(this,'businessCategory')">销售</span>
+                        <span onclick="filterClicked(this,'businessCategory')">产品</span>
+                        <span onclick="filterClicked(this,'businessCategory')">技术</span>
+                        <span onclick="filterClicked(this,'businessCategory')">管理</span>
+                        <span onclick="filterClicked(this,'businessCategory')">财务</span>
+                        <span onclick="filterClicked(this,'businessCategory')">人事</span>
+                        <span onclick="filterClicked(this,'businessCategory')">生产</span>
+                        <span onclick="filterClicked(this,'businessCategory')">非技术</span>
+                        <span onclick="filterClicked(this,'businessCategory')">领导力</span>
+                        <span onclick="filterClicked(this,'businessCategory')">新能源</span>
+                        <span onclick="filterClicked(this,'businessCategory')">市场营销</span>
+                        <span onclick="filterClicked(this,'businessCategory')">客户关系</span>
+                        <span onclick="filterClicked(this,'businessCategory')">其他</span>
+                    <#elseif jobType=="AUTOBOT">
+                        <span onclick="filterClicked(this,'businessCategory')">内训</span>
+                        <span onclick="filterClicked(this,'businessCategory')">销售市场</span>
+                        <span onclick="filterClicked(this,'businessCategory')">售后客服</span>
+                        <span onclick="filterClicked(this,'businessCategory')">高级管理</span>
+                        <span onclick="filterClicked(this,'businessCategory')">人事财务</span>
+                        <span onclick="filterClicked(this,'businessCategory')">生产研发</span>
+                    </#if>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -77,6 +88,9 @@
             <div class="filterType">
                 <div class="filterName">工作经验:</div>
                 <div class="filterItemList">
+                    <#if jobType=="AUTOBOT">
+                        <span onclick="filter2Clicked(this, 'workExperience')">应届毕业生</span>
+                    </#if>
                     <span onclick="filter2Clicked(this, 'workExperience')">5年内</span>
                     <span onclick="filter2Clicked(this, 'workExperience')">5-10年</span>
                     <span onclick="filter2Clicked(this, 'workExperience')">10-15年</span>

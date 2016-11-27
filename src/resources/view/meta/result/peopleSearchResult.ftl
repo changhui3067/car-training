@@ -3,7 +3,7 @@
     <ul>
         <#list peopleList as t>
             <li class="oneBox">
-                <#if t?? ??>
+                <#if t??>
                     <div class="picContainer">
                         <#if t.loginUser.type=='TRAINER'>
                         <a href="/website/trainerDetail?trainerId=${t.id!}">

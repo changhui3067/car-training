@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <title>培聘网</title>
+    <link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/pxshi.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/iconfont.css" type="text/css"/>
@@ -26,12 +27,14 @@
                     <span onclick="filterClicked(this,'businessCategory')">技术</span>
                     <span onclick="filterClicked(this,'businessCategory')">管理</span>
                     <span onclick="filterClicked(this,'businessCategory')">财务</span>
-                    <span onclick="filterClicked(this,'businessCategory')">市场营销</span>
-                    <span onclick="filterClicked(this,'businessCategory')">客户关系</span>
                     <span onclick="filterClicked(this,'businessCategory')">人事</span>
                     <span onclick="filterClicked(this,'businessCategory')">生产</span>
+                    <span onclick="filterClicked(this,'businessCategory')">非技术</span>
                     <span onclick="filterClicked(this,'businessCategory')">领导力</span>
                     <span onclick="filterClicked(this,'businessCategory')">新能源</span>
+                    <span onclick="filterClicked(this,'businessCategory')">市场营销</span>
+                    <span onclick="filterClicked(this,'businessCategory')">客户关系</span>
+                    <span onclick="filterClicked(this,'businessCategory')">其他</span>
                 </div>
                 <div class="clear"></div>
             </div>

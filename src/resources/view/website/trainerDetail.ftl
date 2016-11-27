@@ -82,7 +82,7 @@
         </div>
         <div class="ny_pxshi_r right">
             <div class="people_comments people_other_info_bar">
-                <h4>学员评价</h4>
+                <h4>评论列表</h4>
                 <div class="people_comments_list">
                     <#include "/resources/view/meta/result/commentListResult.ftl">
                 </div>

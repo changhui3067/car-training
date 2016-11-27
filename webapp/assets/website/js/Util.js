@@ -1,8 +1,5 @@
-
 if('undefined' == typeof window.Util) {
-	(function() {
-		window.Util = (function() {
-			return {
+		window.Util =  {
 				/**
                      * Send the ajax request
                      * 
@@ -56,13 +53,13 @@ if('undefined' == typeof window.Util) {
                      * Util.msgToast({
                      *     message: string,   //MUST, the message to show
                      *     duration: number,  //OPTIONAL
-                     *     mode: string,      //OPTIONAL, INFO/SUCCESS/ERROR
+                     *     mode: Util.MSGTYPE,      //OPTIONAL
                      * });
                      */
 				msgToast: function(options){
 					var defaults = {
             			message: 'This is a toast notification!',
-            			duration: 1000,
+            			duration: 2000,
             			mode: 'INFO'
         			};
 					var settings = $.extend({}, defaults, options);
@@ -79,16 +76,24 @@ if('undefined' == typeof window.Util) {
 							spanClass += 'alert-info';
 					}
 
-					var _toastBox = document.createElement('div').addStyleClass('toastBox'); //div should have style text-align:center
-					jQuery('<span/>',{text: settings.message}).addStyleClass(spanClass).appendTo(_toastBox);
-					jQuery('body').appendChild(_toastBox);
+                    //var _toastBox = document.createElement('div'); //div should have style text-align:center
+                    //_toastBox.className = "toastBox";
+                    var _toastBox=$('<div></div>').attr('id', 'msgToast').addClass('toastBox');
+                    jQuery('<span/>',{text: settings.message}).addClass(spanClass).appendTo(_toastBox);
+                    document.body.appendChild(_toastBox[0]);
 
-        			$(self).fadeIn(400);
+                    var fadeTime = 500;
+        			$('#msgToast').fadeIn(fadeTime);
         			setTimeout(function () {
-            			$(self).fadeOut(400);
-        			}, settings.duration);
+            			$('#msgToast').fadeOut(fadeTime);
+                        setTimeout(function(){$('#msgToast').remove()},fadeTime);
+                    }, settings.duration);
 				}
 			}
-		})
-	})
+}
+
+Util.MSGTYPE = {
+    INFO: 'INFO',
+    SUCCESS: 'SUCCESS',
+    ERROR: 'ERROR'
 }

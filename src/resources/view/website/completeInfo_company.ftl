@@ -55,12 +55,11 @@
                                                 style="color: red">*</span>
                                           经营范围:</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="businessRange">
-                                                <option>汽车</option>
-                                                <option>培训</option>
-                                                <option>销售</option>
-                                            </select>
-                                        </div>
+                                            <input type="text" class="form-control"
+                                               placeholder="请输入公司经营范围"
+                                               name="businessRange"
+                                               value="<#if companyInfo?? && companyInfo.businessRange??>${companyInfo.businessRange!}</#if>"/>
+                                    </div>
                                     </div>
                                 </li>
 
@@ -117,21 +116,25 @@
                                             style="color: red">*</span>
                                         公司福利:</label>
                                     <div class="col-sm-9">
-                                        <#--<input type="hidden" name="welfare" value="No"/>-->
-                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("工作餐")!=-1>checked</#if>"-->
-                                              <#--value="销售" onclick="categoryClicked(this)">工作餐</span>-->
-                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("五险一金")!=-1>checked</#if>"-->
-                                              <#--value="售后" onclick="categoryClicked(this)">五险一金</span>-->
-                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("免费班车")!=-1>checked</#if>"-->
-                                              <#--value="客服" onclick="categoryClicked(this)">免费班车</span>-->
-                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("股票期权")!=-1>checked</#if>"-->
-                                              <#--value="市场" onclick="categoryClicked(this)">股票期权</span>-->
-                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("带薪休假")!=-1>checked</#if>"-->
-                                              <#--value="管理" onclick="categoryClicked(this)">带薪休假</span>-->
-                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("绩效奖金")!=-1>checked</#if>"-->
-                                              <#--value="内训" onclick="categoryClicked(this)">绩效奖金</span>-->
-                                        <#--<span class="checkBox <#if companyInfo.welfare ? index_of("定期体检")!=-1>checked</#if>"-->
-                                              <#--value="行政" onclick="categoryClicked(this)">定期体检</span>-->
+                                        <input type="hidden" name="welfare" value="No"/>
+                                        <span class="checkBox <#if companyInfo.welfare ? index_of("包吃")!=-1>checked</#if>"
+                                              value="包吃" onclick="categoryClicked(this)">包吃</span>
+                                        <span class="checkBox <#if companyInfo.welfare ? index_of("包住")!=-1>checked</#if>"
+                                              value="包住" onclick="categoryClicked(this)">包住</span>
+                                        <span class="checkBox <#if companyInfo.welfare ? index_of("五险一金")!=-1>checked</#if>"
+                                              value="五险一金" onclick="categoryClicked(this)">五险一金</span>
+                                        <span class="checkBox <#if companyInfo.welfare ? index_of("免费班车")!=-1>checked</#if>"
+                                              value="免费班车" onclick="categoryClicked(this)">免费班车</span>
+                                        <span class="checkBox <#if companyInfo.welfare ? index_of("员工旅游")!=-1>checked</#if>"
+                                              value="员工旅游" onclick="categoryClicked(this)">员工旅游</span>
+                                        <span class="checkBox <#if companyInfo.welfare ? index_of("工作补贴")!=-1>checked</#if>"
+                                              value="工作补贴" onclick="categoryClicked(this)">工作补贴</span>
+                                        <span class="checkBox <#if companyInfo.welfare ? index_of("员工培训")!=-1>checked</#if>"
+                                              value="员工培训" onclick="categoryClicked(this)">员工培训</span>
+                                        <span class="checkBox <#if companyInfo.welfare ? index_of("绩效奖金")!=-1>checked</#if>"
+                                              value="绩效奖金" onclick="categoryClicked(this)">绩效奖金</span>
+                                        <span class="checkBox <#if companyInfo.welfare ? index_of("定期体检")!=-1>checked</#if>"
+                                              value="定期体检" onclick="categoryClicked(this)">定期体检</span>
                                     </div>
                                 </div>
                             </li>
