@@ -20,7 +20,13 @@ public class SimpleAction extends BaseAction {
         this.data = "success";
         return JSON;
     }
-
+    
+    protected String keyValue(String key ,String value) {
+        this.data = new HashMap<String, String>();
+        ((Map) data).put(key, value);
+        return JSON;
+    }
+    
     @Override
     public String execute() throws Exception {
         return redirectToIndex();
@@ -51,10 +57,15 @@ public class SimpleAction extends BaseAction {
     }
 
     @Before(priority = 20)
-    public String validateUser() {
+    public String beforeCheck() {
         if(!needLogin()){
             return null;
+        }else {
+            return validateUser();
         }
+    }
+
+    protected String validateUser(){
         LoginVO loginVO = getLoginVO();
         if (loginVO != null && loginVO.isLoggedIn()) {
             return null;
@@ -62,7 +73,7 @@ public class SimpleAction extends BaseAction {
             return redirectToIndex();
         }
     }
-
+    
     public LoginVO getLoginVO(){
         Object loginVO = getHttpSession().getAttribute("loginVO");
         if(loginVO instanceof LoginVO){
@@ -71,7 +82,12 @@ public class SimpleAction extends BaseAction {
             return null;
         }
     }
-
+    
+    public boolean isloggedIn(){
+        LoginVO loginVO = getLoginVO();
+        return (loginVO !=null) && (loginVO.isLoggedIn());
+    }
+    
     protected boolean needLogin(){
         return false;
     }

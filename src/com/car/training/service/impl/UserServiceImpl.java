@@ -57,14 +57,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public boolean updatePassword(String username, String newPassword) {
         Session session = sessionFactory.getCurrentSession();
-
         String hql = "update LoginUser set password = :password where username = :username";
-
         int ret = session.createQuery(hql).setString("password", newPassword)
                 .setString("username", username).executeUpdate();
-
-        session.close();
-
         return ret >= 1;
     }
 
@@ -72,14 +67,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public boolean updatePassword(String username, String oldPassword, String newPassword) {
         Session session = sessionFactory.getCurrentSession();
-
         String hql = "update LoginUser set password = :password where username = :username and password = :oldPassword";
-
         int ret = session.createQuery(hql).setString("password", newPassword)
                 .setString("username", username).setString("oldPassword", oldPassword).executeUpdate();
-
-        session.close();
-
         return ret >= 1;
     }
 }

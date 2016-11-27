@@ -1,7 +1,5 @@
 package com.car.training.utils;
 
-import org.springframework.beans.factory.annotation.Value;
-
 /**
  * Created by bill on 11/20/16.
  */

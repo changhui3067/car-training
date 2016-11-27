@@ -9,16 +9,16 @@
                 <h4 class="modal-title" id="myModalLabel">上传图片</h4>
             </div>
             <div class="modal-body">
-                <input type="file" id="file_input_cropper" inputmode="" accept=".jpeg,.jpg,.png,.bmp" onchange="selectImage(this)">
+                <input type="file" id="file_input_cropper" inputmode="" accept=".jpeg,.jpg,.png,.bmp"
+                       onchange="selectImage(this)">
                 <input type="hidden" id="input_url">
                 <div>
                     <img id="cropperimg" src="/assets/website/images/blank.jpg">
                 </div>
-                <!-- sadjkfj -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" id="save_btn" class="btn btn-primary" onclick="save()">保存</button>
+                <button type="button" id="save_btn" class="btn btn-primary" onclick="cropper_save()">保存</button>
             </div>
         </div>
     </div>
@@ -48,10 +48,11 @@
         }
     }
 
-    function save() {
-        var url = cropper.getCroppedCanvas().toDataURL();
-        $("[name="+  +"]").val(url);
-        $("#"+window.cropper_show_id+"").attr("src", url);
+    function cropper_save() {
+        window.cropper_url = cropper.getCroppedCanvas().toDataURL();
+        window.after_cropper();
+        window.after_cropper = function () {
+        };
         $('#myModal').modal('hide');
     }
 
@@ -69,9 +70,41 @@
         $("#file_input_cropper").val("");
         $("#save_btn").addClass("disabled");
     });
+    window.after_cropper = function () {
+    };
 
-    function setCropper(input_name,show_id) {
-        window.cropper_input_name = input_name;
-        window.cropper_show_id = show_id;
+
+    function addCropperTrigger(jQueryObject, callbackObject) {
+        jQueryObject.on("click", function () {
+            $('#myModal').modal('show');
+            $("#file_input_cropper").val("");
+            $("#save_btn").addClass("disabled");
+            if (!!callbackObject) {
+                window.after_cropper = callbackObject;
+            } else {
+                window.after_cropper = function () {
+                };
+            }
+        });
     }
+
+    addCropperTrigger($("#avatar_btn"), function () {
+        var url = window.cropper_url;
+        $.ajax({
+            url: "/backend/completeInfo/setAvatar",
+            type: "POST",
+            data: {"url": url},
+            error: function () {
+                //network error
+            },
+            success: function (data) {
+                if (!!data.url) {
+                    $("#avatar_show").attr("src",data.url);
+                    //save success toast
+                } else{
+                    //error when saving
+                }
+            }
+        });
+    });
 </script>

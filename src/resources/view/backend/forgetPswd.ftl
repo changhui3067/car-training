@@ -10,25 +10,26 @@
 <div class="main">
     <div class="content">
             <div class="forgetPsd">
-                <div>
+                <h4>找回密码</h4>
+                <div class="border">
                     <div class="form-group row">
                         <label  class="col-sm-2 control-label">账号：</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-8">
                             <input class="form-control text-size" id="username" name="username" placeholder="请输入找回密码的手机号"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 control-label">验证码：</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-5">
                             <input class="form-control text-size" type="vercode" name="vercode" id="vercode" placeholder="请输入密码"/>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                           <input type="button" class="btn btn-default active" value="获取验证码" onClick="sendMsg(this)"></input>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 control-label">新密码：</label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-8">
                             <input class="form-control text-size" type="password" name="password" id="password" placeholder="请输入新密码"/>
                         </div>
                     </div>
@@ -36,8 +37,8 @@
                         <div class="errMsg"></div>
                     </div>
                     <div class="form-group row" id="submit">
-                        <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-info" onClick="resetPsd()">提  交</button>
+                        <div class="col-sm-offset-4 col-sm-8">
+                          <button type="submit" class="btn btn-primary" onClick="resetPsd()">提  交</button>
                         </div>
                     </div>
                 </div>

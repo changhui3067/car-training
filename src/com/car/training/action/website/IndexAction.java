@@ -113,19 +113,19 @@ public class IndexAction extends SimpleAction {
     private void generateLikeMap(List<Trainer> topTrainers) {
         if (topTrainers != null) {
             for (Trainer trainer : topTrainers) {
-                likeNumberMap.put(trainer, likeService.likeNumber(trainer.getId()));
+                likeNumberMap.put(trainer, likeService.likeNumber(trainer.getLoginUser().getId()));
                 LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
                 if (loginVO != null) {
-                    isLikeMap.put(trainer, likeService.isLike(loginVO.getId(), trainer.getId()));
+                    isLikeMap.put(trainer, likeService.isLike(loginVO.getId(), trainer.getLoginUser().getId()));
                 }
             }
         }
         if (autobotList != null) {
             for (Autobot autobot : autobotList) {
-                likeNumberMap.put(autobot, likeService.likeNumber(autobot.getId()));
+                likeNumberMap.put(autobot, likeService.likeNumber(autobot.getLoginUser().getId()));
                 LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
                 if (loginVO != null) {
-                    isLikeMap.put(autobot, likeService.isLike(loginVO.getId(), autobot.getId()));
+                    isLikeMap.put(autobot, likeService.isLike(loginVO.getId(), autobot.getLoginUser().getId()));
                 }
             }
         }
@@ -147,7 +147,7 @@ public class IndexAction extends SimpleAction {
 
         Object loginVO = getHttpSession().getAttribute("loginVO");
         for (Company company : companySet) {
-            guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getId()));
+            guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getLoginUser().getId()));
         }
     }
 

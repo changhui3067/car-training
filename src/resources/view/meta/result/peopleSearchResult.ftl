@@ -23,13 +23,6 @@
                             <div class="clear"></div>
                         </div>
                         <div>${t.currentPosition!}</div>
-                        <div>
-                            <span><i class="iconfont" title="留言多">&#xe756;</i></span>
-                            <span><i class="iconfont" title="资料完整">&#xe69f;</i></span>
-                            <span><i class="iconfont" title="身份信息可靠">&#xe70a;</i></span>
-                            <span><i class="iconfont" title="培训经验超过10年">&#xe735;</i></span>
-                            <span><i class="iconfont" title="行业经验超过20年">&#xe726;</i></span>
-                        </div>
                     </div>
                 </#if>
             </li>

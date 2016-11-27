@@ -142,8 +142,8 @@ public class UserCenterAction extends SimpleAction {
             } else {
                 return errorJSON("user not exist");
             }
-        } else if (oldPassword !=null){
-            if (userService.updatePassword(username,oldPassword, password)) {
+        } else if (oldPassword !=null && isloggedIn()){
+            if (userService.updatePassword(getLoginVO().getUsername(),oldPassword, password)) {
                 return successJSON();
             } else {
                 return errorJSON("wrong password or user not exist");
@@ -151,9 +151,6 @@ public class UserCenterAction extends SimpleAction {
         }else{
             return errorJSON("wrong parameter");
         }
-
-
-
     }
 
     @JsonConfig(root = "data")

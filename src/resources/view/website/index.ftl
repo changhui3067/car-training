@@ -47,34 +47,6 @@
    <div class="content">
      <div class="pxshi_box">
          <h4><span><a href="/website/trainer">更多>></a></span>推荐培训师</h4>
-         <div class="pxshi">
-             <div class="pxshi_l left">
-               <#if trainer?? >
-               <div class="pxshi_l_pic"><a href="/website/trainerDetail?trainerId=${trainer.id!}"><img src="${trainer.personInfo.avatarUrl!}" /></a></div>
-               <div class="pxshi_l_intro">
-                 <div class="pxshi_name">
-                     <div class="xm left">${trainer.personInfo.name!}</div>
-                     <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if trainer.autobotsCommentList??> ${trainer.autobotsCommentList.size!}<#else>0</#if></div>
-                     <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(trainer)>
-                     <div id=${trainer.id!} class="dz right praise" value=${trainer.id!} onClick="like('.pxshi_l .pxshi_l_intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
-                     <#else>
-                     <div id=${trainer.id!} class="dz right praise unLike" value=${trainer.id!} onClick="like('.pxshi_l .pxshi_l_intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(trainer)!}</span></div>
-                     </#if>
-                     <div class="clear"></div>
-                 </div>
-                 <div class="pxshi_zp">${trainer.currentPosition!} </div>
-                 <div class="pxshi_rz">
-                     <ul>
-                         <li><i class="iconfont" title="留言多">&#xe756;</i></li>
-                         <li><i class="iconfont" title="资料完整">&#xe69f;</i></li>
-                         <li><i class="iconfont" title="身份信息可靠">&#xe70a;</i></li>
-                         <li><i class="iconfont" title="培训经验超过10年">&#xe735;</i></li>
-                         <li><i class="iconfont" title="行业经验超过20年">&#xe726;</i></li>
-                     </ul>
-                 </div>
-             </div>
-             </#if>
-         </div>
          <div class="pxshi_r right">
           <#if trainerList??>
           <ul>
@@ -87,32 +59,21 @@
                     <div class="name">${a_trainer.personInfo.name!}</div>
                     <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if a_trainer.autobotsCommentList??> ${a_trainer.autobotsCommentList.size!}<#else>0</#if></div>
                      <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(a_trainer)>
-                     <div id=${a_trainer.id!} class="right praise" value=${a_trainer.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
+                     <div id=${a_trainer.loginUser.id!} class="right praise" value=${a_trainer.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
                      <#else>
-                     <div id=${a_trainer.id!} class="right praise unLike" value=${a_trainer.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
+                     <div id=${a_trainer.loginUser.id!} class="right praise unLike" value=${a_trainer.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
                      </#if>
                     <div class="clear"></div>
                 </div>
                 <div>${a_trainer.currentPosition!} </div>
-                <div>
-              <ul>
-                  <li><span class="iconfont" title="留言多">&#xe756;</span></li>
-                  <li><span class="iconfont" title="资料完整">&#xe69f;</span></li>
-                  <li><span class="iconfont" title="身份信息可靠">&#xe70a;</span></li>
-                  <li><span class="iconfont" title="培训经验超过10年">&#xe735;</span></li>
-                  <li><span class="iconfont" title="行业经验超过20年">&#xe726;</span></li>
-                </ul>
-                </div>
             </div>
             </#if>
         </li>
-
         </#list>
     </ul>
     </#if>
 </div>
 <div class="clear"></div>
-</div>
 </div>
 <div class="pxsheng_box">
  <h4><span><a href="/website/autobot">更多>></a></span>推荐培训生</h4>
@@ -134,12 +95,6 @@
                      <div>${a_autobot.currentPosition!}</div>
                      <div class="clear"></div>
                  </div>
-                 <div>
-                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/hot2.jpg" /></span>
-                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/yrz.jpg" /></span>
-                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/dr.jpg" /></span>
-                     <span><img src="http://obu3flkwk.bkt.clouddn.com/website/images/zs.jpg" /></span>
-                 </div>
              </div>
              </#if>
          </li>
@@ -147,6 +102,7 @@
      </ul>
      </#if>
  </div>
+ <div class="clear"></div>
 </div>
 <div class="pxxq_box">
  <h4><span><a href="/website/recruit/?companyType=COMPANY">更多>></a></span>培训需求</h4>
@@ -313,7 +269,7 @@
 <#include "/assets/website/common/footer.html">
 <script src="<@url value="/assets/website/js/jquery-3.1.1.min.js"/>"></script>
 <script src="<@url value="/assets/website/js/bootstrap.min.js"/>"></script>
-<script src="<@url value="/assets/website/backend/js/common.js"/>"></script>
+<script src="<@url value="/assets/website/js/common.js"/>"></script>
 <script>
 function login(){
     var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则

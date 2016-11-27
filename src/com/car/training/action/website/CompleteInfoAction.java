@@ -70,7 +70,6 @@ public class CompleteInfoAction extends SimpleAction {
         return target;
     }
 
-    @Before(priority = 20)
     public String validateUser() {
         if(!loginVO.isLoggedIn()) {
             return redirectToIndex();
@@ -96,6 +95,11 @@ public class CompleteInfoAction extends SimpleAction {
                 return redirectToIndex();
         }
         return null;
+    }
+
+    @Override
+    protected boolean needLogin() {
+        return true;
     }
 
     public Trainer getTrainer() {

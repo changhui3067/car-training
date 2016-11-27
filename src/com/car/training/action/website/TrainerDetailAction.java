@@ -65,13 +65,13 @@ public class TrainerDetailAction extends SimpleAction {
         if (trainer == null) {
             return redirectToIndex();
         }
-        int tUid = trainer.getPersonInfo().getId();
+        int tUid = trainer.getLoginUser().getId();
         coursesList = coursesService.findByTrainerId(tUid);
-        commentList = commentService.findCommentByTargetUser(trainerId);
-        likeNumber = likeService.likeNumber(trainerId);
+        commentList = commentService.findCommentByTargetUser(tUid);
+        likeNumber = likeService.likeNumber(tUid);
         LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
         if(loginVO !=null){
-            like = likeService.isLike(loginVO.getId(),trainerId);
+            like = likeService.isLike(loginVO.getId(),tUid);
         }
         return SUCCESS;
 //

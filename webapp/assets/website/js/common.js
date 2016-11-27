@@ -1,4 +1,4 @@
-﻿k// JavaScript Document
+﻿// JavaScript Document
 //网站头部导航js切换
 if(document.getElementById("nav")){
 var nav = document.getElementById("nav");
@@ -359,7 +359,7 @@ function addComment (id) {
         number = new Number($("#commentNumber")[0].innerHTML);
     $("#commentNumber")[0].innerHTML = number + 1;
     data["content"] = $("#add_comment").val(),
-        data["targetId"] = id;
+    data["targetId"] = id;
     if (data.content) {
         $.ajax({
             type: "POST",
@@ -369,6 +369,8 @@ function addComment (id) {
                 return false;
             },
             success: function (result) {
+                scrollTo(0,0);
+                $("#add_comment").val('')
                 $(".people_comments_list")[0].innerHTML = result;
                 return true;
             }
@@ -400,3 +402,40 @@ function addNewJob(e) {
         }
     });
 };
+
+function modifyPassword(){
+    var form_data={},
+        errMsg = $(".errMsg")[0];
+    form_data["oldPassword"] = $("#oldpasswd").val(),
+    form_data["password"] = $("#newpasswd").val();
+    var confirmPsd = $("#confirmPsd").val();
+    if(!form_data.oldPassword){
+        errMsg.innerHTML = '请输入原始密码';
+        return false;
+    }
+    if(!form_data.password){
+        errMsg.innerHTML = '请输入新密码';
+        return false;
+    }
+    if(!confirmPsd){
+        errMsg.innerHTML = '请输入确认密码';
+        return false;
+    }
+    if(form_data.password !== confirmPsd){
+        errMsg.innerHTML = '请确认新密码';
+        return false;
+    }
+    
+    $.ajax({
+         type: "POST",
+         url: "/backend/userCenter/resetPassword",
+         data: form_data,
+         error: function(request) {
+             errMsg.innerHTML = "网络出错啦！";
+             return false;
+         },
+         success: function (data) {
+             errMsg.innerHTML = "密码修改成功!";
+         }
+    });
+}
