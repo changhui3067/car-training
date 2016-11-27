@@ -35,7 +35,7 @@
                     <div class="gzdd">
                         <div class="didian left"><#if job.region??>${job.region.fullname!}</#if></div>
                         <div class="didian left">${job.salary!} （元/月）</div>
-                        <div class="fb_sj left">发布日期：${job.createDate?string("yyyy-MM-dd")!}</div>
+                        <div class="fb_sj left">发布日期：<#if job.createDate??>${job.createDate?string("yyyy-MM-dd")!}</#if></div>
                         <div class="clear"></div>
                     </div>
                     <div class="zwyq">
