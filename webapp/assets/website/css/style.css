@@ -12,6 +12,8 @@ a img {border: none;}
 .content {width:1200px;margin: 0 auto;  }
 .left {float:left;}
 .right {float:right;}
+.bgblue {background: #3689b3;}
+.bgred {background: #ff7d00;}
 .mt10 {margin-top:10px;}
 .oh {height:100%;overflow: hidden;}
 .ellipsis {
@@ -303,7 +305,7 @@ button#companyGarantee{
 /*底部信息*/
 .footer{ width:100%; background:url(../images/footer_bg.jpg) repeat-x left top;height:90px; padding-top:40px;}
 
-.bq{ line-height:24px; color:#000; text-align:center;}
+.bq{ line-height:24px; color:#888; text-align:center;}
 
 
 /*freyja add*/
