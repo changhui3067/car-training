@@ -39,22 +39,22 @@
             <div class="filterType">
                 <div class="filterName">工作经验:</div>
                 <div class="filterItemList">
-                    <span onclick="filter2Clicked(this, 'workExperience')">5年内</span>
-                    <span onclick="filter2Clicked(this, 'workExperience')">5-10年</span>
-                    <span onclick="filter2Clicked(this, 'workExperience')">10-15年</span>
-                    <span onclick="filter2Clicked(this, 'workExperience')" >15-20年</span>
-                    <span onclick="filter2Clicked(this, 'workExperience')">20年以上</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')">5年内</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')">5-10年</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')">10-15年</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')" >15-20年</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')">20年以上</span>
                 </div>
                 <div class="clear"></div>
             </div>
             <div class="filterType">
                 <div class="filterName">执行类型:</div>
                 <div class="filterItemList">
-                    <span onclick="filterClicked(this, 'excutionCategory')">开发</span>
-                    <span onclick="filterClicked(this, 'excutionCategory')">培训</span>
-                    <span onclick="filterClicked(this, 'excutionCategory')">辅导</span>
-                    <span onclick="filterClicked(this, 'excutionCategory')">项目管理</span>
-                    <span onclick="filterClicked(this, 'excutionCategory')">经销商托管</span>
+                    <span onclick="filterClicked(this, 'executionCategory')">开发</span>
+                    <span onclick="filterClicked(this, 'executionCategory')">培训</span>
+                    <span onclick="filterClicked(this, 'executionCategory')">辅导</span>
+                    <span onclick="filterClicked(this, 'executionCategory')">项目管理</span>
+                    <span onclick="filterClicked(this, 'executionCategory')">经销商托管</span>
                 </div>
                 <div class="clear"></div>
             </div>

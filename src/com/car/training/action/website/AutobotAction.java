@@ -24,8 +24,8 @@ public class AutobotAction extends BaseAction {
 
     private List<Autobot> peopleList;
 
-    private Set<String> executionCategories;
-    private Set<String> businessCategories;
+    private Set<String> executionCategory;
+    private Set<String> businessCategory;
 
     private String autoYearRange;
     private String keyword;
@@ -35,8 +35,8 @@ public class AutobotAction extends BaseAction {
 
     @Override
     public String execute() throws Exception {
-        peopleList = autobotService.search(businessCategories,executionCategories,-1,Integer.MAX_VALUE,"");
-        totalPage = autobotService.rowCount(businessCategories,executionCategories,-1,Integer.MAX_VALUE,"");
+        peopleList = autobotService.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,"");
+        totalPage = autobotService.rowCount(businessCategory,executionCategory,-1,Integer.MAX_VALUE,"");
         return SUCCESS;
     }
 
@@ -52,9 +52,9 @@ public class AutobotAction extends BaseAction {
             maxAutoYear = Integer.MAX_VALUE;
         }
 
-        peopleList = autobotService.search(businessCategories,executionCategories,minAutoYear,maxAutoYear,keyword,pn);
-        totalPage = autobotService.rowCount(businessCategories,executionCategories,minAutoYear,maxAutoYear,keyword);
-        return SUCCESS;
+        peopleList = autobotService.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword,pn);
+        totalPage = autobotService.rowCount(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
+        return "peopleSearchResult";
     }
 
 
@@ -66,26 +66,19 @@ public class AutobotAction extends BaseAction {
         this.peopleList = peopleList;
     }
 
-    public Set<String> getExecutionCategories() {
-        return executionCategories;
-    }
-
-    public void setExecutionCategories(Set<String> executionCategories) {
-        this.executionCategories = executionCategories;
-    }
-    public void setExecutionCategories(String executionCategories) {
-        this.executionCategories = CategoriesTransformer.transform(executionCategories);
-    }
-    public Set<String> getBusinessCategories() {
-        return businessCategories;
-    }
-
-    public void setBusinessCategories(Set<String> businessCategory) {
-        this.businessCategories = businessCategory;
+    public Set<String> getExecutionCategory() {
+        return executionCategory;
     }
     
-    public void setBusinessCategories(String businessCategory) {
-        this.businessCategories = CategoriesTransformer.transform(businessCategory);
+    public void setExecutionCategory(String executionCategory) {
+        this.executionCategory = CategoriesTransformer.transform(executionCategory);
+    }
+    public Set<String> getBusinessCategory() {
+        return businessCategory;
+    }
+    
+    public void setBusinessCategory(String businessCategory) {
+        this.businessCategory = CategoriesTransformer.transform(businessCategory);
     }
 
     public String getAutoYearRange() {

@@ -46,12 +46,12 @@
             <div class="filterType">
                 <div class="filterName">培训时间:</div>
                 <div class="filterItemList">
-                    <span onclick="filter2Clicked(this, 'workExperience')">应界毕业生</span>
-                    <span onclick="filter2Clicked(this, 'workExperience')">5年内</span>
-                    <span onclick="filter2Clicked(this, 'workExperience')">5-10年</span>
-                    <span onclick="filter2Clicked(this, 'workExperience')">10-15年</span>
-                    <span onclick="filter2Clicked(this, 'workExperience')" >15-20年</span>
-                    <span onclick="filter2Clicked(this, 'workExperience')">20年以上</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')">应界毕业生</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')">5年内</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')">5-10年</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')">10-15年</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')" >15-20年</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')">20年以上</span>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -203,7 +203,7 @@
 
     function sendAjax() {
         console.log(filters);
-        var url  = "/website/trainer/search";
+        var url  = "/website/autobot/search";
         var data_ = {};
         for (var props in filters) {
             if(typeof filters[props] === 'string') {
