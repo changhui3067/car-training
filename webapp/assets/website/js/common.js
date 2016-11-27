@@ -359,7 +359,7 @@ function addComment (id) {
         number = new Number($("#commentNumber")[0].innerHTML);
     $("#commentNumber")[0].innerHTML = number + 1;
     data["content"] = $("#add_comment").val(),
-        data["targetId"] = id;
+    data["targetId"] = id;
     if (data.content) {
         $.ajax({
             type: "POST",
@@ -369,6 +369,8 @@ function addComment (id) {
                 return false;
             },
             success: function (result) {
+                scrollTo(0,0);
+                $("#add_comment").val('')
                 $(".people_comments_list")[0].innerHTML = result;
                 return true;
             }

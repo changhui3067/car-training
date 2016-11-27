@@ -28,9 +28,9 @@
                         <div class="iconbox right alignCenter">
                             <span class="alignCenter"><i class="iconfont" title="评论">&#xe69b;</i><#if commentList??><span id="commentNumber">${commentList.size()!}</span><#else><span id="commentNumber">0</span></#if></span>
                             <#if like?? && like>
-                            <span class="alignCenter" id="trainerDetailLike" value=${trainer.personInfo.id!} onClick="like('',this.id)"><i class="iconfont praise" title="点赞">&#xe717;</i><span>${likeNumber!}</span></span>
+                            <span class="alignCenter" id="trainerDetailLike" value=${trainer.loginUser.id!} onClick="like('',this.id)"><i class="iconfont praise" title="点赞">&#xe717;</i><span>${likeNumber!}</span></span>
                             <#else>
-                            <span class="alignCenter unLike" id="trainerDetailLike" value=${trainer.personInfo.id!} onClick="like('',this.id)"><i class="iconfont praise" title="点赞">&#xe717;</i><span>${likeNumber!}</span></span>
+                            <span class="alignCenter unLike" id="trainerDetailLike" value=${trainer.loginUser.id!} onClick="like('',this.id)"><i class="iconfont praise" title="点赞">&#xe717;</i><span>${likeNumber!}</span></span>
                             </#if>
                         </div>
                         <div class="clear"></div>
@@ -76,7 +76,7 @@
                 <div class="people_other_info_bar"><h4>学员评论</h4></div>
                 <div class="add_comment_box">
                     <textarea id="add_comment"></textarea>
-                    <button id=${trainer.personInfo.id!} class="commonClickButton btn btn-info" onclick="addComment(this.id)">提交</button>
+                    <button id=${trainer.loginUser.id!} class="commonClickButton btn btn-info" onclick="addComment(this.id)">提交</button>
                 </div>
             </div>
         </div>

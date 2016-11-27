@@ -65,7 +65,7 @@ public class TrainerDetailAction extends SimpleAction {
         if (trainer == null) {
             return redirectToIndex();
         }
-        int tUid = trainer.getPersonInfo().getId();
+        int tUid = trainer.getLoginUser().getId();
         coursesList = coursesService.findByTrainerId(tUid);
         commentList = commentService.findCommentByTargetUser(tUid);
         likeNumber = likeService.likeNumber(tUid);
