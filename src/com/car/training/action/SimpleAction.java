@@ -84,7 +84,12 @@ public class SimpleAction extends BaseAction {
             return null;
         }
     }
-
+    
+    public boolean isloggedIn(){
+        LoginVO loginVO = getLoginVO();
+        return (loginVO !=null) && (loginVO.isLoggedIn());
+    }
+    
     protected boolean needLogin(){
         return false;
     }
