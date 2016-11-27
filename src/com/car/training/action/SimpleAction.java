@@ -63,8 +63,6 @@ public class SimpleAction extends BaseAction {
         }else {
             return validateUser();
         }
-        
-        
     }
 
     protected String validateUser(){

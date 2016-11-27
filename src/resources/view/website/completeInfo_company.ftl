@@ -14,7 +14,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
                                                placeholder="请输入企业名称"
-                                               name="uname"
+                                               name="name"
                                                value="<#if companyInfo?? && companyInfo.name??>${companyInfo.name!}</#if>"/>
                                     </div>
                                 </li>
@@ -26,7 +26,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
                                                placeholder="请输入企业拥有的汽车品牌"
-                                               name="uname"
+                                               name="autoBrand"
                                                value="<#if companyInfo?? && companyInfo.autoBrand??>${companyInfo.autoBrand!}</#if>"/>
                                     </div>
                                 </li>
@@ -37,7 +37,7 @@
                                                 style="color: red">*</span>
                                             公司规模:</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="currentWorkStatus">
+                                            <select class="form-control" name="scale">
                                                 <option>50人以下</option>
                                                 <option>50-100人</option>
                                                 <option>101-200人</option>
@@ -55,7 +55,7 @@
                                                 style="color: red">*</span>
                                           经营范围:</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="currentWorkStatus">
+                                            <select class="form-control" name="businessRange">
                                                 <option>汽车</option>
                                                 <option>培训</option>
                                                 <option>销售</option>
@@ -84,7 +84,7 @@
                                             </#list>
                                             </ul>
                                         </div>
-                                        <div class="dropdown" name="uregionId" id="city">
+                                        <div class="dropdown" id="city">
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
@@ -99,11 +99,12 @@
                                             </#list>
                                             </ul>
                                         </div>
+                                        <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${1}</#if>">
                                     </div>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
                                                placeholder="请填入具体地址"
-                                               name="uaddress"
+                                               name="address"
                                                value="<#if companyInfo?? && companyInfo.address??>${companyInfo.address!}</#if>"/>
                                     </div>
                                     <div class="clear"></div>
@@ -116,7 +117,7 @@
                                             style="color: red">*</span>
                                         公司福利:</label>
                                     <div class="col-sm-9">
-                                        <input type="hidden" name="companyInfo.welfare"/>
+                                        <#--<input type="hidden" name="welfare" value="No"/>-->
                                         <#--<span class="checkBox <#if companyInfo.welfare ? index_of("工作餐")!=-1>checked</#if>"-->
                                               <#--value="销售" onclick="categoryClicked(this)">工作餐</span>-->
                                         <#--<span class="checkBox <#if companyInfo.welfare ? index_of("五险一金")!=-1>checked</#if>"-->
@@ -175,6 +176,6 @@
         </div>
     </div>
     <div class="tj">
-        <button type="button" onclick="submitdata()" class="btn btn-primary"/>保存</button>
+        <button type="button" onclick="submitdata()" class="btn btn-primary">保存</button>
     </div>
 </form>

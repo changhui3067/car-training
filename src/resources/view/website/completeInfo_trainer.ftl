@@ -1,9 +1,4 @@
 <form id="form1">
-<!--隐藏域-->
-<input type="hidden" name="trainer.userCenter.personalType" value="TRAINER">
-<input type="hidden" name="trainer.id" value="<#if trainer??>${trainer.id!}</#if>">
-<input type="hidden" name="trainer.userCenter.id" value="<#if trainer?? && trainer.userCenter??>${trainer.userCenter.id!}</#if>">
-<!--隐藏域-->
     <div class="pxshijl">
         <h5>基本信息</h5>
         <div class="pxshijl_box">
@@ -20,7 +15,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
                                                placeholder="请输入姓名"
-                                               name="uname"
+                                               name="name"
                                                value="<#if trainer?? && trainer.personInfo.name??>${trainer.personInfo.name!}</#if>"/>
                                     </div>
                                 </div>
@@ -31,7 +26,7 @@
                                             style="color: red">*</span>
                                         性别:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="ugender">
+                                        <select class="form-control" name="gender">
                                             <option value="男" <#if trainer.personInfo.gender = "男">selected</#if>>男</option>
                                             <option value="女" <#if trainer.personInfo.gender = "女">selected</#if>>女</option>
                                         </select>
@@ -44,7 +39,7 @@
                                             style="color: red">*</span>
                                         出生年月:</label>
                                     <div class="col-sm-9">
-                                        <input type="" class="form-control" name="ubirthday"
+                                        <input type="" class="form-control" name="birthday"
                                                onclick="laydate()"
                                                value="<#if trainer?? && trainer.personInfo.birthday??>${trainer.personInfo.birthday!}</#if>"/>
 									<#--value="<#if trainer?? && trainer.personInfo.birthday??>${trainer.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>-->
@@ -67,7 +62,7 @@
                                             style="color: red">*</span>
                                         邮箱:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="uemail"
+                                        <input type="text" class="form-control" name="email"
                                                placeholder="请输入邮箱"
                                                value="<#if trainer?? && trainer.personInfo.email??>${trainer.personInfo.email!}</#if>"/>
                                     </div>
@@ -79,7 +74,7 @@
                                             style="color: red">*</span>
                                         学历:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="trainer.education"
+                                        <input type="text" class="form-control" name="education"
                                                placeholder="请输入学历"
                                                value="<#if trainer?? && trainer.education??>${trainer.education!}</#if>"/>
                                     </div>
@@ -91,7 +86,7 @@
                                             style="color: red">*</span>
                                         婚姻状况:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="umarryStatus">
+                                        <select class="form-control" name="marriageStatus">
                                             <option value="UNMARRIED" <#if trainer.personInfo.marriageStatus = "未婚">selected</#if>>未婚</option>
                                             <option value="MARRIED" <#if trainer.personInfo.marriageStatus = "已婚">selected</#if>>已婚</option>
                                             <option value="RAISED" <#if trainer.personInfo.marriageStatus = "离异">selected</#if>>离异</option>
@@ -132,7 +127,7 @@
 											</#list>
                                             </ul>
                                         </div>
-                                        <div class="dropdown" name="uregionId" id="city">
+                                        <div class="dropdown" id="city">
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
@@ -170,7 +165,7 @@
                                         视频链接1:</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
-                                               name="trainer.vedioURL1"
+                                               name="videoURL1"
                                                placeholder="请输入视频链接1"
                                                value="<#if trainer?? && trainer.videoUrl1?? >${trainer.videoUrl1!}</#if>"/>
                                     </div>
@@ -183,7 +178,7 @@
                                         视频链接2:</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
-                                               name="trainer.vedioURL2"
+                                               name="videoURL2"
                                                placeholder="请输入视频链接2"
                                                value="<#if trainer?? && trainer.videoUrl2?? >${trainer.videoUrl2!}</#if>"/>
                                     </div>
@@ -194,8 +189,8 @@
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
                                         擅长领域:</label>
-                                    <div class="col-sm-9">
-                                        <input type="hidden" name="trainer.businessCategory"/>
+                                    <div class="col-sm-9 businessCategoryFather">
+                                        <input type="hidden" name="businessCategory"/>
 									<#if trainer ?? && trainer.businessCategory??>
                                         <#--<span class="checkBox <#if trainer.businessCategory ? index_of("Sales")!=-1>checked</#if>"-->
                                         <span class="checkBox <#if trainer.businessCategory ? index_of("销售")!=-1>checked</#if>"
@@ -223,8 +218,8 @@
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
                                         执行类型:</label>
-                                    <div class="col-sm-9">
-                                        <input type="hidden" name="trainer.executionCategory"/>
+                                    <div class="col-sm-9 executionCategoryFather">
+                                        <input type="hidden" name="executionCategory"/>
 									  <#if trainer ?? && trainer.executionCategory??>
                                         <span class="checkBox <#if trainer.executionCategory ? index_of("销售")!=-1>checked</#if>"
                                               value="销售" onclick="categoryClicked(this)">销售</span>
@@ -252,9 +247,6 @@
                                     <button id="avatar_btn" type="button" class="btn btn-primary btn-lg adminPageBtn">
                                         上传照片
                                     </button>
-                                    <div class="col-sm-9">
-                                        <input type="hidden" name="workPhotoURL1">
-                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -267,8 +259,7 @@
     <div class="pxshijl">
         <h5>培训师简介</h5>
         <div class="pxshijl_box">
-                                <textarea style="width:800px;margin-left:15px;resize:none" name="trainer.userCenter.intro"
-                                          id="autobot.authHistroy" cols="45"
+                                <textarea style="width:800px;margin-left:15px;resize:none" name="introduction" cols="45"
                                           rows="5"><#if trainer?? && trainer.introduction??> ${trainer.introduction!}<#else>
                                     请输入培训师简介</#if></textarea>
         </div>

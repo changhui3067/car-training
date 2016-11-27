@@ -62,7 +62,6 @@ public class SaveInfoAction extends SimpleAction {
                 return saveTrainer();
             case COMPANY:
             case STORE:
-                company = companyService.findByLoginUser(loginUser);
                 return saveCompany();
             default:
                 return errorJSON("wrong user type");
@@ -197,7 +196,7 @@ public class SaveInfoAction extends SimpleAction {
     //autobotProps
     private String workingStatus;
     private int autoYears;
-    private String autoBrand;
+//    private String autoBrand;
     private String certRecords;
     private String workingHistory;
     private String currentPosition;
@@ -222,6 +221,8 @@ public class SaveInfoAction extends SimpleAction {
 //  "name",
     private String address;
     //  "region",
+    private String autoBrand;
+    private String businessRange;
     private String logoUrl;
     private String scale;
     private String introduction;
@@ -281,7 +282,9 @@ public class SaveInfoAction extends SimpleAction {
             "region",
             "logoUrl",
             "scale",
+            "autoBrand",
             "introduction",
+            "businessRange",
             "reactTime",
 //            "welfare",
 //            "businessCategory",
@@ -398,5 +401,9 @@ public class SaveInfoAction extends SimpleAction {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public void setBusinessRange(String businessRange) {
+        this.businessRange = businessRange;
     }
 }

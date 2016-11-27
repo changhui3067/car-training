@@ -34,4 +34,5 @@ function selectCity(ele) {
     var regionName = ele.innerHTML;
     $('#city button').val(regionId);
     $('#city button')[0].innerHTML = regionName + '<span class="caret"></span>';
+    $("[name='regionId']").val(regionId);
 }

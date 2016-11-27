@@ -48,9 +48,10 @@ public class Company {
     @Column
     private ReactTime reactTime;
 
-    @JoinColumn(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    @ManyToOne()
-    private Welfare welfare;
+//    @JoinColumn(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+//    @ManyToOne()
+    @Column
+    private String welfare;
 
     @ElementCollection(fetch = FetchType.LAZY)
     private Set<String> businessCategory;
@@ -58,6 +59,12 @@ public class Company {
     @Column
     private String photoUrl;
 
+    @Column
+    private String autoBrand;
+
+    @Column
+    private String businessRange;
+    
     public int getId() {
         return id;
     }
@@ -123,11 +130,11 @@ public class Company {
         this.reactTime = reactTime;
     }
 
-    public Welfare getWelfare() {
+    public String getWelfare() {
         return welfare;
     }
 
-    public void setWelfare(Welfare welfare) {
+    public void setWelfare(String welfare) {
         this.welfare = welfare;
     }
 
@@ -163,4 +170,19 @@ public class Company {
         this.scale = scale;
     }
 
+    public String getAutoBrand() {
+        return autoBrand;
+    }
+
+    public void setAutoBrand(String autoBrand) {
+        this.autoBrand = autoBrand;
+    }
+
+    public String getBusinessRange() {
+        return businessRange;
+    }
+
+    public void setBusinessRange(String businessRange) {
+        this.businessRange = businessRange;
+    }
 }

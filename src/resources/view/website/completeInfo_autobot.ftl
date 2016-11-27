@@ -15,7 +15,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
                                                placeholder="请输入姓名"
-                                               name="uname"
+                                               name="name"
                                                value="<#if autobot?? && autobot.personInfo.name??>${autobot.personInfo.name!}</#if>"/>
                                     </div>
                                 </div>
@@ -26,7 +26,7 @@
                                             style="color: red">*</span>
                                         性别:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="ugender">
+                                        <select class="form-control" name="gender">
                                             <option value="男" <#if autobot.personInfo.gender = "男">selected</#if>>男
                                             </option>
                                             <option value="女" <#if autobot.personInfo.gender = "女">selected</#if>>女
@@ -41,7 +41,7 @@
                                             style="color: red">*</span>
                                         出生年月:</label>
                                     <div class="col-sm-9">
-                                        <input type="" class="form-control" name="ubirthday"
+                                        <input type="" class="form-control" name="birthday"
                                                onclick="laydate()"
                                                value="<#if autobot?? && autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>
                                     </div>
@@ -64,7 +64,7 @@
                                             style="color: red">*</span>
                                         邮箱:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="uemail"
+                                        <input type="text" class="form-control" name="email"
                                                placeholder="请输入邮箱"
                                                value="<#if autobot?? && autobot.personInfo.email??>${autobot.personInfo.email!}</#if>"/>
                                     </div>
@@ -76,7 +76,7 @@
                                             style="color: red">*</span>
                                         工作状态:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="currentWorkStatus">
+                                        <select class="form-control" name="workingStatus">
                                             <option value="在职" <#if autobot.workingStatus = "在职">selected</#if>>在职
                                             </option>
                                             <option value="求职" <#if autobot.workingStatus = "求职">selected</#if>>求职
@@ -91,7 +91,7 @@
                                             style="color: red">*</span>
                                         婚姻状况:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="umarryStatus">
+                                        <select class="form-control" name="marriageStatus">
                                             <option value="UNMARRIED"
                                                     <#if autobot.personInfo.marriageStatus = "未婚">selected</#if>>未婚
                                             </option>
@@ -188,8 +188,8 @@
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
                                         擅长领域:</label>
-                                    <div class="col-sm-9">
-                                        <input type="hidden" name="autobot.businessCategory"/>
+                                    <div class="col-sm-9 businessCategoryFather">
+                                        <input type="hidden" name="businessCategory"/>
                                     <#if autobot ?? && autobot.businessCategory??>
                                     <#--<span class="checkBox <#if autobot.businessCategory ? index_of("Sales")!=-1>checked</#if>"-->
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("销售")!=-1>checked</#if>"
@@ -234,7 +234,7 @@
     <div class="pxshijl">
         <h5>所获认证</h5>
         <div class="pxshijl_box">
-                                <textarea style="width:800px;margin-left:15px;resize:none" name="authHistroy"
+                                <textarea style="width:800px;margin-left:15px;resize:none" name="certRecords"
                                           id="autobot.authHistroy" cols="45"
                                           rows="5"><#if autobot?? && autobot.certRecords??> ${autobot.certRecords!}<#else>
                                     请输入所获认证</#if></textarea>
@@ -243,7 +243,7 @@
     <div class="pxshijl">
         <h5>工作经历</h5>
         <div class="pxshijl_box">
-                                <textarea style="width:800px;margin-left:15px;resize:none" name="workingHistroy"
+                                <textarea style="width:800px;margin-left:15px;resize:none" name="workingHistory"
                                           id="autobot.authHistroy" cols="45"
                                           rows="5"><#if autobot?? && autobot.workingHistory??> ${autobot.workingHistory!}<#else>
                                     请输入工作经历</#if></textarea>
