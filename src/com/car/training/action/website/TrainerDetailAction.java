@@ -67,11 +67,11 @@ public class TrainerDetailAction extends SimpleAction {
         }
         int tUid = trainer.getPersonInfo().getId();
         coursesList = coursesService.findByTrainerId(tUid);
-        commentList = commentService.findCommentByTargetUser(trainerId);
-        likeNumber = likeService.likeNumber(trainerId);
+        commentList = commentService.findCommentByTargetUser(tUid);
+        likeNumber = likeService.likeNumber(tUid);
         LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
         if(loginVO !=null){
-            like = likeService.isLike(loginVO.getId(),trainerId);
+            like = likeService.isLike(loginVO.getId(),tUid);
         }
         return SUCCESS;
 //

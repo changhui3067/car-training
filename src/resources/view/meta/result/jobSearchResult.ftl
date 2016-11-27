@@ -4,7 +4,6 @@
 		<#list jobList as t>
 			<li class="zp_box">
 				<#if t??>
-					<div class="qz"></div>
 					<div class="left zp_box_l">
 						<a href="/website/jobDetail?jobId=${t.id!}">
 							<div class="zw_name">${t.title!}</div>

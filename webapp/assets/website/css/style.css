@@ -174,7 +174,7 @@ button#companyGarantee{
 
 .qcrxq{ padding:5px 0px 0px 15px; height:295px;}
 .pxshi{ padding:5px 0px 0px 15px;}
-.pxsheng{ padding:5px 0px 0px 15px; height:280px;}
+.pxsheng{ padding:5px 0px 0px 20px;}
 .pxxq{ padding:5px 0px 0px 15px; height:270px;}
 
 /*培训师_左边大图 will put into index.css file*/
@@ -192,11 +192,8 @@ button#companyGarantee{
 .pxshi_name .pl{font-size:25px;}
 .pl span{ color:#818180;}
 .dz{ padding-left:35px;font-size:25px;}
-
+.pxshi_r{padding: 5px 0px 0px 20px}
 .pxshi_rz li{ display:block; float:left; margin-right:5px; font-size: 25px;}
-
-/*培训师_左边8个缩略图*/
-.pxshi_r{ width:786px;}
 
 /*培训需求*/
 .pxxq li{
@@ -242,7 +239,6 @@ button#companyGarantee{
 	height: 43px;
 	width: 41px;
 }
-.qz { background: url(../images/qz.gif) no-repeat right top;}
 .jz{ background: url(../images/jz.gif) no-repeat right top;}
 
 /*汽车人需求*/

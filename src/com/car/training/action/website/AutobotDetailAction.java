@@ -60,10 +60,10 @@ public class AutobotDetailAction extends SimpleAction {
         }
         int aUid = autobot.getPersonInfo().getId();
         commentList = commentService.findCommentByTargetUser(aUid);
-        likeNumber = likeService.likeNumber(autobotId);
+        likeNumber = likeService.likeNumber(aUid);
         LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
         if(loginVO !=null){
-            like = likeService.isLike(loginVO.getId(),autobotId);
+            like = likeService.isLike(loginVO.getId(),aUid);
         }
 
 //        for (String strId : autobots.getAttentionTrainer().split(",")) {
