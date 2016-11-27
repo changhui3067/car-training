@@ -54,7 +54,7 @@ public class HibernateTrainerDAO implements TrainerDAO {
 
 
     private Criterion getRestriction(String categoryName, Set<String> categories) {
-        if (categories != null) {
+        if (categories != null && categories.size()>0) {
             String sql = "this_.id in (select distinct Trainer_id from Trainer_%s where %s in(%s))";
             StringBuilder sb = new StringBuilder("''");
             for (String category : categories) {

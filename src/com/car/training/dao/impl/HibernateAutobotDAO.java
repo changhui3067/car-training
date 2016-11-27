@@ -53,7 +53,7 @@ public class HibernateAutobotDAO implements AutobotDAO {
     }
 
     private Criterion getRestriction(String categoryName, Set<String> categories) {
-        if (categories == null) {
+        if (categories == null || categories.size() == 0) {
             return Restrictions.and();
         }
         String sql = "this_.id in (select distinct Autobot_id from autobot_%s where %s in(%s))";

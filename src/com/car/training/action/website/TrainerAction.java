@@ -86,10 +86,6 @@ public class TrainerAction extends BaseAction {
     public Set<String> getBusinessCategory() {
         return businessCategory;
     }
-
-    public void setBusinessCategory(Set<String> businessCategory) {
-        this.businessCategory = businessCategory;
-    }
     
     public void setBusinessCategory(String businessCategory) {
         this.businessCategory = CategoriesTransformer.transform(businessCategory);
