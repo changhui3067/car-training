@@ -1,4 +1,4 @@
-﻿k// JavaScript Document
+﻿// JavaScript Document
 //网站头部导航js切换
 if(document.getElementById("nav")){
 var nav = document.getElementById("nav");
@@ -400,3 +400,40 @@ function addNewJob(e) {
         }
     });
 };
+
+function modifyPassword(){
+    var form_data={},
+        errMsg = $(".errMsg")[0];
+    form_data["oldPassword"] = $("#oldpasswd").val(),
+    form_data["password"] = $("#newpasswd").val();
+    var confirmPsd = $("#confirmPsd").val();
+    if(!form_data.oldPassword){
+        errMsg.innerHTML = '请输入原始密码';
+        return false;
+    }
+    if(!form_data.password){
+        errMsg.innerHTML = '请输入新密码';
+        return false;
+    }
+    if(!confirmPsd){
+        errMsg.innerHTML = '请输入确认密码';
+        return false;
+    }
+    if(form_data.password !== confirmPsd){
+        errMsg.innerHTML = '请确认新密码';
+        return false;
+    }
+    
+    $.ajax({
+         type: "POST",
+         url: "/backend/userCenter/resetPassword",
+         data: form_data,
+         error: function(request) {
+             errMsg.innerHTML = "网络出错啦！";
+             return false;
+         },
+         success: function (data) {
+             errMsg.innerHTML = "密码修改成功!";
+         }
+    });
+}

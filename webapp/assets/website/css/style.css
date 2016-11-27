@@ -714,10 +714,10 @@ add our css below
 .forgetPsd {
     height: 450px;
     background:#fff; 
-    padding:120px 200px;
+    padding:80px 200px;
 }
 
-.forgetPsd button {
+.forgetPsd button, #modifyPassword button{
     padding: 5px 20px 5px 20px;
 }
 
@@ -728,6 +728,16 @@ add our css below
 #loginform .forgetPswd {
     padding-bottom: 12px
 }
+
+.border {
+    width: 550px;
+    padding-bottom: 20px;
+    border-top: 1px solid #e7e6eb;
+}
+
+.forgetPsd .border div:nth-child(1) {
+    margin-top: 20px;
+} 
 
 
 
