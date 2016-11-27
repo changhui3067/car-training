@@ -273,55 +273,45 @@
 <script src="/assets/website/js/Util.js"></script>
 <script>
 function login(){
-    var info={
-        message: "this is a info",
-        mode: Util.MSGTYPE.INFO
-    };
 
-    var success = ;
 
-    var err = {
-        message: 'this is a error',
-        mode: Util.MSGTYPE.ERROR
+    var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
+        form_data={},
+        errMsg = $(".errMsg")[0];
+    form_data["username"] = $("#loginform #username").val(),
+    form_data["password"] = $("#loginform #password").val(),
+    form_data["personOrCompany"] = $('input:radio[name="userType"]:checked').val();
+    if(form_data.username == "" || form_data.username == null){
+        errMsg.innerHTML = "请输入用户名";
+        return false;
+    }else if(!phoneReg.test(form_data.username)){
+        errMsg.innerHTML = "手机格式不正确";
+        return false;
     }
-    Util.msgToast({
-        message: 'this is a success',
-        mode: Util.MSGTYPE.SUCCESS
+    if(form_data.password == "" || form_data.password == null){
+        errMsg.innerHTML = "请输入密码";
+        return false;
+    }
+    $.ajax({
+        type: "POST",
+        url: "/backend/UserCenter/login",
+        data: form_data,
+        error: function() {
+            errMsg.innerHTML = "网络出错啦!";
+            return false;
+        },
+        success: function (data) {
+            if (data == 'success') {
+                Util.msgToast({
+                    message: '登陆成功',
+                    mode: Util.MSGTYPE.SUCCESS
+                });
+                window.location = "/website/index";
+            } else {
+                errMsg.innerHTML = data.error;
+            }
+        }
     });
-
-//    var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
-//        form_data={},
-//        errMsg = $(".errMsg")[0];
-//    form_data["username"] = $("#loginform #username").val(),
-//    form_data["password"] = $("#loginform #password").val(),
-//    form_data["personOrCompany"] = $('input:radio[name="userType"]:checked').val();
-//    if(form_data.username == "" || form_data.username == null){
-//        errMsg.innerHTML = "请输入用户名";
-//        return false;
-//    }else if(!phoneReg.test(form_data.username)){
-//        errMsg.innerHTML = "手机格式不正确";
-//        return false;
-//    }
-//    if(form_data.password == "" || form_data.password == null){
-//        errMsg.innerHTML = "请输入密码";
-//        return false;
-//    }
-//    $.ajax({
-//        type: "POST",
-//        url: "/backend/UserCenter/login",
-//        data: form_data,
-//        error: function() {
-//            errMsg.innerHTML = "网络出错啦!";
-//            return false;
-//        },
-//        success: function (data) {
-//            if (data == 'success') {
-//                window.location = "/website/index";
-//            } else {
-//                errMsg.innerHTML = data.error;
-//            }
-//        }
-//    });
 }
 </script>
 </body>
