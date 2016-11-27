@@ -141,25 +141,21 @@
                             <ul class="list-group">
                                 <li class="list-group-item pxshijl_li">
                                     <div class="form-group photo">
-                                        <img id="workPhotoURL1_show" src="${companyInfo.logoUrl!}">
-                                        <button type="button" class="btn btn-primary btn-lg adminPageBtn"
-                                            data-toggle="modal" data-target="#myModal" onclick="setCropper('workPhotoURL1','workPhotoURL1_show')">上传照片</button>
-                                        <div class="col-sm-9">
-                                            <input type="hidden" name="workPhotoURL1">
-                                        </div>
+                                        <img id="logo_show" src="${companyInfo.logoUrl!}">
+                                        <button id="logo_btn" type="button" class="btn btn-primary btn-lg adminPageBtn">
+                                            上传照片
+                                        </button>
                                     </div>
                                 </li>
 
                                 <li class="list-group-item pxshijl_li">
                                     <div class="form-group photo">
-                                        <img id="workPhotoURL2_show" src="${companyInfo.logoUrl!}">
-                                        <button type="button" class="btn btn-primary btn-lg adminPageBtn"
-                                            data-toggle="modal" data-target="#myModal" onclick="setCropper('workPhotoURL2','workPhotoURL2_show')">上传工商营业执照副本</button>
-                                        <div class="col-sm-9">
-                                            <input type="hidden" name="workPhotoURL2">
-                                            <!-- 将有效的工商营业执照副本原件或加盖红色单位公章的复印件拍照或扫描后在此上传，由客服人员认证审核。必须上传与公司名称一致，
+                                        <img id="photo_show" src="${companyInfo.photoUrl!}">
+                                        <button id="photo_btn" type="button"
+                                                class="btn btn-primary btn-lg adminPageBtn">上传工商营业执照副本
+                                        </button>
+                                        <!-- 将有效的工商营业执照副本原件或加盖红色单位公章的复印件拍照或扫描后在此上传，由客服人员认证审核。必须上传与公司名称一致，
 已年检通过的证照。 -->
-                                        </div>
                                     </div>
                                 </li>
                             </ul>

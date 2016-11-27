@@ -2,9 +2,9 @@ package com.car.training.action.backend;
 
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.*;
+import com.car.training.dao.BaseDAO;
 import com.car.training.enums.ReactTime;
 import com.car.training.service.AutobotService;
-import com.car.training.service.CommentService;
 import com.car.training.service.CompanyService;
 import com.car.training.service.TrainerService;
 import com.car.training.utils.BeanOperation;
@@ -12,6 +12,7 @@ import com.car.training.utils.FileUploaderUtil;
 import com.car.training.utils.RegionUtils;
 import com.car.training.vo.LoginVO;
 import org.ironrhino.common.model.Region;
+import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -19,15 +20,14 @@ import org.springframework.util.StringUtils;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by bill on 11/20/16.
  */
+@AutoConfig
 public class SaveInfoAction extends SimpleAction {
 
-    @Autowired
-    private LoginVO loginVO;
+    private LoginVO loginVO = getLoginVO();
 
     @Autowired
     BeanOperation beanOperation;
@@ -47,6 +47,8 @@ public class SaveInfoAction extends SimpleAction {
     @Autowired
     private RegionUtils regionUtils;
 
+    @Autowired
+    private BaseDAO baseDao;
 
     @Override
     @JsonConfig(root = "data")
@@ -55,10 +57,8 @@ public class SaveInfoAction extends SimpleAction {
         loginUser.setId(loginVO.getId());
         switch (loginVO.getUserType()) {
             case AUTOBOT:
-                autobot = autobotService.findByLoginUser(loginUser);
                 return saveAutobot();
             case TRAINER:
-                trainer = trainerService.findByLoginUser(loginUser);
                 return saveTrainer();
             case COMPANY:
             case STORE:
@@ -69,10 +69,58 @@ public class SaveInfoAction extends SimpleAction {
         }
     }
 
+    @JsonConfig(root = "data")
+    public String setAvatar() {
+        PersonInfo personInfo;
+        switch (loginVO.getUserType()) {
+            case AUTOBOT:
+                personInfo = autobot.getPersonInfo();
+                break;
+            case TRAINER:
+                personInfo = trainer.getPersonInfo();
+                break;
+            default:
+                return errorJSON("wrong user type");
+        }
+        String url = fileUploaderUtil.uploadImg(imgData);
+        personInfo.setAvatarUrl(url);
+        baseDao.save(personInfo);
+        return keyValue("url", url);
+    }
+
+    @JsonConfig(root = "data")
+    public String setPhoto() {
+        switch (loginVO.getUserType()) {
+            case COMPANY:
+            case STORE:
+                company = companyService.findByUId(loginVO.getId());
+                String url = fileUploaderUtil.uploadImg(imgData);
+                companyService.updatePhotoUrl(company.getId(),url);
+                return keyValue("url", url);
+            default:
+                return errorJSON("wrong user type");
+        }
+    }
+    
+    @JsonConfig(root = "data")
+    public String setLogo() {
+        switch (loginVO.getUserType()) {
+            case COMPANY:
+            case STORE:
+                company = companyService.findByUId(loginVO.getId());
+                String url = fileUploaderUtil.uploadImg(imgData);
+                companyService.updateLogoUrl(company.getId(),url);
+                return keyValue("url", url);
+            default:
+                return errorJSON("wrong user type");
+        }
+    }
+    
+    
     private String saveAutobot() {
         beanOperation.setValue(this, autobot, autobotProps);
         autobot.setBusinessCategory(getCategories(businessCategory));
-        savePersonInfo(autobot.getPersonInfo());
+        setPersonInfo(autobot.getPersonInfo());
         autobotService.save(autobot);
         return successJSON();
     }
@@ -81,13 +129,12 @@ public class SaveInfoAction extends SimpleAction {
         beanOperation.setValue(this, trainer, trainerProps);
         trainer.setBusinessCategory(getCategories(businessCategory));
         trainer.setExecutionCategory(getCategories(executionCategory));
-        savePersonInfo(trainer.getPersonInfo());
-
+        setPersonInfo(trainer.getPersonInfo());
+        baseDao.save(trainer);
         return successJSON();
     }
 
-    private void savePersonInfo(PersonInfo personInfo) {
-        avatarUrl = fileUploaderUtil.uploadImg(avatarUrl);
+    private void setPersonInfo(PersonInfo personInfo) {
         region = regionUtils.getRegionById(regionId);
         beanOperation.setValue(this, personInfo, personProps);
         personInfo.setBirthday(new Date());
@@ -95,20 +142,50 @@ public class SaveInfoAction extends SimpleAction {
 
     private String saveCompany() {
         logoUrl = fileUploaderUtil.uploadImg(logoUrl);
-        photoUrl =  fileUploaderUtil.uploadImg(photoUrl);
+        photoUrl = fileUploaderUtil.uploadImg(photoUrl);
         region = regionUtils.getRegionById(regionId);
         company.setBusinessCategory(getCategories(businessCategory));
         beanOperation.setValue(this, company, companyProps);
+        baseDao.save(company);
         return successJSON();
     }
 
+    
+    
+    public String validateUser(){
+        if(!loginVO.isLoggedIn()){
+            return errorJSON("not logged in"); 
+        }
+        LoginUser loginUser = new LoginUser();
+        loginUser.setId(loginVO.getId());
+        switch (loginVO.getUserType()) {
+            case AUTOBOT:
+                autobot = autobotService.findByLoginUser(loginUser);
+                break;
+            case TRAINER:
+                trainer = trainerService.findByLoginUser(loginUser);
+                break;
+            case COMPANY:
+            case STORE:
+                company = companyService.findByLoginUser(loginUser);
+                break;
+            default:
+                return errorJSON("wrong user type");
+        }
+        return null;
+    }
+
+    @Override
+    protected boolean needLogin() {
+        return true;
+    }
 
     private Autobot autobot;
     private Trainer trainer;
     private Company company;
 
     //personInfo fields
-    private String avatarUrl;
+    private String imgData;
     private int regionId = -1;
     private Region region;
     private String name;
@@ -134,27 +211,27 @@ public class SaveInfoAction extends SimpleAction {
 //    private String currentPosition;
 //    private String education;
     private String executionCategory;
-//    private String businessCategory;
+    //    private String businessCategory;
 //    private int autoYears;
 //    private String introduction;
     private String mainCourse;
     private String videoUrl1;
     private String videoUrl2;
 
-//companyProps
+    //companyProps
 //  "name",
     private String address;
-//  "region",
+    //  "region",
     private String logoUrl;
     private String scale;
     private String introduction;
     private ReactTime reactTime;
     private Welfare welfare;
-//  "businessCategory",
+    //  "businessCategory",
     private String photoUrl;
 
-    private Set<String> getCategories(String categoryString) {
-        Set<String> categories = new HashSet<>();
+    private HashSet<String> getCategories(String categoryString) {
+        HashSet<String> categories = new HashSet<>();
         if (!StringUtils.isEmpty(categoryString)) {
             Collections.addAll(categories, categoryString.split(","));
         }
@@ -189,7 +266,7 @@ public class SaveInfoAction extends SimpleAction {
     };
 
     private final static String[] personProps = new String[]{
-            "avatarUrl",
+//            "avatarUrl",
             "region",
             "name",
 //            "birthday",
@@ -211,8 +288,8 @@ public class SaveInfoAction extends SimpleAction {
             "photoUrl",
     };
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public void setImgData(String imgData) {
+        this.imgData = imgData;
     }
 
     public void setRegionId(int regionId) {

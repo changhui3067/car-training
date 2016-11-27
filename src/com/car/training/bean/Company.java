@@ -4,6 +4,7 @@ import com.car.training.enums.ReactTime;
 import org.ironrhino.common.model.Region;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**

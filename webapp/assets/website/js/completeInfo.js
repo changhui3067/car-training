@@ -46,53 +46,6 @@ function submitdata() {
     });
 }
 
-// Picture
-var BLANK_IMG_URL = "/assets/website/images/blank.jpg";
-function showCrop(url) {
-    if (!!window.cropper && !!url) { // reset url
-        cropper.replace(url);
-        $("#save_btn").removeClass("disabled");
-    } else if (!!window.cropper) { //second open reset url
-        cropper.replace(BLANK_IMG_URL);
-    } else {//first open need init
-        var image = document.getElementById('cropperimg');
-        image.src = BLANK_IMG_URL;
-        cropper = new Cropper(image, {
-            aspectRatio: 1,
-            toggleDragModeOnDblclick: false,
-            zoomable: false,
-            movable: false,
-            minCropBoxWidth: 100,
-            minCropBoxHeight: 100,
-            dragMode: 'none',
-            checkCrossOrigin: true,
-            autoCrop: true
-        });
-    }
-}
-
-$("#myModal").on("shown.bs.modal", function () {
-    showCrop();
-    $("#save_btn").addClass("disabled");
-});
-
-function save() {
-    var url = cropper.getCroppedCanvas().toDataURL();
-    $("[name='workPhotoURL1']").val(url);
-    $("#workPhotoURL1_show").attr("src", url);
-    $('#myModal').modal('hide');
-}
-
-function selectImage(file) {
-    if (file.files && file.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (evt) {
-            showCrop(evt.target.result);
-        };
-        reader.readAsDataURL(file.files[0]);
-    }
-}
-
 // function checkform(){
 //     // var name = $("[name='trainer.userCenter.name']").val();
 //     // var education = $("[name='trainer.education']").val();

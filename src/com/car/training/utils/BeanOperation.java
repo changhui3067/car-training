@@ -52,4 +52,15 @@ public class BeanOperation {
             }
         }
     }
+
+    public void setField(Object object,String fieldName , Object value) {
+        Field fromField = null;
+        try {
+            fromField = object.getClass().getDeclaredField(fieldName);
+            fromField.setAccessible(true);
+fromField.set(object,value);
+        } catch (NoSuchFieldException | IllegalAccessException e1) {
+            e1.printStackTrace();
+        }
+    }
 }

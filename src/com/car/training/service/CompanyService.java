@@ -12,4 +12,8 @@ public interface CompanyService {
     Company findByUId(int uid);
 
     Company findByLoginUser(LoginUser loginUser);
+
+    void updateLogoUrl(int companyId, String logoUrl);
+
+    void updatePhotoUrl(int companyId, String url);
 }

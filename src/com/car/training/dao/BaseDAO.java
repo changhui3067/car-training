@@ -5,6 +5,7 @@ package com.car.training.dao;
  */
 
 import org.hibernate.Session;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -24,6 +25,8 @@ public interface BaseDAO {
     Long getTotalCount(Class c);
 
     void save(Object bean);
+
+    void update(Class c, Serializable id, String fieldName, Object newVal);
 
     void delete(Object bean);
 

@@ -27,8 +27,10 @@
                                         性别:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="ugender">
-                                            <option value="男" <#if autobot.personInfo.gender = "男">selected</#if>>男</option>
-                                            <option value="女" <#if autobot.personInfo.gender = "女">selected</#if>>女</option>
+                                            <option value="男" <#if autobot.personInfo.gender = "男">selected</#if>>男
+                                            </option>
+                                            <option value="女" <#if autobot.personInfo.gender = "女">selected</#if>>女
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -41,7 +43,7 @@
                                     <div class="col-sm-9">
                                         <input type="" class="form-control" name="ubirthday"
                                                onclick="laydate()"
-                                        value="<#if autobot?? && autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>
+                                               value="<#if autobot?? && autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -51,7 +53,8 @@
                                             style="color: red">*</span>
                                         联系方式:</label>
                                     <div class="col-sm-9">
-                                           <label class="pxshijl_label"><#if autobot?? && autobot.personInfo.mobile??>${autobot.personInfo.mobile!}</#if><label/>
+                                        <label class="pxshijl_label"><#if autobot?? && autobot.personInfo.mobile??>${autobot.personInfo.mobile!}</#if>
+                                            <label/>
                                     </div>
                                 </div>
                             </li>
@@ -74,8 +77,10 @@
                                         工作状态:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="currentWorkStatus">
-                                            <option value="在职" <#if autobot.workingStatus = "在职">selected</#if>>在职</option>
-                                            <option value="求职" <#if autobot.workingStatus = "求职">selected</#if>>求职</option>
+                                            <option value="在职" <#if autobot.workingStatus = "在职">selected</#if>>在职
+                                            </option>
+                                            <option value="求职" <#if autobot.workingStatus = "求职">selected</#if>>求职
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -87,9 +92,15 @@
                                         婚姻状况:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="umarryStatus">
-                                            <option value="UNMARRIED" <#if autobot.personInfo.marriageStatus = "未婚">selected</#if>>未婚</option>
-                                            <option value="MARRIED" <#if autobot.personInfo.marriageStatus = "已婚">selected</#if>>已婚</option>
-                                            <option value="RAISED" <#if autobot.personInfo.marriageStatus = "离异">selected</#if>>离异</option>
+                                            <option value="UNMARRIED"
+                                                    <#if autobot.personInfo.marriageStatus = "未婚">selected</#if>>未婚
+                                            </option>
+                                            <option value="MARRIED"
+                                                    <#if autobot.personInfo.marriageStatus = "已婚">selected</#if>>已婚
+                                            </option>
+                                            <option value="RAISED"
+                                                    <#if autobot.personInfo.marriageStatus = "离异">selected</#if>>离异
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -117,7 +128,8 @@
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-                                            <#if autobot.personInfo.region.parent?? >${autobot.personInfo.region.parent.name}<#else>请选择省</#if>
+                                            <#if autobot.personInfo.region.parent?? >${autobot.personInfo.region.parent.name}<#else>
+                                                请选择省</#if>
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -131,7 +143,8 @@
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-                                            <#if autobot.personInfo.region?? >${autobot.personInfo.region.name}<#else>请选择市</#if>
+                                            <#if autobot.personInfo.region?? >${autobot.personInfo.region.name}<#else>
+                                                请选择市</#if>
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -155,7 +168,7 @@
                                         <input type="text" class="form-control" name="autoBrand"
                                                placeholder="请输入汽车品牌"
                                                value="<#if autobot?? && autobot.autoBrand?? >${autobot.autoBrand!}</#if>"/>
-                                </div>
+                                    </div>
                                 </div>
                             </li>
                             <li class="list-group-item pxshijl_li">
@@ -178,7 +191,7 @@
                                     <div class="col-sm-9">
                                         <input type="hidden" name="autobot.businessCategory"/>
                                     <#if autobot ?? && autobot.businessCategory??>
-                                        <#--<span class="checkBox <#if autobot.businessCategory ? index_of("Sales")!=-1>checked</#if>"-->
+                                    <#--<span class="checkBox <#if autobot.businessCategory ? index_of("Sales")!=-1>checked</#if>"-->
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("销售")!=-1>checked</#if>"
                                               value="销售" onclick="categoryClicked(this)">销售</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("售后")!=-1>checked</#if>"
@@ -205,14 +218,10 @@
                         <ul class="list-group">
                             <li class="list-group-item pxshijl_li">
                                 <div class="form-group">
-                                    <img id="workPhotoURL1_show" src="${autobot.personInfo.avatarUrl!}">
-                                    <button type="button" class="btn btn-primary btn-lg adminPageBtn"
-                                            data-toggle="modal" data-target="#myModal" onclick="setCropper('workPhotoURL1','workPhotoURL1_show')">
+                                    <img id="avatar_show" src="${autobot.personInfo.avatarUrl!}">
+                                    <button id="avatar_btn" type="button" class="btn btn-primary btn-lg adminPageBtn">
                                         上传照片
                                     </button>
-                                    <div class="col-sm-9">
-                                        <input type="hidden" name="workPhotoURL1">
-                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -244,27 +253,4 @@
         <button type="button" class="btn btn-primary" onclick="submitdata()" style=""/>
         保存</button>
     </div>
-
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">上传图片</h4>
-                </div>
-                <div class="modal-body">
-                    <input type="file" inputmode="" accept=".jpeg,.jpg,.png,.bmp" onchange="selectImage(this)">
-                    <input type="hidden" id="input_url">
-                    <div>
-                        <img id="cropperimg" src="/assets/website/images/blank.jpg">
-                    </div>
-                    <!-- sadjkfj -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" id="save_btn" class="btn btn-primary" onclick="save()">保存</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    

@@ -1,6 +1,7 @@
 package com.car.training.dao.impl;
 
 import com.car.training.dao.BaseDAO;
+import com.car.training.utils.BeanOperation;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -11,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import sun.reflect.Reflection;
 
 import javax.persistence.criteria.CriteriaDelete;
 import java.io.Serializable;
@@ -26,6 +28,7 @@ public class HibernateBaseDAO implements BaseDAO {
     @Autowired
     protected SessionFactory sessionFactory;
 
+    @Autowired BeanOperation beanOperation;
 
 
     /**
@@ -92,6 +95,24 @@ public class HibernateBaseDAO implements BaseDAO {
         }
     }
 
+    
+    
+    @Override
+    @Transactional
+    public void update(Class c, Serializable id, String fieldName, Object newVal) {
+        try {
+            Session session = getNewSession();
+            Object reval = session.get(c, id);
+            beanOperation.setField(reval,fieldName,newVal);
+            session.update(reval);
+            session.flush();
+            session.clear();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * 删除 * * @param bean *
      */
