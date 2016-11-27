@@ -102,6 +102,6 @@
 
 <!-- main结束 -->
 <#include "/assets/website/common/footer.html">
-<script src="<@url value="/assets/website/backend/js/common.js"/>"></script>
+<script src="<@url value="/assets/website/js/common.js"/>"></script>
 </body>
 </html>

@@ -99,7 +99,7 @@
 <!-- main结束 -->
 <#include "/assets/website/common/footer.html">
 
-<script src="/assets/website/backend/js/common.js" type="text/javascript"></script>
+<script src="/assets/website/js/common.js" type="text/javascript"></script>
 </body>
 </html>
 </#escape>
