@@ -53,3 +53,40 @@ function submitdata() {
         }
     });
 }
+
+function submitCompanyInfo() {
+    var businessCategoryValue = '';
+    $('.businessCategoryFather .checked').each(function (index, element) {
+        index != 0 ? businessCategoryValue += "," : null;
+        businessCategoryValue += element.innerHTML;
+    });
+    $("input[name='businessCategory']").val(businessCategoryValue);
+
+    var url = "/backend/saveInfo";
+    var form_data = $("#form1").serialize();
+
+    if (form_data.indexOf('=&') > 0) {
+        $('.errMsg')[0].innerHTML = '必填项不能为空';
+        return;
+    } else {
+        $('.errMsg')[0].innerHTML = '';
+    }
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: form_data,
+        error: function (error) {
+            //alert("网络出错啦！");
+            //return false;
+            Util.msgToast({
+                message: error,
+                mode: Util.MSGTYPE.ERROR
+            });
+        },
+        success: function (data) {
+            alert(data);
+            // window.location.href = "/website/completeInfo";
+        }
+    });
+}

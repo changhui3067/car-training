@@ -64,10 +64,11 @@
                                 </li>
 
                                 <li class="list-group-item pxshijl_li">
-                                <div class="form-group">
+                                <div class="form-group mb0">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
                                         公司地址:</label>
+
                                     <div class="col-sm-9">
                                         <div class="dropdown" id="province">
                                             <button class="btn btn-default dropdown-toggle" type="button"
@@ -78,7 +79,7 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                             <#list provinces as t>
-                                                <li><a href='#' onclick="selectCities(this)"
+                                                <li><a onclick="selectCities(this)"
                                                        value="${t.id!}">${t.name!}</a></li>
                                             </#list>
                                             </ul>
@@ -92,16 +93,13 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                             <#list cities as city>
-                                                <li value="${city.id!}"><a href='#'
-                                                                           onclick="selectCity(this)">${city.name!}</a>
+                                                <li value="${city.id!}"><a onclick="selectCity(this)">${city.name!}</a>
                                                 </li>
                                             </#list>
                                             </ul>
                                         </div>
                                         <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${1}</#if>">
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control"
+                                        <input id="companyAddress" type="text" class="form-control"
                                                placeholder="请填入具体地址"
                                                name="address"
                                                value="<#if companyInfo?? && companyInfo.address??>${companyInfo.address!}</#if>"/>
@@ -110,13 +108,13 @@
                                 </div>
                                 </li>
 
-                                <li class="list-group-item pxshijl_li">
+                                <li class="list-group-item pxshijl_li pt0">
                                 <div class="form-group">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
                                         公司福利:</label>
                                     <div class="col-sm-9">
-                                        <input type="hidden" name="welfare" value="No"/>
+                                        <input type="hidden" name="welfare" value=""/>
                                         <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("包吃")!=-1>checked</#if>"
                                               value="包吃" onclick="categoryClicked(this)">包吃</span>
                                         <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("包住")!=-1>checked</#if>"
@@ -136,6 +134,7 @@
                                         <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("定期体检")!=-1>checked</#if>"
                                               value="定期体检" onclick="categoryClicked(this)">定期体检</span>
                                     </div>
+                                    <div class="clear"></div>
                                 </div>
                             </li>
                             </ul>
@@ -143,24 +142,19 @@
 
                         <div class="col-sm-5">
                             <ul class="list-group">
-                                <li class="list-group-item pxshijl_li">
-                                    <div class="form-group photo">
-                                        <img id="logo_show" src="${companyInfo.logoUrl!}">
-                                        <button id="logo_btn" type="button" class="btn btn-primary btn-lg adminPageBtn">
-                                            上传照片
-                                        </button>
-                                    </div>
+                                <li class="list-group-item pxshijl_li mb0">
+                                    <div class="form-group photo"><img id="logo_show" src="${companyInfo.logoUrl!}"></div>
+                                    <button id="logo_btn" type="button" class="btn btn-primary btn-lg adminPageBtn">
+                                        上传公司LOGO
+                                    </button>
                                 </li>
 
-                                <li class="list-group-item pxshijl_li">
-                                    <div class="form-group photo">
-                                        <img id="photo_show" src="${companyInfo.photoUrl!}">
-                                        <button id="photo_btn" type="button"
-                                                class="btn btn-primary btn-lg adminPageBtn">上传工商营业执照副本
-                                        </button>
-                                        <!-- 将有效的工商营业执照副本原件或加盖红色单位公章的复印件拍照或扫描后在此上传，由客服人员认证审核。必须上传与公司名称一致，
-已年检通过的证照。 -->
-                                    </div>
+                                <li class="list-group-item pxshijl_li mb0">
+                                    <div class="form-group photo"><img id="photo_show" src="${companyInfo.photoUrl!}"></div>
+                    <!-- 将有效的工商营业执照副本原件或加盖红色单位公章的复印件拍照或扫描后在此上传，由客服人员认证审核。必须上传与公司名称一致，已年检通过的证照。 -->
+                                    <button id="photo_btn" type="button"
+                                            class="btn btn-primary btn-lg adminPageBtn">上传工商营业执照副本
+                                    </button>
                                 </li>
                             </ul>
                         </div>
@@ -169,7 +163,7 @@
         </div>
     </div>
 
-    <div class="pxshijl">
+    <div class="pxshijl mt30">
         <h5>企业介绍</h5>
         <div class="pxshijl_box">
             <textarea style="width:800px;margin-left:15px;resize:none" name="introduction"
@@ -179,6 +173,6 @@
         </div>
     </div>
     <div class="tj">
-        <button type="button" onclick="submitdata()" class="btn btn-primary">保存</button>
+        <button type="button" onclick="submitCompanyInfo()" class="btn btn-primary">保存</button>
     </div>
 </form>

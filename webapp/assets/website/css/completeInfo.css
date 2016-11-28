@@ -14,10 +14,9 @@ li.pxshijl_li{ border:none; list-style:none; min-height: 50px; padding-left: 0px
 }
 
 .pxshijl .container .row span.checkBox {
-    height: 30px;
     display: inline-block;
     border: #3689b3 1px solid;
-    padding: 0 5px;
+    padding: 5px 5px;
     margin: 5px;
     color: #000;
     cursor: pointer;
@@ -57,4 +56,20 @@ li.pxshijl_li{ border:none; list-style:none; min-height: 50px; padding-left: 0px
 
 .tj {
     text-align: center;
+}
+
+#companyAddress {
+    margin-top: 10px;
+}
+
+.mb0 {
+    margin-bottom: 0px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.pt0 {
+    padding-top: 0px;
 }
