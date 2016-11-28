@@ -47,7 +47,7 @@
    <div class="content">
      <div class="pxshi_box">
          <h4><span><a href="/website/trainer">更多>></a></span>推荐培训师</h4>
-         <div class="pxshi_r right">
+         <div class="pxshi_r">
           <#if trainerList??>
           <ul>
            <#list trainerList as a_trainer>
@@ -86,10 +86,22 @@
              <div class="picContainer"><a href="/website/autobotDetail?autobotId=${a_autobot.id!}"><img src="${a_autobot.personInfo.avatarUrl!}" /></a></div>
              <div class="intro">
                  <div>
-                     <div class="name">${a_autobot.personInfo.name!}</div>
-                     <div class="right">${likeNumberMap.get(a_autobot)!}人</div>
-                     <div class="right">${a_autobot.autoYears!}年</div>
-                     <div class="clear"></div>
+                 <div class="name">${a_autobot.personInfo.name!}</div>
+                 <div class="left"><i class="iconfont" title="评论">
+                     &#xe69b;</i><#if a_autobot.commentList??> ${a_autobot.commentList.size!}<#else>
+                     0</#if></div>
+                 <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(a_autobot)>
+                     <div id=${a_autobot.loginUser.id!} class="right praise
+                     " value=${a_autobot.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i
+                         class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_autobot)!}</span></div>
+                 <#else>
+                     <div id=${a_autobot.loginUser.id!} class="right praise unLike
+                     " value=${a_autobot.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i
+                         class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_autobot)!}</span></div>
+                 </#if>
+             <#--<div class="right">${likeNumberMap.get(a_autobot)!}人</div>-->
+             <#--<div class="right">${a_autobot.autoYears!}年</div>-->
+                 <div class="clear"></div>
                  </div>
                  <div>
                      <div>${a_autobot.currentPosition!}</div>
