@@ -46,7 +46,7 @@ button#companyGarantee{
 .nav li.cn a,.nav li.cn a:hover{ display:block;width:95px; font-weight:700;height:50px;color:#ffffff;background:#3689b3;}
 
 .dl_tel{ width:170px;height:50px;line-height:50px; color:#fff; text-align:right;}
-.dl_top{ width:120px; padding-left:15px;height:50px;line-height:50px;}
+.dl_top{ width:120px; padding-left:0px;height:50px;line-height:50px;}
 .dl_top li{ display:block; float:left; width:60px; text-align:center; background:url(../images/line.jpg) no-repeat left center; height:50px; line-height:50px; color:#a0a0a0; font-size:12px;}
 .dl_top li a{color:#a0a0a0;}
 .dl_top li a:hover{ color:#fff;}
