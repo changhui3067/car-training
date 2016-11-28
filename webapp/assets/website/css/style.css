@@ -15,6 +15,7 @@ a img {border: none;}
 .bgblue {background: #3689b3;}
 .bgred {background: #ff7d00;}
 .mt10 {margin-top:10px;}
+.mb0 {margin-bottom: 0px;}
 .oh {height:100%;overflow: hidden;}
 .ellipsis {
     width: 100%;
@@ -59,10 +60,10 @@ button#companyGarantee{
 .zc_l{ width:850px; border-right:1px solid #e7e6eb;}
 
 
-.links {width:820px;border:1px solid #ddd;margin-top:10px;}
-.linksTop {height:32px;line-height:32px;background:url(http://obu3flkwk.bkt.clouddn.com/website/images/bg06.gif) repeat-x;border-bottom:1px solid #ddd;}
+.links {width:820px;border:1px solid #ddd;}
+.linksTop {height:45px;line-height:45px;border-bottom:1px solid #ddd;}
 .linksTop li {display:inline;float:left;padding:0 20px;font-size:14px;cursor:pointer;}
-.linksTop li.cn {background:url(http://obu3flkwk.bkt.clouddn.com/website/images/bg09.gif) repeat-x;color:#fff;}
+.linksTop li.cn {background: #3689b3;color:#fff;}
 .linksmain {height:100%;overflow:hidden; padding:50px 20px;}
 .linksmain li {display:inline;float:left;width:158px;}
 

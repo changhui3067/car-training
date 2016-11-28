@@ -21,7 +21,7 @@
     	<div class="zc_l left">
         	<div class="links">
 		<div class="linksTop">
-			<ul id="tags1">
+			<ul id="tags1" class="mb0">
 				<li class="cn" onclick="selectTag('item_con_0',this)">个人注册</li>
 				<li onclick="selectTag('item_con_1',this)">企业注册</li>
 			</ul>
