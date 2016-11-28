@@ -37,7 +37,7 @@
                                                 style="color: red">*</span>
                                             公司规模:</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="scale">
+                                            <select class="form-control" name="scale" value="<#if companyInfo?? && companyInfo.scale??>${companyInfo.scale!}</#if>">
                                                 <option>50人以下</option>
                                                 <option>50-100人</option>
                                                 <option>101-200人</option>
