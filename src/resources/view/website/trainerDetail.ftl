@@ -65,6 +65,20 @@
             </div>
 
             <div class="people_other_info_box">
+                <div class="people_other_info_bar"><h4>个人介绍</h4></div>
+                <div class="people_other_info_list">
+                ${trainer.introduction!}
+                </div>
+            </div>
+
+            <div class="people_other_info_box">
+                <div class="people_other_info_bar"><h4>课程介绍</h4></div>
+                <div class="people_other_info_list">
+                ${trainer.mainCourse!}
+                </div>
+            </div>
+
+            <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>视频链接</h4></div>
                 <div class="people_other_info_video">
                     <embed src="${trainer.videoUrl1!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />

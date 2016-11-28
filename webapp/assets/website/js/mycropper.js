@@ -99,14 +99,23 @@ function addCropperTrigger(element_query, post_url, img_query) {
                     type: "POST",
                     data: {"imgData": url},
                     error: function () {
-                        //network error
+                        Util.msgToast({
+                            message: '网络出错！',
+                            mode: Util.MSGTYPE.ERROR
+                        });
                     },
                     success: function (data) {
                         if (!!data.url) {
                             $(img_query).attr("src", data.url);
-                            //save success toast
+                            Util.msgToast({
+                                message: '保存成功！',
+                                mode: Util.MSGTYPE.SUCCESS
+                            });
                         } else {
-                            //error when saving
+                            Util.msgToast({
+                                message: '保存失败！',
+                                mode: Util.MSGTYPE.ERROR
+                            });
                         }
                     }
                 });

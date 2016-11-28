@@ -35,7 +35,8 @@
 <script src="/assets/website/js/laydate.js" type="text/javascript"></script>
 <script src="/assets/website/js/common.js" type="text/javascript"></script>
 <script src="/assets/website/js/Util.js" type="text/javascript"></script>
-<#include "/assets/website/common/mycropper.html">
+<script src="/assets/website/js/cropper.js" type="text/javascript"></script>
+<script src="/assets/website/js/mycropper.js" type="text/javascript"></script>
 
 </body>
 </html>

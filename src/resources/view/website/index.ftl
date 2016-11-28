@@ -47,7 +47,7 @@
    <div class="content">
      <div class="pxshi_box">
          <h4><span><a href="/website/trainer">更多>></a></span>推荐培训师</h4>
-         <div class="pxshi_r right">
+         <div class="pxshi_r">
           <#if trainerList??>
           <ul>
            <#list trainerList as a_trainer>
@@ -76,7 +76,7 @@
 <div class="clear"></div>
 </div>
 <div class="pxsheng_box">
- <h4><span><a href="/website/autobot">更多>></a></span>推荐培训生</h4>
+ <h4><span><a href="/website/autobot">更多>></a></span>推荐汽车人</h4>
  <div class="pxsheng">
      <#if autobotList??>
      <ul>
@@ -86,10 +86,22 @@
              <div class="picContainer"><a href="/website/autobotDetail?autobotId=${a_autobot.id!}"><img src="${a_autobot.personInfo.avatarUrl!}" /></a></div>
              <div class="intro">
                  <div>
-                     <div class="name">${a_autobot.personInfo.name!}</div>
-                     <div class="right">${likeNumberMap.get(a_autobot)!}人</div>
-                     <div class="right">${a_autobot.autoYears!}年</div>
-                     <div class="clear"></div>
+                 <div class="name">${a_autobot.personInfo.name!}</div>
+                 <div class="left"><i class="iconfont" title="评论">
+                     &#xe69b;</i><#if a_autobot.commentList??> ${a_autobot.commentList.size!}<#else>
+                     0</#if></div>
+                 <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(a_autobot)>
+                     <div id=${a_autobot.loginUser.id!} class="right praise
+                     " value=${a_autobot.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i
+                         class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_autobot)!}</span></div>
+                 <#else>
+                     <div id=${a_autobot.loginUser.id!} class="right praise unLike
+                     " value=${a_autobot.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i
+                         class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_autobot)!}</span></div>
+                 </#if>
+             <#--<div class="right">${likeNumberMap.get(a_autobot)!}人</div>-->
+             <#--<div class="right">${a_autobot.autoYears!}年</div>-->
+                 <div class="clear"></div>
                  </div>
                  <div>
                      <div>${a_autobot.currentPosition!}</div>
@@ -105,7 +117,7 @@
  <div class="clear"></div>
 </div>
 <div class="pxxq_box">
- <h4><span><a href="/website/recruit/?companyType=COMPANY">更多>></a></span>培训需求</h4>
+ <h4><span><a href="/website/recruit/?companyType=COMPANY">更多>></a></span>培训师招聘</h4>
  <div class="pxxq">
      <#if trainerJobList??>
      <ul>
@@ -157,7 +169,7 @@
 </div>
 </div>
 <div class="qcrxq_box">
- <h4><span><a href="/website/recruit/?companyType=STORE">更多>></a></span>汽车人需求</h4>
+ <h4><span><a href="/website/recruit/?companyType=STORE">更多>></a></span>汽车人招聘</h4>
  <div class="qcrxq">
      <#if jobsAutobotsList??>
      <ul>
