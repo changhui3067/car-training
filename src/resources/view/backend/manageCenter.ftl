@@ -26,7 +26,7 @@
 	</div>
 	<div class="clear"></div>
 </div>
-<#include "/assets/website/backend/common/footer.html">
+<#include "/assets/website/common/footer.html">
 
 <script src="/assets/website/js/completeInfo.js" type="text/javascript"></script>
 <script src="/assets/website/js/region.js" type="text/javascript"></script>

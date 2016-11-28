@@ -117,23 +117,23 @@
                                         公司福利:</label>
                                     <div class="col-sm-9">
                                         <input type="hidden" name="welfare" value="No"/>
-                                        <span class="checkBox <#if companyInfo.welfare ? index_of("包吃")!=-1>checked</#if>"
+                                        <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("包吃")!=-1>checked</#if>"
                                               value="包吃" onclick="categoryClicked(this)">包吃</span>
-                                        <span class="checkBox <#if companyInfo.welfare ? index_of("包住")!=-1>checked</#if>"
+                                        <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("包住")!=-1>checked</#if>"
                                               value="包住" onclick="categoryClicked(this)">包住</span>
-                                        <span class="checkBox <#if companyInfo.welfare ? index_of("五险一金")!=-1>checked</#if>"
+                                        <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("五险一金")!=-1>checked</#if>"
                                               value="五险一金" onclick="categoryClicked(this)">五险一金</span>
-                                        <span class="checkBox <#if companyInfo.welfare ? index_of("免费班车")!=-1>checked</#if>"
+                                        <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("免费班车")!=-1>checked</#if>"
                                               value="免费班车" onclick="categoryClicked(this)">免费班车</span>
-                                        <span class="checkBox <#if companyInfo.welfare ? index_of("员工旅游")!=-1>checked</#if>"
+                                        <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("员工旅游")!=-1>checked</#if>"
                                               value="员工旅游" onclick="categoryClicked(this)">员工旅游</span>
-                                        <span class="checkBox <#if companyInfo.welfare ? index_of("工作补贴")!=-1>checked</#if>"
+                                        <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("工作补贴")!=-1>checked</#if>"
                                               value="工作补贴" onclick="categoryClicked(this)">工作补贴</span>
-                                        <span class="checkBox <#if companyInfo.welfare ? index_of("员工培训")!=-1>checked</#if>"
+                                        <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("员工培训")!=-1>checked</#if>"
                                               value="员工培训" onclick="categoryClicked(this)">员工培训</span>
-                                        <span class="checkBox <#if companyInfo.welfare ? index_of("绩效奖金")!=-1>checked</#if>"
+                                        <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("绩效奖金")!=-1>checked</#if>"
                                               value="绩效奖金" onclick="categoryClicked(this)">绩效奖金</span>
-                                        <span class="checkBox <#if companyInfo.welfare ? index_of("定期体检")!=-1>checked</#if>"
+                                        <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("定期体检")!=-1>checked</#if>"
                                               value="定期体检" onclick="categoryClicked(this)">定期体检</span>
                                     </div>
                                 </div>
