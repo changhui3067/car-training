@@ -76,7 +76,7 @@
 <div class="clear"></div>
 </div>
 <div class="pxsheng_box">
- <h4><span><a href="/website/autobot">更多>></a></span>推荐培训生</h4>
+ <h4><span><a href="/website/autobot">更多>></a></span>推荐汽车人</h4>
  <div class="pxsheng">
      <#if autobotList??>
      <ul>
@@ -105,7 +105,7 @@
  <div class="clear"></div>
 </div>
 <div class="pxxq_box">
- <h4><span><a href="/website/recruit/?companyType=COMPANY">更多>></a></span>培训需求</h4>
+ <h4><span><a href="/website/recruit/?companyType=COMPANY">更多>></a></span>培训师招聘</h4>
  <div class="pxxq">
      <#if trainerJobList??>
      <ul>
@@ -157,7 +157,7 @@
 </div>
 </div>
 <div class="qcrxq_box">
- <h4><span><a href="/website/recruit/?companyType=STORE">更多>></a></span>汽车人需求</h4>
+ <h4><span><a href="/website/recruit/?companyType=STORE">更多>></a></span>汽车人招聘</h4>
  <div class="qcrxq">
      <#if jobsAutobotsList??>
      <ul>
