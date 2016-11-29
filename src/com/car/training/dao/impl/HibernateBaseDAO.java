@@ -138,7 +138,6 @@ public class HibernateBaseDAO implements BaseDAO {
         }
     }
 
-    @Transactional
     public Object findOne(Class clazz, Map<String, Object> condition) {
         DetachedCriteria dc = DetachedCriteria.forClass(clazz);
         for (String property : condition.keySet()) {

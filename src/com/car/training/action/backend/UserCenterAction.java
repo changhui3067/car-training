@@ -2,8 +2,8 @@ package com.car.training.action.backend;
 
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.*;
-import com.car.training.dao.BaseDAO;
 import com.car.training.enums.UserType;
+import com.car.training.service.SimpleService;
 import com.car.training.service.UserService;
 import com.car.training.sms.SmsManager;
 import com.car.training.sms.SmsTemplate;
@@ -27,7 +27,7 @@ public class UserCenterAction extends SimpleAction {
 
 
     @Autowired
-    private BaseDAO baseDAO;
+    private SimpleService simpleService;
 
     @Autowired
     private SmsManager smsManager;
@@ -111,19 +111,19 @@ public class UserCenterAction extends SimpleAction {
                 Trainer trainer = new Trainer();
                 trainer.setLoginUser(user);
                 trainer.setPersonInfo(personInfo);
-                baseDAO.save(trainer);
+                simpleService.save(trainer);
                 break;
             case AUTOBOT:
                 Autobot autobot = new Autobot();
                 autobot.setLoginUser(user);
                 autobot.setPersonInfo(personInfo);
-                baseDAO.save(autobot);
+                simpleService.save(autobot);
                 break;
             case COMPANY:
             case STORE:
                 Company company = new Company();
                 company.setLoginUser(user);
-                baseDAO.save(company);
+                simpleService.save(company);
                 break;
             default:
                 return errorJSON("wrong user type");

@@ -2,6 +2,7 @@ package com.car.training.service.impl;
 
 import com.car.training.bean.Company;
 import com.car.training.bean.Job;
+import com.car.training.bean.JobLimit;
 import com.car.training.bean.LoginUser;
 import com.car.training.dao.BaseDAO;
 import com.car.training.dao.JobDAO;
@@ -115,8 +116,32 @@ public class JobServiceImpl implements JobService {
 
     @Override
     @Transactional
-    public void save(Job job) {
-        job.setCreateDate(new Date());
-        baseDAO.save(job);
+    public void save(Job job) throws Exception {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("companyId", job.getCompany().getId());
+        JobLimit jobLimit = (JobLimit) baseDAO.findOne(JobLimit.class, params);
+        boolean canPublish;
+        Date date = new Date();
+        if (jobLimit != null) {
+            canPublish = date.compareTo(jobLimit.getVipExpireDate()) < 0 || jobLimit.getMaxPublishJobCount() > jobLimit.getCurrentPublishJobCount();
+        } else {
+            canPublish = true;
+            jobLimit = new JobLimit();
+            jobLimit.setCompanyId(job.getCompany().getId());
+            jobLimit.setCurrentPublishJobCount(0);
+            jobLimit.setMaxPublishJobCount(20);
+            baseDAO.save(jobLimit);
+            jobLimit = (JobLimit) baseDAO.findOne(JobLimit.class, params);
+        }
+        if (canPublish) {
+            job.setCreateDate(new Date());
+            baseDAO.save(job);
+            if (date.compareTo(jobLimit.getVipExpireDate()) >= 0) {
+                jobLimit.setCurrentPublishJobCount(jobLimit.getCurrentPublishJobCount() + 1);
+                baseDAO.save(jobLimit);
+            }
+        } else {
+            throw new Exception("cannot save");
+        }
     }
 }

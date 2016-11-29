@@ -4,24 +4,16 @@ import com.car.training.action.SimpleAction;
 import com.car.training.bean.Autobot;
 import com.car.training.bean.Company;
 import com.car.training.bean.Trainer;
-import com.car.training.dao.BaseDAO;
 import com.car.training.service.AutobotService;
 import com.car.training.service.CompanyService;
 import com.car.training.service.TrainerService;
 import com.car.training.utils.RegionUtils;
 import com.car.training.vo.LoginVO;
-import com.opensymphony.xwork2.interceptor.annotations.Before;
-import org.apache.commons.lang3.StringUtils;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
-import org.ironrhino.core.metadata.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpSession;
-import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Bill on 11/19/2016.

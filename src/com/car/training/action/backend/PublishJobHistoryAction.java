@@ -24,7 +24,7 @@ import java.util.List;
  * Created by freyjachang on 11/19/16.
  */
 @AutoConfig
-public class PublishJobHistoryAction extends BaseAction {
+public class PublishJobHistoryAction extends SimpleAction {
     @Autowired
     private LoginVO loginVO;
 
@@ -75,7 +75,11 @@ public class PublishJobHistoryAction extends BaseAction {
                 job.setType(JobType.AUTOBOT);
                 break;
         }
-        jobService.save(job);
+        try {
+            jobService.save(job);
+        } catch (Exception e){
+            return errorJSON("job count exceed limit ");
+        }
         jobList = jobService.findJobsByTargetCompany();
         generateJobApplyMap();
         return "publishJobHistory";

@@ -2,10 +2,10 @@ package com.car.training.action.backend;
 
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.*;
-import com.car.training.dao.BaseDAO;
 import com.car.training.enums.ReactTime;
 import com.car.training.service.AutobotService;
 import com.car.training.service.CompanyService;
+import com.car.training.service.SimpleService;
 import com.car.training.service.TrainerService;
 import com.car.training.utils.BeanOperation;
 import com.car.training.utils.FileUploaderUtil;
@@ -48,7 +48,7 @@ public class SaveInfoAction extends SimpleAction {
     private RegionUtils regionUtils;
 
     @Autowired
-    private BaseDAO baseDao;
+    private SimpleService simpleService;
 
     @Override
     @JsonConfig(root = "data")
@@ -83,7 +83,7 @@ public class SaveInfoAction extends SimpleAction {
         }
         String url = fileUploaderUtil.uploadImg(imgData);
         personInfo.setAvatarUrl(url);
-        baseDao.save(personInfo);
+        simpleService.save(personInfo);
         return keyValue("url", url);
     }
 
@@ -129,7 +129,7 @@ public class SaveInfoAction extends SimpleAction {
         trainer.setBusinessCategory(getCategories(businessCategory));
         trainer.setExecutionCategory(getCategories(executionCategory));
         setPersonInfo(trainer.getPersonInfo());
-        baseDao.save(trainer);
+        simpleService.save(trainer);
         return successJSON();
     }
 
@@ -145,7 +145,7 @@ public class SaveInfoAction extends SimpleAction {
         region = regionUtils.getRegionById(regionId);
         company.setBusinessCategory(getCategories(businessCategory));
         beanOperation.setValue(this, company, companyProps);
-        baseDao.save(company);
+        simpleService.save(company);
         return successJSON();
     }
 
