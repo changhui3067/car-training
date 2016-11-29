@@ -95,10 +95,12 @@ function like(prix, id) {
 //点赞
 function guarantee(id) {
     var dom = $("#" + id),
+        number = new Number($("#companyGuarateeNumber")[0].innerHTML),
         data = {};
     data["companyId"] = dom[0].getAttribute("value");
     if (dom.hasClass("guarantee")) {
         dom.removeClass("guarantee");
+        $("#companyGuarateeNumber")[0].innerHTML = number - 1;
         $.ajax({
             type: "POST",
             url: "/backend/Guarantee/unGuarantee",
@@ -113,6 +115,7 @@ function guarantee(id) {
         });
     } else {
         dom.addClass("guarantee");
+        $("#companyGuarateeNumber")[0].innerHTML = number + 1;
         $.ajax({
             type: "POST",
             url: "/backend/Guarantee/guarantee",

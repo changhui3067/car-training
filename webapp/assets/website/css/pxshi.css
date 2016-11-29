@@ -145,7 +145,7 @@ span.paddingLeftNull { padding-left: 0!important;}
     color: #000;
 }
 
-.companyNameBox span {
+.companyNameBox span:not("#companyGuarateeNumber") {
 	display: block;
     float: left;
     margin-right: 10px;

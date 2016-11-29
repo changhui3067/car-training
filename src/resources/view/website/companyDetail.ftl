@@ -29,7 +29,7 @@
             <div class="companyNameBox left">
                 <div>
                	    <h1 class="left">${company.name!}</h1>
-                    <div class="right">已有3人担保</div>
+                    <div class="right">已有<span id="companyGuarateeNumber">${personList.size()!}</span>人担保</div>
                     <div class="clear"></div>
                 </div>
                 <div>
