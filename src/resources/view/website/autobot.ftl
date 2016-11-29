@@ -191,7 +191,7 @@
         sendAjax();
     }
 
-    function sendAjax() {
+    function sendAjax(n) {
         console.log(filters);
         var url  = "/website/autobot/search";
         var data_ = {};
@@ -202,6 +202,7 @@
                 data_[props] = filters[props].join(',');
             }
         }
+        data_.pn = !!n ? n : 1;
         $.ajax({
             type: "GET",
             url: url,
@@ -212,12 +213,18 @@
                     mode: Util.MSGTYPE.ERROR
                 });
                 return false;
+                });
             },
             success: function (data) {
-                $('#searchResult')[0].innerHTML = data;
+                if (!!data.pageNo) {
+                    list.resultVO = data;
+                }
             }
         });
     }
+var resultJson = ${resultJson};
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js" type="text/javascript"></script>
+<script type="text/javascript" src="/assets/website/js/peopleSearch.js"></script>
 </body>
 </html>

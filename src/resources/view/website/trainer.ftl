@@ -1,9 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<#escape x as x?html><html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<#escape x as x?html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-<title>培聘网</title>
+    <title>培聘网</title>
     <link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/website/css/pxshi.css" type="text/css"/>
@@ -11,9 +13,9 @@
 </head>
 
 <body>
-<!-- 头部开始 -->	
-<#include "/assets/website/common/header.html">
-<!-- 头部结束 -->	
+<!-- 头部开始 -->
+    <#include "/assets/website/common/header.html">
+<!-- 头部结束 -->
 
 <!-- main开始 -->
 <div class="content">
@@ -45,7 +47,7 @@
                     <span onclick="filter2Clicked(this, 'autoYears')">5年内</span>
                     <span onclick="filter2Clicked(this, 'autoYears')">5-10年</span>
                     <span onclick="filter2Clicked(this, 'autoYears')">10-15年</span>
-                    <span onclick="filter2Clicked(this, 'autoYears')" >15-20年</span>
+                    <span onclick="filter2Clicked(this, 'autoYears')">15-20年</span>
                     <span onclick="filter2Clicked(this, 'autoYears')">20年以上</span>
                 </div>
                 <div class="clear"></div>
@@ -64,7 +66,7 @@
             <div class="filterType">
                 <div class="filterName">关键字:</div>
                 <div class="filterItemList">
-                    <input type="text" id="search_input"  placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" />
+                    <input type="text" id="search_input" placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场"/>
                     <button onclick="searchBtnClick()">搜索</button>
                 </div>
                 <div class="clear"></div>
@@ -76,20 +78,24 @@
         </div>
     </div>
 </div>
-    
+
 <!-- main结束 -->
-<#include "/assets/website/common/footer.html">
+    <#include "/assets/website/common/footer.html">
 
 <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
+<<<<<<< 139a2b292ecacced34bbffb0d67c91ce7c60f388
 <script type="text/javascript" src="/assets/website/js/Util.js"></script>  
+=======
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js" type="text/javascript"></script>
+>>>>>>> trainer and autobot search pagination and refactor
 <script type="text/javascript">
 
 var filters = {};
 
 function filterClicked(ele, category) {
     filters[category] = filters[category] ? filters[category] : [];
-    if($(ele).hasClass('checked')){
+    if ($(ele).hasClass('checked')) {
         $(ele).removeClass('checked');
         filters[category].splice($.inArray(ele.innerHTML), 1);
     } else {
@@ -102,21 +108,26 @@ function filterClicked(ele, category) {
 
 function filter2Clicked(ele, category) {
     filters[category] = filters[category] ? filters[category] : "";
-    if(!$(ele).hasClass('checked')){
+    if (!$(ele).hasClass('checked')) {
         $(ele).addClass('checked').siblings('span').removeClass('checked');
     }
 
-    switch(ele.innerHTML) {
+    switch (ele.innerHTML) {
         case '5年内':
-            filters[category] = "0,5"; break;
+            filters[category] = "0,5";
+            break;
         case '5-10年':
-            filters[category] = "5,10"; break;
+            filters[category] = "5,10";
+            break;
         case '10-15年':
-            filters[category] = "10,15"; break;
+            filters[category] = "10,15";
+            break;
         case '15-20年':
-            filters[category] = "15,20"; break;
+            filters[category] = "15,20";
+            break;
         case '20年以上':
-            filters[category] = "20,100"; break;
+            filters[category] = "20,100";
+            break;
         default:
             break;
     }
@@ -129,17 +140,18 @@ function searchBtnClick() {
     sendAjax();
 }
 
-function sendAjax() {
+function sendAjax(n) {
     console.log(filters);
-    var url  = "/website/trainer/search";
+    var url = "/website/trainer/search";
     var data_ = {};
     for (var props in filters) {
-        if(typeof filters[props] === 'string') {
+        if (typeof filters[props] === 'string') {
             data_[props] = filters[props]
         } else {
             data_[props] = filters[props].join(',');
         }
     }
+    data_.pn = !!n ? n : 1;
     $.ajax({
         type: "GET",
         url: url,
@@ -152,11 +164,15 @@ function sendAjax() {
             return false;
         },
         success: function (data) {
-            $('#searchResult')[0].innerHTML = data;
+            if (!!data.pageNo) {
+                list.resultVO = data;
+            }
         }
     });
 }
+</#escape>
+var resultJson = ${resultJson};
 </script>
+<script type="text/javascript" src="/assets/website/js/peopleSearch.js"></script>
 </body>
 </html>
-</#escape>

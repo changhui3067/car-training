@@ -56,7 +56,7 @@ public class HibernateAutobotDAO implements AutobotDAO {
         if (categories == null || categories.size() == 0) {
             return Restrictions.and();
         }
-        String sql = "this_.id in (select distinct Autobot_id from autobot_%s where %s in(%s))";
+        String sql = "this_.id in (select distinct Autobot_id from Autobot_%s where %s in(%s))";
         StringBuilder sb = new StringBuilder("''");
         for (String category : categories) {
             sb.append(",\"").append(category).append("\"");

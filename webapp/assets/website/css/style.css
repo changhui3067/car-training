@@ -151,6 +151,7 @@ button#companyGarantee{
 .fypage {padding:0px 0px 42px 0px;text-align: center;}
 .fypage span {padding: 5px 10px; background: #fff;border: 1px #ccc solid;margin-left: 5px;color: #777;}
 .fypage a {padding: 5px 10px;background: #3d9ccc;border: 1px #3d9ccc solid;margin-left: 5px;color: #fff;}
+.fypage a.current {padding: 5px 10px;background: #cc725f;margin-left: 5px;color: #fff;}
 .fypage a:hover {color: #fff;}
 
 /*培训师*//*培训生*//*培训需求*//*汽车人需求*/

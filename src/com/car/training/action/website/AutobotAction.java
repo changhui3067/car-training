@@ -1,21 +1,24 @@
 package com.car.training.action.website;
 
 
+import com.car.training.action.SimpleAction;
 import com.car.training.bean.Autobot;
 import com.car.training.service.AutobotService;
 import com.car.training.utils.CategoriesTransformer;
+import com.car.training.utils.PaginationUtil;
+import com.car.training.vo.PersonVO;
+import com.car.training.vo.SearchResult;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import org.ironrhino.core.metadata.AutoConfig;
-import org.ironrhino.core.struts.BaseAction;
+import org.ironrhino.core.metadata.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @AutoConfig
-public class AutobotAction extends BaseAction {
+public class AutobotAction extends SimpleAction {
 
     private static final long serialVersionUID = 4839883380537115435L;
 
@@ -32,14 +35,23 @@ public class AutobotAction extends BaseAction {
 
     private int totalPage;
     private int pn=1;
+    private String resultJson;
 
     @Override
     public String execute() throws Exception {
         peopleList = autobotService.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,"");
-        totalPage = autobotService.rowCount(businessCategory,executionCategory,-1,Integer.MAX_VALUE,"");
+        totalPage = autobotService.rowCount(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword)/ PaginationUtil.DEFAULT_PAGE_SIZE +1;;
+        List<PersonVO> people = PersonVO.fromAutobotList(peopleList);
+        SearchResult searchResult = new SearchResult();
+        searchResult.setList(people);
+        searchResult.setPageCount(totalPage);
+        searchResult.setPageNo(pn);
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        resultJson = ow.writeValueAsString(searchResult);
         return SUCCESS;
     }
 
+    @JsonConfig(root = "data")
     public String search(){
         int minAutoYear;
         int maxAutoYear;
@@ -51,10 +63,15 @@ public class AutobotAction extends BaseAction {
             minAutoYear = -1;
             maxAutoYear = Integer.MAX_VALUE;
         }
-
         peopleList = autobotService.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword,pn);
-        totalPage = autobotService.rowCount(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
-        return "peopleSearchResult";
+        totalPage = autobotService.rowCount(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword)/ PaginationUtil.DEFAULT_PAGE_SIZE +1;;
+        List<PersonVO> people = PersonVO.fromAutobotList(peopleList);
+        SearchResult searchResult = new SearchResult();
+        searchResult.setList(people);
+        searchResult.setPageCount(totalPage);
+        searchResult.setPageNo(pn);
+        setData(searchResult);
+        return JSON;
     }
 
 
@@ -113,5 +130,13 @@ public class AutobotAction extends BaseAction {
 
     public void setPn(int pn) {
         this.pn = pn;
+    }
+
+    public String getResultJson() {
+        return resultJson;
+    }
+
+    public void setResultJson(String resultJson) {
+        this.resultJson = resultJson;
     }
 }
