@@ -245,6 +245,11 @@
                                     </button>
                                 </div>
                             </li>
+                            <li class="list-group-item pxshijl_li trainerVideoExample">
+                                <div class="form-group ">
+                                    <img id="avatar_show" src="/assets/website/images/example.png">
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
