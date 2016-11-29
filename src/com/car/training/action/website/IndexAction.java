@@ -5,6 +5,7 @@ import com.car.training.bean.Autobot;
 import com.car.training.bean.Company;
 import com.car.training.bean.Job;
 import com.car.training.bean.Trainer;
+import com.car.training.service.CommentService;
 import com.car.training.service.GuaranteeService;
 import com.car.training.service.LikeService;
 import com.car.training.service.PromotionService;
@@ -50,9 +51,11 @@ public class IndexAction extends SimpleAction {
     private List<Job> autobotJobList;
     private List<Job> trainerJobList;
 
-    private Company company;
     private GuaranteeService guaranteeService;
     private HashMap<Object, Integer> guaranteeNumberMap = new HashMap<>();
+
+    private CommentService commentService;
+    private HashMap<Object, Integer> commentNumberMap = new HashMap<>();
 
 
 //    /**
@@ -74,26 +77,11 @@ public class IndexAction extends SimpleAction {
     @Override
     public String execute() {
         promotionService.checkUpdate();
-        //首页推荐培训师大图1个
-        List<Trainer> topTrainers = promotionService.getTopTrainer(9);
-
-        if (topTrainers.size() > 0) {
-            trainer = topTrainers.get(0);
-        }
-
-        if (topTrainers.size() > 1) {
-            trainerList = topTrainers.subList(1, topTrainers.size());
-        }
-
-
-        //首页推荐培训师最上顶8位置
-        if (topTrainers.size() > 1) {
-            trainerList = topTrainers.subList(1, topTrainers.size() - 1);
-        }
-
+        //首页推荐培训师10个
+        trainerList = promotionService.getTopTrainer(12);
 
         //首页推荐汽车人5个位置
-        autobotList = promotionService.getTopAutobot(5);
+        autobotList = promotionService.getTopAutobot(12);
 
         //首页培训师需求2个位置
         trainerJobList = promotionService.getTopTrainerJob(4);
@@ -105,27 +93,31 @@ public class IndexAction extends SimpleAction {
 //        topicList = topicService.findListByIndexTopic(6);
 //        //首页推荐公开课列表2个位置
 //        coursesList = coursesService.findByIndexPromoted(true, 2);
-        generateLikeMap(topTrainers);
+        generateLikeAndCommentMap();
         generateGuaranteeMap();
         return SUCCESS;
     }
 
-    private void generateLikeMap(List<Trainer> topTrainers) {
-        if (topTrainers != null) {
-            for (Trainer trainer : topTrainers) {
-                likeNumberMap.put(trainer, likeService.likeNumber(trainer.getLoginUser().getId()));
-                LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
+    private void generateLikeAndCommentMap() {
+        int uid;
+        LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
+        if (trainerList != null) {
+            for (Trainer trainer : trainerList) {
+                uid = trainer.getLoginUser().getId();
+                likeNumberMap.put(trainer, likeService.likeNumber(uid));
+                commentNumberMap.put(trainer, commentService.commentNumber(uid));
                 if (loginVO != null) {
-                    isLikeMap.put(trainer, likeService.isLike(loginVO.getId(), trainer.getLoginUser().getId()));
+                    isLikeMap.put(trainer, likeService.isLike(loginVO.getId(), uid));
                 }
             }
         }
         if (autobotList != null) {
             for (Autobot autobot : autobotList) {
-                likeNumberMap.put(autobot, likeService.likeNumber(autobot.getLoginUser().getId()));
-                LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
+                uid = autobot.getLoginUser().getId();
+                likeNumberMap.put(autobot, likeService.likeNumber(uid));
+                commentNumberMap.put(autobot, commentService.commentNumber(uid));
                 if (loginVO != null) {
-                    isLikeMap.put(autobot, likeService.isLike(loginVO.getId(), autobot.getLoginUser().getId()));
+                    isLikeMap.put(autobot, likeService.isLike(loginVO.getId(), uid));
                 }
             }
         }
@@ -145,7 +137,6 @@ public class IndexAction extends SimpleAction {
             }
         }
 
-        Object loginVO = getHttpSession().getAttribute("loginVO");
         for (Company company : companySet) {
             guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getLoginUser().getId()));
         }
@@ -208,14 +199,6 @@ public class IndexAction extends SimpleAction {
         this.trainerJobList = trainerJobList;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
     public GuaranteeService getGuaranteeService() {
         return guaranteeService;
     }
@@ -230,5 +213,21 @@ public class IndexAction extends SimpleAction {
 
     public void setGuaranteeNumberMap(HashMap<Object, Integer> guaranteeNumberMap) {
         this.guaranteeNumberMap = guaranteeNumberMap;
+    }
+
+    public CommentService getCommentService() {
+        return commentService;
+    }
+
+    public void setCommentService(CommentService commentService) {
+        this.commentService = commentService;
+    }
+
+    public HashMap<Object, Integer> getCommentNumberMap() {
+        return commentNumberMap;
+    }
+
+    public void setCommentNumberMap(HashMap<Object, Integer> commentNumberMap) {
+        this.commentNumberMap = commentNumberMap;
     }
 }

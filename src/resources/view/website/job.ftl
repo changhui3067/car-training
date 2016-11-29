@@ -123,6 +123,7 @@
 <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
 <script src="/assets/website/js/region.js" type="text/javascript"></script>
+<script type="text/javascript" src="/assets/website/js/Util.js"></script>
 
 <script type="text/javascript">
 var filters = {};
@@ -218,7 +219,10 @@ function sendAjax() {
         url: url,
         data: data_,
         error: function(request) {
-            console.log("网络出错啦！");
+            Util.msgToast({
+                message: '请求失败',
+                mode: Util.MSGTYPE.ERROR
+            });
             return false;
         },
         success: function (data) {

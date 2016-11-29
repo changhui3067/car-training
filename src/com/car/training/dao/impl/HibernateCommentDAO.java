@@ -57,7 +57,7 @@ public class HibernateCommentDAO implements CommentDAO {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Comment.class);
         criteria.add( Restrictions.eq("targetUserId", targetUid));
         criteria.setProjection(Projections.rowCount());
-        return (int)criteria.uniqueResult();
+        return Integer.valueOf(criteria.uniqueResult().toString());
     }
 
 

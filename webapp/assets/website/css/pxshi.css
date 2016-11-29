@@ -145,7 +145,7 @@ span.paddingLeftNull { padding-left: 0!important;}
     color: #000;
 }
 
-.companyNameBox span {
+.companyNameBox span:not("#companyGuarateeNumber") {
 	display: block;
     float: left;
     margin-right: 10px;
@@ -160,7 +160,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 .companyBasicInfo {
     padding: 15px;
     background: #fff;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .companyBasicInfoBox {
@@ -351,7 +351,8 @@ span.paddingLeftNull { padding-left: 0!important;}
 
 .zwyq{ }
 .fldy{ padding-top:15px;}
-.zwyq li{ display:block; float:left;height:30px; line-height:30px; font-size:14px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/line2.jpg) no-repeat right center; padding:0px 15px; text-align:center;}
+/*.zwyq li{ display:block; float:left;height:30px; line-height:30px; font-size:14px; background:url(http://obu3flkwk.bkt.clouddn.com/website/images/line2.jpg) no-repeat right center; padding:0px 15px; text-align:center;}*/
+.zwyq li{ display:block; float:left;line-height:30px; font-size:14px; padding:0px 15px; width:230px;}
 .fldy li{ display:block; float:left;height:24px; line-height:24px; color:#3689b3; font-size:12px; border:1px solid #e1f2fa; background:#eef9ff; padding:0px 15px; text-align:center; margin:0px 10px 15px 0px;}
 .fldy ul{ padding-left: 15px;}
 

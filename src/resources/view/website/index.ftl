@@ -57,7 +57,7 @@
               <div class="intro">
                 <div>
                     <div class="name">${a_trainer.personInfo.name!}</div>
-                    <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i><#if a_trainer.autobotsCommentList??> ${a_trainer.autobotsCommentList.size!}<#else>0</#if></div>
+                    <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i>${commentNumberMap.get(a_trainer)}</div>
                      <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(a_trainer)>
                      <div id=${a_trainer.loginUser.id!} class="right praise" value=${a_trainer.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
                      <#else>
@@ -88,19 +88,16 @@
                  <div>
                  <div class="name">${a_autobot.personInfo.name!}</div>
                  <div class="left"><i class="iconfont" title="评论">
-                     &#xe69b;</i><#if a_autobot.commentList??> ${a_autobot.commentList.size!}<#else>
-                     0</#if></div>
+                     &#xe69b;</i>${commentNumberMap.get(a_autobot)}</div>
                  <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(a_autobot)>
                      <div id=${a_autobot.loginUser.id!} class="right praise
-                     " value=${a_autobot.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i
+                     " value=${a_autobot.loginUser.id!} onClick="like('.pxsheng .oneBox .intro',this.id)"><i
                          class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_autobot)!}</span></div>
                  <#else>
                      <div id=${a_autobot.loginUser.id!} class="right praise unLike
-                     " value=${a_autobot.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i
+                     " value=${a_autobot.loginUser.id!} onClick="like('.pxsheng .oneBox .intro',this.id)"><i
                          class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_autobot)!}</span></div>
                  </#if>
-             <#--<div class="right">${likeNumberMap.get(a_autobot)!}人</div>-->
-             <#--<div class="right">${a_autobot.autoYears!}年</div>-->
                  <div class="clear"></div>
                  </div>
                  <div>
@@ -309,15 +306,14 @@ function login(){
         url: "/backend/UserCenter/login",
         data: form_data,
         error: function() {
-            errMsg.innerHTML = "网络出错啦!";
+            Util.msgToast({
+                message: '请求失败',
+                mode: Util.MSGTYPE.ERROR
+            });
             return false;
         },
         success: function (data) {
             if (data == 'success') {
-                Util.msgToast({
-                    message: '登陆成功',
-                    mode: Util.MSGTYPE.SUCCESS
-                });
                 window.location = "/website/index";
             } else {
                 errMsg.innerHTML = data.error;
