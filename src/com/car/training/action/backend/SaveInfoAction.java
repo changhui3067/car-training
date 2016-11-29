@@ -30,7 +30,7 @@ public class SaveInfoAction extends SimpleAction {
     private LoginVO loginVO = getLoginVO();
 
     @Autowired
-    BeanOperation beanOperation;
+    private BeanOperation beanOperation;
 
     @Autowired
     private AutobotService autobotService;
@@ -227,7 +227,7 @@ public class SaveInfoAction extends SimpleAction {
     private String scale;
     private String introduction;
     private ReactTime reactTime;
-    private Welfare welfare;
+    private String welfare;
     //  "businessCategory",
     private String photoUrl;
 
@@ -395,7 +395,7 @@ public class SaveInfoAction extends SimpleAction {
         this.reactTime = ReactTime.valueOf(reactTime);
     }
 
-    public void setWelfare(Welfare welfare) {
+    public void setWelfare(String welfare) {
         this.welfare = welfare;
     }
 
