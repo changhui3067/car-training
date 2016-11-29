@@ -7,7 +7,6 @@ public class SearchResult {
     private int pageCount;
     private int pageNo;
     private Object list;
-    private String urlTemplate;
 
     public int getPageCount() {
         return pageCount;
@@ -31,13 +30,5 @@ public class SearchResult {
 
     public void setList(Object list) {
         this.list = list;
-    }
-
-    public String getUrlTemplate() {
-        return urlTemplate;
-    }
-
-    public void setUrlTemplate(String urlTemplate) {
-        this.urlTemplate = urlTemplate;
     }
 }

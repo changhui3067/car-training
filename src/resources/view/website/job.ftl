@@ -123,7 +123,11 @@
 <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
 <script src="/assets/website/js/region.js" type="text/javascript"></script>
+<<<<<<< 817c34cde30849343e91ce96fd41ab8f90e1ca95
 <script type="text/javascript" src="/assets/website/js/Util.js"></script>
+=======
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js" type="text/javascript"></script>
+>>>>>>> job search with pagination
 
 <script type="text/javascript">
 var filters = {};
@@ -202,7 +206,7 @@ function searchBtnClick() {
     sendAjax();
 }
 
-function sendAjax() {
+function sendAjax(n) {
     console.log(filters);
     var url  = "/website/job/search";
     var data_ = {};
@@ -214,6 +218,7 @@ function sendAjax() {
             data_[props] = filters[props].join(',');
         }
     }
+    data_.pn = !!n ? n : 1;
     $.ajax({
         type: "GET",
         url: url,
@@ -226,10 +231,105 @@ function sendAjax() {
             return false;
         },
         success: function (data) {
-            $('#searchResult')[0].innerHTML = data;
+            if(!!data){
+                list.jobList = data.jobList;
+                list.pageCount = data.pageCount;
+                list.pageNo = data.pageNo;
+            }
+          
         }
     });
 }
+
+var resultVO = ${resultJson};
+var list = new Vue({
+    el: '#jobList',
+    data: {
+        jobList: resultVO.jobList,
+        pageCount: resultVO.pageCount,
+        pageNo: resultVO.pageNo
+    },
+    methods: {
+        getPage: function (n) {
+            sendAjax(n);
+        },
+        specialJump: function (action) {
+            if (!this[action] || !this[action]) {
+                return;
+            }
+            switch (action) {
+                case 'fst':
+                    sendAjax(1);
+                    break;
+                case 'pre':
+                    sendAjax(this.pageNo - 1);
+                    break;
+                case 'nex':
+                    sendAjax(this.pageNo + 1);
+                    break;
+                case 'Lst':
+                    sendAjax(this.pageCount);
+                default:
+                    return;
+            }
+        }
+    },
+    computed: {
+        fst: function () {
+            return this.pageNo != 1;
+        },
+        pre: function () {
+            return this.pageNo > 1;
+        },
+        nex: function () {
+            return this.pageNo < this.pageCount;
+        },
+        Lst: function () {
+            return this.pageNo != this.pageCount;
+        },
+        pages: function () {
+            var totalPage = this.pageCount;
+            var pageNo = this.pageNo;
+            var pages = [];
+            if (totalPage >= 5) {
+                if (pageNo < 3) {
+                    pages = Array.apply(null, Array(5)).map(function (_, i) {
+                        var page = {};
+                        page.no = i + 1;
+                        page.current = page.no == pageNo;
+                        return page;
+                    });
+                } else if (totalPage - pageNo < 3) {
+                    pages = Array.apply(null, Array(5)).map(function (_, i) {
+                        var page = {};
+                        page.no = totalPage - 4 + i;
+                        page.current = page.no == pageNo;
+                        return page;
+                    });
+                } else {
+                    pages = Array.apply(null, Array(5)).map(function (_, i) {
+                        var page = {};
+                        page.no = pageNo - 2 + i;
+                        page.current = page.no == pageNo;
+                        return page;
+                    });
+                }
+            } else {
+                pages = Array.apply(null, Array(totalPage)).map(function (_, i) {
+                    var page = {};
+                    page.no = i + 1;
+                    page.current = page.no == pageNo;
+                    return page;
+                });
+            }
+            return pages;
+        }
+    }
+});
+$(document).ready(function () {
+    $("#jobList").removeClass("hidden");
+});
+
 </script>
 </body>
 
