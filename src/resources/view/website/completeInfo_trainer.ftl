@@ -26,7 +26,7 @@
                                             style="color: red">*</span>
                                         性别:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="gender">
+                                        <select class="form-control" name="gender" value="<#if trainer.personInfo.gender??>${trainer.personInfo.gender}</#if>">
                                             <option value="男" <#if trainer.personInfo.gender = "男">selected</#if>>男</option>
                                             <option value="女" <#if trainer.personInfo.gender = "女">selected</#if>>女</option>
                                         </select>
@@ -100,6 +100,7 @@
                                         目前地区:</label>
                                     <div class="col-sm-9">
                                         <div class="dropdown" id="province">
+                                            <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${1}</#if>">
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
@@ -108,7 +109,7 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 											<#list provinces as t>
-                                                <li><a href='#' onclick="selectCities(this)"
+                                                <li><a href='#' onclick="selectCities(this, false)"
                                                        value="${t.id!}">${t.name!}</a></li>
 											</#list>
                                             </ul>
@@ -171,7 +172,7 @@
                                 </div>
                             </li>
                             <li class="list-group-item pxshijl_li">
-                                <div class="form-group">
+                                <div class="form-group mb0">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
                                         擅长领域:</label>
@@ -207,9 +208,10 @@
                                               value="其他" onclick="categoryClicked(this)">其他</span>
 									</#if>
                                     </div>
+                                    <div class="clear"></div>
                                 </div>
                             </li>
-                            <li class="list-group-item pxshijl_li">
+                            <li class="list-group-item pxshijl_li pt0">
                                 <div class="form-group">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>

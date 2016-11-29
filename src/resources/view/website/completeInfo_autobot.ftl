@@ -26,7 +26,7 @@
                                             style="color: red">*</span>
                                         性别:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="gender">
+                                        <select class="form-control" name="gender" value="<#if autobot.personInfo.gender??>${autobot.personInfo.gender}</#if>">
                                             <option value="男" <#if autobot.personInfo.gender = "男">selected</#if>>男
                                             </option>
                                             <option value="女" <#if autobot.personInfo.gender = "女">selected</#if>>女
@@ -76,7 +76,7 @@
                                             style="color: red">*</span>
                                         工作状态:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="workingStatus">
+                                        <select class="form-control" name="workingStatus" value="<#if autobot.workingStatus??>${autobot.workingStatus}</#if>">
                                             <option value="在职" <#if autobot.workingStatus = "在职">selected</#if>>在职
                                             </option>
                                             <option value="求职" <#if autobot.workingStatus = "求职">selected</#if>>求职
@@ -105,6 +105,7 @@
                                         目前地区:</label>
                                     <div class="col-sm-9">
                                         <div class="dropdown" id="province">
+                                            <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${1}</#if>">
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
@@ -114,7 +115,7 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                             <#list provinces as t>
-                                                <li><a href='#' onclick="selectCities(this)"
+                                                <li><a href='#' onclick="selectCities(this, false)"
                                                        value="${t.id!}">${t.name!}</a></li>
                                             </#list>
                                             </ul>

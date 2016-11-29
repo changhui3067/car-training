@@ -105,6 +105,18 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="inputMajorRequirement" class="col-sm-2 control-label">专业要求</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="majorRequirement" value="" id="inputMajorRequirement" placeholder="请输入数字"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDepartment" class="col-sm-2 control-label">所属部门</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="department" value="" id="inputDepartment" placeholder="请输入数字"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="inputExperienceRequirement" class="col-sm-2 control-label">经验要求</label>
                             <div class="col-sm-10">
                               <input type="text" class="form-control" name="workExperienceRequirement" value="" id="inputExperienceRequirement" placeholder="请输入数字"/>
@@ -113,7 +125,33 @@
                         <div class="form-group">
                             <label for="inputAddress" class="col-sm-2 control-label">工作地点</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="address" id="inputAddress" placeholder=""/>
+                                <div class="dropdown" id="province">
+                                    <button class="btn btn-default dropdown-toggle" type="button"
+                                            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="true">
+                                    <#if userRegion?? >${userRegion.parent.name}<#else>请选择省</#if>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <#list provinces as t>
+                                        <li><a onclick="selectCities(this)" value="${t.id!}">${t.name!}</a></li>
+                                    </#list>
+                                    </ul>
+                                </div>
+                                <div class="dropdown" id="city">
+                                    <button class="btn btn-default dropdown-toggle" type="button"
+                                            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="true">
+                                    <#if userRegion?? >${userRegion.name}<#else>请选择市</#if>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <#list cities as city>
+                                        <li><a onclick="selectCity(this);filter4Clicked(this, 'regionId');" value="${city.id!}">${city.name!}</a></li>
+                                    </#list>
+                                    </ul>
+                                </div>
+                                <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${1}</#if>">
                             </div>
                         </div>
                         <div class="form-group">

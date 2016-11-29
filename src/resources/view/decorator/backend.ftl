@@ -4,7 +4,7 @@
 <head>
 <title><#noescape>${title}</#noescape></title>
 <meta charset="utf-8">
-<link rel="shortcut icon" href="<@url value="/assets/images/favicon.ico"/>" />
+<link rel="shortcut icon" href="<@url value="/assets/website/images/favicon.png"/>" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">

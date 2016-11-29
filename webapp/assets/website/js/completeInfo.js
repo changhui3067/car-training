@@ -20,6 +20,7 @@ function submitdata() {
         businessCategoryValue += element.innerHTML;
     });
     $("input[name='businessCategory']").val(businessCategoryValue);
+
     var executionCategory = '';
     $('.executionCategoryFather .checked').each(function (index, element) {
         index != 0 ? executionCategory += "," : null;
@@ -44,23 +45,28 @@ function submitdata() {
         url: url,
         data: form_data,
         error: function (request) {
-            alert("网络出错啦！");
-            return false;
+            Util.msgToast({
+                message: error,
+                mode: Util.MSGTYPE.ERROR
+            });
         },
         success: function (data) {
-            alert(data);
-            // window.location.href = "/website/completeInfo";
+            //alert(data);
+            Util.msgToast({
+                message: '保存成功',
+                mode: Util.MSGTYPE.SUCCESS
+            });
         }
     });
 }
 
 function submitCompanyInfo() {
-    var businessCategoryValue = '';
-    $('.businessCategoryFather .checked').each(function (index, element) {
-        index != 0 ? businessCategoryValue += "," : null;
-        businessCategoryValue += element.innerHTML;
+    var welfareValue = '';
+    $('.welfareBox .checked').each(function (index, element) {
+        index != 0 ? welfareValue += "," : null;
+        welfareValue += element.innerHTML;
     });
-    $("input[name='businessCategory']").val(businessCategoryValue);
+    $("input[name='welfare']").val(welfareValue);
 
     var url = "/backend/saveInfo";
     var form_data = $("#form1").serialize();
@@ -78,15 +84,22 @@ function submitCompanyInfo() {
         data: form_data,
         error: function (error) {
             //alert("网络出错啦！");
-            //return false;
             Util.msgToast({
                 message: error,
                 mode: Util.MSGTYPE.ERROR
             });
         },
         success: function (data) {
-            alert(data);
-            // window.location.href = "/website/completeInfo";
+            //alert(data);
+            Util.msgToast({
+                message: '保存成功',
+                mode: Util.MSGTYPE.SUCCESS
+            });
         }
     });
+}
+
+
+function filter4Clicked(ele, name) {
+    console.log($('#city button').val());
 }

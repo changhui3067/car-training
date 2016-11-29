@@ -56,7 +56,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <#list provinces as t>
-                            <li ><a href='#' onclick="selectCities(this)" value="${t.id!}">${t.name!}</a></li>
+                            <li ><a href='#' onclick="selectCities(this, true)" value="${t.id!}">${t.name!}</a></li>
                             </#list>
                         </ul>
                     </div>

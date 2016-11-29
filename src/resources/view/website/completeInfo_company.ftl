@@ -79,8 +79,7 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                             <#list provinces as t>
-                                                <li><a onclick="selectCities(this)"
-                                                       value="${t.id!}">${t.name!}</a></li>
+                                                <li><a onclick="selectCities(this, false)" value="${t.id!}">${t.name!}</a></li>
                                             </#list>
                                             </ul>
                                         </div>
@@ -92,10 +91,11 @@
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <#if cities??>
                                             <#list cities as city>
-                                                <li value="${city.id!}"><a onclick="selectCity(this)">${city.name!}</a>
-                                                </li>
+                                                <li><a onclick="selectCity(this);" value="${city.id!}">${city.name!}</a></li>
                                             </#list>
+                                            </#if>
                                             </ul>
                                         </div>
                                         <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${1}</#if>">
@@ -113,7 +113,7 @@
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
                                         公司福利:</label>
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-9 welfareBox">
                                         <input type="hidden" name="welfare" value=""/>
                                         <span class="checkBox <#if companyInfo.welfare?? && companyInfo.welfare ? index_of("包吃")!=-1>checked</#if>"
                                               value="包吃" onclick="categoryClicked(this)">包吃</span>

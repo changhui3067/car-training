@@ -64,9 +64,9 @@ public class CompleteInfoAction extends SimpleAction {
         Region parent;
         if (userRegion != null && (parent = userRegion.getParent()) != null) {
             cities = regionUtils.getSubCities(parent.getId());
-        } else {
-            cities = regionUtils.getSubCities(-1);
-        }
+        } //else {
+            //cities = regionUtils.getSubCities(-1);
+        //}
         return target;
     }
 
