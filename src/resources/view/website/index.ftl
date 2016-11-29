@@ -306,15 +306,14 @@ function login(){
         url: "/backend/UserCenter/login",
         data: form_data,
         error: function() {
-            errMsg.innerHTML = "网络出错啦!";
+            Util.msgToast({
+                message: '请求失败',
+                mode: Util.MSGTYPE.ERROR
+            });
             return false;
         },
         success: function (data) {
             if (data == 'success') {
-                Util.msgToast({
-                    message: '登陆成功',
-                    mode: Util.MSGTYPE.SUCCESS
-                });
                 window.location = "/website/index";
             } else {
                 errMsg.innerHTML = data.error;

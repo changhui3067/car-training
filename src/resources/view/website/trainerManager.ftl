@@ -11,7 +11,6 @@
     </#if>
 <div class="lanmu">
 <ul id="menuTab">
-	<!-- <li id="information" onclick='navigate(this.id)'>个人资料</li> -->
 	<li id="complete" onclick='navigate(this.id)'>完善资料</li>
 
     <#if Session["loginVO"].userType=='TRAINER' || Session["loginVO"].userType=='AUTOBOT'>
@@ -29,12 +28,9 @@
 </div>
 <script type="text/javascript">
     var oUrl = {
-        // "information": "/website/trainerDetail",
         "complete": "/website/completeInfo",
         "peopleRecord": "/website/applyJobHistory",
         "companyRecord": "/backend/publishJobHistory",
-        // "publish": "/backend/publishArticle",
-        // "article": "/backend/articleManage",
         "password": "/backend/modifyPassword"
     };
     navigate("complete");
@@ -44,6 +40,13 @@
             type : "GET",
             data : {},
             url : url,
+            error: function(request) {
+                Util.msgToast({
+                    message: '请求失败',
+                    mode: Util.MSGTYPE.ERROR
+                });
+                return false;
+            },
             success : function(result){
                 $(".pxshi_gl_r")[0].innerHTML = result;
                 changeClass(id);

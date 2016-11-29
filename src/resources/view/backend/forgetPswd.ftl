@@ -50,6 +50,7 @@
 <script src="<@url value="/assets/website/js/jquery-3.1.1.min.js"/>"></script>
 <script src="<@url value="/assets/website/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="/assets/website/js/common.js"></script>
+<script type="text/javascript" src="/assets/website/js/Util.js"></script>
 <script type="text/javascript">
     var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/;
     function sendMsg (obj) {
@@ -69,7 +70,10 @@
             url: "/backend/UserCenter/sendmsgForResetPassword",
             data: form_data,
             error: function(request) {
-                errMsg.innerHTML = "网络出错啦!";
+                Util.msgToast({
+                    message: '请求失败',
+                    mode: Util.MSGTYPE.ERROR
+                });
                 return false;
             },
             success: function (data) {
@@ -99,16 +103,17 @@
             url: "/backend/UserCenter/resetPassword",
             data: form_data,
             error: function(request) {
-                errMsg.innerHTML = "网络出错啦!";
+                Util.msgToast({
+                    message: '请求失败',
+                    mode: Util.MSGTYPE.ERROR
+                });
                 return false;
             },
             success: function (data) {
                 if (data.error) {
                     errMsg.innerHTML = data.error;
-                } if(data.target){
-                    window.location.href = data.target;
                 } else {
-                    window.location.href = "/backend/applyJobHistory";
+                    window.location.href = "/website/index";
                 }
             }
         });

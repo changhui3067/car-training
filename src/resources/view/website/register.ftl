@@ -148,6 +148,7 @@
 <script src="/assets/website/js/jquery-3.1.1.min.js"></script>
 <script src="/assets/website/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/website/js/common.js"></script>
+<script type="text/javascript" src="/assets/website/js/Util.js"></script>  
 <script>
 var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
     passwordReg = /^[\w]{6,12}$/;
@@ -195,7 +196,10 @@ function register(id){
 	    url: "/backend/UserCenter/register",
 	    data: form_data,
         error: function(request) {
-            errMsg.innerHTML = "网络出错啦！";
+            Util.msgToast({
+                message: '请求失败',
+                mode: Util.MSGTYPE.ERROR
+            });
             return false;
          },
 	      success: function (data) {
@@ -224,7 +228,10 @@ function register(id){
 	     url: "/backend/UserCenter/sendmsgForRegister",
 	     data: form_data,
 	     error: function(request) {
-	         errMsg.innerHTML = "网络出错啦！";
+	         Util.msgToast({
+               message: '请求失败',
+               mode: Util.MSGTYPE.ERROR
+           });
 	         return false;
 	     },
 	     success: function (data) {

@@ -94,7 +94,8 @@
 <#include "/assets/website/common/footer.html">  
 
 <script src="<@url value="/assets/website/js/jquery1.42.min.js?v=1.1.0"/>"></script>
-<script src="<@url value="/assets/website/js/jquery.superslide.2.1.1.js?v=1.1.0"/>" type="text/javascript"></script>        
+<script src="<@url value="/assets/website/js/jquery.superslide.2.1.1.js?v=1.1.0"/>" type="text/javascript"></script>
+<script type="text/javascript" src="/assets/website/js/Util.js"></script>        
 <script>
 function applyJob(jid){
 if(confirm("确定要申请该职位吗?")){
@@ -113,7 +114,10 @@ $.ajax({
      url: "/website/jobDetail/apply",
      data: form_data,
      error: function(request) {
-         showErrMsg("网络出错啦！");
+         Util.msgToast({
+             message: '请求失败',
+             mode: Util.MSGTYPE.ERROR
+         });
          return false;
      },
      success: function (data) {
@@ -130,41 +134,7 @@ $.ajax({
 	return false;
 }
 }
-    
-function bondsto(cid,jid){ 
-if(confirm("确定要为该公司担保吗?")){
-var form_data={};
-var cid = cid;
-var jid = jid;
-if(cid==''||cid==null){
-	alert('该公司已不存在');
-	return false;
-}
 
-form_data.cid = cid;
-
-$.ajax({
-	 type: "POST",
-     url: "/website/jobDetail/bondsman",
-     data: form_data,
-     error: function(request) {
-         showErrMsg("网络出错啦！");
-         return false;
-     },
-     success: function (data) {
-			 showErrMsg("恭喜您,您已成为该公司的担保人！");
-			 setTimeout(function(){
-		 		if(jid==''||jid==null){
-     	 			window.location.href = "/website/jobDetail?jobs.id=jid";
-     	 			}
-     	 		},300);
-
-     }
-});
-}else{
-	return false;
-}
-}
 function showErrMsg(errMsg){
 	alert(errMsg);
 }
