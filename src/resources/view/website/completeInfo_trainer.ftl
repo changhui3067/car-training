@@ -260,16 +260,16 @@
     <div class="pxshijl">
         <h5>培训师简介</h5>
         <div class="pxshijl_box">
-                                <textarea style="width:800px;margin-left:15px;resize:none" name="introduction" cols="45"
-                                          rows="5"><#if trainer?? && trainer.introduction??> ${trainer.introduction!}<#else>
-                                    请输入培训师简介</#if></textarea>
+            <textarea style="width:800px;margin-left:15px;resize:none" name="introduction" cols="45" rows="5" placeholder="请输入培训师简介"
+                    value="<#if trainer?? && trainer.introduction??> ${trainer.introduction!}</#if>">
+            </textarea>
         </div>
     </div>
 
     <#--主讲课程-->
 
     <div class="tj">
-        <button type="button" class="btn btn-primary" onclick="submitdata()" style=""/>
+        <button type="button" class="btn btn-primary" onclick="submitTrainerInfo()" style=""/>
         保存</button>
     </div>
 </form>

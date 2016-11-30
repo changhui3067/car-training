@@ -81,9 +81,12 @@
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>视频链接</h4></div>
                 <div class="people_other_info_video">
-                    <embed src="${trainer.videoUrl1!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
-                    <embed src="${trainer.videoUrl2!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
-
+                    <#if trainer.videoUrl1?? >
+                        <embed src="${trainer.videoUrl1!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
+                    </#if>
+                    <#if trainer.videoUrl2?? >
+                        <embed src="${trainer.videoUrl2!}" allowfullscreen="true" quality="high" width="360" height="300" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" />
+                    </#if>
                 </div>
             </div>
             <div class="people_other_info_box">

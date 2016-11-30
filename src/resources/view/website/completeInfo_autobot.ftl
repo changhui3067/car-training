@@ -215,23 +215,20 @@
     <div class="pxshijl">
         <h5>所获认证</h5>
         <div class="pxshijl_box">
-                                <textarea style="width:800px;margin-left:15px;resize:none" name="certRecords"
-                                          id="autobot.authHistroy" cols="45"
-                                          rows="5"><#if autobot?? && autobot.certRecords??> ${autobot.certRecords!}<#else>
-                                    请输入所获认证</#if></textarea>
+            <textarea style="width:800px;margin-left:15px;resize:none" name="certRecords" id="autobot.authHistroy" cols="45" rows="5" placeholder="请输入所获认证"
+                    value="<#if autobot?? && autobot.certRecords??> ${autobot.certRecords!}</#if>">
+            </textarea>
         </div>
     </div>
     <div class="pxshijl">
         <h5>工作经历</h5>
         <div class="pxshijl_box">
-                                <textarea style="width:800px;margin-left:15px;resize:none" name="workingHistory"
-                                          id="autobot.authHistroy" cols="45"
-                                          rows="5"><#if autobot?? && autobot.workingHistory??> ${autobot.workingHistory!}<#else>
-                                    请输入工作经历</#if></textarea>
+            <textarea style="width:800px;margin-left:15px;resize:none" name="workingHistory" id="autobot.authHistroy" cols="45"rows="5" placeholder="请输入工作经历"
+                    value="<#if autobot?? && autobot.workingHistory??> ${autobot.workingHistory!}</#if>">
+            </textarea>
         </div>
     </div>
     <div class="tj">
-        <button type="button" class="btn btn-primary" onclick="submitdata()" style=""/>
-        保存</button>
+        <button type="button" class="btn btn-primary" onclick="submitAutobotInfo()" style=""/>保存</button>
     </div>
     
