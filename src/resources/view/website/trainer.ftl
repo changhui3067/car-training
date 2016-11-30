@@ -84,13 +84,10 @@
 
 <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
-<<<<<<< 139a2b292ecacced34bbffb0d67c91ce7c60f388
-<script type="text/javascript" src="/assets/website/js/Util.js"></script>  
-=======
+<script type="text/javascript" src="/assets/website/js/Util.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js" type="text/javascript"></script>
->>>>>>> trainer and autobot search pagination and refactor
-<script type="text/javascript">
 
+<script type="text/javascript">
 var filters = {};
 
 function filterClicked(ele, category) {
@@ -173,6 +170,7 @@ function sendAjax(n) {
 </#escape>
 var resultJson = ${resultJson};
 </script>
+<script type="text/javascript" src="/assets/website/js/common.js"></script>
 <script type="text/javascript" src="/assets/website/js/peopleSearch.js"></script>
 </body>
 </html>

@@ -1,24 +1,20 @@
 ﻿// JavaScript Document
 //网站头部导航js切换
-if(document.getElementById("nav")){
-var nav = document.getElementById("nav");
-var mynav = nav.getElementsByTagName("a");
-var menucon = document.getElementById("menu_con").getElementsByTagName("div");
-
-		for(var i = 0;i<mynav.length;i++){
-			mynav[i]["index"] = i;
-			mynav[i].onmouseover = function(){
-				var thisindex = this["index"];
-				for(var n = 0;n<menucon.length;n++){
-					mynav[n].className="";
-					this.className="cn";
-					menucon[n].style.display="none";
-					menucon[thisindex].style.display="block";
-				}
-				return false;
-			}
-		}
+if(document.getElementById("headerMenu")) {
+    var selectedTabIndex = localStorage.tabIndex ? localStorage.tabIndex : 0;
+    if(selectedTabIndex<0){
+        $('.menu li').removeClass('cn');
+    } else {
+        var selectedTab = $('.menu li')[selectedTabIndex];
+        $(selectedTab).addClass('cn');
+        $(selectedTab).siblings().removeClass('cn');
+    }
 }
+
+function setLocation(idx) {
+    localStorage.tabIndex = idx ? idx : 0;
+}
+
 //尾部友情链接选项卡切换
 function selectTag(showContent,selfObj){
 	if(document.getElementById("tags1")){

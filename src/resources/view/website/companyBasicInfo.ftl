@@ -9,7 +9,7 @@
             <#else>
             <button id="companyGarantee" value=${company.id!} onClick="guarantee(this.id)">我为公司担保</button>
             </#if>
-            <div><b>经营范围：</b>汽车销售/以及原厂配件/售后服务</div>
+            <div><b>经营范围：</b>汽车销售/以及原厂配件/售后服务${company.businessRange}</div>
             <div><b>公司规模：</b>${company.scale!}</div>
             <div><b>公司地址：</b><#if company.region.fullname??>${company.region.fullname!}</#if></div>
         </#if>

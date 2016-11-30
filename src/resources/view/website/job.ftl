@@ -123,11 +123,8 @@
 <script src="/assets/website/js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src='/assets/website/js/bootstrap.min.js' type="text/javascript"></script>
 <script src="/assets/website/js/region.js" type="text/javascript"></script>
-<<<<<<< 817c34cde30849343e91ce96fd41ab8f90e1ca95
 <script type="text/javascript" src="/assets/website/js/Util.js"></script>
-=======
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js" type="text/javascript"></script>
->>>>>>> job search with pagination
 
 <script type="text/javascript">
 var filters = {};
