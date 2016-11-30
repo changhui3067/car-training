@@ -1,36 +1,27 @@
-<div class="pxshilist">
-<#if peopleList??>
-    <ul>
-        <#list peopleList as t>
-            <li class="oneBox">
-                <#if t??>
-                    <div class="picContainer">
-                        <#if t.loginUser.type=='TRAINER'>
-                        <a href="/website/trainerDetail?trainerId=${t.id!}">
-                        <#elseif t.loginUser.type=='AUTOBOT'>
-                        <a href="/website/autobotDetail?autobotId=${t.id!}">
-                        </#if>
-                            <img src="${t.personInfo.avatarUrl!}"/>
-                        </a>
+<div id="peopleList" class="hidden">
+    <div class="pxshilist">
+        <ul>
+            <li v-for="person in resultVO.list" class="oneBox">
+                <div class="picContainer">
+                    <a :href="person.homepageUrl"><img :src="person.avatarUrl"/></a></div>
+                <div class="intro">
+                    <div>
+                        <div class="name">{{person.personName}}</div>
+                        <div class="right"><i class="iconfont" title="点赞">&#xe717;</i>{{person.likeNumber}}</div>
+                        <div class="right"><i class="iconfont" title="评论">&#xe69b;</i>{{person.commentNumber}}</div>
+                        <div class="clear"></div>
                     </div>
-                    <div class="intro">
-                        <div>
-                            <div class="name">${t.personInfo.name!}</div>
-                            <div class="right"><i class="iconfont" title="点赞">&#xe717;</i>${t.starLevel!}</div>
-                            <div class="right"><i class="iconfont" title="评论">
-                                &#xe69b;</i><#if t.autobotsCommentList??> ${t.autobotsCommentList.size!}<#else>0</#if>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                        <div>${t.currentPosition!}</div>
-                    </div>
-                </#if>
+                    <div class="clear"></div>
+                    <div>{{person.currentPosition}}</div>
+                </div>
             </li>
-
-        </#list>
-    </ul>
-</#if>
+        </ul>
+    </div>
+    <div class="fypage">
+        <span :class="{active:fst}" @click="specialJump('fst')">首页</span>
+        <span :class="{active:pre}" @click="specialJump('pre')">上一页</span>
+        <a v-for="page in pages" :class="{current:page.current}" @click="getPage(page.no)">{{page.no}}</a>
+        <span :class="{active:nex}" @click="specialJump('nex')">下一页</span>
+        <span :class="{active:Lst}" @click="specialJump('Lst')">尾页</span>
+    </div>
 </div>
-
-    
-

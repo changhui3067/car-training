@@ -3,10 +3,17 @@ package com.car.training.action.website;
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Job;
 import com.car.training.enums.JobType;
+import com.car.training.service.GuaranteeService;
 import com.car.training.service.JobService;
+import com.car.training.utils.PaginationUtil;
 import com.car.training.utils.RegionUtils;
+import com.car.training.vo.JobSearchResult;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
+import org.ironrhino.core.metadata.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -21,6 +28,9 @@ public class JobAction extends SimpleAction {
 
     @Autowired
     private RegionUtils regionUtils;
+    
+    @Autowired
+    private GuaranteeService guaranteeService;
 
     private String businessCategory;
 
@@ -44,18 +54,32 @@ public class JobAction extends SimpleAction {
 
     private int pn=1;
 
+    private String resultJson;
+    
     @Override
     public String execute() throws Exception {
         jobList = jobService.find(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword);
-        totalPage = jobService.rowCount(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword);
+        totalPage = jobService.rowCount(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword)/ PaginationUtil.DEFAULT_PAGE_SIZE +1;
         provinces = regionUtils.getSubCities(-1);
+        JobSearchResult jobSearchResult = new JobSearchResult();
+        jobSearchResult.setJobList(jobList,guaranteeService);
+        jobSearchResult.setPageNo(pn);
+        jobSearchResult.setPageCount(totalPage);
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        resultJson = ow.writeValueAsString(jobSearchResult);
         return SUCCESS;
     }
 
-    public String search() {
+    @JsonConfig(root = "data")
+    public String search() throws JsonProcessingException {
         jobList = jobService.find(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword);
-        totalPage = jobService.rowCount(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword);
-        return "jobSearchResult";
+        totalPage = jobService.rowCount(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword)/ PaginationUtil.DEFAULT_PAGE_SIZE +1;
+        JobSearchResult jobSearchResult = new JobSearchResult();
+        jobSearchResult.setJobList(jobList,guaranteeService);
+        jobSearchResult.setPageNo(pn);
+        jobSearchResult.setPageCount(totalPage);
+        setData(jobSearchResult);
+        return JSON;
     }
 
     public int getJobId() {
@@ -150,5 +174,13 @@ public class JobAction extends SimpleAction {
 
     public void setPn(int pn) {
         this.pn = pn;
+    }
+
+    public String getResultJson() {
+        return resultJson;
+    }
+
+    public void setResultJson(String resultJson) {
+        this.resultJson = resultJson;
     }
 }

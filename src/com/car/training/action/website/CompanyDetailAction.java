@@ -3,7 +3,6 @@ package com.car.training.action.website;
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Company;
 import com.car.training.bean.PersonInfo;
-import com.car.training.dao.BaseDAO;
 import com.car.training.service.CompanyService;
 import com.car.training.bean.Job;
 import com.car.training.service.GuaranteeService;
@@ -15,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -30,8 +28,6 @@ public class CompanyDetailAction extends SimpleAction {
     @Autowired
     JobService jobService;
 
-    @Autowired
-    BaseDAO baseDAO;
 
     @Autowired
     private GuaranteeService guaranteeService;

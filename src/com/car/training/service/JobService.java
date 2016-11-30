@@ -19,11 +19,10 @@ public interface JobService {
     List<Job> find(JobType jobType, String businessCategories, Integer regionId, String publishTime,
                    String workExperienceRequirement, String keyword);
 
-    @Transactional
     List<Job> find(JobType jobType, String businessCategories, Integer regionId, String publishTime,
                    String workExperienceRequirement, String keyword, int pageNo);
 
-    void save(Job job);
+    void save(Job job) throws Exception;
 
     int rowCount(JobType jobType, String businessCategories, Integer regionId, String publishTime, String workExperienceRequirement, String keyword);
 }

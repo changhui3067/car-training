@@ -1,17 +1,24 @@
 package com.car.training.action.website;
 
+import com.car.training.action.SimpleAction;
 import com.car.training.bean.Trainer;
 import com.car.training.service.TrainerService;
 import com.car.training.utils.CategoriesTransformer;
+import com.car.training.utils.PaginationUtil;
+import com.car.training.vo.PersonVO;
+import com.car.training.vo.SearchResult;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import org.ironrhino.core.metadata.AutoConfig;
-import org.ironrhino.core.struts.BaseAction;
+import org.ironrhino.core.metadata.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Set;
 
 @AutoConfig
-public class TrainerAction extends BaseAction {
+public class TrainerAction extends SimpleAction {
 
     private static final long serialVersionUID = 4839883380537115435L;
 
@@ -34,13 +41,23 @@ public class TrainerAction extends BaseAction {
 
     private int pn=1;
 
+    private String resultJson;
+    
     @Override
-    public String execute(){
+    public String execute() throws JsonProcessingException {
         peopleList = trainerService.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
-        totalPage = trainerService.rowCount(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
+        totalPage = trainerService.rowCount(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword) / PaginationUtil.DEFAULT_PAGE_SIZE +1;
+        List<PersonVO> people = PersonVO.fromTrainerList(peopleList);
+        SearchResult searchResult = new SearchResult();
+        searchResult.setList(people);
+        searchResult.setPageCount(totalPage);
+        searchResult.setPageNo(pn);
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        resultJson = ow.writeValueAsString(searchResult);
         return SUCCESS;
     }
-
+    
+    @JsonConfig(root = "data")
     public String search() {
         int minAutoYear;
         int maxAutoYear;
@@ -53,8 +70,14 @@ public class TrainerAction extends BaseAction {
             maxAutoYear = Integer.MAX_VALUE;
         }
         peopleList = trainerService.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword,pn);
-        totalPage = trainerService.rowCount(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword);
-        return "peopleSearchResult";
+        totalPage = trainerService.rowCount(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword) / PaginationUtil.DEFAULT_PAGE_SIZE +1;
+        List<PersonVO> people = PersonVO.fromTrainerList(peopleList);
+        SearchResult searchResult = new SearchResult();
+        searchResult.setList(people);
+        searchResult.setPageCount(totalPage);
+        searchResult.setPageNo(pn);
+        setData(searchResult);
+        return JSON;
     }
 
     public List<Trainer> getPeopleList() {
@@ -125,5 +148,13 @@ public class TrainerAction extends BaseAction {
 
     public void setPn(int pn) {
         this.pn = pn;
+    }
+
+    public String getResultJson() {
+        return resultJson;
+    }
+
+    public void setResultJson(String resultJson) {
+        this.resultJson = resultJson;
     }
 }
