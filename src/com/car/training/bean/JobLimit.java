@@ -1,6 +1,5 @@
 package com.car.training.bean;
 
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.Date;
