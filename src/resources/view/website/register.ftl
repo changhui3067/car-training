@@ -138,7 +138,7 @@
 	</div>
         
         </div>
-        <div class="zc_r right">已有培聘账号？<a href="<@url value='/website/index'/>">立即登录</a>。</div>
+        <div class="zc_r right">已有培聘账号？<a href="/website/index" onclick="setLocation(0)">立即登录</a>。</div>
         <div class="clear"></div>
     </div>
     </div>
