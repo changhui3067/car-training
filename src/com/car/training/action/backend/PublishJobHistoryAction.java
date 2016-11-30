@@ -9,7 +9,9 @@ import com.car.training.enums.JobType;
 import com.car.training.service.JobApplyService;
 import com.car.training.service.JobService;
 import com.car.training.utils.BeanOperation;
+import com.car.training.utils.RegionUtils;
 import com.car.training.vo.LoginVO;
+import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,11 @@ public class PublishJobHistoryAction extends SimpleAction {
     @Autowired
     BeanOperation beanOperation;
 
+    @Autowired
+    private RegionUtils regionUtils;
+
     private List<Job> jobList;
+    private List<Region> provinces;
 
     private HashMap<Object, List<Apply>> jobApplyMap = new HashMap<>();
 
@@ -58,6 +64,7 @@ public class PublishJobHistoryAction extends SimpleAction {
         if(loginVO != null) {
             jobList = jobService.findJobsByTargetCompany();
             generateJobApplyMap();
+            provinces = regionUtils.getSubCities(-1);
         }
 
         return "publishJobHistory";
@@ -180,5 +187,13 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     public void setJobDescription(String jobDescription) {
         this.jobDescription = jobDescription;
+    }
+
+    public List<Region> getProvinces() {
+        return provinces;
+    }
+
+    public void setProvinces(List<Region> provinces) {
+        this.provinces = provinces;
     }
 }
