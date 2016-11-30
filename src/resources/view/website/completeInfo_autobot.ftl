@@ -217,6 +217,7 @@
         <div class="pxshijl_box">
             <textarea style="width:800px;margin-left:15px;resize:none" name="certRecords" id="autobot.authHistroy" cols="45" rows="5" placeholder="请输入所获认证"
                     value="<#if autobot?? && autobot.certRecords??> ${autobot.certRecords!}</#if>">
+            <#if autobot?? && autobot.certRecords??> ${autobot.certRecords!}</#if>
             </textarea>
         </div>
     </div>
@@ -225,6 +226,7 @@
         <div class="pxshijl_box">
             <textarea style="width:800px;margin-left:15px;resize:none" name="workingHistory" id="autobot.authHistroy" cols="45"rows="5" placeholder="请输入工作经历"
                     value="<#if autobot?? && autobot.workingHistory??> ${autobot.workingHistory!}</#if>">
+            <#if autobot?? && autobot.workingHistory??> ${autobot.workingHistory!}</#if>
             </textarea>
         </div>
     </div>
