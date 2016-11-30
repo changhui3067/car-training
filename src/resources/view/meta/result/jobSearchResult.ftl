@@ -24,7 +24,7 @@
                                 <span>{{job.company.name}}</span>
                                 <span>已有{{job.company.guaranteeNumber}}人担保</span>
                             </div>
-                            <div class="jyfw">{{job.company.industry}}</div>
+                            <div class="jyfw">{{job.company.autoBrand}}</div>
                             <div class="fl">
                                 <span v-for="w in job.company.welfare">{{w}}</span>
                             </div>
