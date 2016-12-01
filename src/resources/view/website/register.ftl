@@ -52,7 +52,7 @@
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>验证码：</td>
                   <td width="100"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" type="text" name="verCode" id="verCode" /></td>
                   <td width="72"> 
-                      <input type="button" id="personal" value="免费获取验证码" onclick="settime(this);sendmsg(this.id)" style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" /></td>
+                      <input type="button" id="personal" value="免费获取验证码" onclick="sendmsg(this)" style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" /></td>
                   <td><font color="#999999">请输入手机验证码</font></td>
                 </tr>
                 <tr>
@@ -151,7 +151,7 @@
 <script type="text/javascript" src="/assets/website/js/Util.js"></script>  
 <script>
 var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
-    passwordReg = /^[\w]{6,12}$/;
+    passwordReg = /^.{6,12}$/;
 function register(id){
 	var form_data={},
 	    errMsg = $("#" + id + "_loginform .errMsg")[0];
@@ -218,10 +218,10 @@ function register(id){
 	var form_data={},
       errMsg = $("#" + obj.id + "_loginform .errMsg")[0];
   form_data["username"] = $("#" + obj.id + "_loginform #username").val();
-	if(!form_data.username){
-    errMsg.innerHTML = "请输入手机号";
-		return false;
-	}
+//	if(!form_data.username){
+////    errMsg.innerHTML = "请输入手机号";
+//		return false;
+//	}
   settime(obj);
 	$.ajax({
 		 type: "POST",
@@ -235,7 +235,10 @@ function register(id){
 	         return false;
 	     },
 	     success: function (data) {
-				  errMsg.innerHTML = "发送成功！";
+             Util.msgToast({
+                 message: '发送成功',
+                 mode: Util.MSGTYPE.SUCCESS
+             });
 	     }
 	});
 }
