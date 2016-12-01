@@ -218,10 +218,10 @@ function register(id){
 	var form_data={},
       errMsg = $("#" + obj.id + "_loginform .errMsg")[0];
   form_data["username"] = $("#" + obj.id + "_loginform #username").val();
-//	if(!form_data.username){
-////    errMsg.innerHTML = "请输入手机号";
-//		return false;
-//	}
+	if(!form_data.username){
+//    errMsg.innerHTML = "请输入手机号";
+		return false;
+	}
   settime(obj);
 	$.ajax({
 		 type: "POST",
