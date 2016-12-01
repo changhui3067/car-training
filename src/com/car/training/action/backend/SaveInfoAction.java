@@ -17,6 +17,8 @@ import org.ironrhino.core.metadata.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -136,7 +138,12 @@ public class SaveInfoAction extends SimpleAction {
     private void setPersonInfo(PersonInfo personInfo) {
         region = regionUtils.getRegionById(regionId);
         beanOperation.setValue(this, personInfo, personProps);
-        personInfo.setBirthday(new Date());
+        try {
+            Date date =new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
+            personInfo.setBirthday(new Date());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     private String saveCompany() {
@@ -286,7 +293,7 @@ public class SaveInfoAction extends SimpleAction {
             "introduction",
             "businessRange",
             "reactTime",
-//            "welfare",
+            "welfare",
 //            "businessCategory",
             "photoUrl",
     };
