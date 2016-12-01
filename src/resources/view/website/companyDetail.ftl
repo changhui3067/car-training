@@ -102,6 +102,7 @@
 <#include "/assets/website/common/footer.html">
 
 <script src="/assets/website/js/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="/assets/website/js/Util.js"></script>
 </body>
 </html>
 </#escape>

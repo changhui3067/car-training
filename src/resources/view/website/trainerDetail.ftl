@@ -113,5 +113,6 @@
 <script src="<@url value="/assets/website/js/jquery-3.1.1.min.js"/>"></script>
 <script src="<@url value="/assets/website/js/bootstrap.min.js"/>"></script>
 <script src="<@url value="/assets/website/js/common.js"/>"></script>
+<script type="text/javascript" src="/assets/website/js/Util.js"></script>
 </body>
 </html>

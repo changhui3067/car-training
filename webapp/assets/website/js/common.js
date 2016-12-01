@@ -64,6 +64,10 @@ function like(prix, id) {
             url: "/backend/Like/like",
             data: data,
             error: function() {
+                Util.msgToast({
+                    message: '请求失败',
+                    mode: Util.MSGTYPE.ERROR
+                });
                 return false;
             },
             success: function (data) {
@@ -79,6 +83,10 @@ function like(prix, id) {
             url: "/backend/Like/unLike",
             data: data,
             error: function() {
+                Util.msgToast({
+                    message: '请求失败',
+                    mode: Util.MSGTYPE.ERROR
+                });
                 return false;
             },
             success: function (data) {
@@ -102,9 +110,20 @@ function guarantee(id) {
             url: "/backend/Guarantee/unGuarantee",
             data: data,
             error: function() {
+                Util.msgToast({
+                    message: '请求失败',
+                    mode: Util.MSGTYPE.ERROR
+                });
                 return false;
             },
             success: function (result) {
+                if (result.actionErrors) {
+                    Util.msgToast({
+                        message: '操作失败',
+                        mode: Util.MSGTYPE.ERROR
+                    });
+                    return false;
+                }
                 $(".companyGuaranteeList")[0].innerHTML = result;
                 return true;
             }
@@ -117,9 +136,20 @@ function guarantee(id) {
             url: "/backend/Guarantee/guarantee",
             data: data,
             error: function() {
+                Util.msgToast({
+                    message: '请求失败',
+                    mode: Util.MSGTYPE.ERROR
+                });
                 return false;
             },
             success: function (result) {
+                if (result.actionErrors) {
+                    Util.msgToast({
+                        message: '操作失败',
+                        mode: Util.MSGTYPE.ERROR
+                    });
+                    return false;
+                }
                 $(".companyGuaranteeList")[0].innerHTML = result;
                 return true;
             }
@@ -140,9 +170,20 @@ function addComment (id) {
             url: "/backend/Comment/addComment",
             data: data,
             error: function() {
+                Util.msgToast({
+                    message: '请求失败',
+                    mode: Util.MSGTYPE.ERROR
+                });
                 return false;
             },
             success: function (result) {
+                if (result.actionErrors) {
+                    Util.msgToast({
+                        message: '操作失败',
+                        mode: Util.MSGTYPE.ERROR
+                    });
+                    return false;
+                }
                 scrollTo(0,0);
                 $("#add_comment").val('')
                 $(".people_comments_list")[0].innerHTML = result;
@@ -167,10 +208,20 @@ function addNewJob(e) {
         data: form_data,
         cache: false,
         error: function (request) {
-            alert("网络出错啦！");
+            Util.msgToast({
+                message: '请求失败',
+                mode: Util.MSGTYPE.ERROR
+            });
             return false;
         },
         success: function (data) {
+            if (data.actionErrors) {
+                Util.msgToast({
+                    message: '操作失败',
+                    mode: Util.MSGTYPE.ERROR
+                });
+                return false;
+            }
             $('#manageCenterContent').innerHTML = data;
             //window.location.href = "/backend/autobotCompleteResume";
         }
@@ -205,7 +256,10 @@ function modifyPassword(){
          url: "/backend/userCenter/resetPassword",
          data: form_data,
          error: function(request) {
-             errMsg.innerHTML = "网络出错啦！";
+             Util.msgToast({
+                message: '请求失败',
+                mode: Util.MSGTYPE.ERROR
+            });
              return false;
          },
          success: function (data) {

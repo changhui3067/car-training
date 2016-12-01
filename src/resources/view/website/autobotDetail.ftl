@@ -103,5 +103,6 @@
 <!-- main结束 -->
 <#include "/assets/website/common/footer.html">
 <script src="<@url value="/assets/website/js/common.js"/>"></script>
+<script type="text/javascript" src="/assets/website/js/Util.js"></script>
 </body>
 </html>
