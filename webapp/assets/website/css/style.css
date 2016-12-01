@@ -114,7 +114,6 @@ button#companyGarantee{
     height: 30px;
     line-height: 30px;
     text-align: center;
-   
     vertical-align: middle;
 }
 
@@ -151,7 +150,7 @@ button#companyGarantee{
 .fypage {padding:0px 0px 42px 0px;text-align: center;}
 .fypage span {padding: 5px 10px; background: #fff;border: 1px #ccc solid;margin-left: 5px;color: #777;}
 .fypage a {padding: 5px 10px;background: #3d9ccc;border: 1px #3d9ccc solid;margin-left: 5px;color: #fff;}
-.fypage a.current {padding: 5px 10px;background: #cc725f;margin-left: 5px;color: #fff;}
+.fypage a.current {padding: 5px 10px;background: #3689b3;margin-left: 5px;color: #fff;}
 .fypage a:hover {color: #fff;}
 
 /*培训师*//*培训生*//*培训需求*//*汽车人需求*/
@@ -182,15 +181,8 @@ button#companyGarantee{
 .pxsheng{ padding:5px 0px 0px 20px;}
 .pxxq{ padding:5px 0px 0px 15px; height:270px;}
 
-/*培训师_左边大图 will put into index.css file*/
-.pxshi_l{ width:386px; height:464px; background:#faf9f9; border:1px solid #e7e5e5;  padding:1px;}
 
-/* to delete*/
-.pxshi_l_pic{ width:382px; height:322px;}
-.pxshi_l_pic img{ width:382px; height:322px;}
-.pxshi_l_intro{ padding:15px 10px; height:112px;}
-.pxshi_name{ height:40px; line-height:40px;margin-bottom:5px;}
-.pxshi_zp{ height:30px; line-height:30px;font-size:16px;margin-bottom:5px;}
+
 
 .xm{ color:#ff7f00; font-size:24px; margin-right:150px;   }
 .pl{ color:#ffa757;}

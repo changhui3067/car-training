@@ -19,7 +19,7 @@
 <div class="main">
 	<div class="content">
 	    <div class="pxshi_gl" id="manageCenterContent">
-	    	<#include "/resources/view/website/trainerManager.ftl">
+	    	<#include "/resources/view/website/manageMenu.ftl">
 
 	        <div class="clear"></div>
 		</div>
