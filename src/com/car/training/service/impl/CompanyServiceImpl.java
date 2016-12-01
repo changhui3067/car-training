@@ -1,6 +1,7 @@
 package com.car.training.service.impl;
 
 import com.car.training.bean.Company;
+import com.car.training.bean.JobLimit;
 import com.car.training.bean.LoginUser;
 import com.car.training.dao.BaseDAO;
 import com.car.training.service.CompanyService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -52,6 +54,18 @@ public class CompanyServiceImpl implements CompanyService{
     @Transactional
     public void updatePhotoUrl(int companyId,String photoUrl){
         basedao.update(Company.class,companyId,"photoUrl",photoUrl);
+    }
+
+    @Override
+    @Transactional
+    public void save(Company company) {
+        basedao.save(company);
+        company = findByLoginUser(company.getLoginUser());
+        JobLimit jobLimit = new JobLimit();
+        jobLimit.setMaxPublishJobCount(20);
+        jobLimit.setCompanyId(company.getId());
+        jobLimit.setVipExpireDate(new Date());
+        basedao.save(jobLimit);
     }
 
     @Override

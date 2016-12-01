@@ -16,4 +16,6 @@ public interface CompanyService {
     void updateLogoUrl(int companyId, String logoUrl);
 
     void updatePhotoUrl(int companyId, String url);
+
+    void save(Company company);
 }
