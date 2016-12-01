@@ -3,6 +3,8 @@ package com.car.training.action.backend;
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.*;
 import com.car.training.enums.UserType;
+import com.car.training.service.CommentService;
+import com.car.training.service.CompanyService;
 import com.car.training.service.SimpleService;
 import com.car.training.service.UserService;
 import com.car.training.sms.SmsManager;
@@ -35,6 +37,8 @@ public class UserCenterAction extends SimpleAction {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CompanyService companyService;
 
     private UserType userType;
 
@@ -123,7 +127,7 @@ public class UserCenterAction extends SimpleAction {
             case STORE:
                 Company company = new Company();
                 company.setLoginUser(user);
-                simpleService.save(company);
+                companyService.save(company);
                 break;
             default:
                 return errorJSON("wrong user type");

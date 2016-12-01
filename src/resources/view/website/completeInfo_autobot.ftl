@@ -129,11 +129,13 @@
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <#list cities as city>
-                                                <li value="${city.id!}"><a href='#'
-                                                                           onclick="selectCity(this)">${city.name!}</a>
-                                                </li>
-                                            </#list>
+                                            <#if cities??>
+                                                <#list cities as city>
+                                                    <li value="${city.id!}">
+                                                        <a href='#' onclick="selectCity(this)">${city.name!}</a>
+                                                    </li>
+                                                </#list>
+                                            </#if>
                                             </ul>
                                         </div>
 
@@ -217,6 +219,7 @@
         <div class="pxshijl_box">
             <textarea style="width:800px;margin-left:15px;resize:none" name="certRecords" id="autobot.authHistroy" cols="45" rows="5" placeholder="请输入所获认证"
                     value="<#if autobot?? && autobot.certRecords??> ${autobot.certRecords!}</#if>">
+            <#if autobot?? && autobot.certRecords??> ${autobot.certRecords!}</#if>
             </textarea>
         </div>
     </div>
@@ -225,6 +228,7 @@
         <div class="pxshijl_box">
             <textarea style="width:800px;margin-left:15px;resize:none" name="workingHistory" id="autobot.authHistroy" cols="45"rows="5" placeholder="请输入工作经历"
                     value="<#if autobot?? && autobot.workingHistory??> ${autobot.workingHistory!}</#if>">
+            <#if autobot?? && autobot.workingHistory??> ${autobot.workingHistory!}</#if>
             </textarea>
         </div>
     </div>

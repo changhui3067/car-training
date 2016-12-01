@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <!-- Default panel contents -->
-    <div class="panel-heading">Panel heading</div>
+    <div class="panel-heading"><h4>申请职位纪录</h4></div>
 <#if applyList?? >
     <table class="table table-hover">
         <tr>

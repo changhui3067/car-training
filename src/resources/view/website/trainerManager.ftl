@@ -69,4 +69,11 @@
             }
         }
     }
+    $(document).ready(
+        function(){
+            addCropperTrigger("#avatar_btn", "/backend/saveInfo/setAvatar", "#avatar_show");
+            addCropperTrigger("#logo_btn", "/backend/saveInfo/setLogo", "#logo_show");
+            addCropperTrigger("#photo_btn", "/backend/saveInfo/setPhoto", "#photo_show");
+        }
+    );
 </script>

@@ -41,10 +41,10 @@ public class DuoynetSmsService implements SmsService {
         String callback = HttpClientUtils.get(sbf.toString());
         logger.info("return '{}'", callback);
 
-        Map<String, String> map = RequestUtils.parseParametersFromQueryString(callback);
-        String result = map.get("APIResult");
-        if (!"0".equals(result))
-            throw new ErrorMessage(result + " : " + map.get("message"));
+//        Map<String, String> map = RequestUtils.parseParametersFromQueryString(callback);
+//        String result = map.get("APIResult");
+//        if (!"0".equals(result))
+//            throw new ErrorMessage(result + " : " + map.get("message"));
     }
 
 }

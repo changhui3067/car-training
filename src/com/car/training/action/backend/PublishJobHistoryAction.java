@@ -3,8 +3,6 @@ package com.car.training.action.backend;
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Apply;
 import com.car.training.bean.Job;
-import com.car.training.bean.PersonInfo;
-import com.car.training.bean.Trainer;
 import com.car.training.enums.JobType;
 import com.car.training.service.JobApplyService;
 import com.car.training.service.JobService;
@@ -13,12 +11,9 @@ import com.car.training.utils.RegionUtils;
 import com.car.training.vo.LoginVO;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
-import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,8 +22,7 @@ import java.util.List;
  */
 @AutoConfig
 public class PublishJobHistoryAction extends SimpleAction {
-    @Autowired
-    private LoginVO loginVO;
+    private LoginVO loginVO = getLoginVO();
 
     @Autowired
     private JobService jobService;
@@ -40,10 +34,9 @@ public class PublishJobHistoryAction extends SimpleAction {
     BeanOperation beanOperation;
 
     @Autowired
-    private RegionUtils regionUtils;
-
+    RegionUtils regionUtils;
+    
     private List<Job> jobList;
-    private List<Region> provinces;
 
     private HashMap<Object, List<Apply>> jobApplyMap = new HashMap<>();
 
@@ -56,6 +49,8 @@ public class PublishJobHistoryAction extends SimpleAction {
     private String address;
     private String salary;
     private String jobDescription;
+    private List<Region>  provinces;
+    private List<Region>  cities;
 
 
     @Override
@@ -195,5 +190,13 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     public void setProvinces(List<Region> provinces) {
         this.provinces = provinces;
+    }
+
+    public List<Region> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<Region> cities) {
+        this.cities = cities;
     }
 }

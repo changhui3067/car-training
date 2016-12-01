@@ -135,7 +135,7 @@
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <#list provinces as t>
-                                        <li><a onclick="selectCities(this)" value="${t.id!}">${t.name!}</a></li>
+                                        <li><a onclick="selectCities(this, false)" value="${t.id!}">${t.name!}</a></li>
                                     </#list>
                                     </ul>
                                 </div>
@@ -147,9 +147,11 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                        <#if cities??>
                                     <#list cities as city>
-                                        <li><a onclick="selectCity(this);filter4Clicked(this, 'regionId');" value="${city.id!}">${city.name!}</a></li>
+                                        <li><a onclick="selectCity(this);" value="${city.id!}">${city.name!}</a></li>
                                     </#list>
+                                        </#if>
                                     </ul>
                                 </div>
                                 <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${1}</#if>">

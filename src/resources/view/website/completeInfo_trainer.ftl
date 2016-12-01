@@ -122,11 +122,13 @@
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-											<#list cities as city>
-                                                <li value="${city.id!}"><a href='#'
-                                                                           onclick="selectCity(this)">${city.name!}</a>
-                                                </li>
-											</#list>
+                                                <#if cities??>
+                                                    <#list cities as city>
+                                                        <li value="${city.id!}"><a href='#'
+                                                                                   onclick="selectCity(this)">${city.name!}</a>
+                                                        </li>
+                                                    </#list>
+                                                </#if>
                                             </ul>
                                         </div>
                                     </div>
