@@ -21,8 +21,7 @@
 	    <div class="pxshi_gl" id="manageCenterContent">
 	    	<#include "/resources/view/website/trainerManager.ftl">
 
-	        <#if Session?exists && '{}' != '${session}' && Session["loginVO"]?? && Session["loginVO"].userType=='TRAINER'>
-	        </#if>
+	        <div class="clear"></div>
 		</div>
 	</div>
 	<div class="clear"></div>
