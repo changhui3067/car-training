@@ -44,7 +44,7 @@ public class HibernateTrainerDAO implements TrainerDAO {
         DetachedCriteria criteria = DetachedCriteria.forClass(Trainer.class, "trainer");
         criteria.add(getRestriction("businessCategory", businessCategory));
         criteria.add(getRestriction("executionCategory", executionCategory));
-        criteria.add(Restrictions.between("autoYears", minAutoYears, maxAutoYears));
+        criteria.add(Restrictions.between("autoYears", minAutoYears, maxAutoYears-1));
         criteria.createAlias("trainer.personInfo", "personInfo");
         if (!StringUtils.isEmpty(keyword)) {
             criteria.add(Restrictions.like("personInfo.name", "%" + keyword + "%"));

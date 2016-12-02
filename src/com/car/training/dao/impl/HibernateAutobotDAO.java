@@ -44,7 +44,7 @@ public class HibernateAutobotDAO implements AutobotDAO {
         DetachedCriteria criteria = DetachedCriteria.forClass(Autobot.class, "Autobot");
         criteria.add(getRestriction("businessCategory", businessCategory));
         criteria.add(getRestriction("executionCategory", executionCategory));
-        criteria.add(Restrictions.between("autoYears", minAutoYears, maxAutoYears));
+        criteria.add(Restrictions.between("autoYears", minAutoYears, maxAutoYears-1));
         criteria.createAlias("Autobot.personInfo", "personInfo");
         if (!StringUtils.isEmpty(keyword)) {
             criteria.add(Restrictions.like("personInfo.name", "%" + keyword + "%"));

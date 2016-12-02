@@ -199,7 +199,7 @@ function filter4Clicked(ele, category) {
 }
 
 function searchBtnClick() {
-    filters['keyWord'] = $('#search_input').val();
+    filters['keyword'] = $('#search_input').val();
     sendAjax();
 }
 
