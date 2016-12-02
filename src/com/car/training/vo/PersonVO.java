@@ -2,6 +2,8 @@ package com.car.training.vo;
 
 import com.car.training.bean.Autobot;
 import com.car.training.bean.Trainer;
+import com.car.training.service.CommentService;
+import com.car.training.service.LikeService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,10 @@ public class PersonVO {
     private int likeNumber;
     private int commentNumber;
     private String currentPosition;
+
+    private static CommentService commentService;
+
+    private static LikeService likeService;
     
     public static PersonVO from(Trainer trainer){
         PersonVO personVO = new PersonVO();
@@ -23,8 +29,8 @@ public class PersonVO {
         personVO.personName = trainer.getPersonInfo().getName();
         personVO.currentPosition = trainer.getCurrentPosition();
         personVO.homepageUrl = "/website/trainerDetail?trainerId="+trainer.getId();
-        personVO.likeNumber = 1;
-        personVO.commentNumber = 1;
+        personVO.likeNumber = likeService.likeNumber(trainer.getLoginUser().getId());
+        personVO.commentNumber = commentService.commentNumber(trainer.getLoginUser().getId());
         return personVO;
     }
 
@@ -34,12 +40,14 @@ public class PersonVO {
         personVO.personName = autobot.getPersonInfo().getName();
         personVO.currentPosition = autobot.getCurrentPosition();
         personVO.homepageUrl = "/website/autobotDetail?autobotId="+autobot.getId();
-        personVO.likeNumber = 1;
-        personVO.commentNumber = 1;
+        personVO.likeNumber = likeService.likeNumber(autobot.getLoginUser().getId());
+        personVO.commentNumber = commentService.commentNumber(autobot.getLoginUser().getId());
         return personVO;
     }
     
-    public static List<PersonVO> fromTrainerList(List<Trainer> trainers){
+    public static List<PersonVO> fromTrainerList(List<Trainer> trainers, CommentService commentService, LikeService likeService){
+        PersonVO.commentService = commentService;
+        PersonVO.likeService = likeService;        
         ArrayList<PersonVO> personList = new ArrayList<>();
         for(Trainer trainer:trainers){
             personList.add(from(trainer));
@@ -47,7 +55,9 @@ public class PersonVO {
         return personList;
     }
 
-    public static List<PersonVO> fromAutobotList(List<Autobot> autobots){
+    public static List<PersonVO> fromAutobotList(List<Autobot> autobots, CommentService commentService, LikeService likeService){
+        PersonVO.commentService = commentService;
+        PersonVO.likeService = likeService;
         ArrayList<PersonVO> personList = new ArrayList<>();
         for(Autobot autobot:autobots){
             personList.add(from(autobot));

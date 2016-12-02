@@ -54,19 +54,19 @@ public class AutobotServiceImpl implements AutobotService {
     @Override
     @Transactional
     public List<Autobot> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
-        return autobotDAO.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword,1);
+        return autobotDAO.search(businessCategory,executionCategory,minAutoYears,maxAutoYears,keyword,1);
     }
 
     @Override
     @Transactional
     public List<Autobot> search(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword, int pageNo) {
-        return autobotDAO.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword,pageNo);
+        return autobotDAO.search(businessCategory,executionCategory,minAutoYears,maxAutoYears,keyword,pageNo);
     }
 
     @Override
     @Transactional
     public int rowCount(Set<String> businessCategory, Set<String> executionCategory, int minAutoYears, int maxAutoYears, String keyword) {
-        return autobotDAO.rowCount(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
+        return autobotDAO.rowCount(businessCategory,executionCategory,minAutoYears,maxAutoYears,keyword);
     }
 
     @Override

@@ -4,6 +4,8 @@ package com.car.training.action.website;
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Autobot;
 import com.car.training.service.AutobotService;
+import com.car.training.service.CommentService;
+import com.car.training.service.LikeService;
 import com.car.training.utils.CategoriesTransformer;
 import com.car.training.utils.PaginationUtil;
 import com.car.training.vo.PersonVO;
@@ -30,18 +32,23 @@ public class AutobotAction extends SimpleAction {
     private Set<String> executionCategory;
     private Set<String> businessCategory;
 
-    private String autoYearRange;
+    private String autoYears;
     private String keyword;
 
     private int totalPage;
     private int pn=1;
     private String resultJson;
+    @Autowired
+    private CommentService commentService;
+
+    @Autowired
+    private LikeService likeService;
 
     @Override
     public String execute() throws Exception {
         peopleList = autobotService.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,"");
         totalPage = autobotService.rowCount(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword)/ PaginationUtil.DEFAULT_PAGE_SIZE +1;;
-        List<PersonVO> people = PersonVO.fromAutobotList(peopleList);
+        List<PersonVO> people = PersonVO.fromAutobotList(peopleList,commentService,likeService);
         SearchResult searchResult = new SearchResult();
         searchResult.setList(people);
         searchResult.setPageCount(totalPage);
@@ -56,7 +63,7 @@ public class AutobotAction extends SimpleAction {
         int minAutoYear;
         int maxAutoYear;
         try{
-            String[] arr = autoYearRange.split(",");
+            String[] arr = autoYears.split(",");
             minAutoYear = Integer.valueOf(arr[0]);
             maxAutoYear = Integer.valueOf(arr[1]);
         } catch (Exception e){
@@ -65,7 +72,7 @@ public class AutobotAction extends SimpleAction {
         }
         peopleList = autobotService.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword,pn);
         totalPage = autobotService.rowCount(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword)/ PaginationUtil.DEFAULT_PAGE_SIZE +1;;
-        List<PersonVO> people = PersonVO.fromAutobotList(peopleList);
+        List<PersonVO> people = PersonVO.fromAutobotList(peopleList,commentService,likeService);
         SearchResult searchResult = new SearchResult();
         searchResult.setList(people);
         searchResult.setPageCount(totalPage);
@@ -98,12 +105,12 @@ public class AutobotAction extends SimpleAction {
         this.businessCategory = CategoriesTransformer.transform(businessCategory);
     }
 
-    public String getAutoYearRange() {
-        return autoYearRange;
+    public String getAutoYears() {
+        return autoYears;
     }
 
-    public void setAutoYearRange(String autoYearRange) {
-        this.autoYearRange = autoYearRange;
+    public void setAutoYears(String autoYears) {
+        this.autoYears = autoYears;
     }
 
     @Override

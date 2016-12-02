@@ -2,6 +2,8 @@ package com.car.training.action.website;
 
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Trainer;
+import com.car.training.service.CommentService;
+import com.car.training.service.LikeService;
 import com.car.training.service.TrainerService;
 import com.car.training.utils.CategoriesTransformer;
 import com.car.training.utils.PaginationUtil;
@@ -43,11 +45,17 @@ public class TrainerAction extends SimpleAction {
 
     private String resultJson;
     
+    @Autowired
+    private CommentService commentService;
+
+    @Autowired
+    private LikeService likeService;
+    
     @Override
     public String execute() throws JsonProcessingException {
         peopleList = trainerService.search(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword);
         totalPage = trainerService.rowCount(businessCategory,executionCategory,-1,Integer.MAX_VALUE,keyword) / PaginationUtil.DEFAULT_PAGE_SIZE +1;
-        List<PersonVO> people = PersonVO.fromTrainerList(peopleList);
+        List<PersonVO> people = PersonVO.fromTrainerList(peopleList,commentService,likeService);
         SearchResult searchResult = new SearchResult();
         searchResult.setList(people);
         searchResult.setPageCount(totalPage);
@@ -71,7 +79,7 @@ public class TrainerAction extends SimpleAction {
         }
         peopleList = trainerService.search(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword,pn);
         totalPage = trainerService.rowCount(businessCategory,executionCategory,minAutoYear,maxAutoYear,keyword) / PaginationUtil.DEFAULT_PAGE_SIZE +1;
-        List<PersonVO> people = PersonVO.fromTrainerList(peopleList);
+        List<PersonVO> people = PersonVO.fromTrainerList(peopleList,commentService,likeService);
         SearchResult searchResult = new SearchResult();
         searchResult.setList(people);
         searchResult.setPageCount(totalPage);
