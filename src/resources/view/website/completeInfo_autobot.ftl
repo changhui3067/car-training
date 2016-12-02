@@ -94,6 +94,7 @@
                                         <input type="text" class="form-control"
                                                name="autoYears"
                                                placeholder="请输入行业经验"
+                                               onkeyup="verifyNumber(this)"
                                                value="<#if autobot?? && autobot.autoYears?? >${autobot.autoYears!}</#if>"/>
                                     </div>
                                 </div>
