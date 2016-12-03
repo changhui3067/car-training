@@ -11,10 +11,14 @@ import com.car.training.vo.LoginVO;
 import org.apache.struts2.ServletActionContext;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Bill on 11/13/2016.
@@ -42,6 +46,9 @@ public class CompanyDetailAction extends SimpleAction {
 
     private List<PersonInfo> personList;
 
+    Set<String> welfares;
+
+
     @Override
     public String execute() throws Exception {
         if(companyId!=0){
@@ -53,6 +60,10 @@ public class CompanyDetailAction extends SimpleAction {
             LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
             if (loginVO != null) {
                 guarantee = guaranteeService.isGuarantee(loginVO.getId(),companyId);
+            }
+            welfares = new HashSet<>();
+            if(!StringUtils.isEmpty(company.getWelfare())){
+                welfares.addAll(Arrays.asList(company.getWelfare().split(",")));
             }
         }else{
             return redirectToIndex();
