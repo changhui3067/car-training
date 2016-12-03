@@ -11,7 +11,7 @@
                         <div class="right"><i class="iconfont" title="评论">&#xe69b;</i>{{person.commentNumber}}</div>
                         <div class="clear"></div>
                     </div>
-                    <div class="clear"></div>
+                    <#--<div class="clear"></div>-->
                     <div>{{person.currentPosition}}</div>
                 </div>
             </li>
