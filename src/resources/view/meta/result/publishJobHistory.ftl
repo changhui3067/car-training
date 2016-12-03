@@ -59,39 +59,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputType" class="col-sm-2 control-label">工作类型</label>
-                            <div class="col-sm-10">
-                                <input type="hidden" name="businessCategory" value="销售"/>
-                                <#if Session["loginVO"].userType=='COMPANY'>
-                                    <select class="form-control" id="inputType">
-                                        <option value="销售">销售</option>
-                                        <option value="产品">产品</option>
-                                        <option value="技术">技术</option>
-                                        <option value="管理">管理</option>
-                                        <option value="产品">产品</option>
-                                        <option value="财务">财务</option>
-                                        <option value="人事">人事</option>
-                                        <option value="生产">生产</option>
-                                        <option value="非技术">非技术</option>
-                                        <option value="新能源">新能源</option>
-                                        <option value="市场营销">市场营销</option>
-                                        <option value="客户关系">客户关系</option>
-                                        <option value="其他">其他</option>
-                                    </select>
-                                <#elseif Session["loginVO"].userType=='STORE'>
-                                    <select class="form-control" id="inputType">
-                                        <option value="销售">销售市场</option>
-                                        <option value="产品">售后客服</option>
-                                        <option value="技术">高级管理</option>
-                                        <option value="管理">人事财务</option>
-                                        <option value="产品">内训</option>
-                                        <option value="财务">生产研发</option>
-                                    </select>
-                                </#if>
-
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="inputEducationRequired" class="col-sm-2 control-label">学历要求</label>
                             <div class="col-sm-10">
                                 <input type="hidden" name="educationRequirement" value="初中"/>
@@ -103,18 +70,6 @@
                                     <option value="博士">博士</option>
                                     <option value="博士后">博士后</option>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMajorRequirement" class="col-sm-2 control-label">专业要求</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="majorRequirement" value="" id="inputMajorRequirement" placeholder="请输入数字"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDepartment" class="col-sm-2 control-label">所属部门</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="department" value="" id="inputDepartment" placeholder="请输入数字"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -164,9 +119,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputSalary" class="col-sm-2 control-label">详细介绍</label>
+                            <label for="inputJobDescription" class="col-sm-2 control-label">岗位介绍</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" rows="4" name="jobDescription" value="" id="inputJobDescription" placeholder=""></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputRequirement" class="col-sm-2 control-label">岗位要求</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="4" name="jobRequirement" value="" id="inputRequirement" placeholder=""></textarea>
                             </div>
                         </div>
                         <div class="form-group">

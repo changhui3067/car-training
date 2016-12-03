@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="people_other_info_box">
-                    <div class="people_other_info_bar"><h4>详细介绍</h4></div>
+                    <div class="people_other_info_bar"><h4>岗位介绍</h4></div>
                     <div class="people_other_info_list">
                     ${job.jobDescription!}
                     </div>
@@ -82,22 +82,24 @@
             <#--</div>-->
 
                 <div class="people_other_info_box">
-                    <div class="people_other_info_bar"><h4>其他信息</h4></div>
-                    <div class="rzyq_box">
-                        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td width="8%">所属部门：</td>
-                                <td width="42%">${job.department!}</td>
-                                <td width="8%">专业要求：</td>
-                                <td width="42%">${job.majorRequirement!}</td>
-                            </tr>
-                            <tr>
-                                <td width="8%">工作类型：</td>
-                                <td width="42%">${job.businessCategory!}</td>
-                            </tr>
-                        </table>
-
+                    <div class="people_other_info_bar"><h4>岗位要求</h4></div>
+                    <div class="people_other_info_list">
+                    ${job.jobDescription!}
                     </div>
+                    <#--<div class="rzyq_box">-->
+                        <#--<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">-->
+                            <#--<tr>-->
+                                <#--<td width="8%">所属部门：</td>-->
+                                <#--<td width="42%">${job.department!}</td>-->
+                                <#--<td width="8%">专业要求：</td>-->
+                                <#--<td width="42%">${job.majorRequirement!}</td>-->
+                            <#--</tr>-->
+                            <#--<tr>-->
+                                <#--<td width="8%">工作类型：</td>-->
+                                <#--<td width="42%">${job.businessCategory!}</td>-->
+                            <#--</tr>-->
+                        <#--</table>-->
+                    <#--</div>-->
                 </div>
             </div>
         </div>
