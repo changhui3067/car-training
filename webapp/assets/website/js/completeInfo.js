@@ -22,20 +22,25 @@ function submitTrainerInfo() {
     $("input[name='executionCategory']").val(executionCategory);
 
     var videoInput1 = $("input[name='videoURL1']").val();
-    if($(videoInput1)[0] && $(videoInput1)[0].getAttribute('src')){
-        $("input[name='videoURL1']").val($(videoInput1)[0].getAttribute('src'));
-    } else {
-        $('.errMsg')[0].innerHTML = '视频地址格式不对';
-        $("input[name='videoURL1']").val();
+    if(!(typeof videoInput1 === "string" && videoInput1.indexOf("http://player.youku.com/player.php/"))) {
+        if($(videoInput1)[0] && $(videoInput1)[0].getAttribute('src')){
+            $("input[name='videoURL1']").val($(videoInput1)[0].getAttribute('src'));
+        } else {
+            $('.errMsg')[0].innerHTML = '视频地址格式不对';
+            $("input[name='videoURL1']").val();
+        }
     }
 
     var videoInput2 = $("input[name='videoURL2']").val();
-    if($(videoInput2)[0] && $(videoInput2)[0].getAttribute('src')){
-        $("input[name='videoURL2']").val($(videoInput2)[0].getAttribute('src'));
-    } else {
-        $('.errMsg')[0].innerHTML = '视频地址格式不对';
-        $("input[name='videoURL2']").val();
+    if(!(typeof videoInput2 === "string" && videoInput1.indexOf("http://player.youku.com/player.php/"))) {
+        if($(videoInput2)[0] && $(videoInput2)[0].getAttribute('src')){
+            $("input[name='videoURL2']").val($(videoInput2)[0].getAttribute('src'));
+        } else {
+            $('.errMsg')[0].innerHTML = '视频地址格式不对';
+            $("input[name='videoURL2']").val();
+        }
     }
+
     
     // var url = "/backend/autobotCompleteResume/save";
     var url = "/backend/saveInfo";
