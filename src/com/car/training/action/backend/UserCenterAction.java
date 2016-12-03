@@ -135,6 +135,13 @@ public class UserCenterAction extends SimpleAction {
             default:
                 return errorJSON("用户类型错误");
         }
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpSession session = request.getSession();
+        loginVO.setId(user.getId());
+        loginVO.setUsername(user.getUsername());
+        loginVO.setUserType(user.getType());
+        loginVO.setLoggedIn(true);
+        session.setAttribute("loginVO", loginVO);
         return successJSON();
     }
 
