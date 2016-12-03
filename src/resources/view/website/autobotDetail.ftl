@@ -42,7 +42,7 @@
                         <span>${autobot.education!}</span>
                         <span>${autobot.autoYears!}年工作经验</span>
                         <span>${autobot.workingStatus!}</span>
-                        <span>${autobot.personInfo.region.fullname!}</span>
+                        <span>${autobot.personInfo.region ?? ?then(autobot.personInfo.region.fullname!,"")}</span>
                     </div>
                     <div>
                         擅长领域：

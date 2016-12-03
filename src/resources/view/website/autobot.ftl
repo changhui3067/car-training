@@ -222,7 +222,7 @@
             }
         });
     }
-var resultJson = ${resultJson};
+var resultJson = ${resultJson!};
 </script>
 <script type="text/javascript" src="/assets/website/js/peopleSearch.js"></script>
 

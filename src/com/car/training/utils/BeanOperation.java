@@ -65,7 +65,10 @@ public class BeanOperation {
                 field.setAccessible(true);
                 Object val = fromField.get(from);
                 if (val != null) {
-                    field.set(to, val);
+                    try{
+                        field.set(to, val);
+                    }catch (IllegalArgumentException ignored){
+                    }
                 }
             } catch (NoSuchFieldException | IllegalAccessException ignored) {
             

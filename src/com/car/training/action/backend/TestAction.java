@@ -99,9 +99,9 @@ public class TestAction extends SimpleAction {
 
     public String execute() throws Exception {
         for(int  i = 0 ; i < 50 ; i ++){
-//            addAutobot();
-//            addTrainer();
-//            addCompany();
+            addAutobot();
+            addTrainer();
+            addCompany();
         }
         for (Company company :(List<Company>) simpleService.getAll(Company.class)){
             addJob(company);

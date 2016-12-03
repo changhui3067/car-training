@@ -128,7 +128,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "/website/jobDetail/apply",
+                url: "/backend/jobApply",
                 data: form_data,
                 error: function(request) {
                     showErrMsg("网络出错啦！");
@@ -136,12 +136,6 @@
                 },
                 success: function (data) {
                     showErrMsg("恭喜您,您已申请成功了！");
-                    setTimeout(function(){
-                        if(jid==''||jid==null){
-                            window.location.href = "/website/jobDetail?jobs.id=jid";
-                        }
-                    },300);
-
                 }
             });
         }else{

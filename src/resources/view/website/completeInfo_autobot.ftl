@@ -77,9 +77,9 @@
                                         工作状态:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="workingStatus" value="<#if autobot.workingStatus??>${autobot.workingStatus}</#if>">
-                                            <option value="在职" <#if autobot.workingStatus = "在职">selected</#if>>在职
+                                            <option value="在职" <#if autobot.workingStatus?? && autobot.workingStatus = "在职">selected</#if>>在职
                                             </option>
-                                            <option value="求职" <#if autobot.workingStatus = "求职">selected</#if>>求职
+                                            <option value="求职" <#if autobot.workingStatus?? &&autobot.workingStatus = "求职">selected</#if>>求职
                                             </option>
                                         </select>
                                     </div>
@@ -110,7 +110,7 @@
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-                                            <#if autobot.personInfo.region.parent?? >${autobot.personInfo.region.parent.name}<#else>
+                                            <#if autobot.personInfo.region?? && autobot.personInfo.region.parent?? >${autobot.personInfo.region.parent.name}<#else>
                                                 请选择省</#if>
                                                 <span class="caret"></span>
                                             </button>
