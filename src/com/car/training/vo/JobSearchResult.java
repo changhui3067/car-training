@@ -22,6 +22,7 @@ public class JobSearchResult {
             "salary",
             "workExperienceRequirement",
             "region",
+            "id"
     };
     
     public List<JobVO> getJobList() {
