@@ -118,7 +118,7 @@
  <div class="clear"></div>
 </div>
 <div class="pxxq_box">
- <h4><span><a href="/website/recruit/?companyType=COMPANY"  onclick="setLocation(2)">更多>></a></span>培训师招聘</h4>
+ <h4><span><a href="/website/job?jobType=TRAINER"  onclick="setLocation(2)">更多>></a></span>培训师招聘</h4>
  <div class="pxxq">
      <#if trainerJobList??>
      <ul>
@@ -170,7 +170,7 @@
 </div>
 </div>
 <div class="qcrxq_box">
- <h4><span><a href="/website/recruit/?companyType=STORE" onclick="setLocation(4)">更多>></a></span>汽车人招聘</h4>
+ <h4><span><a href="/website/job?jobType=AUTOBOT" onclick="setLocation(4)">更多>></a></span>汽车人招聘</h4>
  <div class="qcrxq">
      <#if jobsAutobotsList??>
      <ul>
