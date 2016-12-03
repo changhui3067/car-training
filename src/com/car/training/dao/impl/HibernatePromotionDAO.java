@@ -103,7 +103,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                        GROUP BY targetUserId) lk ON lk.targetUserId = login.id)\n" +
                 "         WHERE login.type = 'TRAINER'\n" +
                 "         ORDER BY weight DESC\n" +
-                "         LIMIT 10) t, (SELECT @rownum\\:=0) r;";
+                "         LIMIT 20) t, (SELECT @rownum\\:=0) r;";
 
         String autobot = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
                 "  SELECT\n" +
@@ -132,7 +132,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                        GROUP BY targetUserId) lk ON lk.targetUserId = login.id)\n" +
                 "         WHERE login.type = 'AUTOBOT'\n" +
                 "         ORDER BY weight\n" +
-                "         LIMIT 10) t, (SELECT @rownum\\:=0) r;";
+                "         LIMIT 20) t, (SELECT @rownum\\:=0) r;";
 
         String company = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
                 "  SELECT\n" +
@@ -153,7 +153,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                     GROUP BY companyId) gua ON com.id = gua.companyId\n" +
                 "        WHERE login.type = \"COMPANY\"\n" +
                 "        ORDER BY g_num\n" +
-                "        LIMIT 10) t, (SELECT @rownum\\:=0) r;";
+                "        LIMIT 20) t, (SELECT @rownum\\:=0) r;";
 
         String store = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
                 "  SELECT\n" +
@@ -174,7 +174,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                     GROUP BY companyId) gua ON com.id = gua.companyId\n" +
                 "        WHERE login.type = \"STORE\"\n" +
                 "        ORDER BY g_num DESC\n" +
-                "        LIMIT 10) t,(SELECT @rownum\\:=0) r;";
+                "        LIMIT 20) t,(SELECT @rownum\\:=0) r;";
 
         String autobot_job = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
                 "  SELECT\n" +
