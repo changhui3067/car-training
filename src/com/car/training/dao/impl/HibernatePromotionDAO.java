@@ -183,15 +183,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "    now(),\n" +
                 "    @rownum\\:=@rownum + 1 AS ord\n" +
                 "  FROM (\n" +
-                "         SELECT\n" +
-                "           max(job.id) AS id,\n" +
-                "           max(pro.ord)   ford\n" +
-                "         FROM Job job\n" +
-                "           LEFT JOIN Company com ON job.CompanyId = com.id\n" +
-                "           LEFT JOIN Promotion pro ON pro.entityId = com.id\n" +
-                "         WHERE com.companyType = \"STORE\"\n" +
-                "         GROUP BY com.id\n" +
-                "         ORDER BY ford\n" +
+                "         SELECT id from Job where type='AUTOBOT' ORDER BY createDate DESC"+
                 "         LIMIT 10\n" +
                 "       ) t, (SELECT @rownum\\:=0) r;";
 
@@ -202,15 +194,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "    now(),\n" +
                 "    @rownum\\:=@rownum + 1 AS ord\n" +
                 "  FROM (\n" +
-                "         SELECT\n" +
-                "           max(job.id) AS id,\n" +
-                "           max(pro.ord)   ford\n" +
-                "         FROM Job job\n" +
-                "           LEFT JOIN Company com ON job.CompanyId = com.id\n" +
-                "           LEFT JOIN Promotion pro ON pro.entityId = com.id\n" +
-                "         WHERE com.companyType = \"COMPANY\"\n" +
-                "         GROUP BY com.id\n" +
-                "         ORDER BY ford\n" +
+                "         SELECT id from Job where type='TRAINER' ORDER BY createDate DESC"+
                 "         LIMIT 10\n" +
                 "       ) t, (SELECT @rownum\\:=0) r;";
 
