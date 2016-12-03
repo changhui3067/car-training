@@ -16,7 +16,7 @@
                                         <input type="text" class="form-control"
                                                placeholder="请输入姓名"
                                                name="name"
-                                               value="<#if trainer?? && trainer.personInfo.name??>${trainer.personInfo.name!}</#if>"/>
+                                               value="${trainer.personInfo.name!}"/>
                                     </div>
                                 </div>
                             </li>
@@ -26,9 +26,9 @@
                                             style="color: red">*</span>
                                         性别:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="gender" value="<#if trainer.personInfo.gender??>${trainer.personInfo.gender}</#if>">
-                                            <option value="男" <#if trainer.personInfo.gender = "男">selected</#if>>男</option>
-                                            <option value="女" <#if trainer.personInfo.gender = "女">selected</#if>>女</option>
+                                        <select class="form-control" name="gender" value="${trainer.personInfo.gender?? ?then(trainer.personInfo.gender, '')}">
+                                            <option value="男" ${(trainer.personInfo.gender?? && trainer.personInfo.gender="男") ?then('selected', '')}>男</option>
+                                            <option value="女" ${(trainer.personInfo.gender?? && trainer.personInfo.gender="女") ?then('selected', '')}>女</option>
                                         </select>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                     <div class="col-sm-9">
                                         <input type="" class="form-control" name="birthday"
                                                onclick="laydate()"
-                                               value="<#if trainer?? && trainer.personInfo.birthday??>${trainer.personInfo.birthday!}</#if>"/>
+                                               value="<#if trainer.personInfo.birthday??>${trainer.personInfo.birthday!}</#if>"/>
 									<#--value="<#if trainer?? && trainer.personInfo.birthday??>${trainer.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>-->
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                             style="color: red">*</span>
                                         联系方式:</label>
                                     <div class="col-sm-9">
-                                        <label class="pxshijl_label"><#if trainer?? && trainer.personInfo.mobile??>${trainer.personInfo.mobile!}</#if><label/>
+                                        <label class="pxshijl_label">${trainer.personInfo.mobile!}<label/>
                                     </div>
                                 </div>
                             </li>
@@ -64,7 +64,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="email"
                                                placeholder="请输入邮箱"
-                                               value="<#if trainer?? && trainer.personInfo.email??>${trainer.personInfo.email!}</#if>"/>
+                                               value="${trainer.personInfo.email!}"/>
                                     </div>
                                 </div>
                             </li>
@@ -76,7 +76,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="education"
                                                placeholder="请输入学历"
-                                               value="<#if trainer?? && trainer.education??>${trainer.education!}</#if>"/>
+                                               value="${trainer.education!}"/>
                                     </div>
                                 </div>
                             </li>
@@ -90,7 +90,7 @@
                                                name="autoYears"
                                                placeholder="请输入行业经验"
                                                onkeyup="verifyNumber(this)"
-                                               value="<#if trainer?? && trainer.autoYears?? >${trainer.autoYears!}</#if>"/>
+                                               value="${trainer.autoYears!}"/>
                                     </div>
                                 </div>
                             </li>
@@ -105,13 +105,12 @@
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-											<#if trainer.personInfo.region.parent?? >${trainer.personInfo.region.parent.name}<#else>请选择省</#if>
+											    ${userRegion?? ?then(userRegion.parent.name, "请选择省")}
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 											<#list provinces as t>
-                                                <li><a href='#' onclick="selectCities(this, false)"
-                                                       value="${t.id!}">${t.name!}</a></li>
+                                                <li><a onclick="selectCities(this, false)" value="${t.id!}">${t.name!}</a></li>
 											</#list>
                                             </ul>
                                         </div>
@@ -119,7 +118,7 @@
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-											<#if trainer.personInfo.region?? >${trainer.personInfo.region.name}<#else>请选择市</#if>
+                                                ${userRegion?? ?then(userRegion.name, "请选择市")}
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -144,7 +143,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="currentPosition"
                                                placeholder="请输入当前职位"
-                                               value="<#if trainer?? && trainer.currentPosition?? >${trainer.currentPosition!}</#if>"/>
+                                               value="${trainer.currentPosition!}"/>
                                     </div>
                                 </div>
                             </li>
@@ -157,7 +156,7 @@
                                         <input type="text" class="form-control"
                                                name="videoURL1"
                                                placeholder="请输入视频链接1"
-                                               value="<#if trainer?? && trainer.videoUrl1?? >${trainer.videoUrl1!}</#if>"/>
+                                               value="${trainer.videoUrl1!}"/>
                                     </div>
                                 </div>
                             </li>
@@ -170,7 +169,7 @@
                                         <input type="text" class="form-control"
                                                name="videoURL2"
                                                placeholder="请输入视频链接2"
-                                               value="<#if trainer?? && trainer.videoUrl2?? >${trainer.videoUrl2!}</#if>"/>
+                                               value="${trainer.videoUrl2!}"/>
                                     </div>
                                 </div>
                             </li>

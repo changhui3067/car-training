@@ -16,7 +16,7 @@
                                         <input type="text" class="form-control"
                                                placeholder="请输入姓名"
                                                name="name"
-                                               value="<#if autobot?? && autobot.personInfo.name??>${autobot.personInfo.name!}</#if>"/>
+                                               value="${autobot.personInfo.name!}"/>
                                     </div>
                                 </div>
                             </li>
@@ -26,10 +26,10 @@
                                             style="color: red">*</span>
                                         性别:</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="gender" value="<#if autobot.personInfo.gender??>${autobot.personInfo.gender}</#if>">
-                                            <option value="男" <#if autobot.personInfo.gender??&& autobot.personInfo.gender = "男">selected</#if>>男
+                                        <select class="form-control" name="gender" value="${autobot.personInfo.gender?? ?then(autobot.personInfo.gender, '')}">
+                                            <option value="男" ${(trainer.personInfo.gender?? && trainer.personInfo.gender="男") ?then('selected', '')}>男
                                             </option>
-                                            <option value="女" <#if autobot.personInfo.gender??&& autobot.personInfo.gender = "女">selected</#if>>女
+                                            <option value="女" ${(trainer.personInfo.gender?? && trainer.personInfo.gender="男") ?then('selected', '')}>女
                                             </option>
                                         </select>
                                     </div>
@@ -43,7 +43,7 @@
                                     <div class="col-sm-9">
                                         <input type="" class="form-control" name="birthday"
                                                onclick="laydate()"
-                                               value="<#if autobot?? && autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>
+                                               value="<#if autobot.personInfo.birthday??>${autobot.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -53,8 +53,7 @@
                                             style="color: red">*</span>
                                         联系方式:</label>
                                     <div class="col-sm-9">
-                                        <label class="pxshijl_label"><#if autobot?? && autobot.personInfo.mobile??>${autobot.personInfo.mobile!}</#if>
-                                            <label/>
+                                        <label class="pxshijl_label">${autobot.personInfo.mobile!}<label/>
                                     </div>
                                 </div>
                             </li>
@@ -77,10 +76,8 @@
                                         工作状态:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="workingStatus" value="<#if autobot.workingStatus??>${autobot.workingStatus}</#if>">
-                                            <option value="在职" <#if autobot.workingStatus = "在职">selected</#if>>在职
-                                            </option>
-                                            <option value="求职" <#if autobot.workingStatus = "求职">selected</#if>>求职
-                                            </option>
+                                            <option value="在职" ${(autobot.workingStatus?? && autobot.workingStatus = "在职") ?then('selected','')}>在职</option>
+                                            <option value="求职" ${(autobot.workingStatus?? && autobot.workingStatus = "求职") ?then('selected','')}>求职</option>
                                         </select>
                                     </div>
                                 </div>
@@ -95,7 +92,7 @@
                                                name="autoYears"
                                                placeholder="请输入行业经验"
                                                onkeyup="verifyNumber(this)"
-                                               value="<#if autobot?? && autobot.autoYears?? >${autobot.autoYears!}</#if>"/>
+                                               value="${autobot.autoYears!}"/>
                                     </div>
                                 </div>
                             </li>
@@ -110,8 +107,7 @@
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-                                            <#if autobot.personInfo.region.parent?? >${autobot.personInfo.region.parent.name}<#else>
-                                                请选择省</#if>
+                                                ${userRegion?? ?then(userRegion.parent.name, "请选择省")}
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -125,8 +121,7 @@
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-                                            <#if autobot.personInfo.region?? >${autobot.personInfo.region.name}<#else>
-                                                请选择市</#if>
+                                                ${userRegion?? ?then(userRegion.name, "请选择市")}
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -151,7 +146,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="autoBrand"
                                                placeholder="请输入汽车品牌"
-                                               value="<#if autobot?? && autobot.autoBrand?? >${autobot.autoBrand!}</#if>"/>
+                                               value="${autobot.autoBrand!}"/>
                                     </div>
                                 </div>
                             </li>
@@ -163,7 +158,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="currentPosition"
                                                placeholder="请输入当前职位"
-                                               value="<#if autobot?? && autobot.currentPosition?? >${autobot.currentPosition!}</#if>"/>
+                                               value="${autobot.currentPosition!}"/>
                                     </div>
                                 </div>
                             </li>

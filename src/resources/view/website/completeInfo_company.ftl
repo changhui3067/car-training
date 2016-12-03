@@ -15,7 +15,7 @@
                                         <input type="text" class="form-control"
                                                placeholder="请输入企业名称"
                                                name="name"
-                                               value="<#if companyInfo?? && companyInfo.name??>${companyInfo.name!}</#if>"/>
+                                               value="${companyInfo.name!}"/>
                                     </div>
                                 </li>
 
@@ -27,7 +27,7 @@
                                         <input type="text" class="form-control"
                                                placeholder="请输入企业拥有的汽车品牌"
                                                name="autoBrand"
-                                               value="<#if companyInfo?? && companyInfo.autoBrand??>${companyInfo.autoBrand!}</#if>"/>
+                                               value="${companyInfo.autoBrand!}"/>
                                     </div>
                                 </li>
 
@@ -37,13 +37,13 @@
                                                 style="color: red">*</span>
                                             公司规模:</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="scale" value="<#if companyInfo?? && companyInfo.scale??>${companyInfo.scale!}</#if>">
-                                                <option>50人以下</option>
-                                                <option>50-100人</option>
-                                                <option>101-200人</option>
-                                                <option>200-500人</option>
-                                                <option>500-1000人</option>
-                                                <option>1000人以上</option>
+                                            <select class="form-control" name="scale" value="${companyInfo.scale!}">
+                                                <option ${(companyInfo.scale?? && companyInfo.scale="50人以下") ?then('selected', '')}>50人以下</option>
+                                                <option ${(companyInfo.scale?? && companyInfo.scale="50-100人") ?then('selected', '')}>50-100人</option>
+                                                <option ${(companyInfo.scale?? && companyInfo.scale="101-200人") ?then('selected', '')}>101-200人</option>
+                                                <option ${(companyInfo.scale?? && companyInfo.scale="200-500人") ?then('selected', '')}>200-500人</option>
+                                                <option ${(companyInfo.scale?? && companyInfo.scale="500-1000人") ?then('selected', '')}>500-1000人</option>
+                                                <option ${(companyInfo.scale?? && companyInfo.scale="1000人以上") ?then('selected', '')}>1000人以上</option>
                                             </select>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                             <input type="text" class="form-control"
                                                placeholder="请输入公司经营范围"
                                                name="businessRange"
-                                               value="<#if companyInfo?? && companyInfo.businessRange??>${companyInfo.businessRange!}</#if>"/>
+                                               value="${companyInfo.businessRange!}"/>
                                     </div>
                                     </div>
                                 </li>
@@ -74,7 +74,7 @@
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-                                                <#if userRegion?? >${userRegion.parent.name}<#else>请选择省</#if>
+                                                ${userRegion?? ?then(userRegion.parent.name, "请选择省")}
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -87,7 +87,7 @@
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-                                            <#if userRegion?? >${userRegion.name}<#else>请选择市</#if>
+                                                ${userRegion?? ?then(userRegion.name, "请选择市")}
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -102,7 +102,7 @@
                                         <input id="companyAddress" type="text" class="form-control"
                                                placeholder="请填入具体地址"
                                                name="address"
-                                               value="<#if companyInfo?? && companyInfo.address??>${companyInfo.address!}</#if>"/>
+                                               value="${companyInfo.address!}"/>
                                     </div>
                                     <div class="clear"></div>
                                 </div>
@@ -168,7 +168,7 @@
         <div class="pxshijl_box">
             <textarea style="width:800px;margin-left:15px;resize:none" name="introduction"
                 id="companyInfo.introduction" cols="45" rows="5" placeholder="请输入企业介绍">
-                <#if companyInfo?? && companyInfo.introduction??> ${companyInfo.introduction!}</#if>
+                ${companyInfo.introduction!}
             </textarea>
         </div>
     </div>
