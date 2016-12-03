@@ -230,10 +230,15 @@ function addNewJob(e) {
 
 function modifyPassword(){
     var form_data={},
-        errMsg = $(".errMsg")[0];
+        errMsg = $(".errMsg")[0]，
+        passwordReg = /^[\S]{6,12}$/;
     form_data["oldPassword"] = $("#oldpasswd").val(),
     form_data["password"] = $("#newpasswd").val();
     var confirmPsd = $("#confirmPsd").val();
+    if(!passwordReg.test(form_data.oldPassword) || !passwordReg.test(form_data.password)){
+        errMsg.innerHTML = '密码格式不正确';
+        return false;
+    }
     if(!form_data.oldPassword){
         errMsg.innerHTML = '请输入原始密码';
         return false;

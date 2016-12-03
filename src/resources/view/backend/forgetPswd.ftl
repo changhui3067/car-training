@@ -30,7 +30,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 control-label">新密码：</label>
                         <div class="col-sm-8">
-                            <input class="form-control text-size" type="password" name="password" id="password" placeholder="请输入新密码"/>
+                            <input class="form-control text-size" type="password" name="password" id="password" placeholder="6~16个字符，包含字母，数字，特殊符号"/>
                         </div>
                     </div>
                     <div>
@@ -87,7 +87,8 @@
 
     function resetPsd () {
         var form_data={},
-            errMsg = $(".errMsg")[0];
+            errMsg = $(".errMsg")[0],
+            passwordReg = /^[\S]{6,12}$/;
         form_data["username"] = $(".forgetPsd #username").val(),
         form_data["vercode"] = $(".forgetPsd #vercode").val()
         form_data["password"] = $(".forgetPsd #password").val();
@@ -96,6 +97,9 @@
             return false;
         }else if(!phoneReg.test(form_data.username)){
             errMsg.innerHTML = "手机格式不正确";
+            return false;
+        }else if(!passwordReg.test(form_data.password)){
+            errMsg.innerHTML = "密码格式不正确";
             return false;
         }
         $.ajax({

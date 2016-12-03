@@ -94,7 +94,7 @@
                 <tr>
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>密码：</td>
                   <td colspan="2"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:280px;" type="password" name="password" id="password"   data-reg="/^[A-Za-z0-9]{6,16}$/"  placeholder="请输入6-16位字母、数字组成的登录密码" required/></td>
-                  <td><font color="#999999">6~16个字符，包含字母，数字，下划线</font></td>
+                  <td><font color="#999999">6~16个字符，包含字母，数字，特殊符号</font></td>
                 </tr>
                 <tr>
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>确认密码：</td>
@@ -151,7 +151,7 @@
 <script type="text/javascript" src="/assets/website/js/Util.js"></script>  
 <script>
 var phoneReg = /^1[3|4|5|7|8][0-9]{9}$/, //手机验证规则
-    passwordReg = /^.{6,12}$/;
+    passwordReg = /^[\S]{6,12}$/;
 function register(id){
 	var form_data={},
 	    errMsg = $("#" + id + "_loginform .errMsg")[0];
@@ -208,7 +208,7 @@ function register(id){
           } else if(data.target){
             window.location.href = data.target;
           } else {
-				 	  window.location.href = "/backend/applyJobHistory";
+				 	  window.location.href = "/website/index";
 				  }
 	     }
 	});
