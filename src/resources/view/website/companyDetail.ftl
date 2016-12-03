@@ -66,7 +66,7 @@
                                 <div class="dy_box">
                                     <span class="cn" style="padding-left:0px;">${t.salary!}元</span>
                                     <span>${t.workExperienceRequirement!}年工作经验</span>
-                                    <span style="background:none;"><#if t.region.fullname??>${t.region.fullname}</#if></span>
+                                    <span style="background:none;"><#if t.region?? && t.region.fullname??>${t.region.fullname}</#if></span>
                                 </div>
                         
                                 <div class="fb_box">

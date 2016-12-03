@@ -8,7 +8,7 @@
                 <div class="dy_box">
                     <span class="cn" style="padding-left:0px;">{{job.salary}}元</span>
                     <span>{{job.workExperienceRequirement}}年工作经验</span>
-                    <span style="background:none;">{{job.region.fullname}}</span>
+                    <span style="background:none;">{{!!job.region ? job.region.fullname : ""}}</span>
                 </div>
                 <div class="fb_box">
                     <span style="padding-left:0px;">发布于: {{job.createDate}}</span>
@@ -21,10 +21,10 @@
                         <div class="qy_l left zp_box_r_l"><img :src="job.company.logoUrl"/></div>
                         <div class="qy_r right zp_box_r_r">
                             <div class="qy_name">
-                                <span>{{job.company.name}}</span>
-                                <span>已有{{job.company.guaranteeNumber}}人担保</span>
+                                <span>{{!!job.company ? job.company.name : ""}}</span>
+                                <span>已有{{!!job.company ? job.company.guaranteeNumber : ""}}人担保</span>
                             </div>
-                            <div class="jyfw">{{job.company.autoBrand}}</div>
+                            <div class="jyfw">{{!!job.company ? job.company.autoBrand : ""}}</div>
                             <div class="fl">
                                 <span v-for="w in job.company.welfare">{{w}}</span>
                             </div>
