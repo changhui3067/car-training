@@ -146,7 +146,7 @@
                              <div class="qy_r right zp_box_r_r">
                                  <div class="qy_name">
                                      <span>${trainerJob.company.name!}</span>
-                                     <span>已有${guaranteeNumberMap.get(trainerJob.company)!}人担保</span>
+                                     <span>${guaranteeNumberMap.get(trainerJob.company)!}人担保</span>
                                  </div>
                                  <div class="jyfw">${trainerJob.company.industry!}</div>
                                  <div class="fl">
@@ -184,10 +184,10 @@
                     <span>${t.workExprience!}年工作经验</span>
                     <span style="background:none;"><#if t.region??>${t.region.fullname!}</#if></span>
                 </div>
-                 <div class="pingpai">
-                     <em>当前汽车品牌：</em><span><#if t.company.autoBrand??>${t.company.autoBrand!}</#if></span>
-                     <div class="clear"></div>
-                 </div>
+                 <#--<div class="pingpai">-->
+                     <#--<em>当前汽车品牌：</em><span><#if t.company.autoBrand??>${t.company.autoBrand!}</#if></span>-->
+                     <#--<div class="clear"></div>-->
+                 <#--</div>-->
 
                  <div class="qcrxq_fb_box">
                      <span  style="padding-left:0px;">发布于：<#if t.createDate??>${t.createDate?string("yyyy-MM-dd")} </#if></span>
@@ -202,7 +202,7 @@
                         <div class="qcrxq_qy_r right zp_box_r_r">
                             <div class="qcrxq_qy_name">
                                 <span>${t.company.name!}</span>
-                                <span>已有${guaranteeNumberMap.get(t.company)!}人担保</span>
+                                <span>${guaranteeNumberMap.get(t.company)!}人担保</span>
                             </div>
                             <div class="qcrxq_jyfw">${t.company.industry!}</div>
                             <div class="qcrxq_fl">

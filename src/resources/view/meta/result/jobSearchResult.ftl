@@ -22,7 +22,7 @@
                         <div class="qy_r right zp_box_r_r">
                             <div class="qy_name">
                                 <span>{{!!job.company ? job.company.name : ""}}</span>
-                                <span>已有{{!!job.company ? job.company.guaranteeNumber : ""}}人担保</span>
+                                <span>{{!!job.company ? job.company.guaranteeNumber : ""}}人担保</span>
                             </div>
                             <div class="jyfw">{{!!job.company ? job.company.autoBrand : ""}}</div>
                             <div class="fl">
