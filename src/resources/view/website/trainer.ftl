@@ -153,7 +153,7 @@ function sendAjax(n) {
         type: "GET",
         url: url,
         data: data_,
-        error: function(request) {
+        error: function (request) {
             Util.msgToast({
                 message: '请求失败',
                 mode: Util.MSGTYPE.ERROR
@@ -162,13 +162,15 @@ function sendAjax(n) {
         },
         success: function (data) {
             if (!!data.pageNo) {
-                list.resultVO = data;
+                list.pageCount = data.pageCount;
+                list.pageNo = data.pageNo;
+                list.peopleList = data.list;
             }
         }
     });
 }
 </#escape>
-var resultJson = ${resultJson};
+var resultJson = ${resultJson!};
 </script>
 <script type="text/javascript" src="/assets/website/js/common.js"></script>
 <script type="text/javascript" src="/assets/website/js/peopleSearch.js"></script>

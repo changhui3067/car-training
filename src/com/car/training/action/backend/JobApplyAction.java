@@ -21,7 +21,7 @@ public class JobApplyAction extends SimpleAction {
     private int jobId;
 
     @JsonConfig(root = "data")
-    public String applyJob(){
+    public String execute(){
         try{
             jobApplyService.apply(jobId);
         }catch (Exception ignored){
@@ -31,7 +31,7 @@ public class JobApplyAction extends SimpleAction {
     }
 
     @Before
-    private String checkPermission() {
+    public String checkPermission() {
         LoginVO loginVO = getLoginVO();
         if (loginVO == null) {
             return errorJSON("not logged in");

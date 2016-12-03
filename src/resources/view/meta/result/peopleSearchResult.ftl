@@ -1,7 +1,7 @@
 <div id="peopleList" class="hidden">
     <div class="pxshilist">
         <ul>
-            <li v-for="person in resultVO.list" class="oneBox">
+            <li v-for="person in peopleList" class="oneBox">
                 <div class="picContainer">
                     <a :href="person.homepageUrl"><img :src="person.avatarUrl"/></a></div>
                 <div class="intro">

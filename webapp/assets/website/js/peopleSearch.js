@@ -1,34 +1,51 @@
 var list = new Vue({
     el: '#peopleList',
     data: {
-        resultVO:resultJson
+        pageCount:resultJson.pageCount,
+        pageNo: resultJson.pageNo,
+        peopleList:resultJson.list
     },
     methods: {
         getPage: function (n) {
             sendAjax(n);
         },
         specialJump: function (action) {
-//            switch action:
-//                case 'first':
-//                    this.resultVO.pageNo sendAjax();
+            if (!this[action] || !this[action]) {
+                return;
+            }
+            switch (action) {
+                case 'fst':
+                    sendAjax(1);
+                    break;
+                case 'pre':
+                    sendAjax(this.pageNo - 1);
+                    break;
+                case 'nex':
+                    sendAjax(this.pageNo + 1);
+                    break;
+                case 'Lst':
+                    sendAjax(this.pageCount);
+                default:
+                    return;
+            }
         }
     },
     computed: {
         fst: function () {
-            return this.resultVO.pageNo != 1;
+            return this.pageNo != 1;
         },
         pre: function () {
-            return this.resultVO.pageNo > 1;
+            return this.pageNo > 1;
         },
         nex: function () {
-            return this.resultVO.pageNo < this.resultVO.pageCount;
+            return this.pageNo < this.pageCount;
         },
         Lst: function () {
-            return this.resultVO.pageNo != this.resultVO.pageCount;
+            return this.pageNo != this.pageCount;
         },
         pages: function () {
-           var totalPage = this.resultVO.pageCount;
-           var pageNo = this.resultVO.pageNo;
+           var totalPage = this.pageCount;
+           var pageNo = this.pageNo;
             var pages = [];
             if (totalPage >= 5) {
                 if (pageNo < 3) {

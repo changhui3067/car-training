@@ -38,7 +38,7 @@
                     <div>
                         <span class="paddingLeftNull">${trainer.currentPosition!}</span>
                         <span>${trainer.autoYears!}年</span>
-                        <span>${trainer.education}</span>
+                        <span>${trainer.education!}</span>
                         <span class="noBorder"><#if trainer.personInfo?? && trainer.personInfo.region??>${trainer.personInfo.region.fullname!}</#if></span>
                     </div>
                     <div>

@@ -54,6 +54,7 @@ public class UserCenterAction extends SimpleAction {
     @Autowired
     private LoginVO loginVO;
 
+    private String defaultAvatar = "http://obu3flkwk.bkt.clouddn.com/car/training/upload/1480767851719.png";
 
     @JsonConfig(root = "data")
     public String login() {
@@ -100,6 +101,7 @@ public class UserCenterAction extends SimpleAction {
             case AUTOBOT:
                 personInfo = new PersonInfo();
                 personInfo.setMobile(username);
+                personInfo.setAvatarUrl(defaultAvatar);
                 break;
             case COMPANY:
             case STORE:
@@ -127,11 +129,19 @@ public class UserCenterAction extends SimpleAction {
             case STORE:
                 Company company = new Company();
                 company.setLoginUser(user);
+                company.setLogoUrl(defaultAvatar);
                 companyService.save(company);
                 break;
             default:
                 return errorJSON("用户类型错误");
         }
+        HttpServletRequest request = ServletActionContext.getRequest();
+        HttpSession session = request.getSession();
+        loginVO.setId(user.getId());
+        loginVO.setUsername(user.getUsername());
+        loginVO.setUserType(user.getType());
+        loginVO.setLoggedIn(true);
+        session.setAttribute("loginVO", loginVO);
         return successJSON();
     }
 

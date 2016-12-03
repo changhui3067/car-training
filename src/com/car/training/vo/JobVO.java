@@ -13,6 +13,7 @@ public class JobVO {
     private Region region;
     private CompanyVO company;
     private String createDate;
+    private int id;
 
 
     public String getCreateDate() {
@@ -61,5 +62,13 @@ public class JobVO {
 
     public void setSalary(String salary) {
         this.salary = salary;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

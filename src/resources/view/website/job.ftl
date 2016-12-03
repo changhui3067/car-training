@@ -238,7 +238,7 @@ function sendAjax(n) {
     });
 }
 
-var resultVO = ${resultJson};
+var resultVO = ${resultJson!};
 var list = new Vue({
     el: '#jobList',
     data: {
