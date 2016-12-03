@@ -72,7 +72,7 @@ public class JobAction extends SimpleAction {
 
     @JsonConfig(root = "data")
     public String search() throws JsonProcessingException {
-        jobList = jobService.find(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword);
+        jobList = jobService.find(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword,pn);
         totalPage = jobService.rowCount(jobType, businessCategory,regionId,publishTime,workExperienceRequirement,keyword)/ PaginationUtil.DEFAULT_PAGE_SIZE +1;
         JobSearchResult jobSearchResult = new JobSearchResult();
         jobSearchResult.setJobList(jobList,guaranteeService);
