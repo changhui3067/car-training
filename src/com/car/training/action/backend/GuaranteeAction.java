@@ -22,6 +22,10 @@ public class GuaranteeAction extends SimpleAction {
     private List<PersonInfo> personList;
 
     public String guarantee() {
+        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
+        if (loginVO == null){
+            return "请登录";
+        }
         if (guaranteeService.guarantee(loginVO.getId(), companyId)) {
             personList = guaranteeService.findPeronByCompanyId(companyId);
             return "guaranteePersonListResult";
@@ -31,6 +35,10 @@ public class GuaranteeAction extends SimpleAction {
     }
 
     public String unGuarantee() {
+        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
+        if (loginVO == null){
+            return "请登录";
+        }
         if (guaranteeService.unGuarantee(loginVO.getId(), companyId)) {
             personList = guaranteeService.findPeronByCompanyId(companyId);
             return "guaranteePersonListResult";

@@ -89,7 +89,7 @@ public class UserCenterAction extends SimpleAction {
             return errorJSON("用户名已存在！");
         }
         if (!smsManager.checkCode(username, vercode)) {
-            return errorJSON("wrong verification code");
+            return errorJSON("验证码错误");
         }
         PersonInfo personInfo = null;
         LoginUser user;
@@ -105,7 +105,7 @@ public class UserCenterAction extends SimpleAction {
             case STORE:
                 break;
             default:
-                return errorJSON("wrong user type");
+                return errorJSON("用户类型错误");
         }
         user.setUsername(username);
         user.setPassword(password);
@@ -130,7 +130,7 @@ public class UserCenterAction extends SimpleAction {
                 companyService.save(company);
                 break;
             default:
-                return errorJSON("wrong user type");
+                return errorJSON("用户类型错误");
         }
         return successJSON();
     }
@@ -139,21 +139,21 @@ public class UserCenterAction extends SimpleAction {
     public String resetPassword() {
         if(vercode!=null){
             if (!smsManager.checkCode(username, vercode)) {
-                return errorJSON("wrong verification code");
+                return errorJSON("验证码错误");
             }
             if (userService.updatePassword(username, password)) {
                 return successJSON();
             } else {
-                return errorJSON("user not exist");
+                return errorJSON("用户不存在");
             }
         } else if (oldPassword !=null && isloggedIn()){
             if (userService.updatePassword(getLoginVO().getUsername(),oldPassword, password)) {
                 return successJSON();
             } else {
-                return errorJSON("wrong password or user not exist");
+                return errorJSON("密码错误或用户不存在");
             }
         }else{
-            return errorJSON("wrong parameter");
+            return errorJSON("传入错误的参数");
         }
     }
 
@@ -174,7 +174,7 @@ public class UserCenterAction extends SimpleAction {
     @JsonConfig(root = "data")
     public String sendmsgForResetPassword() {
         if (userService.existUser(username)) {
-            return errorJSON("user not exist");
+            return errorJSON("用户不存在");
         }
         try {
             smsManager.send(username, SmsTemplate.RESETPASSWORD);
@@ -182,7 +182,7 @@ public class UserCenterAction extends SimpleAction {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return errorJSON("fail to send message, please try again");
+        return errorJSON("发送验证码失败，请重试");
     }
 
     public UserType getUserType() {

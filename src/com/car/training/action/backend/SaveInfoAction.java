@@ -66,7 +66,7 @@ public class SaveInfoAction extends SimpleAction {
             case STORE:
                 return saveCompany();
             default:
-                return errorJSON("wrong user type");
+                return errorJSON("用户类型错误");
         }
     }
 
@@ -81,7 +81,7 @@ public class SaveInfoAction extends SimpleAction {
                 personInfo = trainer.getPersonInfo();
                 break;
             default:
-                return errorJSON("wrong user type");
+                return errorJSON("用户类型错误");
         }
         String url = fileUploaderUtil.uploadImg(imgData);
         personInfo.setAvatarUrl(url);
@@ -99,7 +99,7 @@ public class SaveInfoAction extends SimpleAction {
                 companyService.updatePhotoUrl(company.getId(),url);
                 return keyValue("url", url);
             default:
-                return errorJSON("wrong user type");
+                return errorJSON("用户类型错误");
         }
     }
     
@@ -113,7 +113,7 @@ public class SaveInfoAction extends SimpleAction {
                 companyService.updateLogoUrl(company.getId(),url);
                 return keyValue("url", url);
             default:
-                return errorJSON("wrong user type");
+                return errorJSON("用户类型错误");
         }
     }
     
@@ -176,7 +176,7 @@ public class SaveInfoAction extends SimpleAction {
                 company = companyService.findByLoginUser(loginUser);
                 break;
             default:
-                return errorJSON("wrong user type");
+                return errorJSON("用户类型错误");
         }
         return null;
     }

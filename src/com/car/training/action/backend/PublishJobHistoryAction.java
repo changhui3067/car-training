@@ -80,7 +80,7 @@ public class PublishJobHistoryAction extends SimpleAction {
         try {
             jobService.save(job);
         } catch (Exception e){
-            return errorJSON("job count exceed limit ");
+            return errorJSON("申请的职位数量有限 ");
         }
         jobList = jobService.findJobsByTargetCompany();
         generateJobApplyMap();

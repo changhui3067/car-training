@@ -230,7 +230,7 @@ function addNewJob(e) {
 
 function modifyPassword(){
     var form_data={},
-        errMsg = $(".errMsg")[0]，
+        errMsg = $(".errMsg")[0],
         passwordReg = /^[\S]{6,12}$/;
     form_data["oldPassword"] = $("#oldpasswd").val(),
     form_data["password"] = $("#newpasswd").val();

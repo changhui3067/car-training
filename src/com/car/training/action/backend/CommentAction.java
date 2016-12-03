@@ -26,7 +26,7 @@ public class CommentAction extends SimpleAction {
     public String addComment() {
         loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
         if (loginVO == null){
-            return "User not logged in";
+            return "请登录";
         }
         try{
             commentService.addComment(loginVO.getId(), targetId, content);

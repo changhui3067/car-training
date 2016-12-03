@@ -30,6 +30,10 @@ public class LikeAction extends SimpleAction {
 
     @JsonConfig(root = "data")
     public String like() {
+        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
+        if (loginVO == null){
+            return "请登录";
+        }
         if (likeService.like(loginVO.getId(),targetUserId)) {
             return successJSON();
         } else {
@@ -39,6 +43,10 @@ public class LikeAction extends SimpleAction {
 
     @JsonConfig(root = "data")
     public String unLike() {
+        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
+        if (loginVO == null){
+            return "请登录";
+        }
         if (likeService.unLike(loginVO.getId(),targetUserId)) {
             return successJSON();
         } else {
