@@ -217,7 +217,9 @@
             },
             success: function (data) {
                 if (!!data.pageNo) {
-                    list.resultVO = data;
+                    list.pageCount = data.pageCount;
+                    list.pageNo = data.pageNo;
+                    list.peopleList = data.list;
                 }
             }
         });
