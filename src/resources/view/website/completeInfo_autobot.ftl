@@ -187,10 +187,6 @@
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("人事财务")!=-1>checked</#if>"
                                               value="人事财务" onclick="categoryClicked(this)">人事财务</span>
                                         <span class="checkBox <#if autobot.businessCategory ? index_of("生产研发")!=-1>checked</#if>"
-                                              value="内训" onclick="categoryClicked(this)">生产研发</span>
-                                        <span class="checkBox <#if autobot.businessCategory ? index_of("行政")!=-1>checked</#if>"
-                                              value="行政" onclick="categoryClicked(this)">行政</span>
-                                        <span class="checkBox <#if autobot.businessCategory ? index_of("生产研发")!=-1>checked</#if>"
                                               value="生产研发" onclick="categoryClicked(this)">生产研发</span>
                                     </#if>
                                     </div>
