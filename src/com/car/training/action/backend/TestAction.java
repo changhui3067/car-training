@@ -3,6 +3,7 @@ package com.car.training.action.backend;
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.*;
 import com.car.training.dao.BaseDAO;
+import com.car.training.enums.JobType;
 import com.car.training.enums.ReactTime;
 import com.car.training.enums.UserType;
 import com.car.training.service.SimpleService;
@@ -13,9 +14,11 @@ import org.ironrhino.common.util.RegionUtils;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -76,19 +79,76 @@ public class TestAction extends SimpleAction {
     private String welfare = "";
     //  "businessCategory",
     private String photoUrl = "http://obu3flkwk.bkt.clouddn.com/car/training/upload/1480230106666.png";
-    
-    
-    @Override
+
+    private String title;
+
+    private int workExperienceRequirement;
+
+    private String educationRequirement;
+
+    private String salary;
+
+    private String jobDescription;
+
+    private Date createDate = new Date();
+
+    private String majorRequirement;
+
+    private String department;
+
+
     public String execute() throws Exception {
         for(int  i = 0 ; i < 50 ; i ++){
-            addAutobot();
-            addTrainer();
+//            addAutobot();
+//            addTrainer();
+//            addCompany();
         }
+        for (Company company :(List<Company>) simpleService.getAll(Company.class)){
+            addJob(company);
+//            continue;
+        }
+
         return successJSON();
     }
-    
+
+    private void addCompany() {
+        initValue(businessCategories);
+        LoginUser loginUser = new LoginUser();
+        Company company = new Company();
+        company.setLoginUser(loginUser);
+        loginUser.setPassword("1");
+        Random random = new Random();
+        loginUser.setUsername("1227771"+random.nextInt(10)+random.nextInt(10)+random.nextInt(10)+random.nextInt(10));
+        beanOperation.setAllValue(this,company);
+        if(random.nextBoolean()){
+            company.setCompanyType("STORE");
+            loginUser.setType(UserType.STORE);
+        }else {
+            company.setCompanyType("COMPANY");
+            loginUser.setType(UserType.COMPANY);
+        }
+        simpleService.save(company);
+    }
+    private void addJob(Company company) {
+        Job job = new Job();
+        //job type
+        //company
+
+        Random random = new Random();
+        title = getChinese()+getChinese();
+        workExperienceRequirement = random.nextInt(10);
+        educationRequirement = "无";
+        salary = random.nextInt(10)+"000";
+        jobDescription = "成"+getChinese()+getChinese()+",知"+getChinese()+getChinese();
+        majorRequirement = "无";
+        department = getChinese()+"部";
+        beanOperation.setAllValue(this,job);
+        job.setCompany(company);
+        job.setType(company.getCompanyType().equals("COMPANY")?JobType.TRAINER:JobType.AUTOBOT);
+        simpleService.save(job);
+    }
+
     public void addTrainer(){
-        System.out.println("add trainer");
         initValue(businessCategories);
         Trainer trainer = new Trainer();
         PersonInfo personInfo= new PersonInfo();

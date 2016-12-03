@@ -41,7 +41,7 @@ public class PromotionServiceImpl implements PromotionService {
     public List<Trainer> getTopTrainer(int number) {
         List<Trainer> list = promotionDAO.getTopUser(Trainer.class);
         if(list.size()>number){
-            return list.subList(0, number - 1);
+            return list.subList(0, number);
         }else {
             return list;
         }
@@ -52,7 +52,7 @@ public class PromotionServiceImpl implements PromotionService {
     public List<Autobot> getTopAutobot(int number) {
         List<Autobot> list = promotionDAO.getTopUser(Autobot.class);
         if(list.size()>number){
-            return list.subList(0, number - 1);
+            return list.subList(0, number);
         }else {
             return list;
         }    }
@@ -62,7 +62,7 @@ public class PromotionServiceImpl implements PromotionService {
     public List<Job> getTopTrainerJob(int number) {
         List<Job> list = promotionDAO.getTopJob("TRAINER_JOB");
         if(list.size()>number){
-            return list.subList(0, number - 1);
+            return list.subList(0, number);
         }else {
             return list;
         }    }
@@ -72,7 +72,7 @@ public class PromotionServiceImpl implements PromotionService {
     public List<Job> getTopAutobotJob(int number) {
         List<Job> list = promotionDAO.getTopJob("AUTOBOT_JOB");
         if(list.size()>number){
-            return list.subList(0, number - 1);
+            return list.subList(0, number);
         }else {
             return list;
         }    }
@@ -82,7 +82,7 @@ public class PromotionServiceImpl implements PromotionService {
     public List<Company> getTopCompany(int number) {
         List<Company> list= baseDAO.getAllList(Company.class);
         if(list.size()>number){
-            return list.subList(0, number - 1);
+            return list.subList(0, number );
         }else {
             return list;
         }    }

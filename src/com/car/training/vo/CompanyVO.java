@@ -1,5 +1,11 @@
 package com.car.training.vo;
 
+import org.springframework.util.StringUtils;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by bill on 11/30/16.
  */
@@ -35,8 +41,12 @@ public class CompanyVO {
         this.industry = industry;
     }
 
-    public String getWelfare() {
-        return welfare;
+    public Set<String> getWelfare() {
+        HashSet<String> welfares = new HashSet<>();
+        if (!StringUtils.isEmpty(welfare)) {
+            Collections.addAll(welfares, welfare.split(","));
+        }
+        return welfares;
     }
 
     public void setWelfare(String welfare) {

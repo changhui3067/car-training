@@ -27,9 +27,9 @@
                                         性别:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="gender" value="<#if autobot.personInfo.gender??>${autobot.personInfo.gender}</#if>">
-                                            <option value="男" <#if autobot.personInfo.gender = "男">selected</#if>>男
+                                            <option value="男" <#if autobot.personInfo.gender??&& autobot.personInfo.gender = "男">selected</#if>>男
                                             </option>
-                                            <option value="女" <#if autobot.personInfo.gender = "女">selected</#if>>女
+                                            <option value="女" <#if autobot.personInfo.gender??&& autobot.personInfo.gender = "女">selected</#if>>女
                                             </option>
                                         </select>
                                     </div>
