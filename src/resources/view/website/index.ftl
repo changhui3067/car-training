@@ -57,7 +57,7 @@
               <div class="intro">
                 <div>
                     <div class="name">${a_trainer.personInfo.name!}</div>
-                    <div class="pl left"><i class="iconfont" title="评论">&#xe69b;</i>${commentNumberMap.get(a_trainer)}</div>
+                    <div class="pl right"><i class="iconfont" title="评论">&#xe69b;</i>${commentNumberMap.get(a_trainer)}</div>
                      <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(a_trainer)>
                      <div id=${a_trainer.loginUser.id!} class="right praise" value=${a_trainer.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
                      <#else>
@@ -91,7 +91,7 @@
              <div class="intro">
                  <div>
                  <div class="name">${a_autobot.personInfo.name!}</div>
-                 <div class="left"><i class="iconfont" title="评论">
+                 <div class="right"><i class="iconfont" title="评论">
                      &#xe69b;</i>${commentNumberMap.get(a_autobot)}</div>
                  <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(a_autobot)>
                      <div id=${a_autobot.loginUser.id!} class="right praise
@@ -142,7 +142,7 @@
                      <#if trainerJob.company??>
                      <div class="qy">
                          <a href="/website/companyDetail?companyId=${trainerJob.company.id!}" onclick="setLocation(-1)">
-                             <div class="qy_l left zp_box_r_l"><img src="${trainerJob.company.logo!}"/></div>
+                             <div class="qy_l left zp_box_r_l"><img src="${trainerJob.company.logoUrl!}"/></div>
                              <div class="qy_r right zp_box_r_r">
                                  <div class="qy_name">
                                      <span>${trainerJob.company.name!}</span>
@@ -172,13 +172,13 @@
 <div class="qcrxq_box">
  <h4><span><a href="/website/job?jobType=AUTOBOT" onclick="setLocation(4)">更多>></a></span>汽车人招聘</h4>
  <div class="qcrxq">
-     <#if jobsAutobotsList??>
+     <#if autobotJobList??>
      <ul>
-         <#list jobsAutobotsList as t>
+         <#list autobotJobList as t>
          <li class="zp_box">
              <#if t?? && t.company??>
              <div class="qcrxq_l left zp_box_l">
-                 <a href="/website/jobDetail?jobs.id=${t.id!}" onclick="setLocation(4)"><div class="qcrxq_zw_name">${t.name!}</div></a>
+                 <a href="/website/jobDetail?jobs.id=${t.id!}" onclick="setLocation(4)"><div class="qcrxq_zw_name">${t.title!}</div></a>
                 <div class="qcrxq_dy_box">
                     <span class="cn" style="padding-left:0px;">${t.salary!}元</span>
                     <span>${t.workExprience!}年工作经验</span>
@@ -190,7 +190,7 @@
                  </div>
 
                  <div class="qcrxq_fb_box">
-                     <span  style="padding-left:0px;">发布于：${t.publishDate!?string("yyyy-MM-dd")}</span>
+                     <span  style="padding-left:0px;">发布于：<#if t.createDate??>${t.createDate?string("yyyy-MM-dd")} </#if></span>
                      <span style="background:none;">投递后：48小时反馈 </span>
                 </div>
              </div>
@@ -198,7 +198,7 @@
             <div class="qcrxq_r right zp_box_r">
                 <div class="qcrxq_qy">
                     <a href="/website/companyDetail?companyId=${t.company.id!}"  onclick="setLocation(-1)">
-                        <div class="qcrxq_qy_l left zp_box_r_l"><img src="${t.company.logo!}" /></div>
+                        <div class="qcrxq_qy_l left zp_box_r_l"><img src="${t.company.logoUrl!}" /></div>
                         <div class="qcrxq_qy_r right zp_box_r_r">
                             <div class="qcrxq_qy_name">
                                 <span>${t.company.name!}</span>

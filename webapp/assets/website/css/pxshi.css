@@ -494,7 +494,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 .pxshilist{ width: 1200px; height:800px; color:#ff7d00;}
 .pxshilist li.oneBox{ margin: 11px; width: 210px;}
 .pxshilist .intro div{padding-right: 10px;}
-.pxshilist .intro div.right{padding-right: 10px;}
+/*.pxshilist .intro div.right{padding-right: 10px;}*/
 .pxshilist .oneBox div.picContainer{ width:210px; height: 210px;}
 .pxshilist .intro {font-size:17px;}
 .pxshilist .intro span {padding-top:5px;}
@@ -508,6 +508,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 .pxgs_list .zp_box_l {width:45%; padding: 10px 0px 10px 10px;}
 .pxgs_list .zp_box_r {width:48%;}
 .pxgs_list .zp_box_r_r {width:160px;}
+.jobList {padding:5px 0px 0px 15px;}
 
 /*Autobot list page*/
 div.autobotSearchColor div.pxshilist{ color:#3d9ccc;}

@@ -179,10 +179,7 @@ button#companyGarantee{
 .qcrxq{ padding:5px 0px 0px 15px; height:295px;}
 .pxshi{ padding:5px 0px 0px 15px;}
 .pxsheng{ padding:5px 0px 0px 20px;}
-.pxxq{ padding:5px 0px 0px 15px; height:270px;}
-
-
-
+.pxxq{ padding:5px 0px 0px 15px; height: 295px;}
 
 .xm{ color:#ff7f00; font-size:24px; margin-right:150px;   }
 .pl{ color:#ffa757;}
@@ -490,6 +487,7 @@ button#companyGarantee{
 .oneBox .intro>div:nth-child(1) .right{
     float: right;
     font-size: 12px;
+    padding-right: 10px;
 }
 
 .oneBox .intro>div:nth-child(2) {

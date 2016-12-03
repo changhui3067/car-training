@@ -1,4 +1,4 @@
-<div id="jobList" class="jobList pxxq hidden">
+<div id="jobList" class="jobList hidden">
     <ul>
         <li v-for="job in jobList" class="zp_box">
             <div class="left zp_box_l">
