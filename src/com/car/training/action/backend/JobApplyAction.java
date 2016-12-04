@@ -34,10 +34,10 @@ public class JobApplyAction extends SimpleAction {
     public String checkPermission() {
         LoginVO loginVO = getLoginVO();
         if (loginVO == null) {
-            return errorJSON("not logged in");
+            return errorJSON("请登录");
         }
         if (loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE) {
-            return errorJSON("not permitted");
+            return errorJSON("没有权限");
         }
         return null;
     }

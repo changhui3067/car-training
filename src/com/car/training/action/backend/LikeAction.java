@@ -5,6 +5,7 @@ package com.car.training.action.backend;
  */
 
 import com.car.training.action.SimpleAction;
+import com.car.training.bean.LoginUser;
 import com.car.training.enums.UserType;
 import com.car.training.service.LikeService;
 import com.car.training.vo.LoginVO;
@@ -30,10 +31,6 @@ public class LikeAction extends SimpleAction {
 
     @JsonConfig(root = "data")
     public String like() {
-        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
-        if (loginVO == null){
-            return "请登录";
-        }
         if (likeService.like(loginVO.getId(),targetUserId)) {
             return successJSON();
         } else {
@@ -43,15 +40,26 @@ public class LikeAction extends SimpleAction {
 
     @JsonConfig(root = "data")
     public String unLike() {
-        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
-        if (loginVO == null){
-            return "请登录";
-        }
         if (likeService.unLike(loginVO.getId(),targetUserId)) {
             return successJSON();
         } else {
             return errorJSON("");
         }
+    }
+
+    @Before
+    public String checkPermission() {
+        LoginVO loginVO = getLoginVO();
+        if (loginVO == null) {
+            return errorJSON("请登录");
+        }
+        LoginUser loginUser = new LoginUser();
+        loginUser.setId(targetUserId);
+        if (loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE ||
+                loginVO.getUserType() == loginUser.getType()) {
+            return errorJSON("没有权限");
+        }
+        return null;
     }
 
     @Override
