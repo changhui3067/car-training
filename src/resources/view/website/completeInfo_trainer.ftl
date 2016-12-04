@@ -41,8 +41,7 @@
                                     <div class="col-sm-9">
                                         <input type="" class="form-control" name="birthday"
                                                onclick="laydate()"
-                                               value="<#if trainer.personInfo.birthday??>${trainer.personInfo.birthday!}</#if>"/>
-									<#--value="<#if trainer?? && trainer.personInfo.birthday??>${trainer.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>-->
+                                               value="<#if trainer.personInfo.birthday??>${trainer.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -260,15 +259,25 @@
     </div>
 
     <div class="pxshijl">
-        <h5>培训师简介</h5>
+        <h5>个人介绍</h5>
         <div class="pxshijl_box">
-            <textarea style="width:800px;margin-left:15px;resize:none" name="introduction" cols="45" rows="5" placeholder="请输入培训师简介"
+            <textarea style="width:800px;margin-left:15px;resize:none" name="introduction" cols="45" rows="5" placeholder="请输入个人介绍"
                     value="<#if trainer?? && trainer.introduction??> ${trainer.introduction!}</#if>">
+            <#if trainer?? && trainer.introduction??> ${trainer.introduction!}</#if>
             </textarea>
         </div>
     </div>
 
-    <#--主讲课程-->
+    <div class="pxshijl">
+        <h5>课程介绍</h5>
+        <div class="pxshijl_box">
+            <textarea style="width:800px;margin-left:15px;resize:none" name="introduction" cols="45" rows="5" placeholder="请输入课程介绍"
+                      value="<#if trainer?? && trainer.mainCourse??> ${trainer.mainCourse!}</#if>">
+            <#if trainer?? && trainer.mainCourse??> ${trainer.mainCourse!}</#if>
+            </textarea>
+        </div>
+    </div>
+
 
     <div class="tj">
         <button type="button" class="btn btn-primary" onclick="submitTrainerInfo()" style=""/>
