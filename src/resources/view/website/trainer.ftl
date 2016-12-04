@@ -94,7 +94,7 @@ function filterClicked(ele, category) {
     filters[category] = filters[category] ? filters[category] : [];
     if ($(ele).hasClass('checked')) {
         $(ele).removeClass('checked');
-        filters[category].splice($.inArray(ele.innerHTML), 1);
+        filters[category].splice($.inArray(ele.innerHTML,filters[category]), 1);
     } else {
         $(ele).addClass('checked');
         filters[category].push(ele.innerHTML)
