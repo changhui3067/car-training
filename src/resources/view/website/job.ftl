@@ -244,7 +244,8 @@ var list = new Vue({
     data: {
         jobList: resultVO.jobList,
         pageCount: resultVO.pageCount,
-        pageNo: resultVO.pageNo
+        pageNo: resultVO.pageNo,
+        isLogin: resultVO.login
     },
     methods: {
         getPage: function (n) {

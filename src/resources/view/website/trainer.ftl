@@ -165,6 +165,7 @@ function sendAjax(n) {
                 list.pageCount = data.pageCount;
                 list.pageNo = data.pageNo;
                 list.peopleList = data.list;
+                list.isLogin = data.login;
             }
         }
     });

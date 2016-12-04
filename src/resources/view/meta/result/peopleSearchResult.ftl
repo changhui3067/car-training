@@ -8,7 +8,7 @@
                     <div>
                         <div class="name">{{person.personName}}</div>
                         <div class="right"><i class="iconfont" title="评论">&#xe69b;</i>{{person.commentNumber}}</div>
-                        <div class="right"><i class="iconfont" title="点赞">&#xe717;</i>{{person.likeNumber}}</div>
+                        <div class="right praise" v-bind:id={{person.loginUserId}} value={{isLogin ? 'true' : 'false'}} v-on:click="like('#peopleList li .intro',this.id)"><i class={{person.like ? 'iconfont icon-icon02' : 'iconfont icon-good'}} title="点赞"></i>{{person.likeNumber}}</div>
                         <div class="clear"></div>
                     </div>
                     <#--<div class="clear"></div>-->

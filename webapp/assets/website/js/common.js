@@ -162,7 +162,7 @@ function guarantee(prix, id) {
 
 //评论
 function addComment (id) {
-    if ($(".add_comment_box" + " #" + id)[0].getAttribute("value") === "true") {
+    if ($(".add_comment_box button")[0].getAttribute("value") === "true") {
         var data = {},
             number = new Number($("#commentNumber")[0].innerHTML);
         $("#commentNumber")[0].innerHTML = number + 1;

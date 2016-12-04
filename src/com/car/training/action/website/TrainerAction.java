@@ -60,6 +60,7 @@ public class TrainerAction extends SimpleAction {
         searchResult.setList(people);
         searchResult.setPageCount(totalPage);
         searchResult.setPageNo(pn);
+        searchResult.setLogin(isloggedIn());
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         resultJson = ow.writeValueAsString(searchResult);
         return SUCCESS;
@@ -84,6 +85,7 @@ public class TrainerAction extends SimpleAction {
         searchResult.setList(people);
         searchResult.setPageCount(totalPage);
         searchResult.setPageNo(pn);
+        searchResult.setLogin(isloggedIn());
         setData(searchResult);
         return JSON;
     }

@@ -7,6 +7,7 @@ public class SearchResult {
     private int pageCount;
     private int pageNo;
     private Object list;
+    private Boolean login;
 
     public int getPageCount() {
         return pageCount;
@@ -30,5 +31,13 @@ public class SearchResult {
 
     public void setList(Object list) {
         this.list = list;
+    }
+
+    public Boolean getLogin() {
+        return login;
+    }
+
+    public void setLogin(Boolean login) {
+        this.login = login;
     }
 }

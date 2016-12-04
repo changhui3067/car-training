@@ -4,6 +4,7 @@ import com.car.training.bean.Autobot;
 import com.car.training.bean.Trainer;
 import com.car.training.service.CommentService;
 import com.car.training.service.LikeService;
+import org.apache.struts2.ServletActionContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,8 @@ public class PersonVO {
     private int likeNumber;
     private int commentNumber;
     private String currentPosition;
+    private Boolean like;
+    private int loginUserId;
 
     private static CommentService commentService;
 
@@ -31,6 +34,11 @@ public class PersonVO {
         personVO.homepageUrl = "/website/trainerDetail?trainerId="+trainer.getId();
         personVO.likeNumber = likeService.likeNumber(trainer.getLoginUser().getId());
         personVO.commentNumber = commentService.commentNumber(trainer.getLoginUser().getId());
+        LoginVO loginVO = (LoginVO) ServletActionContext.getRequest().getAttribute("loginVO");
+        if(loginVO !=null){
+            personVO.like = likeService.isLike(loginVO.getId(),trainer.getLoginUser().getId());
+        }
+        personVO.loginUserId = trainer.getLoginUser().getId();
         return personVO;
     }
 
@@ -42,6 +50,11 @@ public class PersonVO {
         personVO.homepageUrl = "/website/autobotDetail?autobotId="+autobot.getId();
         personVO.likeNumber = likeService.likeNumber(autobot.getLoginUser().getId());
         personVO.commentNumber = commentService.commentNumber(autobot.getLoginUser().getId());
+        LoginVO loginVO = (LoginVO) ServletActionContext.getRequest().getAttribute("loginVO");
+        if(loginVO !=null){
+            personVO.like = likeService.isLike(loginVO.getId(),autobot.getLoginUser().getId());
+        }
+        personVO.loginUserId = autobot.getLoginUser().getId();
         return personVO;
     }
     
@@ -111,5 +124,21 @@ public class PersonVO {
 
     public void setCurrentPosition(String currentPosition) {
         this.currentPosition = currentPosition;
+    }
+
+    public Boolean getLike() {
+        return like;
+    }
+
+    public void setLike(Boolean like) {
+        this.like = like;
+    }
+
+    public int getLoginUserId() {
+        return loginUserId;
+    }
+
+    public void setLoginUserId(int loginUserId) {
+        this.loginUserId = loginUserId;
     }
 }

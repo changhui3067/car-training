@@ -8,6 +8,7 @@ import com.car.training.service.CommentService;
 import com.car.training.service.LikeService;
 import com.car.training.utils.CategoriesTransformer;
 import com.car.training.utils.PaginationUtil;
+import com.car.training.vo.LoginVO;
 import com.car.training.vo.PersonVO;
 import com.car.training.vo.SearchResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -53,6 +54,7 @@ public class AutobotAction extends SimpleAction {
         searchResult.setList(people);
         searchResult.setPageCount(totalPage);
         searchResult.setPageNo(pn);
+        searchResult.setLogin(isloggedIn());
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         resultJson = ow.writeValueAsString(searchResult);
         return SUCCESS;
@@ -77,6 +79,7 @@ public class AutobotAction extends SimpleAction {
         searchResult.setList(people);
         searchResult.setPageCount(totalPage);
         searchResult.setPageNo(pn);
+        searchResult.setLogin(isloggedIn());
         setData(searchResult);
         return JSON;
     }
