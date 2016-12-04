@@ -13,7 +13,43 @@
                                         公司名称:</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
-                                               placeholder="请输入企业名称"
+                                               placeholder="请输入公司名称"
+                                               name="name"
+                                               value="${companyInfo.name!}"/>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item pxshijl_li">
+                                    <label class="col-sm-3 pxshijl_label"><span
+                                            style="color: red">*</span>
+                                        公司邮箱:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control"
+                                               placeholder="请输入公司邮箱"
+                                               name="name"
+                                               value="${companyInfo.name!}"/>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item pxshijl_li">
+                                    <label class="col-sm-3 pxshijl_label"><span
+                                            style="color: red">*</span>
+                                        公司座机:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control"
+                                               placeholder="请输入公司座机"
+                                               name="name"
+                                               value="${companyInfo.name!}"/>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item pxshijl_li">
+                                    <label class="col-sm-3 pxshijl_label"><span
+                                            style="color: red">*</span>
+                                        公司联系人:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control"
+                                               placeholder="请输入公司联系人名称"
                                                name="name"
                                                value="${companyInfo.name!}"/>
                                     </div>

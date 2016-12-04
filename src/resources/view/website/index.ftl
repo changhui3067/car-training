@@ -118,7 +118,7 @@
  <div class="clear"></div>
 </div>
 <div class="pxxq_box">
- <h4><span><a href="/website/job?jobType=TRAINER"  onclick="setLocation(2)">更多>></a></span>培训师招聘</h4>
+ <h4><span><a href="/website/job?jobType=TRAINER" onclick="setLocation(2)">更多>></a></span>培训师招聘</h4>
  <div class="pxxq">
      <#if trainerJobList??>
      <ul>
@@ -127,7 +127,7 @@
              <#if trainerJob??>
              <div class="qz"></div>
                  <div class="left zp_box_l">
-                    <a href="/website/jobDetail?jobId=${trainerJob.id!} onclick="setLocation(2)""> <div class="zw_name">${trainerJob.title!}</div></a>
+                    <a href="/website/jobDetail?jobId=${trainerJob.id!}" onclick="setLocation(2)"> <div class="zw_name">${trainerJob.title!}</div></a>
                     <div class="dy_box">
                         <span class="cn" style="padding-left:0px;">${trainerJob.salary!}元</span>
                         <span>${trainerJob.workExperienceRequirement!}年工作经验</span>
