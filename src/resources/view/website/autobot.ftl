@@ -205,7 +205,7 @@
         }
         data_.pn = !!n ? n : 1;
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: url,
             data: data_,
             error: function(request) {
