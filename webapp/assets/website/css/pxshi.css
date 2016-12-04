@@ -499,7 +499,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 .zpgw_r{ width:125px; margin-top:20px;}
 
 /*Trainer list page*/
-.pxshilist{ width: 1200px; height:800px; color:#ff7d00;}
+.pxshilist{ width: 1200px; min-height:800px; color:#ff7d00;}
 .pxshilist li.oneBox{ margin: 11px; width: 210px;}
 .pxshilist .intro div{padding-right: 10px;}
 /*.pxshilist .intro div.right{padding-right: 10px;}*/
