@@ -51,11 +51,10 @@ public class PublishJobHistoryAction extends SimpleAction {
     private String jobDescription;
     private List<Region>  provinces;
     private List<Region>  cities;
-
+    private String jobRequirement;
 
     @Override
     public String execute() throws Exception {
-        //Object loginVO = getLoginVO();
         if(loginVO != null) {
             jobList = jobService.findJobsByTargetCompany();
             generateJobApplyMap();
@@ -102,6 +101,7 @@ public class PublishJobHistoryAction extends SimpleAction {
             "LanguageRequirement",
             "address",
             "salary",
+            "jobRequirement",
             "jobDescription"
     };
 
@@ -198,5 +198,13 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     public void setCities(List<Region> cities) {
         this.cities = cities;
+    }
+
+    public String getJobRequirement() {
+        return jobRequirement;
+    }
+
+    public void setJobRequirement(String jobRequirement) {
+        this.jobRequirement = jobRequirement;
     }
 }

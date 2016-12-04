@@ -27,9 +27,9 @@
                                         性别:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="gender" value="${autobot.personInfo.gender?? ?then(autobot.personInfo.gender, '')}">
-                                            <option value="男" ${(trainer.personInfo.gender?? && trainer.personInfo.gender="男") ?then('selected', '')}>男
+                                            <option value="男" ${(autobot.personInfo.gender?? && autobot.personInfo.gender="男") ?then('selected', '')}>男
                                             </option>
-                                            <option value="女" ${(trainer.personInfo.gender?? && trainer.personInfo.gender="男") ?then('selected', '')}>女
+                                            <option value="女" ${(autobot.personInfo.gender?? && autobot.personInfo.gender="男") ?then('selected', '')}>女
                                             </option>
                                         </select>
                                     </div>

@@ -15,7 +15,7 @@
                     <#if apply.job.title??>${apply.job.title}<#else>无</#if></a>
                 </td>
                 <td><#if apply.job.type??>${apply.job.type}<#else>无</#if></td>
-                <td><#if apply.job.region.fullname??>${apply.job.region.fullname}<#else>无</#if></td>
+                <td><#if apply.job.region?? && apply.job.region.fullname??>${apply.job.region.fullname}<#else>无</#if></td>
                 <td><#if apply.job.createDate??>${apply.job.createDate?string("yyyy-MM-dd")}<#else>无</#if></td>
             </tr>
 		</#list>
