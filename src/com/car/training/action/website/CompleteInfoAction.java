@@ -133,4 +133,12 @@ public class CompleteInfoAction extends SimpleAction {
     public void setCities(List<Region> cities) {
         this.cities = cities;
     }
+
+    public Region getUserRegion() {
+        return userRegion;
+    }
+
+    public void setUserRegion(Region userRegion) {
+        this.userRegion = userRegion;
+    }
 }
