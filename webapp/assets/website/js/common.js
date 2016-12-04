@@ -51,49 +51,50 @@ function settime(obj) {
 
 //点赞   author: Xiu
 function like(prix, id) {
-    var dom = $(prix + " #" + id),
-        number = new Number(dom[0].childNodes[1].innerHTML),
-        data = {};
-    data["targetUserId"] = dom[0].getAttribute("value");
-    if (dom.hasClass("unLike")) {
-        dom.removeClass("unLike");
-        dom.addClass("like");
-        dom[0].childNodes[1].innerHTML = number + 1;
-        $.ajax({
-            type: "POST",
-            url: "/backend/Like/like",
-            data: data,
-            error: function() {
-                Util.msgToast({
-                    message: '请求失败',
-                    mode: Util.MSGTYPE.ERROR
-                });
-                return false;
-            },
-            success: function (data) {
-                return true;
-            }
-        });
-    } else {
-        dom.addClass("unLike");
-        dom.removeClass("like");
-        dom[0].childNodes[1].innerHTML = number - 1;
-        $.ajax({
-            type: "POST",
-            url: "/backend/Like/unLike",
-            data: data,
-            error: function() {
-                Util.msgToast({
-                    message: '请求失败',
-                    mode: Util.MSGTYPE.ERROR
-                });
-                return false;
-            },
-            success: function (data) {
-                return true;
-            }
-        });
+    var dom = $(prix + " #" + id);
+    if (dom[0].getAttribute("value") === "true") {
+        var number = new Number(dom[0].childNodes[1].innerHTML),
+            data = {};
+        data["targetUserId"] = id;
+        if (dom[0].childNodes[0].className === "iconfont icon-good") {
+            dom[0].childNodes[0].className = "iconfont icon-icon02";
+            dom[0].childNodes[1].innerHTML = number + 1;
+            $.ajax({
+                type: "POST",
+                url: "/backend/Like/like",
+                data: data,
+                error: function() {
+                    Util.msgToast({
+                        message: '请求失败',
+                        mode: Util.MSGTYPE.ERROR
+                    });
+                    return false;
+                },
+                success: function (data) {
+                    return true;
+                }
+            });
+        } else {
+            dom[0].childNodes[0].className = "iconfont icon-good";
+            dom[0].childNodes[1].innerHTML = number - 1;
+            $.ajax({
+                type: "POST",
+                url: "/backend/Like/unLike",
+                data: data,
+                error: function() {
+                    Util.msgToast({
+                        message: '请求失败',
+                        mode: Util.MSGTYPE.ERROR
+                    });
+                    return false;
+                },
+                success: function (data) {
+                    return true;
+                }
+            });
+        }
     }
+    
 }
 
 //点赞

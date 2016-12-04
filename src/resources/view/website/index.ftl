@@ -59,9 +59,9 @@
                     <div class="name">${a_trainer.personInfo.name!}</div>
                     <div class="pl right"><i class="iconfont" title="评论">&#xe69b;</i>${commentNumberMap.get(a_trainer)}</div>
                      <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(a_trainer)>
-                     <div id=${a_trainer.loginUser.id!} class="right praise" value=${a_trainer.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
+                     <div id=${a_trainer.loginUser.id!} class="right praise" value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont icon-icon02" title="点赞"></i><span>${likeNumberMap.get(a_trainer)!}</span></div>
                      <#else>
-                     <div id=${a_trainer.loginUser.id!} class="right praise unLike" value=${a_trainer.loginUser.id!} onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_trainer)!}</span></div>
+                     <div id=${a_trainer.loginUser.id!} class="right praise" value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" onClick="like('.pxshi_r .oneBox .intro',this.id)"><i class="iconfont icon-good" title="点赞"></i><span>${likeNumberMap.get(a_trainer)!}</span></div>
                      </#if>
                     <div class="clear"></div>
                 </div>
@@ -95,12 +95,12 @@
                      &#xe69b;</i>${commentNumberMap.get(a_autobot)}</div>
                  <#if isLikeMap?? &&isLikeMap.size() gt 0 && isLikeMap.get(a_autobot)>
                      <div id=${a_autobot.loginUser.id!} class="right praise
-                     " value=${a_autobot.loginUser.id!} onClick="like('.pxsheng .oneBox .intro',this.id)"><i
-                         class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_autobot)!}</span></div>
+                     " value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" onClick="like('.pxsheng .oneBox .intro',this.id)"><i
+                         class="iconfont icon-icon02" title="点赞"></i><span>${likeNumberMap.get(a_autobot)!}</span></div>
                  <#else>
-                     <div id=${a_autobot.loginUser.id!} class="right praise unLike
-                     " value=${a_autobot.loginUser.id!} onClick="like('.pxsheng .oneBox .intro',this.id)"><i
-                         class="iconfont" title="点赞">&#xe717;</i><span>${likeNumberMap.get(a_autobot)!}</span></div>
+                     <div id=${a_autobot.loginUser.id!} class="right praise
+                     " value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" onClick="like('.pxsheng .oneBox .intro',this.id)"><i
+                         class="iconfont icon-good" title="点赞"></i><span>${likeNumberMap.get(a_autobot)!}</span></div>
                  </#if>
                  <div class="clear"></div>
                  </div>

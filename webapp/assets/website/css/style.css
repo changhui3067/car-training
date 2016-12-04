@@ -156,8 +156,7 @@ button#companyGarantee{
 /*培训师*//*培训生*//*培训需求*//*汽车人需求*/
 .pxshi_box, .pxsheng_box, .pxxq_box, .qcrxq_box{ padding:1px 0 10px 0;background:#ffffff; margin-bottom:20px;}
 .pxshi_box{ color:#ff7d00;}
-.pxsheng_box, .unLike i{ color:#3d9ccc;}
-.like, .like i{color:#ff7f00}
+.pxsheng_box{ color:#3d9ccc;}
 .pxxq_box{ color:#ff7d00;}
 .qcrxq_box{ color:#3d9ccc;}
 

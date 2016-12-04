@@ -30,9 +30,9 @@
                         <div class="iconbox right alignCenter">
                             <span><i class="iconfont alignCenter" title="评论">&#xe69b;</i><#if commentList??><span id="commentNumber">${commentList.size()!}</span><#else><span id="commentNumber">0</span></#if></span>
                             <#if like?? && like>
-                            <span class="alignCenter like" id="autobotDetailLike" value=${autobot.loginUser.id!} onClick="like('',this.id)"><i class="iconfont praise" title="点赞">&#xe717;</i><span>${likeNumber!}</span></span>
+                            <span class="alignCenter praise" id=${autobot.loginUser.id!} value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" onClick="like('.people_detail_basic_info .detail .iconbox',this.id)"><i class="iconfont icon-icon02" title="点赞"></i><span>${likeNumber!}</span></span>
                             <#else>
-                            <span class="alignCenter unLike" id="autobotDetailLike" value=${autobot.loginUser.id!} onClick="like('',this.id)"><i class="iconfont praise" title="点赞">&#xe717;</i><span>${likeNumber!}</span></span>
+                            <span class="alignCenter praise" id=${autobot.loginUser.id!} value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" onClick="like('.people_detail_basic_info .detail .iconbox',this.id)"><i class="iconfont icon-good" title="点赞"></i><span>${likeNumber!}</span></span>
                             </#if>
                         </div>
                         <div class="clear"></div>
