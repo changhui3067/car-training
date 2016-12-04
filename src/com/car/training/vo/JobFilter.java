@@ -69,7 +69,7 @@ public class JobFilter {
 
                 }
                 try {
-                    jobFilter.maxWorkExperienceRequirement = Integer.valueOf(reqs[0]);
+                    jobFilter.maxWorkExperienceRequirement = Integer.valueOf(reqs[1]);
                 } catch (Exception ignored) {
 
                 }
