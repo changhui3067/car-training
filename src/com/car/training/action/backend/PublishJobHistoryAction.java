@@ -2,8 +2,11 @@ package com.car.training.action.backend;
 
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Apply;
+import com.car.training.bean.Company;
 import com.car.training.bean.Job;
+import com.car.training.bean.LoginUser;
 import com.car.training.enums.JobType;
+import com.car.training.service.CompanyService;
 import com.car.training.service.JobApplyService;
 import com.car.training.service.JobService;
 import com.car.training.utils.BeanOperation;
@@ -35,7 +38,10 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     @Autowired
     RegionUtils regionUtils;
-    
+
+    @Autowired
+    private CompanyService companyService;
+
     private List<Job> jobList;
 
     private HashMap<Object, List<Apply>> jobApplyMap = new HashMap<>();
@@ -66,7 +72,10 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     public String add() throws Exception {
         Job job = new Job();
-
+        LoginUser loginUser = new LoginUser();
+        loginUser.setId(loginVO.getId());
+        Company company = companyService.findByLoginUser(loginUser);
+        job.setCompany(company);
         beanOperation.setValue(this, job, jobProps);
         switch (loginVO.getUserType()) {
             case COMPANY:

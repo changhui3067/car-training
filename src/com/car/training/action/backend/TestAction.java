@@ -11,7 +11,6 @@ import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -104,7 +103,6 @@ public class TestAction extends SimpleAction {
 
     private String department;
 
-
     public String execute() throws Exception {
         for (int i = 0; i < 50; i++) {
             addAutobot();
@@ -125,7 +123,7 @@ public class TestAction extends SimpleAction {
         company.setLoginUser(loginUser);
         loginUser.setPassword("1");
         Random random = new Random();
-        loginUser.setUsername("1227771" + randomInt(10) + randomInt(10) + randomInt(10) + randomInt(10));
+        loginUser.setUsername(mobile);
         beanOperation.setAllValue(this, company);
         if (random.nextBoolean()) {
             company.setCompanyType("STORE");
@@ -214,7 +212,7 @@ public class TestAction extends SimpleAction {
         }
         region = new Region();
         region.setId(2L);
-        mobile = "156215" +  randomInt(10) + randomInt(10) + randomInt(10) + randomInt(10);
+        mobile = "1578907" +  randomInt(10) + randomInt(10) + randomInt(10) + randomInt(10);
     }
 
     private String getRandom(String[] arr) {
