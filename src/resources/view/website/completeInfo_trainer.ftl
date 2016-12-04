@@ -16,7 +16,7 @@
                                         <input type="text" class="form-control"
                                                placeholder="请输入姓名"
                                                name="name"
-                                               value="${trainer.personInfo.name!}"/>
+                                               value="<#if trainer?? && trainer.personInfo.name??>${trainer.personInfo.name!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -41,7 +41,7 @@
                                     <div class="col-sm-9">
                                         <input type="" class="form-control" name="birthday"
                                                onclick="laydate()"
-                                               value="<#if trainer.personInfo.birthday??>${trainer.personInfo.birthday!}</#if>"/>
+                                               value="<#if trainer?? && trainer.personInfo.birthday??>${trainer.personInfo.birthday!}</#if>"/>
 									<#--value="<#if trainer?? && trainer.personInfo.birthday??>${trainer.personInfo.birthday?string("yyyy-MM-dd")!}</#if>"/>-->
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                             style="color: red">*</span>
                                         联系方式:</label>
                                     <div class="col-sm-9">
-                                        <label class="pxshijl_label">${trainer.personInfo.mobile!}<label/>
+                                        <label class="pxshijl_label"><#if trainer?? && trainer.personInfo.mobile??>${trainer.personInfo.mobile!}</#if><label/>
                                     </div>
                                 </div>
                             </li>
@@ -64,7 +64,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="email"
                                                placeholder="请输入邮箱"
-                                               value="${trainer.personInfo.email!}"/>
+                                               value="<#if trainer?? && trainer.personInfo.email??>${trainer.personInfo.email!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -76,7 +76,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="education"
                                                placeholder="请输入学历"
-                                               value="${trainer.education!}"/>
+                                               value="<#if trainer?? && trainer.education??>${trainer.education!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -90,7 +90,7 @@
                                                name="autoYears"
                                                placeholder="请输入行业经验"
                                                onkeyup="verifyNumber(this)"
-                                               value="${trainer.autoYears!}"/>
+                                               value="<#if trainer?? && trainer.autoYears?? >${trainer.autoYears!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -143,7 +143,7 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="currentPosition"
                                                placeholder="请输入当前职位"
-                                               value="${trainer.currentPosition!}"/>
+                                               value="<#if trainer?? && trainer.currentPosition?? >${trainer.currentPosition!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -156,7 +156,7 @@
                                         <input type="text" class="form-control"
                                                name="videoURL1"
                                                placeholder="请输入视频链接1"
-                                               value="${trainer.videoUrl1!}"/>
+                                               value="<#if trainer?? && trainer.videoUrl1?? >${trainer.videoUrl1!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -169,7 +169,7 @@
                                         <input type="text" class="form-control"
                                                name="videoURL2"
                                                placeholder="请输入视频链接2"
-                                               value="${trainer.videoUrl2!}"/>
+                                               value="<#if trainer?? && trainer.videoUrl2?? >${trainer.videoUrl2!}</#if>"/>
                                     </div>
                                 </div>
                             </li>
@@ -241,7 +241,7 @@
                         <ul class="list-group">
                             <li class="list-group-item pxshijl_li">
                                 <div class="form-group">
-                                    <img id="avatar_show" src="${trainer.personInfo.avatarUrl!}">
+                                    <img id="avatar_show" src="<#if trainer?? && trainer.personInfo.avatarUrl?? >${trainer.personInfo.avatarUrl!}</#if>"/>
                                     <button id="avatar_btn" type="button" class="btn btn-primary btn-lg adminPageBtn">
                                         上传照片
                                     </button>
