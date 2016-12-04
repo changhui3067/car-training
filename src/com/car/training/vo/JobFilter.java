@@ -47,7 +47,8 @@ public class JobFilter {
                         jobFilter.maxPublishTime = calendar.getTime();
                     } catch (Exception ignored) {
                     }
-
+                }
+                if (!StringUtils.isEmpty(publishTimes[1])) {
                     try {
                         int maxDay = Integer.valueOf(publishTimes[1]);
                         Calendar calendar = Calendar.getInstance();

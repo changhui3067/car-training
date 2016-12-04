@@ -76,11 +76,11 @@
             <div class="filterType">
             	<div class="filterName">发布时间:</div>
                 <div class="filterItemList">
-                    <span onclick="filter3Clicked(this, 'publishDate')">三天内</span>
-                    <span onclick="filter3Clicked(this, 'publishDate')">一周内</span>
-                    <span onclick="filter3Clicked(this, 'publishDate')">两周内</span>
-                    <span onclick="filter3Clicked(this, 'publishDate')">一个月以内</span>
-                    <span onclick="filter3Clicked(this, 'publishDate')">一个月以上</span>
+                    <span onclick="filter3Clicked(this, 'publishTime')">三天内</span>
+                    <span onclick="filter3Clicked(this, 'publishTime')">一周内</span>
+                    <span onclick="filter3Clicked(this, 'publishTime')">两周内</span>
+                    <span onclick="filter3Clicked(this, 'publishTime')">一个月以内</span>
+                    <span onclick="filter3Clicked(this, 'publishTime')">一个月以上</span>
                 </div>
             	<div class="clear"></div>
             </div>
