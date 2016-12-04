@@ -64,7 +64,17 @@ public class Company {
 
     @Column
     private String businessRange;
-    
+
+    @Column
+    private String contactName;
+
+    @Column
+    private String telephone;
+
+    @Column
+    private String email;
+
+
     public int getId() {
         return id;
     }
@@ -184,5 +194,29 @@ public class Company {
 
     public void setBusinessRange(String businessRange) {
         this.businessRange = businessRange;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

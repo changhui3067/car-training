@@ -294,6 +294,9 @@ public class SaveInfoAction extends SimpleAction {
             "businessRange",
             "reactTime",
             "welfare",
+            "email",
+            "contactName",
+            "telephone",
 //            "businessCategory",
             "photoUrl",
     };
