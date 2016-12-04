@@ -15,6 +15,7 @@
                     <div>{{person.currentPosition}}</div>
                 </div>
             </li>
+            <div class="clear"></div>
         </ul>
     </div>
     <div class="fypage">
