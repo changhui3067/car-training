@@ -4,11 +4,7 @@
         <div class="companyBasicInfoBoxContent">
         <#if company??>
             <h5>${company.name!}</h5>
-            <#if guarantee?? && guarantee>
-            <button id="companyGarantee" value=${company.id!} class="guarantee" onClick="guarantee(this.id)">我为公司担保</button>
-            <#else>
-            <button id="companyGarantee" value=${company.id!} onClick="guarantee(this.id)">我为公司担保</button>
-            </#if>
+            <button id=${company.id!} value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" class="<#if guarantee?? && guarantee>guarantee</#if>" onClick="guarantee('.companyBasicInfoBoxContent',this.id)">我为公司担保</button>
             <div><b>经营范围：</b><#if company.businessRange??>${company.businessRange!}</#if></div>
             <div><b>公司规模：</b>${company.scale!}</div>
             <div><b>公司地址：</b><#if company.region?? && company.region.fullname??>${company.region.fullname!}</#if></div>

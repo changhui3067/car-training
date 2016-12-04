@@ -93,7 +93,7 @@
                 <div class="people_other_info_bar"><h4>学员评论</h4></div>
                 <div class="add_comment_box">
                     <textarea id="add_comment"></textarea>
-                    <button id=${trainer.loginUser.id!} class="commonClickButton btn btn-info" onclick="addComment(this.id)">提交</button>
+                    <button id=${trainer.loginUser.id!} value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" class="commonClickButton btn btn-info" onclick="addComment(this.id)">提交</button>
                 </div>
             </div>
         </div>

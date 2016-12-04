@@ -194,9 +194,17 @@ span.paddingLeftNull { padding-left: 0!important;}
     color: #000;
 }
 
-.companyBasicInfoBoxContent button {
-	margin-left: 10px;
-    
+.companyBasicInfoBoxContent button .guarantee{
+    background-color: #3D9CCC;
+    color: #fff;
+}
+
+.companyBasicInfoBoxContent button{
+    padding: 5px 10px;
+    border: solid 1px #3D9CCC;
+    background: #fff;
+    color: #3D9CCC;
+    margin-left: 10px;
 }
 
 .companyBasicInfoBoxContent b {
