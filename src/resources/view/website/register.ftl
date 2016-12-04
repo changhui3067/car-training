@@ -208,7 +208,7 @@ function register(id){
           } else if(data.target){
             window.location.href = data.target;
           } else {
-				 	  window.location.href = "/website/index";
+				 	  window.location.href = '/backend/manageCenter';
 				  }
 	     }
 	});

@@ -317,7 +317,7 @@ function login(){
         },
         success: function (data) {
             if (data == 'success') {
-                window.location = "/website/completeInfo";
+                window.location = "/website/index";
             } else {
                 errMsg.innerHTML = data.error;
             }
