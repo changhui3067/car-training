@@ -54,6 +54,9 @@ public class Job {
     private String LanguageRequirement;
 
     @Column
+    private String jobRequirement;
+
+    @Column
     private String department;
 
     @Column
@@ -193,5 +196,13 @@ public class Job {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getJobRequirement() {
+        return jobRequirement;
+    }
+
+    public void setJobRequirement(String jobRequirement) {
+        this.jobRequirement = jobRequirement;
     }
 }
