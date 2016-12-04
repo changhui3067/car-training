@@ -101,9 +101,9 @@
             </div>
             
             <div class="filterType">
-           	    <div class="filterName">关键字</div>
+                <div class="filterName">关键字</div>
                 <div class="filterItemList">
-                    <input type="text" id="search_input"  placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场" />
+                    <input type="text" id="search_input"  placeholder="请输入关键字，如助理"/>
                     <button onclick="searchBtnClick()">搜索</button>
                 </div>
                 <div class="clear"></div>
@@ -217,7 +217,7 @@ function sendAjax(n) {
     }
     data_.pn = !!n ? n : 1;
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: url,
         data: data_,
         error: function(request) {

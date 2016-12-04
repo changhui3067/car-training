@@ -13,7 +13,7 @@ import java.util.Locale;
  * Created by bill on 11/29/16.
  */
 public class JobSearchResult {
-    List<JobVO> jobList;
+    private List<JobVO> jobList;
     private int pageCount;
     private int pageNo;
 
@@ -40,7 +40,10 @@ public class JobSearchResult {
             beanOperation.setAllValue(job.getCompany(),companyVO);
             companyVO.setGuaranteeNumber(gs.guaranteeNumber(job.getCompany().getId()));
             jobVO.setCompany(companyVO);
-            jobVO.setCreateDate(sdf.format(job.getCreateDate()));
+            try{
+                jobVO.setCreateDate(sdf.format(job.getCreateDate()));
+            } catch (Exception ignored){
+            }
             this.jobList.add(jobVO);
         });
     }

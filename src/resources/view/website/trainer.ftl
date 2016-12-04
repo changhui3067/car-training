@@ -66,7 +66,7 @@
             <div class="filterType">
                 <div class="filterName">关键字:</div>
                 <div class="filterItemList">
-                    <input type="text" id="search_input" placeholder="请输入关键字，如销售市场" validate-title="请输入关键字，如销售市场"/>
+                    <input type="text" id="search_input" placeholder="请输入关键字，如张三" validate-title="请输入关键字，如销售市场"/>
                     <button onclick="searchBtnClick()">搜索</button>
                 </div>
                 <div class="clear"></div>
@@ -94,7 +94,7 @@ function filterClicked(ele, category) {
     filters[category] = filters[category] ? filters[category] : [];
     if ($(ele).hasClass('checked')) {
         $(ele).removeClass('checked');
-        filters[category].splice($.inArray(ele.innerHTML), 1);
+        filters[category].splice($.inArray(ele.innerHTML,filters[category]), 1);
     } else {
         $(ele).addClass('checked');
         filters[category].push(ele.innerHTML)
@@ -150,7 +150,7 @@ function sendAjax(n) {
     }
     data_.pn = !!n ? n : 1;
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: url,
         data: data_,
         error: function (request) {
