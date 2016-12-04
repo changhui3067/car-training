@@ -1,4 +1,8 @@
 
+.pxshijl h5 {
+    display: inline;
+    padding-left: 10px;
+}
 .pxshijl .container{ width:100%}
 
 .pxshijl .label { padding-left: 0px; padding-right: 0px; font-size: 14px; font-weight:normal}

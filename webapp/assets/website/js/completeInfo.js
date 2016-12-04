@@ -161,9 +161,7 @@ function submitCompanyInfo() {
 }
 
 
-function filter4Clicked(ele, name) {
-    console.log($('#city button').val());
-}
+
 
 function verifyNumber(obj) {
     if (isNaN(obj.value)) {

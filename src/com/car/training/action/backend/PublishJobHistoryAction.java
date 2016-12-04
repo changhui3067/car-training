@@ -88,7 +88,7 @@ public class PublishJobHistoryAction extends SimpleAction {
         try {
             jobService.save(job);
         } catch (Exception e){
-            return errorJSON("申请的职位数量有限 ");
+            return errorJSON("申请的职位数量有限,需要扩容请联系培聘网");
         }
         jobList = jobService.findJobsByTargetCompany();
         generateJobApplyMap();

@@ -1,6 +1,6 @@
 <form id="form1">
     <div class="pxshijl">
-        <h5>基本信息</h5>
+        <h5>基本信息</h5><a href="//website/companyDetail?companyId=${companyInfo.id}" target="_blank">查看展示页面</a>
         <div class="pxshijl_box companyInfoComplete">
             <div class="errMsg"></div>
                 <div class="container">

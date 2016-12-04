@@ -8,6 +8,7 @@ ul,ol,dl { list-style:none; }
 a {color:#666666;;text-decoration: none !important;}
 a:hover, img:hover {color:#666666;text-decoration:none; cursor: pointer;}
 a img {border: none;}
+textarea {resize: none;}
 .clear {clear: both;line-height: 0px;font-size:0px;}
 .content {width:1200px;margin: 0 auto;  }
 .left {float:left;}
@@ -740,6 +741,14 @@ add our css below
 .fypage span:hover {
     cursor: pointer;
 }
+
+#newJobErr {
+    display: none;
+    padding-left: 10px;
+    font-size: 14px;
+    color: #FA5506;
+}
+
 
 
 

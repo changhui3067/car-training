@@ -9,7 +9,6 @@
     <table class="table table-hover">
         <tr>
             <th>职位名称</th>
-            <th>所属部门</th>
             <th>工作地点</th>
             <th>发布日期</th>
             <th>申请纪录</th>
@@ -19,7 +18,6 @@
         <tr>
             <td><#if job.title??><a href="/website/jobDetail?jobId=${job.id}" <#if job.type=='TRAINER'>onclick="setLocation(2)"<#else>onclick="setLocation(4)"</#if>>
                 ${job.title}</a><#else>无</#if></td>
-            <td><#if job.department??>${job.department}<#else>无</#if></td>
             <td><#if job.region ?? && job.region.fullname??>${job.region.fullname}<#else>无</#if></td>
             <td><#if job.createDate??>${job.createDate}<#else>无</#if></td>
             <#if jobApplyMap?? && jobApplyMap.get(job)??>
@@ -53,7 +51,8 @@
                 <div class="modal-body">
                     <form class="form-horizontal" role="form" id="newJobForm">
                         <div class="form-group">
-                            <label for="inputTitle" class="col-sm-2 control-label">职位名称</label>
+                            <label for="inputTitle" class="col-sm-2 control-label">
+                                <span style="color: red">*</span>职位名称</label>
                             <div class="col-sm-10">
                               <input type="text" class="form-control" id="inputTitle" name="title" value="" />
                             </div>
@@ -73,7 +72,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputExperienceRequirement" class="col-sm-2 control-label">经验要求</label>
+                            <label for="inputExperienceRequirement" class="col-sm-2 control-label">经验要求(年)</label>
                             <div class="col-sm-10">
                               <input type="text" class="form-control" name="workExperienceRequirement" value="" id="inputExperienceRequirement" placeholder="请输入数字"/>
                             </div>
@@ -113,19 +112,19 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputSalary" class="col-sm-2 control-label">工作待遇</label>
+                            <label for="inputSalary" class="col-sm-2 control-label">工作待遇(元)</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="salary" value="" id="inputSalary" placeholder="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputJobDescription" class="col-sm-2 control-label">岗位介绍</label>
+                            <label for="inputJobDescription" class="col-sm-2 control-label">职位介绍</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" rows="4" name="jobDescription" value="" id="inputJobDescription" placeholder=""></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputRequirement" class="col-sm-2 control-label">岗位要求</label>
+                            <label for="inputRequirement" class="col-sm-2 control-label">职位要求</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" rows="4" name="jobRequirement" value="" id="inputRequirement" placeholder=""></textarea>
                             </div>
@@ -133,6 +132,7 @@
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-primary" onclick="addNewJob(event)">发布</button>
+                              <span class="errMsg" id="newJobErr">请输入职位名称</span>
                           </div>
                         </div>
                     </form>

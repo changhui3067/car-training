@@ -200,9 +200,17 @@ function addComment (id) {
 
 function addNewJob(e) {
     e.preventDefault();
-    $("input[name='businessCategory']").val($('#inputType').val());
+    //$("input[name='businessCategory']").val($('#inputType').val());
     $("input[name='educationRequirement']").val($('#inputEducationRequired').val());
 
+    if(!$('#inputTitle').val()) {
+        $('#newJobErr').css('display','inline-block');
+        return;
+    }
+    //var reg = /^\d+$/;
+    //if($('#inputExperienceRequirement').val() &&){
+    //
+    //}
     var form_data = $("#newJobForm").serialize();
     console.log(form_data);
     var url = "/backend/publishJobHistory/add"
@@ -227,6 +235,7 @@ function addNewJob(e) {
                 });
                 return false;
             }
+            $('#newJob').modal('hide');
             $('#manageCenterContent').innerHTML = data;
             //window.location.href = "/backend/autobotCompleteResume";
         }
