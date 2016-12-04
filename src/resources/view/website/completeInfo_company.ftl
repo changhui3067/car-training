@@ -26,8 +26,8 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
                                                placeholder="请输入公司邮箱"
-                                               name="name"
-                                               value="${companyInfo.name!}"/>
+                                               name="email"
+                                               value="${companyInfo.email!}"/>
                                     </div>
                                 </li>
 
@@ -38,8 +38,8 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
                                                placeholder="请输入公司座机"
-                                               name="name"
-                                               value="${companyInfo.name!}"/>
+                                               name="telephone"
+                                               value="${companyInfo.telephone!}"/>
                                     </div>
                                 </li>
 
@@ -50,8 +50,8 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
                                                placeholder="请输入公司联系人名称"
-                                               name="name"
-                                               value="${companyInfo.name!}"/>
+                                               name="contactName"
+                                               value="${companyInfo.contactName!}"/>
                                     </div>
                                 </li>
 
