@@ -100,6 +100,23 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 pxshijl_label"><span
                                             style="color: red">*</span>
+                                        学历:</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="education" value="<#if autobot.education??>${autobot.education}</#if>">
+                                            <option value="小学" ${(autobot.education?? && autobot.education = "小学") ?then('selected','')}>小学</option>
+                                            <option value="初中" ${(autobot.education?? && autobot.education = "初中") ?then('selected','')}>初中</option>
+                                            <option value="高中" ${(autobot.education?? && autobot.education = "高中") ?then('selected','')}>高中</option>
+                                            <option value="本科" ${(autobot.education?? && autobot.education = "本科") ?then('selected','')}>本科</option>
+                                            <option value="研究生" ${(autobot.education?? && autobot.education = "研究生") ?then('selected','')}>研究生</option>
+                                            <option value="博士" ${(autobot.education?? && autobot.education = "博士") ?then('selected','')}>博士</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item pxshijl_li">
+                                <div class="form-group">
+                                    <label class="col-sm-3 pxshijl_label"><span
+                                            style="color: red">*</span>
                                         目前地区:</label>
                                     <div class="col-sm-9">
                                         <div class="dropdown" id="province">
