@@ -20,7 +20,7 @@
             <td><#if job.title??><a href="/website/jobDetail?jobId=${job.id}" <#if job.type=='TRAINER'>onclick="setLocation(2)"<#else>onclick="setLocation(4)"</#if>>
                 ${job.title}</a><#else>无</#if></td>
             <td><#if job.department??>${job.department}<#else>无</#if></td>
-            <td><#if job.region.fullname??>${job.region.fullname}<#else>无</#if></td>
+            <td><#if job.region ?? && job.region.fullname??>${job.region.fullname}<#else>无</#if></td>
             <td><#if job.createDate??>${job.createDate}<#else>无</#if></td>
             <#if jobApplyMap?? && jobApplyMap.get(job)??>
             <td>

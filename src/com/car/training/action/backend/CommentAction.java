@@ -2,6 +2,8 @@ package com.car.training.action.backend;
 
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Comment;
+import com.car.training.bean.LoginUser;
+import com.car.training.enums.UserType;
 import com.car.training.service.CommentService;
 import com.car.training.vo.LoginVO;
 import org.ironrhino.core.metadata.AutoConfig;
@@ -27,6 +29,12 @@ public class CommentAction extends SimpleAction {
         loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
         if (loginVO == null){
             return "请登录";
+        }
+        LoginUser loginUser = new LoginUser();
+        loginUser.setId(targetId);
+        if (loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE ||
+                loginVO.getUserType() == loginUser.getType()) {
+            return errorJSON("没有权限");
         }
         try{
             commentService.addComment(loginVO.getId(), targetId, content);
