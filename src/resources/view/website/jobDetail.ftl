@@ -116,17 +116,14 @@
 <script src="<@url value="/assets/website/js/jquery1.42.min.js?v=1.1.0"/>"></script>
 <script src="<@url value="/assets/website/js/jquery.superslide.2.1.1.js?v=1.1.0"/>" type="text/javascript"></script>
 <script>
-    function applyJob(jid){
+    function applyJob(jobId){
         if(confirm("确定要申请该职位吗?")){
             var form_data={};
-            var jid = jid;
-
-            if(jid==''||jid==null){
+            if(jobId==''||jobId==null){
                 alert('您申请的职位已不存在');
                 return false;
             }
-
-            form_data.jid = jid;
+            form_data.jobId = jobId;
 
             $.ajax({
                 type: "POST",
