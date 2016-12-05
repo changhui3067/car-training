@@ -228,15 +228,17 @@ function addNewJob(e) {
             return false;
         },
         success: function (data) {
-            if (data.actionErrors) {
+            if (data.errors) {
+                $('#newJob').modal('hide');
                 Util.msgToast({
-                    message: '操作失败',
+                    message: data.errors,
                     mode: Util.MSGTYPE.ERROR
                 });
                 return false;
             }
             $('#newJob').modal('hide');
-            $('#manageCenterContent').innerHTML = data;
+            navigate("companyRecord");
+            //$('#manageCenterContent').innerHTML = data;
             //window.location.href = "/backend/autobotCompleteResume";
         }
     });

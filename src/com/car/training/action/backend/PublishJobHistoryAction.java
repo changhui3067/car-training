@@ -14,6 +14,7 @@ import com.car.training.utils.RegionUtils;
 import com.car.training.vo.LoginVO;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
+import org.ironrhino.core.metadata.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -70,6 +71,7 @@ public class PublishJobHistoryAction extends SimpleAction {
         return "publishJobHistory";
     }
 
+    @JsonConfig(root = "data")
     public String add() throws Exception {
         Job job = new Job();
         LoginUser loginUser = new LoginUser();
@@ -92,7 +94,7 @@ public class PublishJobHistoryAction extends SimpleAction {
         }
         jobList = jobService.findJobsByTargetCompany();
         generateJobApplyMap();
-        return "publishJobHistory";
+        return successJSON();
     }
 
     private void generateJobApplyMap() {

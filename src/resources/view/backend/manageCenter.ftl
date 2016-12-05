@@ -96,7 +96,6 @@
             }
         });
         changeClass(id);
-
     }
     function changeClass(id) {
         var childs = $(".lanmu li"),i;
