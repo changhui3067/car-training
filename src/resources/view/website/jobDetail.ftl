@@ -29,7 +29,7 @@
             <div class="zhaopin_box">
                 <div class="xzdy">
                     <div class="zwdy right">
-                        <span><button name="yp" id="yp" onclick="applyJob('${job.id!}')"/>我要应聘</button></span>
+                        <span><button class="<#if applyStatus !=1>disabled</#if>" name="yp" id="yp" <#if applyStatus == 1> onclick="applyJob('${job.id!}',this)"</#if>>我要应聘</button></span>
                     </div>
                     <!--<div class="shoucang">收藏</div>-->
                     <#--<div class="gzdd">-->
@@ -134,7 +134,12 @@
                     return false;
                 },
                 success: function (data) {
-                    showErrMsg("恭喜您,您已申请成功了！");
+                    if(data === "success"){
+                        showErrMsg("恭喜您,您已申请成功了！");
+                    } else{
+                        showErrMsg("申请失败！");
+                    }
+                    location.reload();
                 }
             });
         }else{

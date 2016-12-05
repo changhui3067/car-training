@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="right zp_box_r autoCompany_zp_r">
-                                <button>立即应聘</button>
+                                <button <#if canApplyMap.get(t)>onclick="applyJob(${t.id!})" <#else>class ="disabled"</#if>>立即应聘</button>
                             </div>
                             <div class="clear"></div>
                         </li>
@@ -103,6 +103,39 @@
 
 <script src="/assets/website/js/common.js" type="text/javascript"></script>
 <script type="text/javascript" src="/assets/website/js/Util.js"></script>
+<script>
+
+    function applyJob(jobId){
+        if(confirm("确定要申请该职位吗?")){
+            var form_data={};
+            if(jobId==''||jobId==null){
+                alert('您申请的职位已不存在');
+                return false;
+            }
+            form_data.jobId = jobId;
+
+            $.ajax({
+                type: "POST",
+                url: "/backend/jobApply",
+                data: form_data,
+                error: function(request) {
+                    alert("网络出错啦！");
+                    return false;
+                },
+                success: function (data) {
+                    if(data === "success"){
+                        alert("恭喜您,您已申请成功了！");
+                    } else{
+                        alert("申请失败！");
+                    }
+                    location.reload();
+                }
+            });
+        }else{
+            return false;
+        }
+    }
+</script>
 </body>
 </html>
 </#escape>

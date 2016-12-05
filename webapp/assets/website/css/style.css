@@ -433,6 +433,10 @@ textarea {resize: none;}
     background: #3689b3;
     color: #fff;
 }
+
+.autoCompany_zp_r button.disabled {
+    background: #7e7e7e;
+}
 /***************************************End of two row structure*******************************************************/
 
 /***************************************one box structure**************************************************************/

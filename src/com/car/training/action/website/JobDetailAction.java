@@ -1,8 +1,10 @@
 package com.car.training.action.website;
 
 import com.car.training.action.SimpleAction;
+import com.car.training.bean.Apply;
 import com.car.training.bean.Company;
 import com.car.training.bean.Job;
+import com.car.training.service.JobApplyService;
 import com.car.training.service.JobService;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 @AutoConfig
 public class JobDetailAction extends SimpleAction {
     @Autowired
-    JobService jobService;
+    private JobService jobService;
+    
+    @Autowired
+    private JobApplyService jobApplyService;
 
     private Job job;
 
@@ -21,6 +26,8 @@ public class JobDetailAction extends SimpleAction {
 
     private int jobId;
 
+    private int applyStatus; // 0 for cannot apply 1 for can apply 2 to applied  
+    
     @Override
     public String execute() throws Exception {
         if(jobId!=0){
@@ -28,6 +35,11 @@ public class JobDetailAction extends SimpleAction {
             company = job.getCompany();
         }else{
             return redirectToIndex();
+        }
+        if (isloggedIn() && getLoginVO().getUserType().toString().equals(job.getType().toString())){
+            applyStatus = jobApplyService.isApplied(jobId) ? 2 : 1;
+        }else {
+            applyStatus = 0;
         }
         return SUCCESS;
     }
@@ -55,5 +67,13 @@ public class JobDetailAction extends SimpleAction {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public int getApplyStatus() {
+        return applyStatus;
+    }
+
+    public void setApplyStatus(int applyStatus) {
+        this.applyStatus = applyStatus;
     }
 }

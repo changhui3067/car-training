@@ -3,7 +3,7 @@
         <h4>基本信息</h4>
         <div class="companyBasicInfoBoxContent">
         <#if company??>
-            <h5>${company.name!}</h5>
+            <h5><a href="/website/companyDetail?companyId=${company.id!}">${company.name!}</a></h5>
             <button id=${company.id!} value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" class="<#if guarantee?? && guarantee>guarantee</#if>" onClick="guarantee('.companyBasicInfoBoxContent',this.id)">我为公司担保</button>
             <div><b>经营范围：</b><#if company.businessRange??>${company.businessRange!}</#if></div>
             <div><b>公司规模：</b>${company.scale!}</div>

@@ -6,6 +6,7 @@ import com.car.training.bean.PersonInfo;
 import com.car.training.service.CompanyService;
 import com.car.training.bean.Job;
 import com.car.training.service.GuaranteeService;
+import com.car.training.service.JobApplyService;
 import com.car.training.service.JobService;
 import com.car.training.vo.LoginVO;
 import org.apache.struts2.ServletActionContext;
@@ -15,10 +16,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Bill on 11/13/2016.
@@ -32,6 +30,10 @@ public class CompanyDetailAction extends SimpleAction {
     @Autowired
     JobService jobService;
 
+    private Map<Job,Boolean> canApplyMap;
+
+    @Autowired
+    private JobApplyService jobApplyService;
 
     @Autowired
     private GuaranteeService guaranteeService;
@@ -65,6 +67,11 @@ public class CompanyDetailAction extends SimpleAction {
             if(!StringUtils.isEmpty(company.getWelfare())){
                 welfares.addAll(Arrays.asList(company.getWelfare().split(",")));
             }
+            canApplyMap = new HashMap<>();
+            jobList.forEach((Job job)->{
+                canApplyMap.put(job, isloggedIn()&& !jobApplyService.isApplied(job.getId()));
+            });
+            
         }else{
             return redirectToIndex();
         }
@@ -106,5 +113,13 @@ public class CompanyDetailAction extends SimpleAction {
 
     public void setPersonList(List<PersonInfo> personList) {
         this.personList = personList;
+    }
+
+    public Map<Job, Boolean> getCanApplyMap() {
+        return canApplyMap;
+    }
+
+    public void setCanApplyMap(Map<Job, Boolean> canApplyMap) {
+        this.canApplyMap = canApplyMap;
     }
 }

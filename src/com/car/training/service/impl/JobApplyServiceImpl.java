@@ -35,21 +35,29 @@ public class JobApplyServiceImpl implements JobApplyService {
 
     @Override
     @Transactional
-    public void apply(int jobId) {
+    public void apply(int jobId) throws Exception {
+        if(isApplied(jobId)){
+            throw new Exception("already applied");
+        }
+        
         Apply apply = new Apply();
         LoginUser loginUser = new LoginUser();
         Job job = new Job();
         loginUser.setId(loginVO.getId());
         job.setId(jobId);
-
+        
+        
+        
         switch (loginVO.getUserType()) {
             case TRAINER:
                 Trainer trainer = trainerService.findByLoginUser(loginUser);
                 apply.setTrainer(trainer);
+                apply.setAutobot(new Autobot());
                 break;
             case AUTOBOT:
                 Autobot autobot = autobotService.findByLoginUser(loginUser);
                 apply.setAutobot(autobot);
+                apply.setTrainer(new Trainer());
                 break;
             default:
                 break;
@@ -62,6 +70,18 @@ public class JobApplyServiceImpl implements JobApplyService {
 
     @Override
     @Transactional
+    public boolean isApplied(int jobId){
+        for ( Apply apply : getApplyListByUser()){
+            if (apply.getJob().getId() == jobId){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    @Override
+    @Transactional
     public List<Apply> getApplyListByUser() {
         HashMap<String, Object> map = new HashMap<>();
 
@@ -71,6 +91,7 @@ public class JobApplyServiceImpl implements JobApplyService {
             case TRAINER:
                 Trainer trainer = trainerService.findByLoginUser(loginUser);
                 map.put("trainer", trainer);
+                break;
             case AUTOBOT:
                 Autobot autobot = autobotService.findByLoginUser(loginUser);
                 map.put("autobot", autobot);
