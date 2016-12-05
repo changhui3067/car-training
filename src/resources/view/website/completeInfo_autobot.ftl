@@ -209,7 +209,7 @@
                     <div class="col-sm-5">
                         <ul class="list-group">
                             <li class="list-group-item pxshijl_li">
-                                <div class="form-group">
+                                <div class="form-group photo">
                                     <img id="avatar_show" src="${autobot.personInfo.avatarUrl!}">
                                     <button id="avatar_btn" type="button" class="btn btn-primary btn-lg adminPageBtn">
                                         上传照片
