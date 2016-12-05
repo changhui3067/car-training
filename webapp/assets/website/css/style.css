@@ -321,7 +321,7 @@ textarea {resize: none;}
 }
 
 .zp_box_l {
-    width: 52%;
+    width: 55%;
     padding: 10px 0px 10px 15px;
     border-right: 1px dotted #e5e5e5;
     height: 105px;
@@ -356,7 +356,7 @@ textarea {resize: none;}
 }
 
 .zp_box_r {
-    width: 47%;
+    width: 43%;
     padding: 10px 5px 10px 5px;
 }
 
@@ -375,7 +375,7 @@ textarea {resize: none;}
 }
 
 .zp_box_r_r {
-    width: 159px;
+    width: 135px;
     padding-left: 5px;
 }
 

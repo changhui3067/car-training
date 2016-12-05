@@ -51,7 +51,7 @@
                     </div>
                     <div>
                         培训领域:
-                        <#list trainer.businessCategory as c>
+                        <#list trainer.executionCategory as c>
                             <tr>
                                 <span>${c}</span>
                             </tr>

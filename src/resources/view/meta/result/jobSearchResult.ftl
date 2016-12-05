@@ -1,4 +1,4 @@
-<div id="jobList" class="jobList hidden">
+<div id="jobList" class="jobList hidden" xmlns="http://www.w3.org/1999/html">
     <ul>
         <li v-for="job in jobList" class="zp_box">
             <div class="left zp_box_l">
@@ -21,7 +21,7 @@
                         <div class="qy_l left zp_box_r_l"><img :src="job.company.logoUrl"/></div>
                         <div class="qy_r right zp_box_r_r">
                             <div class="qy_name">
-                                <span>{{!!job.company ? job.company.name : ""}}</span>
+                                <span class="ellipsis">{{!!job.company ? job.company.name : ""}}</span></br>
                                 <span>{{!!job.company ? job.company.guaranteeNumber : ""}}人担保</span>
                             </div>
                             <div class="jyfw">{{!!job.company ? job.company.autoBrand : ""}}</div>

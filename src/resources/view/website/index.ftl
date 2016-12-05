@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<#escape x as x?html><html>
+<#escape x as x?html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>培聘网</title>
     <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" />
@@ -145,7 +146,7 @@
                              <div class="qy_l left zp_box_r_l"><img src="${trainerJob.company.logoUrl!}"/></div>
                              <div class="qy_r right zp_box_r_r">
                                  <div class="qy_name">
-                                     <span>${trainerJob.company.name!}</span>
+                                     <span class="ellipsis">${trainerJob.company.name!}</span></br>
                                      <span>${guaranteeNumberMap.get(trainerJob.company)!}人担保</span>
                                  </div>
                                  <div class="jyfw">${trainerJob.company.industry!}</div>
@@ -190,7 +191,7 @@
                  <#--</div>-->
 
                  <div class="qcrxq_fb_box">
-                     <span  style="padding-left:0px;">发布于：<#if t.createDate??>${t.createDate?string("yyyy-MM-dd")} </#if></span>
+                     <span style="padding-left:0px;">发布于：<#if t.createDate??>${t.createDate?string("yyyy-MM-dd")} </#if></span>
                      <span style="background:none;">投递后：48小时反馈 </span>
                 </div>
              </div>
@@ -201,7 +202,7 @@
                         <div class="qcrxq_qy_l left zp_box_r_l"><img src="${t.company.logoUrl!}" /></div>
                         <div class="qcrxq_qy_r right zp_box_r_r">
                             <div class="qcrxq_qy_name">
-                                <span>${t.company.name!}</span>
+                                <span class="ellipsis">${t.company.name!}</span></br>
                                 <span>${guaranteeNumberMap.get(t.company)!}人担保</span>
                             </div>
                             <div class="qcrxq_jyfw">${t.company.industry!}</div>
