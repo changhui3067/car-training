@@ -179,7 +179,7 @@
          <li class="zp_box">
              <#if t?? && t.company??>
              <div class="qcrxq_l left zp_box_l">
-                 <a href="/website/jobDetail?jobs.id=${t.id!}" onclick="setLocation(4)"><div class="qcrxq_zw_name">${t.title!}</div></a>
+                 <a href="/website/jobDetail?jobId=${t.id!}" onclick="setLocation(4)"><div class="qcrxq_zw_name">${t.title!}</div></a>
                 <div class="qcrxq_dy_box">
                     <span class="cn" style="padding-left:0px;">${t.salary!}元</span>
                     <span>${t.workExprience!}年工作经验</span>

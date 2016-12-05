@@ -29,6 +29,10 @@ button, input, .borderRadius {
     border-radius: 4px;
 }
 
+.inline {
+    display: inline;
+}
+
 /*for Header*/
 .top{ background:#313a41; height:50px;}
 .logo{ width: 230px; height: 45px; line-height: 50px;}

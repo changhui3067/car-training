@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
     <div class="panel-heading">
-        职位列表
+        <h4 class="inline">职位列表</h4>
         <button class="btn btn-primary right" data-toggle="modal" data-target="#newJob">发布新职位</button>
         <div class="clear"></div>
       </div>
