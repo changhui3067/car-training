@@ -35,6 +35,7 @@ li.pxshijl_li{ border:none; list-style:none; min-height: 50px; padding-left: 0px
 .pxshijl .container .row span.checkBox:hover, .pxshijl .container .row span.checked {
     background: #428bca;
     color: #fff;
+    border-radius: 4px;
 }
 
 .pxshijl_box .errMsg{

@@ -83,7 +83,7 @@
                 <div class="people_other_info_bar"><h4>培训师评论</h4></div>
                 <div class="add_comment_box">
                     <textarea id="add_comment"></textarea>
-                    <button id=${autobot.loginUser.id!} value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" class="commonClickButton btn btn-info" onclick="addComment(this.id)">提交</button>
+                    <button id=${autobot.loginUser.id!} value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" class="commonClickButton btn btn-primary" onclick="addComment(this.id)">提交</button>
                 </div>
             </div>
         </div>

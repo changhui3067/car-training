@@ -75,7 +75,7 @@
                   </table></td>
                   </tr>
                 <tr>
-                  <td height="80" colspan="4" align="center" valign="middle"><button id="personal" class="btn btn-info" onClick='register(this.id)'>提 交</button></td>
+                  <td height="80" colspan="4" align="center" valign="middle"><button id="personal" class="btn btn-primary" onClick='register(this.id)'>提 交</button></td>
                 </tr>
               </table>
               </div>
@@ -103,7 +103,7 @@
                 </tr>
                 <tr>
                   <td height="60" align="right" valign="middle"><font color="#ff0000">*</font>验证码：</td>
-                  <td width="100"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" type="text" name="verCode" id="verCode" /></td>
+                  <td width="70"><input  style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" type="text" name="verCode" id="verCode" /></td>
                   <td width="72" align="left"> 
                    <input type="button" id="company" style="border:1px solid #e7e6eb; height:30px; line-height:30px; width:120px;" value="免费获取验证码" onclick="sendmsg(this)" /></td>
                   <td><font color="#999999">请输入手机验证码</font></td>
@@ -128,7 +128,7 @@
                   </table></td>
                   </tr>
                 <tr>
-                  <td height="80" colspan="4" align="center" valign="middle"><button id="company" class="btn btn-info" onClick='register(this.id)'>提 交</button></td>
+                  <td height="80" colspan="4" align="center" valign="middle"><button id="company" class="btn btn-primary" onClick='register(this.id)'>提 交</button></td>
                 </tr>
               </table>
               </div>
