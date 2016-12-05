@@ -50,7 +50,7 @@ public class TrainerDetailAction extends SimpleAction {
 
     private boolean like;
 
-    private HashMap<Comment,String> commentNameMap = new HashMap<>();
+    private HashMap<Object,String> commentNameMap = new HashMap<>();
 
     @Override
     public String execute(){
@@ -119,5 +119,13 @@ public class TrainerDetailAction extends SimpleAction {
 
     public void setLike(boolean like) {
         this.like = like;
+    }
+
+    public HashMap<Object, String> getCommentNameMap() {
+        return commentNameMap;
+    }
+
+    public void setCommentNameMap(HashMap<Object, String> commentNameMap) {
+        this.commentNameMap = commentNameMap;
     }
 }

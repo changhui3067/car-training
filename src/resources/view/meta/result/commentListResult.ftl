@@ -5,6 +5,8 @@
                 <li>
                     <div class="comments">
                         <div class="comments_desc">${c.content}</div>
+                        ${commentNameMap.get(c)!}
+                        <#--see the above line to get name-->
                         <div class="comments_date">${c.createTime?string("yyyy-MM-dd")}</div>
                     </div>
                 </li>

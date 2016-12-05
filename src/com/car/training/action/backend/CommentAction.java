@@ -3,12 +3,15 @@ package com.car.training.action.backend;
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Comment;
 import com.car.training.bean.LoginUser;
+import com.car.training.bean.PersonInfo;
 import com.car.training.enums.UserType;
 import com.car.training.service.CommentService;
+import com.car.training.service.UserService;
 import com.car.training.vo.LoginVO;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
 
 @AutoConfig
@@ -25,6 +28,12 @@ public class CommentAction extends SimpleAction {
 
     private List<Comment> commentList;
 
+    @Autowired
+    private UserService userService;
+    
+    private HashMap<Comment,String> commentNameMap = new HashMap<>();
+
+
     public String addComment() {
         loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
         if (loginVO == null){
@@ -33,12 +42,16 @@ public class CommentAction extends SimpleAction {
         LoginUser loginUser = new LoginUser();
         loginUser.setId(targetId);
         if (loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE ||
-                loginVO.getUserType() == loginUser.getType()) {
+                loginVO.getUserType() == loginUser.getType() || loginVO.getId() == targetId) {
             return errorJSON("没有权限");
         }
         try{
             commentService.addComment(loginVO.getId(), targetId, content);
             commentList = commentService.findCommentByTargetUser(targetId);
+            commentList.forEach((Comment comment)->{
+                PersonInfo personInfo = userService.getPersonInfo(comment.getUserId());
+                commentNameMap.put(comment,personInfo==null ? "":personInfo.getName());
+            });
             return "commentListResult";
         }catch (Exception e) {
             return "error";
@@ -75,5 +88,13 @@ public class CommentAction extends SimpleAction {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public HashMap<Comment, String> getCommentNameMap() {
+        return commentNameMap;
+    }
+
+    public void setCommentNameMap(HashMap<Comment, String> commentNameMap) {
+        this.commentNameMap = commentNameMap;
     }
 }
