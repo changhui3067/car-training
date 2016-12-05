@@ -1,7 +1,9 @@
 package com.car.training.service;
 
 import com.car.training.bean.LoginUser;
+import com.car.training.bean.PersonInfo;
 import com.car.training.enums.UserType;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by bill on 11/3/16.
@@ -15,6 +17,9 @@ public interface UserService {
 
 
     LoginUser getUser(String username);
+    
+    @Transactional
+    PersonInfo getPersonInfo(int uid);
 
     boolean updatePassword(String username, String newPassword);
 

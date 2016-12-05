@@ -4,16 +4,15 @@ package com.car.training.action.website;
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Comment;
 import com.car.training.bean.Course;
+import com.car.training.bean.PersonInfo;
 import com.car.training.bean.Trainer;
-import com.car.training.service.CommentService;
-import com.car.training.service.CourseService;
-import com.car.training.service.LikeService;
-import com.car.training.service.TrainerService;
+import com.car.training.service.*;
 import com.car.training.vo.LoginVO;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.struts.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -33,20 +32,13 @@ public class TrainerDetailAction extends SimpleAction {
 
     @Autowired
     private LikeService likeService;
-
-
-//    @Autowired
-//    private TrainerEssayService trainerEssayService;
+    
+    @Autowired
+    private UserService userService;
 
     private Trainer trainer;
-//    /**
-//     * 学员评论列表
-//     */
+
     private List<Comment> commentList;
-//    /**
-//     * 学员评论列表
-//     */
-//    private List<TrainerEssay> trainerEssayList;
     /**
      * 培训公开课列表
      */
@@ -58,6 +50,7 @@ public class TrainerDetailAction extends SimpleAction {
 
     private boolean like;
 
+    private HashMap<Comment,String> commentNameMap = new HashMap<>();
 
     @Override
     public String execute(){
@@ -68,58 +61,17 @@ public class TrainerDetailAction extends SimpleAction {
         int tUid = trainer.getLoginUser().getId();
         coursesList = coursesService.findByTrainerId(tUid);
         commentList = commentService.findCommentByTargetUser(tUid);
+        commentList.forEach((Comment comment)->{
+            PersonInfo personInfo = userService.getPersonInfo(comment.getUserId());
+            commentNameMap.put(comment,personInfo==null ? "":personInfo.getName());
+        });
         likeNumber = likeService.likeNumber(tUid);
         LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
         if(loginVO !=null){
             like = likeService.isLike(loginVO.getId(),tUid);
         }
         return SUCCESS;
-//
-//        TrainerEssay trainerEssay = new TrainerEssay();
-//        trainerEssay.setTrainer(trainer);
-//        trainerEssayList = trainerEssayService.findListByTrainerEssay(trainerEssay);
-//        trainer.setTrainerEssayList(trainerEssayList);
-
-
     }
-
-//    @JsonConfig(root = "data")
-//    public String commentTrainer() throws Exception {
-//        HttpServletRequest request = ServletActionContext.getRequest();
-//        UserCenter uc = new UserCenter();
-//        Map<String, Object> map = new HashMap<String, Object>();
-//        uc = (UserCenter) request.getSession().getAttribute("userDetails");
-//        if (uc == null || !uc.getPersonalType().equals(PersonalType.AUTOBOT)) {
-//            map.put("code", 400);
-//            map.put("msg", "您还没有登陆或您不是汽车人，不能添加评论！");
-//        } else {
-//            AutobotsComment autobotsComment = new AutobotsComment();
-//            trainer = trainerService.findById(tid);
-//            autobotsComment.setTrainer(trainer);
-//            autobotsComment.setContent(content);
-//            autobotsComment.setCreateDate(new Date());
-//            autobotsComment.setAutobots(uc.getAutobot());
-//            autobotsComment.setEnabled(true);
-//            autobotsCommentService.save(autobotsComment);
-//            map.put("code", 200);
-//            map.put("msg", "评论成功！");
-//        }
-//        setData(map);
-//        return JSON;
-//    }
-//
-//    @JsonConfig(root = "data")
-//    public String dianzan() throws Exception {
-//        Map<String, Object> map = new HashMap<String, Object>();
-//        trainer = trainerService.findById(tid);
-//        trainer.setStarLevel(trainer.getStarLevel() + 1);
-//        trainerService.update(trainer);
-//
-//        map.put("code", 200);
-//        map.put("msg", "评论成功！");
-//        setData(map);
-//        return JSON;
-//    }
 
     public Trainer getTrainer() {
         return trainer;

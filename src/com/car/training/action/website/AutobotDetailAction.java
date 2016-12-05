@@ -1,15 +1,13 @@
 package com.car.training.action.website;
 
 import com.car.training.action.SimpleAction;
-import com.car.training.bean.Autobot;
-import com.car.training.bean.Comment;
-import com.car.training.bean.Course;
-import com.car.training.bean.Trainer;
+import com.car.training.bean.*;
 import com.car.training.service.*;
 import com.car.training.vo.LoginVO;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -50,6 +48,11 @@ public class AutobotDetailAction extends SimpleAction {
 
     private List<Comment> commentList;
 
+    @Autowired
+    private UserService userService;
+    
+    private HashMap<Comment,String> commentNameMap = new HashMap<>();
+
 
     @Override
     public String execute(){
@@ -65,18 +68,10 @@ public class AutobotDetailAction extends SimpleAction {
         if(loginVO !=null){
             like = likeService.isLike(loginVO.getId(),aUid);
         }
-
-//        for (String strId : autobots.getAttentionTrainer().split(",")) {
-//            if (StringUtils.isNotBlank(strId)) {
-//                Trainer trainer = trainerService.findById(strId);
-//                if (trainer != null) {
-//                    listTrainer.add(trainer);
-//                }
-//            }
-//        }
-//        autobots.setAttentionTrainerList(listTrainer);
-//        //朋友圈
-//        autobotsList = autobotsService.findByIndexPromoted(true, 6);
+        commentList.forEach((Comment comment)->{
+            PersonInfo personInfo = userService.getPersonInfo(comment.getUserId());
+            commentNameMap.put(comment,personInfo==null ? "":personInfo.getName());
+        });
         return SUCCESS;
     }
 
@@ -114,5 +109,14 @@ public class AutobotDetailAction extends SimpleAction {
 
     public void setLike(boolean like) {
         this.like = like;
+    }
+
+
+    public HashMap<Comment, String> getCommentNameMap() {
+        return commentNameMap;
+    }
+
+    public void setCommentNameMap(HashMap<Comment, String> commentNameMap) {
+        this.commentNameMap = commentNameMap;
     }
 }

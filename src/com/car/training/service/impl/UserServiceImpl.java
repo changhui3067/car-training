@@ -1,8 +1,13 @@
 package com.car.training.service.impl;
 
+import com.car.training.bean.Autobot;
 import com.car.training.bean.LoginUser;
+import com.car.training.bean.PersonInfo;
+import com.car.training.bean.Trainer;
 import com.car.training.dao.BaseDAO;
 import com.car.training.enums.UserType;
+import com.car.training.service.AutobotService;
+import com.car.training.service.TrainerService;
 import com.car.training.service.UserService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,8 +27,16 @@ public class UserServiceImpl implements UserService {
     BaseDAO baseDAO;
 
     @Autowired
+    TrainerService trainerService;
+    
+    @Autowired
+    AutobotService autobotService;
+    
+    @Autowired
     SessionFactory sessionFactory;
 
+    @Override
+    @Transactional
     public LoginUser login(String username, String password) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
@@ -32,6 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public boolean existUser(String username, UserType userType) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
@@ -40,6 +54,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public boolean existUser(String username) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
@@ -47,10 +62,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public LoginUser getUser(String username) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("username", username);
         return (LoginUser) baseDAO.findOne(LoginUser.class, map);
+    }
+
+    @Override
+    @Transactional
+    public PersonInfo getPersonInfo(int uid) {
+        Trainer trainer = trainerService.findByUId(uid);
+        if(trainer !=null){
+            return trainer.getPersonInfo();
+        }
+        Autobot autobot = autobotService.findByUId(uid);
+        if(autobot !=null){
+            return autobot.getPersonInfo();
+        }
+        return null;
     }
 
     @Override
