@@ -91,15 +91,19 @@ function submitAutobotInfo() {
 
     // var url = "/backend/autobotCompleteResume/save";
     var url = "/backend/saveInfo";
-    var form_data = $("#form1").serialize();
+    var form_data1 = $("#form1").serialize();
 
     //validate if any required field is null
-    if (form_data.indexOf('=&') > 0) {
+    if (form_data1.indexOf('=&') > 0) {
         $('.errMsg')[0].innerHTML = '必填项不能为空';
         return;
     } else {
         $('.errMsg')[0].innerHTML = '';
     }
+
+    var certRecords = document.getElementById("certRecords").value;
+    var workingHistory = document.getElementById("workingHistory").value;
+    var form_data = form_data1 + "&certRecords="+certRecords + "&workingHistory="+workingHistory;
 
     $.ajax({
         type: "POST",
