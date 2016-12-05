@@ -59,7 +59,7 @@ public class PublishJobHistoryAction extends SimpleAction {
     private List<Region>  provinces;
     private List<Region>  cities;
     private String jobRequirement;
-
+    private int regionId;
     @Override
     public String execute() throws Exception {
         if(loginVO != null) {
@@ -79,6 +79,9 @@ public class PublishJobHistoryAction extends SimpleAction {
         Company company = companyService.findByLoginUser(loginUser);
         job.setCompany(company);
         beanOperation.setValue(this, job, jobProps);
+        Region region = new Region();
+        region.setId((long)regionId);
+        job.setRegion(region);
         switch (loginVO.getUserType()) {
             case COMPANY:
                 job.setType(JobType.TRAINER);
@@ -217,5 +220,13 @@ public class PublishJobHistoryAction extends SimpleAction {
 
     public void setJobRequirement(String jobRequirement) {
         this.jobRequirement = jobRequirement;
+    }
+
+    public int getRegionId() {
+        return regionId;
+    }
+
+    public void setRegionId(int regionId) {
+        this.regionId = regionId;
     }
 }

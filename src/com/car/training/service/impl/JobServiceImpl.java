@@ -128,15 +128,16 @@ public class JobServiceImpl implements JobService {
             canPublish = true;
             jobLimit = new JobLimit();
             jobLimit.setCompanyId(job.getCompany().getId());
-            jobLimit.setCurrentPublishJobCount(0);
+            jobLimit.setCurrentPublishJobCount(1);
             jobLimit.setMaxPublishJobCount(20);
+            jobLimit.setVipExpireDate(new Date());
             baseDAO.save(jobLimit);
-            jobLimit = (JobLimit) baseDAO.findOne(JobLimit.class, params);
+            jobLimit = null;
         }
         if (canPublish) {
             job.setCreateDate(new Date());
             baseDAO.save(job);
-            if (date.compareTo(jobLimit.getVipExpireDate()) >= 0) {
+            if (jobLimit !=null && date.compareTo(jobLimit.getVipExpireDate()) >= 0) {
                 jobLimit.setCurrentPublishJobCount(jobLimit.getCurrentPublishJobCount() + 1);
                 baseDAO.save(jobLimit);
             }
