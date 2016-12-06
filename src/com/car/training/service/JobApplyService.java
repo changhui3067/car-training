@@ -16,6 +16,9 @@ public interface JobApplyService {
     List<Apply> getApplyListByJob(Job job);
 
     @Transactional
+    boolean hasAppliedToCompany(int companyUid);
+
+    @Transactional
     boolean isApplied(int jobId);
 
     List<Apply> getApplyListByUser();

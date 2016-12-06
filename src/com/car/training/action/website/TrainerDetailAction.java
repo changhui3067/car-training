@@ -6,6 +6,7 @@ import com.car.training.bean.Comment;
 import com.car.training.bean.Course;
 import com.car.training.bean.PersonInfo;
 import com.car.training.bean.Trainer;
+import com.car.training.enums.UserType;
 import com.car.training.service.*;
 import com.car.training.vo.LoginVO;
 import org.ironrhino.core.metadata.AutoConfig;
@@ -36,6 +37,9 @@ public class TrainerDetailAction extends SimpleAction {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private JobApplyService jobApplyService;
+
     private Trainer trainer;
 
     private List<Comment> commentList;
@@ -52,6 +56,8 @@ public class TrainerDetailAction extends SimpleAction {
 
     private HashMap<Object,String> commentNameMap = new HashMap<>();
 
+    private boolean hideContact;
+    
     @Override
     public String execute(){
         trainer = trainerService.findById(trainerId);
@@ -66,9 +72,12 @@ public class TrainerDetailAction extends SimpleAction {
             commentNameMap.put(comment,personInfo==null ? "":personInfo.getName());
         });
         likeNumber = likeService.likeNumber(tUid);
-        LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
+        LoginVO loginVO = getLoginVO();
         if(loginVO !=null){
             like = likeService.isLike(loginVO.getId(),tUid);
+            if(loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE){
+                hideContact = !jobApplyService.hasAppliedToCompany(loginVO.getId());
+            }
         }
         return SUCCESS;
     }
@@ -127,5 +136,13 @@ public class TrainerDetailAction extends SimpleAction {
 
     public void setCommentNameMap(HashMap<Object, String> commentNameMap) {
         this.commentNameMap = commentNameMap;
+    }
+
+    public boolean getHideContact() {
+        return hideContact;
+    }
+
+    public void setHideContact(boolean hideContact) {
+        this.hideContact = hideContact;
     }
 }

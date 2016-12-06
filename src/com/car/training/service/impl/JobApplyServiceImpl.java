@@ -70,6 +70,19 @@ public class JobApplyServiceImpl implements JobApplyService {
 
     @Override
     @Transactional
+    public boolean hasAppliedToCompany(int companyUid){
+        List<Apply> applies = getApplyListByUser();
+        for(Apply apply : applies){
+            if( apply.getJob().getCompany().getLoginUser().getId() == companyUid){
+                return true;
+            }        
+        }
+        return false;
+    }
+    
+    
+    @Override
+    @Transactional
     public boolean isApplied(int jobId){
         for ( Apply apply : getApplyListByUser()){
             if (apply.getJob().getId() == jobId){

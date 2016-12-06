@@ -2,6 +2,7 @@ package com.car.training.action.website;
 
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.*;
+import com.car.training.enums.UserType;
 import com.car.training.service.*;
 import com.car.training.vo.LoginVO;
 import org.ironrhino.core.metadata.AutoConfig;
@@ -32,15 +33,10 @@ public class AutobotDetailAction extends SimpleAction {
 
     private Autobot autobot;
 
-    private List<Trainer> trainerList;
+    @Autowired
+    private JobApplyService jobApplyService;
 
     private int autobotId;
-
-    /**
-     * 朋友圈汽车人列表
-     */
-    private List<Autobot> autobotsList;
-
 
     private int likeNumber;
 
@@ -53,6 +49,8 @@ public class AutobotDetailAction extends SimpleAction {
     
     private HashMap<Comment,String> commentNameMap = new HashMap<>();
 
+    private boolean hideContact;
+
 
     @Override
     public String execute(){
@@ -64,9 +62,12 @@ public class AutobotDetailAction extends SimpleAction {
         int aUid = autobot.getLoginUser().getId();
         commentList = commentService.findCommentByTargetUser(aUid);
         likeNumber = likeService.likeNumber(aUid);
-        LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
+        LoginVO loginVO = getLoginVO();
         if(loginVO !=null){
             like = likeService.isLike(loginVO.getId(),aUid);
+            if(loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE){
+                hideContact = !jobApplyService.hasAppliedToCompany(loginVO.getId());
+            }
         }
         commentList.forEach((Comment comment)->{
             PersonInfo personInfo = userService.getPersonInfo(comment.getUserId());
@@ -118,5 +119,13 @@ public class AutobotDetailAction extends SimpleAction {
 
     public void setCommentNameMap(HashMap<Comment, String> commentNameMap) {
         this.commentNameMap = commentNameMap;
+    }
+
+    public boolean getHideContact() {
+        return hideContact;
+    }
+
+    public void setHideContact(boolean hideContact) {
+        this.hideContact = hideContact;
     }
 }
