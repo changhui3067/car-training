@@ -18,8 +18,9 @@ public interface UserService {
 
     LoginUser getUser(String username);
     
-    @Transactional
     PersonInfo getPersonInfo(int uid);
+    
+    LoginUser getUser(int uid);
 
     boolean updatePassword(String username, String newPassword);
 

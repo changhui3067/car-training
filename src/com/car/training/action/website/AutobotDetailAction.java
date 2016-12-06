@@ -66,7 +66,7 @@ public class AutobotDetailAction extends SimpleAction {
         if(loginVO !=null){
             like = likeService.isLike(loginVO.getId(),aUid);
             if(loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE){
-                hideContact = !jobApplyService.hasAppliedToCompany(loginVO.getId());
+                hideContact = !jobApplyService.hasAppliedToCompany(aUid,loginVO.getId());
             }
         }
         commentList.forEach((Comment comment)->{

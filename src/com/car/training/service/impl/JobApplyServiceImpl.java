@@ -6,6 +6,7 @@ import com.car.training.enums.UserType;
 import com.car.training.service.AutobotService;
 import com.car.training.service.JobApplyService;
 import com.car.training.service.TrainerService;
+import com.car.training.service.UserService;
 import com.car.training.vo.LoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.car.training.enums.UserType.AUTOBOT;
+import static com.car.training.enums.UserType.TRAINER;
 
 /**
  * Created by bill on 11/19/16.
@@ -32,6 +36,10 @@ public class JobApplyServiceImpl implements JobApplyService {
 
     @Autowired
     AutobotService autobotService;
+
+    @Autowired
+    UserService userService;
+
 
     @Override
     @Transactional
@@ -70,13 +78,14 @@ public class JobApplyServiceImpl implements JobApplyService {
 
     @Override
     @Transactional
-    public boolean hasAppliedToCompany(int companyUid){
-        List<Apply> applies = getApplyListByUser();
+    public boolean hasAppliedToCompany(int uid, int companyUid){
+        List<Apply> applies = getApplyListByUser(uid);
         for(Apply apply : applies){
             if( apply.getJob().getCompany().getLoginUser().getId() == companyUid){
                 return true;
             }        
         }
+        
         return false;
     }
     
@@ -91,16 +100,11 @@ public class JobApplyServiceImpl implements JobApplyService {
         }
         return false;
     }
-    
-    
-    @Override
-    @Transactional
-    public List<Apply> getApplyListByUser() {
-        HashMap<String, Object> map = new HashMap<>();
 
-        LoginUser loginUser = new LoginUser();
-        loginUser.setId(loginVO.getId());
-        switch (loginVO.getUserType()) {
+    private List<Apply> getApplyListByUser(int uid) {
+        HashMap<String, Object> map = new HashMap<>();
+        LoginUser loginUser = userService.getUser(uid);
+        switch (loginUser.getType()) {
             case TRAINER:
                 Trainer trainer = trainerService.findByLoginUser(loginUser);
                 map.put("trainer", trainer);
@@ -109,10 +113,17 @@ public class JobApplyServiceImpl implements JobApplyService {
                 Autobot autobot = autobotService.findByLoginUser(loginUser);
                 map.put("autobot", autobot);
             default:
+                map.put("id", -1);
                 break;
         }
 
         return (List<Apply>) baseDAO.find(Apply.class, map);
+    }
+    
+    @Override
+    @Transactional
+    public List<Apply> getApplyListByUser() {
+        return getApplyListByUser(loginVO.getId());
     }
 
     @Override

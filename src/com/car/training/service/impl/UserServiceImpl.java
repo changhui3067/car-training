@@ -84,6 +84,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public LoginUser getUser(int uid) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", uid);
+        return (LoginUser) baseDAO.findOne(LoginUser.class, map);
+    }
+
+    @Override
     @Transactional
     public boolean updatePassword(String username, String newPassword) {
         Session session = sessionFactory.getCurrentSession();

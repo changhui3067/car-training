@@ -76,7 +76,7 @@ public class TrainerDetailAction extends SimpleAction {
         if(loginVO !=null){
             like = likeService.isLike(loginVO.getId(),tUid);
             if(loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE){
-                hideContact = !jobApplyService.hasAppliedToCompany(loginVO.getId());
+                hideContact = !jobApplyService.hasAppliedToCompany(tUid,loginVO.getId());
             }
         }
         return SUCCESS;
