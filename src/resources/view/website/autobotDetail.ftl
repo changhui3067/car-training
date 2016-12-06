@@ -59,7 +59,7 @@
                     <#if hideContact>
                         联系方式: <span>********************</span><span>***********</span>
                     <#else>
-                        联系方式: <span>${autobot.personInfo.email!}</span><span>${autobot.personInfo.mobile!}</span>
+                        联系方式: <span>${autobot.personInfo.mobile!}</span><span>${autobot.personInfo.email!}</span>
                     </#if>
                     </div>
                 </div>
