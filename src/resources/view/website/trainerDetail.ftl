@@ -93,6 +93,7 @@
                     </#if>
                 </div>
             </div>
+            <#if canComment>
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>学员评论</h4></div>
                 <div class="add_comment_box">
@@ -100,6 +101,7 @@
                     <button id=${trainer.loginUser.id!} value="<#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>true<#else>false</#if>" class="commonClickButton btn btn-primary" onclick="addComment(this.id)">提交</button>
                 </div>
             </div>
+            </#if>
         </div>
         <div class="ny_pxshi_r right">
             <div class="people_comments people_other_info_bar">

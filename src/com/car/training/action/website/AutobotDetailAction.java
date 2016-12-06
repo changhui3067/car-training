@@ -51,6 +51,8 @@ public class AutobotDetailAction extends SimpleAction {
 
     private boolean hideContact = true;
 
+    private boolean canComment;
+
 
     @Override
     public String execute(){
@@ -67,6 +69,8 @@ public class AutobotDetailAction extends SimpleAction {
             like = likeService.isLike(loginVO.getId(),aUid);
             if(loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE){
                 hideContact = !jobApplyService.hasAppliedToCompany(aUid,loginVO.getId());
+            }else{
+                canComment = loginVO.getUserType().toString().equals("TRAINER");
             }
         }
         commentList.forEach((Comment comment)->{
@@ -127,5 +131,13 @@ public class AutobotDetailAction extends SimpleAction {
 
     public void setHideContact(boolean hideContact) {
         this.hideContact = hideContact;
+    }
+
+    public boolean isCanComment() {
+        return canComment;
+    }
+
+    public void setCanComment(boolean canComment) {
+        this.canComment = canComment;
     }
 }
