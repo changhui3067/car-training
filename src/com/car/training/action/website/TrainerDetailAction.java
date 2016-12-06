@@ -56,7 +56,7 @@ public class TrainerDetailAction extends SimpleAction {
 
     private HashMap<Object,String> commentNameMap = new HashMap<>();
 
-    private boolean hideContact;
+    private boolean hideContact = true;
     
     @Override
     public String execute(){

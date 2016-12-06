@@ -49,7 +49,7 @@ public class AutobotDetailAction extends SimpleAction {
     
     private HashMap<Comment,String> commentNameMap = new HashMap<>();
 
-    private boolean hideContact;
+    private boolean hideContact = true;
 
 
     @Override
