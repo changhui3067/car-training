@@ -56,8 +56,10 @@
                         汽车品牌:<span>${autobot.autoBrand!}</span>
                     </div>
                     <div>
-                    <#if hideContact><#else>
-                        联系方式: <span>${autobot.personInfo.mobile!}</span><span>${autobot.personInfo.email!}</span>
+                    <#if hideContact>
+                        联系方式: <span>********************</span><span>***********</span>
+                    <#else>
+                        联系方式: <span>${autobot.personInfo.email!}</span><span>${autobot.personInfo.mobile!}</span>
                     </#if>
                     </div>
                 </div>

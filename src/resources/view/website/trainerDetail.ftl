@@ -58,7 +58,9 @@
                         </#list>
                     </div>
                     <div>
-                        <#if hideContact><#else>
+                        <#if hideContact>
+                            联系方式: <span>********************</span><span>***********</span>
+                        <#else>
                         联系方式: <span>${trainer.personInfo.email!}</span><span>${trainer.personInfo.mobile!}</span>
                         </#if>
                     </div>
