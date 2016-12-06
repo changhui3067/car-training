@@ -102,10 +102,12 @@ span.paddingLeftNull { padding-left: 0!important;}
 	font-size: 13px;
 }
 
-.comments .comments_date {
+.comments_bottom {
     font-size: 12px;
     color: #aaa;
-    text-align: right;
+}
+.comments .commentsName {
+    width: 150px;
 }
 
 .autoCompany_zp{
