@@ -57,7 +57,9 @@ public class TrainerDetailAction extends SimpleAction {
     private HashMap<Object,String> commentNameMap = new HashMap<>();
 
     private boolean hideContact = true;
-    
+
+    private boolean canComment;
+
     @Override
     public String execute(){
         trainer = trainerService.findById(trainerId);
@@ -77,6 +79,8 @@ public class TrainerDetailAction extends SimpleAction {
             like = likeService.isLike(loginVO.getId(),tUid);
             if(loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE){
                 hideContact = !jobApplyService.hasAppliedToCompany(tUid,loginVO.getId());
+            } else{
+                canComment = loginVO.getUserType().toString().equals("AUTOBOT");
             }
         }
         return SUCCESS;
@@ -144,5 +148,13 @@ public class TrainerDetailAction extends SimpleAction {
 
     public void setHideContact(boolean hideContact) {
         this.hideContact = hideContact;
+    }
+
+    public boolean isCanComment() {
+        return canComment;
+    }
+
+    public void setCanComment(boolean canComment) {
+        this.canComment = canComment;
     }
 }
