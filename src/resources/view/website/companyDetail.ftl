@@ -64,9 +64,9 @@
                                     <div class="zw_name">${t.title!}</div>
                                 </a>
                                 <div class="dy_box">
-                                    <span class="cn" style="padding-left:0px;" class="jobSalary ellipsis">${t.salary!}元</span>
-                                    <span>${t.workExperienceRequirement!}年工作经验</span>
-                                    <span style="background:none;" class="jobRegion ellipsis"><#if t.region?? && t.region.fullname??>${t.region.fullname}</#if></span>
+                                    <span class="cn jobSalary ellipsis" style="padding-left:0px;" title="${t.salary!}元">${t.salary!}元</span>
+                                    <span>${t.workExperienceRequirement!}年经验</span>
+                                    <span style="background:none;" class="jobRegion ellipsis" title="<#if t.region?? && t.region.fullname??>${t.region.fullname}</#if>"><#if t.region?? && t.region.fullname??>${t.region.fullname}</#if></span>
                                 </div>
                         
                                 <div class="fb_box">

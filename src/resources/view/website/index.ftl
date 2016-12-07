@@ -130,9 +130,9 @@
                  <div class="left zp_box_l">
                     <a href="/website/jobDetail?jobId=${trainerJob.id!}" onclick="setLocation(2)"> <div class="zw_name">${trainerJob.title!}</div></a>
                     <div class="dy_box">
-                        <span class="cn" style="padding-left:0px;">${trainerJob.salary!}元</span>
-                        <span>${trainerJob.workExperienceRequirement!}年工作经验</span>
-                        <span style="background:none;"><#if trainerJob.region??>${trainerJob.region.fullname!}</#if></span>
+                        <span class="cn jobSalary ellipsis" style="padding-left:0px;" title="${trainerJob.salary!}元">${trainerJob.salary!}元</span>
+                        <span>${trainerJob.workExperienceRequirement!}年经验</span>
+                        <span style="background:none;" class="jobRegion ellipsis" title="<#if trainerJob.region??>${trainerJob.region.fullname!}</#if>"><#if trainerJob.region??>${trainerJob.region.fullname!}</#if></span>
                     </div>
                     <div class="fb_box">
                         	<span  style="padding-left:0px;">发布于：<#if trainerJob.createDate??>${trainerJob.createDate?string("yyyy-MM-dd")} </#if></span>
@@ -181,9 +181,9 @@
              <div class="qcrxq_l left zp_box_l">
                  <a href="/website/jobDetail?jobId=${t.id!}" onclick="setLocation(4)"><div class="qcrxq_zw_name">${t.title!}</div></a>
                 <div class="qcrxq_dy_box">
-                    <span class="cn" style="padding-left:0px;" class="jobSalary ellipsis">${t.salary!}元</span>
+                    <span class="cn" style="padding-left:0px;" class="jobSalary ellipsis" title="${t.salary!}元">${t.salary!}元</span>
                     <span>${t.workExprience!}年经验</span>
-                    <span style="background:none;" class="jobRegion ellipsis"><#if t.region??>${t.region.fullname!}</#if></span>
+                    <span style="background:none;" class="jobRegion ellipsis" title="<#if t.region??>${t.region.fullname!}</#if>"><#if t.region??>${t.region.fullname!}</#if></span>
                 </div>
                  <#--<div class="pingpai">-->
                      <#--<em>当前汽车品牌：</em><span><#if t.company.autoBrand??>${t.company.autoBrand!}</#if></span>-->

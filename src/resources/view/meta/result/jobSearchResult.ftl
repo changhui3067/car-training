@@ -6,9 +6,9 @@
                     <div class="zw_name">{{job.title}}</div>
                 </a>
                 <div class="dy_box">
-                    <span class="cn" style="padding-left:0px;" class="jobSalary ellipsis">{{job.salary}}元</span>
-                    <span>{{job.workExperienceRequirement}}年工作经验</span>
-                    <span style="background:none;" class="jobRegion ellipsis">{{!!job.region ? job.region.fullname : ""}}</span>
+                    <span class="cn jobSalary ellipsis" style="padding-left:0px;" :title="job.salary+'元'">{{job.salary}}元</span>
+                    <span>{{job.workExperienceRequirement}}年经验</span>
+                    <span style="background:none;" class="jobRegion ellipsis" :title="!!job.region ? job.region.fullname : ''">{{!!job.region ? job.region.fullname : ""}}</span>
                 </div>
                 <div class="fb_box">
                     <span style="padding-left:0px;">发布于: {{job.createDate}}</span>
