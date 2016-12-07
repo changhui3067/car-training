@@ -84,7 +84,7 @@
                 <div class="people_other_info_box">
                     <div class="people_other_info_bar"><h4>岗位要求</h4></div>
                     <div class="people_other_info_list">
-                    ${job.jobDescription!}
+                    ${job.jobRequirement!}
                     </div>
                     <#--<div class="rzyq_box">-->
                         <#--<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">-->
