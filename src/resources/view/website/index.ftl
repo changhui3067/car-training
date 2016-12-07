@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>培聘网</title>
-    <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" />
     <link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" />
     <link rel="stylesheet" href="/assets/website/css/iconfont.css" type="text/css" media="screen" />
 </head>
 

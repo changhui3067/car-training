@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>培聘网</title>
-<link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/css/bootstrap.min.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/assets/website/css/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/css/completeInfo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/css/laydate.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/assets/website/css/date-molv.css" type="text/css" media="screen" />
