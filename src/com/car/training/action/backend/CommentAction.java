@@ -34,11 +34,10 @@ public class CommentAction extends SimpleAction {
         if (getLoginVO() == null){
             return "请登录";
         }
-        LoginUser loginUser = new LoginUser();
-        loginUser.setId(targetId);
+        LoginUser loginUser = userService.getUser(targetId);
         if (getLoginVO().getUserType() == UserType.COMPANY || getLoginVO().getUserType() == UserType.STORE ||
                 getLoginVO().getUserType() == loginUser.getType() || getLoginVO().getId() == targetId) {
-            return errorJSON("没有权限");
+            return "没有权限";
         }
         try{
             commentService.addComment(getLoginVO().getId(), targetId, content);

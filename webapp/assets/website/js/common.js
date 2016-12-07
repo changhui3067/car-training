@@ -55,8 +55,6 @@ function like(prix, id) {
             data = {};
         data["targetUserId"] = id;
         if (dom[0].childNodes[0].className === "iconfont icon-good") {
-            dom[0].childNodes[0].className = "iconfont icon-icon02";
-            dom[0].childNodes[1].innerHTML = number + 1;
             $.ajax({
                 type: "POST",
                 url: "/backend/Like/like",
@@ -69,12 +67,19 @@ function like(prix, id) {
                     return false;
                 },
                 success: function (data) {
+                    if (data.error) {
+                        Util.msgToast({
+                            message: data.error,
+                            mode: Util.MSGTYPE.ERROR
+                        });
+                        return false;
+                    }
+                    dom[0].childNodes[0].className = "iconfont icon-icon02";
+                    dom[0].childNodes[1].innerHTML = number + 1;
                     return true;
                 }
             });
         } else {
-            dom[0].childNodes[0].className = "iconfont icon-good";
-            dom[0].childNodes[1].innerHTML = number - 1;
             $.ajax({
                 type: "POST",
                 url: "/backend/Like/unLike",
@@ -87,6 +92,15 @@ function like(prix, id) {
                     return false;
                 },
                 success: function (data) {
+                    if (data.error) {
+                        Util.msgToast({
+                            message: data.error,
+                            mode: Util.MSGTYPE.ERROR
+                        });
+                        return false;
+                    }
+                    dom[0].childNodes[0].className = "iconfont icon-good";
+                    dom[0].childNodes[1].innerHTML = number - 1;
                     return true;
                 }
             });
@@ -103,8 +117,6 @@ function guarantee(prix, id) {
             data = {};
         data["companyId"] = id;
         if (dom.hasClass("guarantee")) {
-            dom.removeClass("guarantee");
-            $("#companyGuarateeNumber")[0].innerHTML = number - 1;
             $.ajax({
                 type: "POST",
                 url: "/backend/Guarantee/unGuarantee",
@@ -124,13 +136,13 @@ function guarantee(prix, id) {
                         });
                         return false;
                     }
+                    dom.removeClass("guarantee");
+                    $("#companyGuarateeNumber")[0].innerHTML = number - 1;
                     $(".companyGuaranteeList")[0].innerHTML = result;
                     return true;
                 }
             });
         } else {
-            dom.addClass("guarantee");
-            $("#companyGuarateeNumber")[0].innerHTML = number + 1;
             $.ajax({
                 type: "POST",
                 url: "/backend/Guarantee/guarantee",
@@ -150,6 +162,8 @@ function guarantee(prix, id) {
                         });
                         return false;
                     }
+                    dom.addClass("guarantee");
+                    $("#companyGuarateeNumber")[0].innerHTML = number + 1;
                     $(".companyGuaranteeList")[0].innerHTML = result;
                     return true;
                 }
@@ -163,7 +177,6 @@ function addComment (id) {
     if ($(".add_comment_box button")[0].getAttribute("value") === "true") {
         var data = {},
             number = new Number($("#commentNumber")[0].innerHTML);
-        $("#commentNumber")[0].innerHTML = number + 1;
         data["content"] = $("#add_comment").val(),
         data["targetId"] = id;
         if (data.content) {
@@ -186,6 +199,7 @@ function addComment (id) {
                         });
                         return false;
                     }
+                    $("#commentNumber")[0].innerHTML = number + 1;
                     scrollTo(0,0);
                     $("#add_comment").val('')
                     $(".people_comments_list")[0].innerHTML = result;
