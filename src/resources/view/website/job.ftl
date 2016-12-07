@@ -185,7 +185,7 @@ function filter3Clicked(ele, category) {
         case '一个月以内':
             filters[category] = "0,30"; break;
         case '一个月以上':
-            filters[category] = "0,100"; break;
+            filters[category] = "30,100"; break;
         default:
             break;
     }
