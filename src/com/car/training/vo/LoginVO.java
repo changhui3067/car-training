@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by bill on 11/8/16.
  */
-@Component
-@Transactional
 public class LoginVO {
     private int id;
     private String username;

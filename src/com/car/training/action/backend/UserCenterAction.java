@@ -51,8 +51,6 @@ public class UserCenterAction extends SimpleAction {
 
     private String vercode;
 
-    @Autowired
-    private LoginVO loginVO;
 
     private String defaultAvatar = "http://obu3flkwk.bkt.clouddn.com/car/training/upload/1480767851719.png";
 
@@ -64,6 +62,7 @@ public class UserCenterAction extends SimpleAction {
         } else {
             HttpServletRequest request = ServletActionContext.getRequest();
             HttpSession session = request.getSession();
+            LoginVO loginVO = new LoginVO();
             loginVO.setId(user.getId());
             loginVO.setUsername(user.getUsername());
             loginVO.setUserType(user.getType());
@@ -79,7 +78,6 @@ public class UserCenterAction extends SimpleAction {
     public String logout() {
         HttpServletRequest request = ServletActionContext.getRequest();
         request.getSession().setAttribute("loginVO", null);
-        loginVO.logOut();
         return redirectToIndex();
     }
 
@@ -137,6 +135,7 @@ public class UserCenterAction extends SimpleAction {
         }
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession();
+        LoginVO loginVO = new LoginVO();
         loginVO.setId(user.getId());
         loginVO.setUsername(user.getUsername());
         loginVO.setUserType(user.getType());

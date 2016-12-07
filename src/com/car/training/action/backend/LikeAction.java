@@ -26,11 +26,9 @@ public class LikeAction extends SimpleAction {
     @Autowired
     private LikeService likeService;
 
-    @Autowired
-    private LoginVO loginVO;
-
     @JsonConfig(root = "data")
     public String like() {
+        LoginVO loginVO = getLoginVO();
         if (likeService.like(loginVO.getId(),targetUserId)) {
             return successJSON();
         } else {
@@ -40,6 +38,7 @@ public class LikeAction extends SimpleAction {
 
     @JsonConfig(root = "data")
     public String unLike() {
+        LoginVO loginVO = getLoginVO();
         if (likeService.unLike(loginVO.getId(),targetUserId)) {
             return successJSON();
         } else {

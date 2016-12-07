@@ -37,7 +37,7 @@ public class JobDetailAction extends SimpleAction {
             return redirectToIndex();
         }
         if (isloggedIn() && getLoginVO().getUserType().toString().equals(job.getType().toString())){
-            applyStatus = jobApplyService.isApplied(jobId) ? 2 : 1;
+            applyStatus = jobApplyService.isApplied(jobId,getLoginVO().getId()) ? 2 : 1;
         }else {
             applyStatus = 0;
         }

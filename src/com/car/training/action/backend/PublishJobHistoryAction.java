@@ -11,13 +11,11 @@ import com.car.training.service.JobApplyService;
 import com.car.training.service.JobService;
 import com.car.training.utils.BeanOperation;
 import com.car.training.utils.RegionUtils;
-import com.car.training.vo.LoginVO;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,8 +24,6 @@ import java.util.List;
  */
 @AutoConfig
 public class PublishJobHistoryAction extends SimpleAction {
-    private LoginVO loginVO = getLoginVO();
-
     @Autowired
     private JobService jobService;
 
@@ -62,8 +58,9 @@ public class PublishJobHistoryAction extends SimpleAction {
     private int regionId;
     @Override
     public String execute() throws Exception {
-        if(loginVO != null) {
-            jobList = jobService.findJobsByTargetCompany();
+        Company company = companyService.findByUId(getLoginVO().getId());
+        if(getLoginVO() != null) {
+            jobList = jobService.findJobsByTargetCompany(company.getId());
             generateJobApplyMap();
             provinces = regionUtils.getSubCities(-1);
         }
@@ -75,14 +72,14 @@ public class PublishJobHistoryAction extends SimpleAction {
     public String add() throws Exception {
         Job job = new Job();
         LoginUser loginUser = new LoginUser();
-        loginUser.setId(loginVO.getId());
+        loginUser.setId(getLoginVO().getId());
         Company company = companyService.findByLoginUser(loginUser);
         job.setCompany(company);
         beanOperation.setValue(this, job, jobProps);
         Region region = new Region();
         region.setId((long)regionId);
         job.setRegion(region);
-        switch (loginVO.getUserType()) {
+        switch (getLoginVO().getUserType()) {
             case COMPANY:
                 job.setType(JobType.TRAINER);
                 break;
@@ -95,7 +92,7 @@ public class PublishJobHistoryAction extends SimpleAction {
         } catch (Exception e){
             return errorJSON("申请的职位数量有限,需要扩容请联系培聘网");
         }
-        jobList = jobService.findJobsByTargetCompany();
+        jobList = jobService.findJobsByTargetCompany(company.getId());
         generateJobApplyMap();
         return successJSON();
     }

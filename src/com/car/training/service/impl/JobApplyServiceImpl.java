@@ -8,6 +8,7 @@ import com.car.training.service.JobApplyService;
 import com.car.training.service.TrainerService;
 import com.car.training.service.UserService;
 import com.car.training.vo.LoginVO;
+import org.apache.kafka.common.security.kerberos.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,9 +30,6 @@ public class JobApplyServiceImpl implements JobApplyService {
     BaseDAO baseDAO;
 
     @Autowired
-    LoginVO loginVO;
-
-    @Autowired
     TrainerService trainerService;
 
     @Autowired
@@ -43,8 +41,8 @@ public class JobApplyServiceImpl implements JobApplyService {
 
     @Override
     @Transactional
-    public void apply(int jobId) throws Exception {
-        if(isApplied(jobId)){
+    public void apply(int jobId, LoginVO loginVO) throws Exception {
+        if(isApplied(jobId,loginVO.getId())){
             throw new Exception("already applied");
         }
         
@@ -53,8 +51,6 @@ public class JobApplyServiceImpl implements JobApplyService {
         Job job = new Job();
         loginUser.setId(loginVO.getId());
         job.setId(jobId);
-        
-        
         
         switch (loginVO.getUserType()) {
             case TRAINER:
@@ -92,8 +88,8 @@ public class JobApplyServiceImpl implements JobApplyService {
     
     @Override
     @Transactional
-    public boolean isApplied(int jobId){
-        for ( Apply apply : getApplyListByUser()){
+    public boolean isApplied(int jobId,int uid){
+        for ( Apply apply : getApplyListByUser(uid)){
             if (apply.getJob().getId() == jobId){
                 return true;
             }
@@ -101,7 +97,8 @@ public class JobApplyServiceImpl implements JobApplyService {
         return false;
     }
 
-    private List<Apply> getApplyListByUser(int uid) {
+    @Override
+    public List<Apply> getApplyListByUser(int uid) {
         HashMap<String, Object> map = new HashMap<>();
         LoginUser loginUser = userService.getUser(uid);
         switch (loginUser.getType()) {
@@ -112,6 +109,7 @@ public class JobApplyServiceImpl implements JobApplyService {
             case AUTOBOT:
                 Autobot autobot = autobotService.findByLoginUser(loginUser);
                 map.put("autobot", autobot);
+                break;
             default:
                 map.put("id", -1);
                 break;
@@ -120,12 +118,6 @@ public class JobApplyServiceImpl implements JobApplyService {
         return (List<Apply>) baseDAO.find(Apply.class, map);
     }
     
-    @Override
-    @Transactional
-    public List<Apply> getApplyListByUser() {
-        return getApplyListByUser(loginVO.getId());
-    }
-
     @Override
     @Transactional
     public List<Apply> getApplyListByJob(Job job) {

@@ -19,13 +19,10 @@ public class GuaranteeAction extends SimpleAction {
     @Autowired
     private GuaranteeService guaranteeService;
 
-    @Autowired
-    private LoginVO loginVO;
-
     private List<PersonInfo> personList;
 
     public String guarantee() {
-        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
+        LoginVO loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
         if (loginVO == null){
             return "请登录";
         }
@@ -38,7 +35,7 @@ public class GuaranteeAction extends SimpleAction {
     }
 
     public String unGuarantee() {
-        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
+        LoginVO loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
         if (loginVO == null){
             return "请登录";
         }

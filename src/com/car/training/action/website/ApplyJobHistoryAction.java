@@ -2,7 +2,6 @@ package com.car.training.action.website;
 
 import com.car.training.action.SimpleAction;
 import com.car.training.bean.Apply;
-import com.car.training.bean.Job;
 import com.car.training.service.JobApplyService;
 import com.car.training.service.JobService;
 import org.ironrhino.core.metadata.AutoConfig;
@@ -26,7 +25,7 @@ public class ApplyJobHistoryAction extends SimpleAction {
 
     @Override
     public String execute() throws Exception {
-        applyList = jobApplyService.getApplyListByUser();
+        applyList = jobApplyService.getApplyListByUser(getLoginVO().getId());
         return "applyJobHistory";
     }
 

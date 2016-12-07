@@ -7,7 +7,6 @@ import com.car.training.bean.PersonInfo;
 import com.car.training.enums.UserType;
 import com.car.training.service.CommentService;
 import com.car.training.service.UserService;
-import com.car.training.vo.LoginVO;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,9 +22,6 @@ public class CommentAction extends SimpleAction {
     @Autowired
     private CommentService commentService;
 
-    @Autowired
-    private LoginVO loginVO;
-
     private List<Comment> commentList;
 
     @Autowired
@@ -35,18 +31,17 @@ public class CommentAction extends SimpleAction {
 
 
     public String addComment() {
-        loginVO = (LoginVO) getHttpSession().getAttribute("loginVO");
-        if (loginVO == null){
+        if (getLoginVO() == null){
             return "请登录";
         }
         LoginUser loginUser = new LoginUser();
         loginUser.setId(targetId);
-        if (loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE ||
-                loginVO.getUserType() == loginUser.getType() || loginVO.getId() == targetId) {
+        if (getLoginVO().getUserType() == UserType.COMPANY || getLoginVO().getUserType() == UserType.STORE ||
+                getLoginVO().getUserType() == loginUser.getType() || getLoginVO().getId() == targetId) {
             return errorJSON("没有权限");
         }
         try{
-            commentService.addComment(loginVO.getId(), targetId, content);
+            commentService.addComment(getLoginVO().getId(), targetId, content);
             commentList = commentService.findCommentByTargetUser(targetId);
             commentList.forEach((Comment comment)->{
                 PersonInfo personInfo = userService.getPersonInfo(comment.getUserId());

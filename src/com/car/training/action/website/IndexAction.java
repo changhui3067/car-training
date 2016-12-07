@@ -100,7 +100,7 @@ public class IndexAction extends SimpleAction {
 
     private void generateLikeAndCommentMap() {
         int uid;
-        LoginVO loginVO = (LoginVO)getHttpSession().getAttribute("loginVO");
+        LoginVO loginVO = getLoginVO();
         if (trainerList != null) {
             for (Trainer trainer : trainerList) {
                 uid = trainer.getLoginUser().getId();

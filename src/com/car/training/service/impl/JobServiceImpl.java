@@ -31,9 +31,6 @@ public class JobServiceImpl implements JobService {
     private BaseDAO baseDAO;
 
     @Autowired
-    private LoginVO loginVO;
-
-    @Autowired
     private JobDAO jobDAO;
 
     @Autowired
@@ -58,18 +55,6 @@ public class JobServiceImpl implements JobService {
     public List<Job> findAll(JobType jobType) {
         HashMap<String, Object> map = new HashMap<>();
         map.put("type", jobType);
-        return baseDAO.find(Job.class, map);
-    }
-
-    @Override
-    @Transactional
-    public List<Job> findJobsByTargetCompany() {
-        String username = loginVO.getUsername();
-        LoginUser loginUser = userService.getUser(username);
-
-        Company company = companyService.findByLoginUser(loginUser);
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("company", company);
         return baseDAO.find(Job.class, map);
     }
 

@@ -22,9 +22,6 @@ import java.util.List;
 public class CompleteInfoAction extends SimpleAction {
 
     @Autowired
-    private LoginVO loginVO;
-
-    @Autowired
     private TrainerService trainerService;
 
     @Autowired
@@ -63,6 +60,7 @@ public class CompleteInfoAction extends SimpleAction {
     }
 
     public String validateUser() {
+        LoginVO loginVO = getLoginVO();
         if(!loginVO.isLoggedIn()) {
             return redirectToIndex();
         }

@@ -69,7 +69,7 @@ public class CompanyDetailAction extends SimpleAction {
             }
             canApplyMap = new HashMap<>();
             jobList.forEach((Job job)->{
-                canApplyMap.put(job, isloggedIn()&& loginVO.getUserType().toString().equals(job.getType().toString()) && !jobApplyService.isApplied(job.getId()));
+                canApplyMap.put(job, isloggedIn()&& loginVO.getUserType().toString().equals(job.getType().toString()) && !jobApplyService.isApplied(job.getId(),loginVO.getId()));
             });
             
         }else{

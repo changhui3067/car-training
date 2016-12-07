@@ -10,7 +10,6 @@ import com.car.training.service.TrainerService;
 import com.car.training.utils.BeanOperation;
 import com.car.training.utils.FileUploaderUtil;
 import com.car.training.utils.RegionUtils;
-import com.car.training.vo.LoginVO;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.JsonConfig;
@@ -28,8 +27,6 @@ import java.util.HashSet;
  */
 @AutoConfig
 public class SaveInfoAction extends SimpleAction {
-
-    private LoginVO loginVO = getLoginVO();
 
     @Autowired
     private BeanOperation beanOperation;
@@ -56,8 +53,8 @@ public class SaveInfoAction extends SimpleAction {
     @JsonConfig(root = "data")
     public String execute() throws Exception {
         LoginUser loginUser = new LoginUser();
-        loginUser.setId(loginVO.getId());
-        switch (loginVO.getUserType()) {
+        loginUser.setId(getLoginVO().getId());
+        switch (getLoginVO().getUserType()) {
             case AUTOBOT:
                 return saveAutobot();
             case TRAINER:
@@ -73,7 +70,7 @@ public class SaveInfoAction extends SimpleAction {
     @JsonConfig(root = "data")
     public String setAvatar() {
         PersonInfo personInfo;
-        switch (loginVO.getUserType()) {
+        switch (getLoginVO().getUserType()) {
             case AUTOBOT:
                 personInfo = autobot.getPersonInfo();
                 break;
@@ -91,10 +88,10 @@ public class SaveInfoAction extends SimpleAction {
 
     @JsonConfig(root = "data")
     public String setPhoto() {
-        switch (loginVO.getUserType()) {
+        switch (getLoginVO().getUserType()) {
             case COMPANY:
             case STORE:
-                company = companyService.findByUId(loginVO.getId());
+                company = companyService.findByUId(getLoginVO().getId());
                 String url = fileUploaderUtil.uploadImg(imgData);
                 companyService.updatePhotoUrl(company.getId(),url);
                 return keyValue("url", url);
@@ -105,10 +102,10 @@ public class SaveInfoAction extends SimpleAction {
     
     @JsonConfig(root = "data")
     public String setLogo() {
-        switch (loginVO.getUserType()) {
+        switch (getLoginVO().getUserType()) {
             case COMPANY:
             case STORE:
-                company = companyService.findByUId(loginVO.getId());
+                company = companyService.findByUId(getLoginVO().getId());
                 String url = fileUploaderUtil.uploadImg(imgData);
                 companyService.updateLogoUrl(company.getId(),url);
                 return keyValue("url", url);
@@ -159,12 +156,12 @@ public class SaveInfoAction extends SimpleAction {
     
     
     public String validateUser(){
-        if(!loginVO.isLoggedIn()){
+        if(!getLoginVO().isLoggedIn()){
             return errorJSON("not logged in"); 
         }
         LoginUser loginUser = new LoginUser();
-        loginUser.setId(loginVO.getId());
-        switch (loginVO.getUserType()) {
+        loginUser.setId(getLoginVO().getId());
+        switch (getLoginVO().getUserType()) {
             case AUTOBOT:
                 autobot = autobotService.findByLoginUser(loginUser);
                 break;

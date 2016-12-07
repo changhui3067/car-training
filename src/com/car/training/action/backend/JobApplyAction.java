@@ -23,7 +23,7 @@ public class JobApplyAction extends SimpleAction {
     @JsonConfig(root = "data")
     public String execute(){
         try{
-            jobApplyService.apply(jobId);
+            jobApplyService.apply(jobId,getLoginVO());
         }catch (Exception ignored){
             return errorJSON("error when saving");
         }
