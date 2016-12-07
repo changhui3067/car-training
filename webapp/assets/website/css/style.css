@@ -425,6 +425,14 @@ button, input, .borderRadius {
     color: #ff7d00;
 }
 
+.zp_box .jobSalary {
+    width: 65px;
+}
+
+.zp_box .jobRegion {
+    width: 110px;
+}
+
 .autoCompany_zp_l {
     width: 70%;
 }

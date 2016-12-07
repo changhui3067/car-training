@@ -181,9 +181,9 @@
              <div class="qcrxq_l left zp_box_l">
                  <a href="/website/jobDetail?jobId=${t.id!}" onclick="setLocation(4)"><div class="qcrxq_zw_name">${t.title!}</div></a>
                 <div class="qcrxq_dy_box">
-                    <span class="cn" style="padding-left:0px;">${t.salary!}元</span>
-                    <span>${t.workExprience!}年工作经验</span>
-                    <span style="background:none;"><#if t.region??>${t.region.fullname!}</#if></span>
+                    <span class="cn" style="padding-left:0px;" class="jobSalary ellipsis">${t.salary!}元</span>
+                    <span>${t.workExprience!}年经验</span>
+                    <span style="background:none;" class="jobRegion ellipsis"><#if t.region??>${t.region.fullname!}</#if></span>
                 </div>
                  <#--<div class="pingpai">-->
                      <#--<em>当前汽车品牌：</em><span><#if t.company.autoBrand??>${t.company.autoBrand!}</#if></span>-->
