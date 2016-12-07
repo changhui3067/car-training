@@ -15,7 +15,7 @@
                 </ul>
             </div>
         </div>
-        <#if Session?exists && '{}' != '${session}' && Session["loginVO"]??>
+        <#if Session?exists && '{}' != '${session}' && Session["loginVO"]?? && Session["loginVO"].username??>
         <div  class="dl_tel left" >欢迎您,${Session["loginVO"].username}</div>
          <div class="dl_top right list-inline">
          	<li style="background:none;"><a href='/backend/manageCenter' onclick="setLocation(-1)"/>我的管理</a></li>
