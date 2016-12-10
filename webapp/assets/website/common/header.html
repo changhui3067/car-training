@@ -5,13 +5,13 @@
         <div class="nav_box left">
         	<div class="nav" id="headerMenu">
             	<ul class="menu">
-				<li><a href='/website/index' onclick="setLocation(0)">首页</a></li>
-                <li><a href='/website/trainer' onclick="setLocation(1)">培训师</a></li>
-                <li><a href='/website/job?jobType=TRAINER' onclick="setLocation(2)">培训师招聘</a></li>
-                <li><a href='/website/autobot' onclick="setLocation(3)">汽车人</a></li>
-                <li><a href='/website/job?jobType=AUTOBOT' onclick="setLocation(4)">汽车人招聘</a></li>
-                <li><a href='/website/topic' onclick="setLocation(5)">培训学院</a></li>
-                <li><a href='/website/courses' onclick="setLocation(6)">公开课</a></li>
+				<li><a href='/website/index'>首页</a></li>
+                <li><a href='/website/trainer'>培训师</a></li>
+                <li><a href='/website/job?jobType=TRAINER'>培训师招聘</a></li>
+                <li><a href='/website/autobot'>汽车人</a></li>
+                <li><a href='/website/job?jobType=AUTOBOT'>汽车人招聘</a></li>
+                <li><a href='/website/topic'>培训学院</a></li>
+                <li><a href='/website/courses'>公开课</a></li>
                 </ul>
             </div>
         </div>
@@ -19,12 +19,12 @@
         <div  class="dl_tel left" >欢迎您,${Session["loginVO"].username}</div>
          <div class="dl_top right list-inline">
          	<li style="background:none;"><a href='/backend/manageCenter' onclick="setLocation(-1)"/>我的管理</a></li>
-         	<li><a href="/backend/UserCenter/logout" onclick="setLocation(0)">退出</a></li>
+         	<li><a href="/backend/UserCenter/logout">退出</a></li>
          </div>
         <#else> 
             <div class="right register">
             	<ul>
-                    <li><a href='/website/register' onclick="setLocation(-1)"/>免费注册</a></li>
+                    <li><a href='/website/register'/>免费注册</a></li>
                 </ul>
             </div>
         </#if> 

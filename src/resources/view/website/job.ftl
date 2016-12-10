@@ -15,6 +15,7 @@
 <#include "/assets/website/common/header.html">
 <!-- 头部结束 -->	
 <!-- main开始 -->
+<input name="currLocation" type="hidden" value="<#if jobType=='TRAINER'>2<#elseif jobType=='AUTOBOT'>4</#if>" />
 <div class="content">
     <div class="ny">
      	<div class="searchBox">

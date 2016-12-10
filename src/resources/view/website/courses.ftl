@@ -17,7 +17,7 @@
 <!-- 头部结束 -->
 
 <!-- main开始 -->
-
+<input name="currLocation" type="hidden" value="6"/>
 <div class="stayTuned">
     <p class="text-center">
     <h1>敬请期待...</h1></p>

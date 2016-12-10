@@ -18,6 +18,7 @@
 <!-- 头部结束 -->
 
 <!-- main开始 -->
+<input name="currLocation" type="hidden" value="1" />
 <div class="content">
     <div class="ny">
         <div class="searchBox">

@@ -1,19 +1,17 @@
 ﻿// JavaScript Document
 //网站头部导航js切换
-if(document.getElementById("headerMenu")) {
-    var selectedTabIndex = localStorage.tabIndex ? localStorage.tabIndex : 0;
-    if(selectedTabIndex<0){
-        $('.menu li').removeClass('cn');
-    } else {
-        var selectedTab = $('.menu li')[selectedTabIndex];
-        $(selectedTab).addClass('cn');
-        $(selectedTab).siblings().removeClass('cn');
+$(document).ready(function() {
+    if(document.getElementById("headerMenu")) {
+        var selectedTabIndex = $("input[name='currLocation']").val();
+        if(selectedTabIndex>=0){
+            var selectedTab = $('.menu li')[selectedTabIndex];
+            $(selectedTab).addClass('cn');
+            $(selectedTab).siblings().removeClass('cn');
+        } else {
+            $('.menu li').removeClass('cn');
+        }
     }
-}
-
-function setLocation(idx) {
-    localStorage.tabIndex = idx ? idx : 0;
-}
+});
 
 //尾部友情链接选项卡切换
 function selectTag(showContent,selfObj){

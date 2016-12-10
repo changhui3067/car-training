@@ -14,6 +14,7 @@
 <!-- 头部结束 -->
 
 <!-- main开始 -->
+<input name="currLocation" type="hidden" value="1" />
 <div class="content">
 <#if trainer??>
     <div class="ny_pxshi">

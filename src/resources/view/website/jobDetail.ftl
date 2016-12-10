@@ -16,7 +16,7 @@
 <!-- 头部结束 -->
 
 <!-- main开始 -->
-
+<input name="currLocation" type="hidden" value="<#if job.type=='TRAINER'>2<#elseif job.type=='AUTOBOT'>4</#if>"/>
 
 <div class="content">
 <#if job??>

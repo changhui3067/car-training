@@ -16,6 +16,7 @@
 <!-- 头部结束 -->		
 
 <!-- main开始 -->
+<input name="currLocation" type="hidden" value="3" />
 <div class="content">
     <div class="ny autobotSearchColor">
      	<div class="searchBox">

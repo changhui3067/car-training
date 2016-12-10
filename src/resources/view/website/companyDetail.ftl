@@ -60,7 +60,7 @@
                         <#list jobList as t>
                         <li class="zp_box">
                             <div class="left zp_box_l autoCompany_zp_l">
-                                <a href="/website/jobDetail?jobId=${t.id!}"  <#if t.type=='TRAINER'>onclick="setLocation(2)"<#else>onclick="setLocation(4)"</#if>>
+                                <a href="/website/jobDetail?jobId=${t.id!}">
                                     <div class="zw_name">${t.title!}</div>
                                 </a>
                                 <div class="dy_box">

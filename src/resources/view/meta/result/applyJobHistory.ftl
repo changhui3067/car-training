@@ -11,7 +11,7 @@
         </tr>
 		<#list applyList as apply>
             <tr>
-                <td><a href="/website/jobDetail?jobId=${apply.job.id}" <#if apply.job.type=='TRAINER'>onclick="setLocation(2)"<#else>onclick="setLocation(4)"</#if>>
+                <td><a href="/website/jobDetail?jobId=${apply.job.id}">
                     <#if apply.job.title??>${apply.job.title}<#else>无</#if></a>
                 </td>
                 <td><#if apply.job.type??><#if apply.job.type=='TRAINER'>培训师<#else>汽车人</#if><#else>无</#if></td>

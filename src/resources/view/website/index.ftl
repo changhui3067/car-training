@@ -13,6 +13,7 @@
     <#include "/assets/website/common/header.html">
     <!-- 头部结束 -->
     <!-- banner开始 -->
+    <input name="currLocation" type="hidden" value="0"/>
     <div class="banner">
         <#if '{}' == '${session}'|| !Session["loginVO"]?? >
         <div class="content">
@@ -47,14 +48,14 @@
 <div class="main">
    <div class="content">
      <div class="pxshi_box">
-         <h4><span><a href="/website/trainer" onclick="setLocation(1)">更多>></a></span>推荐培训师</h4>
+         <h4><span><a href="/website/trainer">更多>></a></span>推荐培训师</h4>
          <div class="pxshi_r">
           <#if trainerList??>
           <ul>
            <#list trainerList as a_trainer>
            <li class="oneBox">
               <#if a_trainer?? >
-              <div class="picContainer"><a href="/website/trainerDetail?trainerId=${a_trainer.id!}" onclick="setLocation(1)"><img src="${a_trainer.personInfo.avatarUrl!}" /></a></div>
+              <div class="picContainer"><a href="/website/trainerDetail?trainerId=${a_trainer.id!}"><img src="${a_trainer.personInfo.avatarUrl!}" /></a></div>
               <div class="intro">
                 <div>
                     <div class="name">${a_trainer.personInfo.name!}</div>
@@ -77,7 +78,7 @@
 <div class="clear"></div>
 </div>
 <div class="pxsheng_box">
- <h4><span><a href="/website/autobot" onclick="setLocation(3)">更多>></a></span>推荐汽车人</h4>
+ <h4><span><a href="/website/autobot">更多>></a></span>推荐汽车人</h4>
  <div class="pxsheng">
      <#if autobotList??>
      <ul>
@@ -85,7 +86,7 @@
          <li class="oneBox">
              <#if a_autobot??>
              <div class="picContainer">
-                 <a href="/website/autobotDetail?autobotId=${a_autobot.id!}" onclick="setLocation(3)">
+                 <a href="/website/autobotDetail?autobotId=${a_autobot.id!}">
                      <img src="${a_autobot.personInfo.avatarUrl!}" />
                  </a>
              </div>
@@ -119,7 +120,7 @@
  <div class="clear"></div>
 </div>
 <div class="pxxq_box">
- <h4><span><a href="/website/job?jobType=TRAINER" onclick="setLocation(2)">更多>></a></span>培训师招聘</h4>
+ <h4><span><a href="/website/job?jobType=TRAINER">更多>></a></span>培训师招聘</h4>
  <div class="pxxq">
      <#if trainerJobList??>
      <ul>
@@ -128,7 +129,7 @@
              <#if trainerJob??>
              <div class="qz"></div>
                  <div class="left zp_box_l">
-                    <a href="/website/jobDetail?jobId=${trainerJob.id!}" onclick="setLocation(2)"> <div class="zw_name">${trainerJob.title!}</div></a>
+                    <a href="/website/jobDetail?jobId=${trainerJob.id!}"> <div class="zw_name">${trainerJob.title!}</div></a>
                     <div class="dy_box">
                         <span class="cn jobSalary ellipsis" style="padding-left:0px;" title="${trainerJob.salary!}元">${trainerJob.salary!}元</span>
                         <span>${trainerJob.workExperienceRequirement!}年经验</span>
@@ -142,7 +143,7 @@
                  <div class="right zp_box_r">
                      <#if trainerJob.company??>
                      <div class="qy">
-                         <a href="/website/companyDetail?companyId=${trainerJob.company.id!}" onclick="setLocation(-1)">
+                         <a href="/website/companyDetail?companyId=${trainerJob.company.id!}">
                              <div class="qy_l left zp_box_r_l"><img src="${trainerJob.company.logoUrl!}"/></div>
                              <div class="qy_r right zp_box_r_r">
                                  <div class="qy_name">
@@ -171,7 +172,7 @@
 </div>
 </div>
 <div class="qcrxq_box">
- <h4><span><a href="/website/job?jobType=AUTOBOT" onclick="setLocation(4)">更多>></a></span>汽车人招聘</h4>
+ <h4><span><a href="/website/job?jobType=AUTOBOT">更多>></a></span>汽车人招聘</h4>
  <div class="qcrxq">
      <#if autobotJobList??>
      <ul>
@@ -179,7 +180,7 @@
          <li class="zp_box">
              <#if t?? && t.company??>
              <div class="qcrxq_l left zp_box_l">
-                 <a href="/website/jobDetail?jobId=${t.id!}" onclick="setLocation(4)"><div class="qcrxq_zw_name">${t.title!}</div></a>
+                 <a href="/website/jobDetail?jobId=${t.id!}"><div class="qcrxq_zw_name">${t.title!}</div></a>
                 <div class="qcrxq_dy_box">
                     <span class="cn" style="padding-left:0px;" class="jobSalary ellipsis" title="${t.salary!}元">${t.salary!}元</span>
                     <span>${t.workExprience!}年经验</span>
@@ -198,7 +199,7 @@
 
             <div class="qcrxq_r right zp_box_r">
                 <div class="qcrxq_qy">
-                    <a href="/website/companyDetail?companyId=${t.company.id!}"  onclick="setLocation(-1)">
+                    <a href="/website/companyDetail?companyId=${t.company.id!}">
                         <div class="qcrxq_qy_l left zp_box_r_l"><img src="${t.company.logoUrl!}" /></div>
                         <div class="qcrxq_qy_r right zp_box_r_r">
                             <div class="qcrxq_qy_name">

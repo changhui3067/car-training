@@ -16,7 +16,7 @@
         </tr>
         <#list jobList as job>
         <tr>
-            <td><#if job.title??><a href="/website/jobDetail?jobId=${job.id}" <#if job.type=='TRAINER'>onclick="setLocation(2)"<#else>onclick="setLocation(4)"</#if>>
+            <td><#if job.title??><a href="/website/jobDetail?jobId=${job.id}">
                 ${job.title}</a><#else>无</#if></td>
             <td><#if job.region ?? && job.region.fullname??>${job.region.fullname}<#else>无</#if></td>
             <td><#if job.createDate??>${job.createDate}<#else>无</#if></td>
@@ -24,9 +24,9 @@
             <td>
                 <#list jobApplyMap.get(job) as apply>
                   <#if apply?? && apply.trainer??>
-                  <a href="/website/trainerDetail?trainerId=${apply.trainer.id}" onclick="setLocation(1)"><span>${apply.trainer.personInfo.name}</span></a>
+                  <a href="/website/trainerDetail?trainerId=${apply.trainer.id}"><span>${apply.trainer.personInfo.name}</span></a>
                   <#elseif apply?? && apply.autobot??>
-                  <a href="/website/autobotDetail?autobotId=${apply.autobot.id}" onclick="setLocation(3)"><span>${apply.autobot.personInfo.name}</span></a>
+                  <a href="/website/autobotDetail?autobotId=${apply.autobot.id}"><span>${apply.autobot.personInfo.name}</span></a>
                   </#if>
                 </#list>
             </td>
