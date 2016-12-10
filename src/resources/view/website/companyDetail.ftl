@@ -70,7 +70,7 @@
                                 </div>
                         
                                 <div class="fb_box">
-                                    <span  style="padding-left:0px;">发布于：<#if t.publishDate??>${t.publishDate!?string("yyyy-MM-dd")}</#if></span>
+                                    <span  style="padding-left:0px;">发布于：<#if t.createDate??>${t.createDate?string("yyyy-MM-dd")}</#if></span>
                                     <span style="background:none;">投递后：48小时反馈</span>
                                 </div>
                             </div>
