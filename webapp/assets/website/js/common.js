@@ -113,8 +113,10 @@ function like(prix, id) {
 function guarantee(prix, id) {
     var dom = $(prix + " #" + id);
     if (dom[0].getAttribute("value") === "true") {
-        var number = new Number($("#companyGuarateeNumber")[0].innerHTML),
-            data = {};
+        if ($("#companyGuarateeNumber")[0]) {
+            var number = new Number($("#companyGuarateeNumber")[0].innerHTML)
+        }
+        var data = {};
         data["companyId"] = id;
         if (dom.hasClass("guarantee")) {
             $.ajax({
@@ -137,7 +139,9 @@ function guarantee(prix, id) {
                         return false;
                     }
                     dom.removeClass("guarantee");
-                    $("#companyGuarateeNumber")[0].innerHTML = number - 1;
+                    if ($("#companyGuarateeNumber")[0]) {
+                        $("#companyGuarateeNumber")[0].innerHTML = number - 1;
+                    }
                     $(".companyGuaranteeList")[0].innerHTML = result;
                     return true;
                 }
@@ -163,7 +167,9 @@ function guarantee(prix, id) {
                         return false;
                     }
                     dom.addClass("guarantee");
-                    $("#companyGuarateeNumber")[0].innerHTML = number + 1;
+                    if ($("#companyGuarateeNumber")[0]) {
+                        $("#companyGuarateeNumber")[0].innerHTML = number + 1;
+                    }
                     $(".companyGuaranteeList")[0].innerHTML = result;
                     return true;
                 }

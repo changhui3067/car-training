@@ -6,6 +6,7 @@ import com.car.training.bean.PersonInfo;
 import com.car.training.dao.BaseDAO;
 import com.car.training.dao.GuaranteeDAO;
 import com.car.training.service.GuaranteeService;
+import com.car.training.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,25 +22,24 @@ public class GuaranteeServiceImpl implements GuaranteeService {
     @Autowired
     GuaranteeDAO guaranteeDAO;
 
+    UserService userService;
+
 
     @Override
     public boolean guarantee(int uid, int companyId) {
-        PersonInfo personInfo = new PersonInfo();
-        personInfo.setId(uid);
+        PersonInfo personInfo = userService.getPersonInfo(uid);
         return guaranteeDAO.guarantee(personInfo,companyId);
     }
 
     @Override
     public boolean unGuarantee(int uid, int companyId) {
-        PersonInfo personInfo = new PersonInfo();
-        personInfo.setId(uid);
+        PersonInfo personInfo = userService.getPersonInfo(uid);
         return guaranteeDAO.unGuarantee(personInfo,companyId);
     }
 
     @Override
     public boolean isGuarantee(int uid, int companyId) {
-        PersonInfo personInfo = new PersonInfo();
-        personInfo.setId(uid);
+        PersonInfo personInfo = userService.getPersonInfo(uid);
         return guaranteeDAO.isGuarantee(personInfo,companyId);
     }
 
