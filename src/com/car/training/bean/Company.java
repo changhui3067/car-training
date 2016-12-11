@@ -1,5 +1,7 @@
 package com.car.training.bean;
 
+import com.car.training.annotation.Transformer;
+import com.car.training.annotation.UIField;
 import com.car.training.enums.ReactTime;
 import org.ironrhino.common.model.Region;
 
@@ -23,9 +25,11 @@ public class Company {
     private LoginUser loginUser;
 
     @Column
+    @UIField
     private String name;
 
     @Column
+    @UIField
     private String address;
 
     @JoinColumn(name = "regionId", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
@@ -39,9 +43,11 @@ public class Company {
     private String companyType;
 
     @Column
+    @UIField
     private String scale;
 
     @Column
+    @UIField
     private String introduction;
 
     @Enumerated(EnumType.STRING)
@@ -51,27 +57,34 @@ public class Company {
 //    @JoinColumn(foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
 //    @ManyToOne()
     @Column
+    @UIField
     private String welfare;
 
     @ElementCollection(fetch = FetchType.LAZY)
+    @UIField(transformer = Transformer.CategoryTransformer.class)
     private Set<String> businessCategory;
 
     @Column
     private String photoUrl;
 
     @Column
+    @UIField
     private String autoBrand;
 
     @Column
+    @UIField
     private String businessRange;
 
     @Column
+    @UIField
     private String contactName;
 
     @Column
+    @UIField
     private String telephone;
 
     @Column
+    @UIField
     private String email;
 
 

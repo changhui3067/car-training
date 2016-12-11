@@ -1,5 +1,8 @@
 package com.car.training.bean;
 
+import com.car.training.annotation.Transformer;
+import com.car.training.annotation.UIField;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -28,24 +31,28 @@ public class Autobot {
      * 工作状态  求职/在职
      */
     @Column
+    @UIField
     private String workingStatus;
 
     /**
      * 工作经验
      */
     @Column
+    @UIField
     private int autoYears;
 
     /**
      * 汽车品牌
      */
     @Column
+    @UIField
     private String autoBrand;
 
     /**
      * 擅长领域
      */
     @ElementCollection(fetch = FetchType.LAZY)
+    @UIField(transformer = Transformer.CategoryTransformer.class)
     private Set<String> businessCategory;
 
 
@@ -53,21 +60,26 @@ public class Autobot {
      * 认证记录
      */
     @Column
+    @UIField
     private String certRecords;
 
     /**
      * 工作记录
      */
     @Column
+    @UIField
     private String workingHistory;
 
     @Column
+    @UIField
     private String currentPosition;
 
     @Column
+    @UIField
     private String trainingHistory;
 
     @Column
+    @UIField
     private String education;
 
 

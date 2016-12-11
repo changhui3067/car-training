@@ -1,5 +1,8 @@
 package com.car.training.bean;
 
+import com.car.training.annotation.Transformer;
+import com.car.training.annotation.UIField;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -23,30 +26,39 @@ public class Trainer {
     private PersonInfo personInfo;
 
     @Column
+    @UIField
     private String currentPosition;
 
     @Column
+    @UIField
     private String education;
 
     @ElementCollection(fetch = FetchType.LAZY)
+    @UIField(transformer = Transformer.CategoryTransformer.class)
     private Set<String> executionCategory;
 
     @ElementCollection(fetch = FetchType.LAZY)
+    @UIField(transformer = Transformer.CategoryTransformer.class)
     private Set<String> businessCategory;
 
     @Column
+    @UIField
     private int autoYears;
 
     @Column
+    @UIField
     private String introduction;
 
     @Column
+    @UIField
     private String mainCourse;
 
     @Column
+    @UIField
     private String videoUrl1;
 
     @Column
+    @UIField
     private String videoUrl2;
 
 

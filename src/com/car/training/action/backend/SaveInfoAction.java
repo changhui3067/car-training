@@ -1,8 +1,10 @@
 package com.car.training.action.backend;
 
 import com.car.training.action.SimpleAction;
+import com.car.training.annotation.FieldTransformer;
+import com.car.training.annotation.Transformer;
+import com.car.training.annotation.UIField;
 import com.car.training.bean.*;
-import com.car.training.enums.ReactTime;
 import com.car.training.service.AutobotService;
 import com.car.training.service.CompanyService;
 import com.car.training.service.SimpleService;
@@ -10,17 +12,16 @@ import com.car.training.service.TrainerService;
 import com.car.training.utils.BeanOperation;
 import com.car.training.utils.FileUploaderUtil;
 import com.car.training.utils.RegionUtils;
+import org.apache.struts2.ServletActionContext;
 import org.ironrhino.common.model.Region;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.ironrhino.core.metadata.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
+import javax.servlet.http.HttpServletRequest;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 /**
  * Created by bill on 11/20/16.
@@ -93,13 +94,13 @@ public class SaveInfoAction extends SimpleAction {
             case STORE:
                 company = companyService.findByUId(getLoginVO().getId());
                 String url = fileUploaderUtil.uploadImg(imgData);
-                companyService.updatePhotoUrl(company.getId(),url);
+                companyService.updatePhotoUrl(company.getId(), url);
                 return keyValue("url", url);
             default:
                 return errorJSON("用户类型错误");
         }
     }
-    
+
     @JsonConfig(root = "data")
     public String setLogo() {
         switch (getLoginVO().getUserType()) {
@@ -107,57 +108,62 @@ public class SaveInfoAction extends SimpleAction {
             case STORE:
                 company = companyService.findByUId(getLoginVO().getId());
                 String url = fileUploaderUtil.uploadImg(imgData);
-                companyService.updateLogoUrl(company.getId(),url);
+                companyService.updateLogoUrl(company.getId(), url);
                 return keyValue("url", url);
             default:
                 return errorJSON("用户类型错误");
         }
     }
-    
-    
+
+
     private String saveAutobot() {
-        beanOperation.setValue(this, autobot, autobotProps);
-        autobot.setBusinessCategory(getCategories(businessCategory));
+        setField(autobot,autobotFields);
         setPersonInfo(autobot.getPersonInfo());
         autobotService.save(autobot);
         return successJSON();
     }
 
     private String saveTrainer() {
-        beanOperation.setValue(this, trainer, trainerProps);
-        trainer.setBusinessCategory(getCategories(businessCategory));
-        trainer.setExecutionCategory(getCategories(executionCategory));
+        setField(trainer,trainerFields);
         setPersonInfo(trainer.getPersonInfo());
         simpleService.save(trainer);
         return successJSON();
     }
 
     private void setPersonInfo(PersonInfo personInfo) {
-        region = regionUtils.getRegionById(regionId);
-        beanOperation.setValue(this, personInfo, personProps);
-        try {
-            Date date =new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
-            personInfo.setBirthday(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        Region region = regionUtils.getRegionById(regionId);
+        setField(personInfo,personFields);
+        personInfo.setRegion(region);
+    }
+    
+    private void setField(Object object , ArrayList<FieldTransformer> fields ){
+        HttpServletRequest request = ServletActionContext.getRequest();
+        for (FieldTransformer ft : fields) {
+            String param = request.getParameter(ft.getFieldName());
+            Object value;
+            if(ft.getTransformer() !=null){
+               value = ft.getTransformer().transform(param);
+            } else {
+                value = param;
+            }
+            if(value !=null){
+                beanOperation.setField(object, ft.getFieldName(), value );
+            }
         }
     }
 
     private String saveCompany() {
-        logoUrl = fileUploaderUtil.uploadImg(logoUrl);
-        photoUrl = fileUploaderUtil.uploadImg(photoUrl);
-        region = regionUtils.getRegionById(regionId);
-        company.setBusinessCategory(getCategories(businessCategory));
-        beanOperation.setValue(this, company, companyProps);
+        Region region = regionUtils.getRegionById(regionId);
+        setField(company,companyFields);
+        company.setRegion(region);
         simpleService.save(company);
         return successJSON();
     }
 
-    
-    
-    public String validateUser(){
-        if(!getLoginVO().isLoggedIn()){
-            return errorJSON("not logged in"); 
+
+    public String validateUser() {
+        if (!getLoginVO().isLoggedIn()) {
+            return errorJSON("not logged in");
         }
         LoginUser loginUser = new LoginUser();
         loginUser.setId(getLoginVO().getId());
@@ -187,120 +193,40 @@ public class SaveInfoAction extends SimpleAction {
     private Trainer trainer;
     private Company company;
 
-    //personInfo fields
     private String imgData;
     private int regionId = -1;
-    private Region region;
-    private String name;
-    private String birthday;
-    private String email;
-    private String marriageStatus;
-    private String mobile;
-    private String gender;
 
-    //autobotProps
-    private String workingStatus;
-    private int autoYears;
-//    private String autoBrand;
-    private String certRecords;
-    private String workingHistory;
-    private String currentPosition;
-    private String trainingHistory;
-    private String education;
+    private static ArrayList<FieldTransformer> personFields = parseBean(PersonInfo.class);
+    private static ArrayList<FieldTransformer> trainerFields = parseBean(Trainer.class);
+    private static ArrayList<FieldTransformer> autobotFields = parseBean(Autobot.class);
+    private static ArrayList<FieldTransformer> companyFields = parseBean(Company.class);
 
-    private String businessCategory;
-
-
-    //trainerProps
-//    private String currentPosition;
-//    private String education;
-    private String executionCategory;
-    //    private String businessCategory;
-//    private int autoYears;
-//    private String introduction;
-    private String mainCourse;
-    private String videoUrl1;
-    private String videoUrl2;
-
-    //companyProps
-//  "name",
-    private String address;
-    //  "region",
-    private String autoBrand;
-    private String businessRange;
-    private String logoUrl;
-    private String scale;
-    private String introduction;
-    private ReactTime reactTime;
-    private String welfare;
-    //  "businessCategory",
-    private String photoUrl;
-    private String telephone;
-    private String contactName;
-
-    private HashSet<String> getCategories(String categoryString) {
-        HashSet<String> categories = new HashSet<>();
-        if (!StringUtils.isEmpty(categoryString)) {
-            Collections.addAll(categories, categoryString.split(","));
+    private static ArrayList<FieldTransformer> parseBean(Class clazz) {
+        if (clazz == null) {
+            return null;
         }
-        return categories;
+        ArrayList<FieldTransformer> fieldTransformers = new ArrayList<>();
+        for (Field field : clazz.getDeclaredFields()) {
+            Annotation annotation = field.getDeclaredAnnotation(UIField.class);
+            if (annotation != null) {
+                UIField uiField = (UIField) annotation;
+                FieldTransformer fieldTransformer = new FieldTransformer();
+                Transformer transformer = null;
+                try {
+                    transformer = uiField.transformer().newInstance();
+                } catch (InstantiationException | IllegalAccessException e) {
+                    if (field.getType() == Integer.class || field.getType() ==int.class) {
+                        transformer = new Transformer.IntegerTransformer();
+                    }
+                }
+                fieldTransformer.setFieldName(field.getName());
+                fieldTransformer.setTransformer(transformer);
+                fieldTransformers.add(fieldTransformer);
+            }
+        }
+        return fieldTransformers;
     }
 
-
-    //CompanyProps
-
-    private final static String[] autobotProps = new String[]{
-            "workingStatus",
-            "autoYears",
-            "autoBrand",
-//            "businessCategory",
-            "certRecords",
-            "workingHistory",
-            "currentPosition",
-            "trainingHistory",
-            "education"
-    };
-
-    private final static String[] trainerProps = new String[]{
-            "currentPosition",
-            "education",
-//            "businessCategory",
-//            "executionCategory",
-            "autoYears",
-            "introduction",
-            "mainCourse",
-            "videoUrl1",
-            "videoUrl2",
-    };
-
-    private final static String[] personProps = new String[]{
-//            "avatarUrl",
-            "region",
-            "name",
-//            "birthday",
-            "email",
-            "marriageStatus",
-            "mobile",
-            "gender"
-    };
-
-    private final static String[] companyProps = new String[]{
-            "name",
-            "address",
-            "region",
-            "logoUrl",
-            "scale",
-            "autoBrand",
-            "introduction",
-            "businessRange",
-            "reactTime",
-            "welfare",
-            "email",
-            "contactName",
-            "telephone",
-//            "businessCategory",
-            "photoUrl",
-    };
 
     public void setImgData(String imgData) {
         this.imgData = imgData;
@@ -308,137 +234,5 @@ public class SaveInfoAction extends SimpleAction {
 
     public void setRegionId(int regionId) {
         this.regionId = regionId;
-    }
-
-    public void setRegion(Region region) {
-        this.region = region;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setMarriageStatus(String marriageStatus) {
-        this.marriageStatus = marriageStatus;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public void setWorkingStatus(String workingStatus) {
-        this.workingStatus = workingStatus;
-    }
-
-    public void setAutoYears(int autoYears) {
-        this.autoYears = autoYears;
-    }
-
-    public void setAutoBrand(String autoBrand) {
-        this.autoBrand = autoBrand;
-    }
-
-    public void setCertRecords(String certRecords) {
-        this.certRecords = certRecords;
-    }
-
-    public void setWorkingHistory(String workingHistory) {
-        this.workingHistory = workingHistory;
-    }
-
-    public void setCurrentPosition(String currentPosition) {
-        this.currentPosition = currentPosition;
-    }
-
-    public void setTrainingHistory(String trainingHistory) {
-        this.trainingHistory = trainingHistory;
-    }
-
-    public void setEducation(String education) {
-        this.education = education;
-    }
-
-    public void setBusinessCategory(String businessCategory) {
-        this.businessCategory = businessCategory;
-    }
-
-    public void setExecutionCategory(String executionCategory) {
-        this.executionCategory = executionCategory;
-    }
-
-    public void setMainCourse(String mainCourse) {
-        this.mainCourse = mainCourse;
-    }
-
-    public void setVideoUrl1(String videoUrl1) {
-        this.videoUrl1 = videoUrl1;
-    }
-
-    public void setVideoUrl2(String videoUrl2) {
-        this.videoUrl2 = videoUrl2;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setLogoUrl(String logoUrl) {
-        this.logoUrl = logoUrl;
-    }
-
-    public void setScale(String scale) {
-        this.scale = scale;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
-    }
-
-    public void setReactTime(String reactTime) {
-        this.reactTime = ReactTime.valueOf(reactTime);
-    }
-
-    public void setWelfare(String welfare) {
-        this.welfare = welfare;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
-
-    public void setBusinessRange(String businessRange) {
-        this.businessRange = businessRange;
-    }
-
-    public String getContactName() {
-        return contactName;
-    }
-
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 }
