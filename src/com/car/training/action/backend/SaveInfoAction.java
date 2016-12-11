@@ -196,6 +196,7 @@ public class SaveInfoAction extends SimpleAction {
     private String email;
     private String marriageStatus;
     private String mobile;
+    private String gender;
 
     //autobotProps
     private String workingStatus;
@@ -280,6 +281,7 @@ public class SaveInfoAction extends SimpleAction {
             "email",
             "marriageStatus",
             "mobile",
+            "gender"
     };
 
     private final static String[] companyProps = new String[]{
@@ -430,5 +432,13 @@ public class SaveInfoAction extends SimpleAction {
 
     public void setContactName(String contactName) {
         this.contactName = contactName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
