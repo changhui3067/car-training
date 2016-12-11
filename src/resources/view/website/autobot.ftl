@@ -171,6 +171,8 @@
         }
 
         switch(ele.innerHTML) {
+            case '应届毕业生':
+                filters[category] = "0,1"; break;
             case '5年内':
                 filters[category] = "0,5"; break;
             case '5-10年':
