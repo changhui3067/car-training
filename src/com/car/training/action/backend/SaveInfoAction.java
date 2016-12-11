@@ -137,7 +137,7 @@ public class SaveInfoAction extends SimpleAction {
         beanOperation.setValue(this, personInfo, personProps);
         try {
             Date date =new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
-            personInfo.setBirthday(new Date());
+            personInfo.setBirthday(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
