@@ -261,7 +261,7 @@ button, input, .borderRadius {
 
 .qcrxq_jyfw{ line-height:24px; height:24px; color:#9c9c9c; font-weight:100}
 .qcrxq_jyfw a,.qcrxq_jyfw a:hover{color:#9c9c9c;}
-.qcrxq_fl{ }
+.qcrxq_fl{     height: 50px;  overflow: hidden;}
 .qcrxq_fl span{padding:0px 10px; background:#e8f6ff; border:1px solid #dceff6; margin-right:10px; height:24px; line-height:24px; font-size:12px; }
 .qcrxq_fl span a,.qcrxq_fl span a:hover{color:#3e9dcb;}
 

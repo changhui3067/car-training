@@ -59,10 +59,10 @@
                     <div class="fldy">
                         <#if company.welfare??>
                             <ul>
-                            <#--<#list company.welfare as w>-->
-                            <#--<li>${w.name!}</li>-->
-                            <#--</#list>-->
-                                <li>${company.welfare!}</li>
+                            <#list company.welfare?split(",") as w>
+                            <li>${w!}</li>
+                            </#list>
+                                <#--<li>${company.welfare!}</li>-->
                             </ul>
                         </#if>
                         <div class="clear"></div>

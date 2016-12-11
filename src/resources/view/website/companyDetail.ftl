@@ -33,8 +33,8 @@
                     <div class="clear"></div>
                 </div>
                 <div>
-                    <#if welfares??>
-                        <#list welfares as w>
+                    <#if company.welfare??>
+                        <#list company.welfare?split(",") as w>
                     		<span>${w!}</span>
                         </#list>
                     </#if>

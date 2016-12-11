@@ -151,9 +151,9 @@
                                      <span>${guaranteeNumberMap.get(trainerJob.company)!}人担保</span>
                                  </div>
                                  <div class="jyfw">${trainerJob.company.industry!}</div>
-                                 <div class="fl">
-                                     <#if trainerJob.welfare??>
-                                         <#list trainerJob.welfare as w><span>${w!}</span></#list>
+                                 <div class="fl" title="${trainerJob.company.welfare!}">
+                                     <#if trainerJob.company.welfare??>
+                                         <#list trainerJob.company.welfare?split(",") as w><span>${w!}</span></#list>
                                      </#if>
                                  </div>
                              </div>
@@ -207,9 +207,9 @@
                                 <span>${guaranteeNumberMap.get(t.company)!}人担保</span>
                             </div>
                             <div class="qcrxq_jyfw">${t.company.industry!}</div>
-                            <div class="qcrxq_fl">
-                                <#if t.welfare??>
-                                    <#list t.welfare as w><span>${w!}</span></#list>
+                            <div class="qcrxq_fl" title="${t.company.welfare!}">
+                                <#if t.company.welfare??>
+                                    <#list t.company.welfare?split(",") as w><span>${w!}</span></#list>
                                 </#if>
                             </div>
                         </div>
