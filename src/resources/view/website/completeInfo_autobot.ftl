@@ -103,7 +103,6 @@
                                         学历:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="education" value="<#if autobot.education??>${autobot.education}</#if>">
-                                            <option value="小学" ${(autobot.education?? && autobot.education = "小学") ?then('selected','')}>小学</option>
                                             <option value="初中" ${(autobot.education?? && autobot.education = "初中") ?then('selected','')}>初中</option>
                                             <option value="高中" ${(autobot.education?? && autobot.education = "高中") ?then('selected','')}>高中</option>
                                             <option value="本科" ${(autobot.education?? && autobot.education = "本科") ?then('selected','')}>本科</option>

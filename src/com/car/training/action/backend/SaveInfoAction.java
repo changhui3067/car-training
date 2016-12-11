@@ -234,6 +234,8 @@ public class SaveInfoAction extends SimpleAction {
     private String welfare;
     //  "businessCategory",
     private String photoUrl;
+    private String contactName;
+    private String telephone;
 
     private HashSet<String> getCategories(String categoryString) {
         HashSet<String> categories = new HashSet<>();
@@ -412,5 +414,21 @@ public class SaveInfoAction extends SimpleAction {
 
     public void setBusinessRange(String businessRange) {
         this.businessRange = businessRange;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }

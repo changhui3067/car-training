@@ -41,7 +41,6 @@ function submitTrainerInfo() {
         }
     }
 
-    
     // var url = "/backend/autobotCompleteResume/save";
     var url = "/backend/saveInfo";
     var form_data = $("#form1").serialize();
@@ -53,6 +52,10 @@ function submitTrainerInfo() {
     } else {
         $('.errMsg')[0].innerHTML = '';
     }
+
+    var introduction = $("#introduction").val();
+    var mainCourse = $("mainCourse").val();
+    form_data = form_data + "&introduction="+introduction + "&mainCourse="+mainCourse;
 
     $.ajax({
         type: "POST",
@@ -142,6 +145,9 @@ function submitCompanyInfo() {
     } else {
         $('.errMsg')[0].innerHTML = '';
     }
+
+    var introduction = $("#introduction").val();
+    form_data = form_data + "&introduction="+introduction;
 
     $.ajax({
         type: "POST",

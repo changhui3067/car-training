@@ -73,9 +73,13 @@
                                             style="color: red">*</span>
                                         学历:</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="education"
-                                               placeholder="请输入学历"
-                                               value="${trainer.education!}"/>
+                                        <select class="form-control" name="education" value="<#if trainer.education??>${trainer.education}</#if>">
+                                            <option value="初中" ${(trainer.education?? && trainer.education = "初中") ?then('selected','')}>初中</option>
+                                            <option value="高中" ${(trainer.education?? && trainer.education = "高中") ?then('selected','')}>高中</option>
+                                            <option value="本科" ${(trainer.education?? && trainer.education = "本科") ?then('selected','')}>本科</option>
+                                            <option value="研究生" ${(trainer.education?? && trainer.education = "研究生") ?then('selected','')}>研究生</option>
+                                            <option value="博士" ${(trainer.education?? && trainer.education = "博士") ?then('selected','')}>博士</option>
+                                        </select>
                                     </div>
                                 </div>
                             </li>
@@ -261,7 +265,7 @@
     <div class="pxshijl">
         <h5>个人介绍</h5>
         <div class="pxshijl_box">
-            <textarea style="width:800px;margin-left:15px;resize:none" name="introduction" cols="45" rows="5" placeholder="请输入个人介绍"
+            <textarea style="width:800px;margin-left:15px;resize:none" id="introduction" cols="45" rows="5" placeholder="请输入个人介绍"
                     value="<#if trainer?? && trainer.introduction??> ${trainer.introduction!}</#if>">
             <#if trainer?? && trainer.introduction??> ${trainer.introduction!}</#if>
             </textarea>
@@ -271,7 +275,7 @@
     <div class="pxshijl">
         <h5>课程介绍</h5>
         <div class="pxshijl_box">
-            <textarea style="width:800px;margin-left:15px;resize:none" name="introduction" cols="45" rows="5" placeholder="请输入课程介绍"
+            <textarea style="width:800px;margin-left:15px;resize:none" id="mainCourse" cols="45" rows="5" placeholder="请输入课程介绍"
                       value="<#if trainer?? && trainer.mainCourse??> ${trainer.mainCourse!}</#if>">
             <#if trainer?? && trainer.mainCourse??> ${trainer.mainCourse!}</#if>
             </textarea>
