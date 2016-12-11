@@ -277,7 +277,7 @@ public class SaveInfoAction extends SimpleAction {
 //            "avatarUrl",
             "region",
             "name",
-//            "birthday",
+            "birthday",
             "email",
             "marriageStatus",
             "mobile",
