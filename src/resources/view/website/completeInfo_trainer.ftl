@@ -157,7 +157,7 @@
                                         视频链接1:</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
-                                               name="videoURL1"
+                                               name="videoUrl1"
                                                placeholder="请输入视频链接1"
                                                value="${trainer.videoUrl1!}"/>
                                     </div>
@@ -170,7 +170,7 @@
                                         视频链接2:</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
-                                               name="videoURL2"
+                                               name="videoUrl2"
                                                placeholder="请输入视频链接2"
                                                value="${trainer.videoUrl2!}"/>
                                     </div>
