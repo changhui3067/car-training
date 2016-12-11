@@ -2,13 +2,11 @@ package com.car.training.service.impl;
 
 import com.car.training.bean.*;
 import com.car.training.dao.BaseDAO;
-import com.car.training.enums.UserType;
 import com.car.training.service.AutobotService;
 import com.car.training.service.JobApplyService;
 import com.car.training.service.TrainerService;
 import com.car.training.service.UserService;
 import com.car.training.vo.LoginVO;
-import org.apache.kafka.common.security.kerberos.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-import static com.car.training.enums.UserType.AUTOBOT;
-import static com.car.training.enums.UserType.TRAINER;
 
 /**
  * Created by bill on 11/19/16.
