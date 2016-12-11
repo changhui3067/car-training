@@ -4,10 +4,18 @@ import com.car.training.action.SimpleAction;
 import com.car.training.bean.Apply;
 import com.car.training.bean.Company;
 import com.car.training.bean.Job;
+import com.car.training.bean.PersonInfo;
+import com.car.training.service.GuaranteeService;
 import com.car.training.service.JobApplyService;
 import com.car.training.service.JobService;
+import com.car.training.vo.LoginVO;
+import org.apache.struts2.ServletActionContext;
 import org.ironrhino.core.metadata.AutoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by freyjachang on 11/13/16.
@@ -19,6 +27,13 @@ public class JobDetailAction extends SimpleAction {
     
     @Autowired
     private JobApplyService jobApplyService;
+
+    @Autowired
+    private GuaranteeService guaranteeService;
+
+    private List<PersonInfo> personList;
+
+    private Boolean guarantee;
 
     private Job job;
 
@@ -33,6 +48,13 @@ public class JobDetailAction extends SimpleAction {
         if(jobId!=0){
             job = jobService.findById(jobId);
             company = job.getCompany();
+            personList = guaranteeService.findPeronByCompanyId(company.getId());
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpSession session = request.getSession();
+            LoginVO loginVO = (LoginVO) session.getAttribute("loginVO");
+            if (loginVO != null) {
+                guarantee = guaranteeService.isGuarantee(loginVO.getId(), company.getId());
+            }
         }else{
             return redirectToIndex();
         }
@@ -75,5 +97,21 @@ public class JobDetailAction extends SimpleAction {
 
     public void setApplyStatus(int applyStatus) {
         this.applyStatus = applyStatus;
+    }
+
+    public List<PersonInfo> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<PersonInfo> personList) {
+        this.personList = personList;
+    }
+
+    public Boolean getGuarantee() {
+        return guarantee;
+    }
+
+    public void setGuarantee(Boolean guarantee) {
+        this.guarantee = guarantee;
     }
 }

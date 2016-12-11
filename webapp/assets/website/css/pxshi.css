@@ -201,6 +201,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 .companyBasicInfoBoxContent button.guarantee{
     background-color: #3D9CCC;
     color: #fff;
+    cursor: text;
 }
 
 .companyBasicInfoBoxContent button{
