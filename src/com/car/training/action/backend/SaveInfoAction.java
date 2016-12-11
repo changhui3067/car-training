@@ -196,6 +196,7 @@ public class SaveInfoAction extends SimpleAction {
     private String email;
     private String marriageStatus;
     private String mobile;
+    private String gender;
 
     //autobotProps
     private String workingStatus;
@@ -234,8 +235,8 @@ public class SaveInfoAction extends SimpleAction {
     private String welfare;
     //  "businessCategory",
     private String photoUrl;
-    private String contactName;
     private String telephone;
+    private String contactName;
 
     private HashSet<String> getCategories(String categoryString) {
         HashSet<String> categories = new HashSet<>();
@@ -280,6 +281,7 @@ public class SaveInfoAction extends SimpleAction {
             "email",
             "marriageStatus",
             "mobile",
+            "gender"
     };
 
     private final static String[] companyProps = new String[]{
@@ -430,5 +432,13 @@ public class SaveInfoAction extends SimpleAction {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

@@ -8,6 +8,7 @@ import com.car.training.action.SimpleAction;
 import com.car.training.bean.LoginUser;
 import com.car.training.enums.UserType;
 import com.car.training.service.LikeService;
+import com.car.training.service.UserService;
 import com.car.training.vo.LoginVO;
 import com.opensymphony.xwork2.interceptor.annotations.Before;
 import org.apache.struts2.ServletActionContext;
@@ -26,6 +27,9 @@ public class LikeAction extends SimpleAction {
     @Autowired
     private LikeService likeService;
 
+    private UserService userService;
+
+    @Autowired
     @JsonConfig(root = "data")
     public String like() {
         LoginVO loginVO = getLoginVO();
@@ -52,8 +56,7 @@ public class LikeAction extends SimpleAction {
         if (loginVO == null) {
             return errorJSON("请登录");
         }
-        LoginUser loginUser = new LoginUser();
-        loginUser.setId(targetUserId);
+        LoginUser loginUser = userService.getUser(targetUserId);
         if (loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE ||
                 loginVO.getUserType() == loginUser.getType()) {
             return errorJSON("没有权限");
@@ -75,4 +78,11 @@ public class LikeAction extends SimpleAction {
     }
 
 
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 }

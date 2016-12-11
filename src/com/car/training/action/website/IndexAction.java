@@ -138,7 +138,7 @@ public class IndexAction extends SimpleAction {
         }
 
         for (Company company : companySet) {
-            guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getLoginUser().getId()));
+            guaranteeNumberMap.put(company, guaranteeService.guaranteeNumber(company.getId()));
         }
     }
 

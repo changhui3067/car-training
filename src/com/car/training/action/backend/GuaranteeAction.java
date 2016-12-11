@@ -51,10 +51,10 @@ public class GuaranteeAction extends SimpleAction {
     public String checkPermission() {
         LoginVO loginVO = getLoginVO();
         if (loginVO == null) {
-            return errorJSON("请登录");
+            return "请登录";
         }
         if (loginVO.getUserType() == UserType.COMPANY || loginVO.getUserType() == UserType.STORE) {
-            return errorJSON("没有权限");
+            return "没有权限";
         }
         return null;
     }
