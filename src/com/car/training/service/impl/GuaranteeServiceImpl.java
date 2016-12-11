@@ -22,6 +22,7 @@ public class GuaranteeServiceImpl implements GuaranteeService {
     @Autowired
     GuaranteeDAO guaranteeDAO;
 
+    @Autowired
     UserService userService;
 
 
