@@ -25,8 +25,8 @@ function selectCities(ele, isSearch) {
                         '<a href="#" onclick="selectCity(this);filter4Clicked(this, \''+'regionId'+'\');" value="'+data.cities[i].id+'">' +
                         data.cities[i].name + '</a></li>';
                 } else {
-                    liString = '<li value="' + data.cities[i].id + '">' +
-                        '<a href="#" onclick="selectCity(this);" value="'+data.cities[i].id+'">' + data.cities[i].name + '</a></li>';
+                    liString = '<li>' + '<a href="#" onclick="selectCity(this);" value="'
+                    +data.cities[i].id+'">' + data.cities[i].name + '</a></li>';
                 }
                 parent.append(liString);
                 //$("#city ul").get(0).options[i + 1] = new Option(, );
