@@ -1,5 +1,7 @@
 package com.car.training.bean;
 
+import com.car.training.annotation.Transformer;
+import com.car.training.annotation.UIField;
 import org.ironrhino.common.model.Region;
 
 import javax.persistence.*;
@@ -21,21 +23,27 @@ public class PersonInfo {
     private LoginUser loginUser;
 
     @Column
+    @UIField(transformer = Transformer.DateTransformer.class)
     private Date birthday;
 
     @Column
+    @UIField
     private String name;
 
     @Column
+    @UIField
     private String gender;
 
     @Column
+    @UIField
     private String mobile;
 
     @Column
+    @UIField
     private String email;
 
     @Column
+    @UIField
     private String marriageStatus;
 
     @JoinColumn(name = "regionId",foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))

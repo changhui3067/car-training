@@ -51,7 +51,7 @@ function submitTrainerInfo() {
     }
 
     var introduction = $("#introduction").val();
-    var mainCourse = $("mainCourse").val();
+    var mainCourse = $("#mainCourse").val();
     form_data = form_data + "&introduction="+introduction + "&mainCourse="+mainCourse
                 + "&videoURL1=" + $("#videoURL1").val() + "&videoURL2=" + $("#videoURL2").val();
 
