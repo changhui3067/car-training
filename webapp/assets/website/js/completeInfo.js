@@ -22,17 +22,17 @@ function submitTrainerInfo() {
     $("input[name='executionCategory']").val(executionCategory);
 
     var regVideoInput = /http:\/\/player\.youku.com\/player\.php\/sid\/[^\/]+\/v.swf/;
-    var videoInput1 = $("input[name='videoURL1']").val();
+    var videoInput1 = $("#videoURL1").val();
     if(videoInput1.match(regVideoInput)){
-        $("input[name='videoURL1']").val(videoInput1.match(regVideoInput)[0]);
+        $("#videoURL1").val(videoInput1.match(regVideoInput)[0]);
     } else {
         $('.errMsg')[0].innerHTML = '视频地址格式不对';
         return;
     }
 
-    var videoInput2 = $("input[name='videoURL2']").val();
+    var videoInput2 = $("#videoURL2").val();
     if(videoInput2.match(regVideoInput)){
-        $("input[name='videoURL2']").val(videoInput1.match(regVideoInput)[0]);
+        $("#videoURL2").val(videoInput1.match(regVideoInput)[0]);
     } else {
         $('.errMsg')[0].innerHTML = '视频地址格式不对';
         return;
@@ -52,7 +52,8 @@ function submitTrainerInfo() {
 
     var introduction = $("#introduction").val();
     var mainCourse = $("mainCourse").val();
-    form_data = form_data + "&introduction="+introduction + "&mainCourse="+mainCourse;
+    form_data = form_data + "&introduction="+introduction + "&mainCourse="+mainCourse
+                + "&videoURL1=" + $("#videoURL1").val() + "&videoURL2=" + $("#videoURL2").val();
 
     $.ajax({
         type: "POST",

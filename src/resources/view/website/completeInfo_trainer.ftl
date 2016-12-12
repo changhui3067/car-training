@@ -152,12 +152,11 @@
                             </li>
                             <li class="list-group-item pxshijl_li">
                                 <div class="form-group">
-                                    <label class="col-sm-3 pxshijl_label"><span
-                                            style="color: red">*</span>
+                                    <label class="col-sm-3 pxshijl_label">
                                         视频链接1:</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
-                                               name="videoUrl1"
+                                               id="videoUrl1"
                                                placeholder="请输入视频链接1"
                                                value="${trainer.videoUrl1!}"/>
                                     </div>
@@ -165,12 +164,11 @@
                             </li>
                             <li class="list-group-item pxshijl_li">
                                 <div class="form-group">
-                                    <label class="col-sm-3 pxshijl_label"><span
-                                            style="color: red">*</span>
+                                    <label class="col-sm-3 pxshijl_label">
                                         视频链接2:</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control"
-                                               name="videoUrl2"
+                                               id="videoUrl2"
                                                placeholder="请输入视频链接2"
                                                value="${trainer.videoUrl2!}"/>
                                     </div>
