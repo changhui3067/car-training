@@ -183,7 +183,7 @@
                  <a href="/website/jobDetail?jobId=${t.id!}"><div class="qcrxq_zw_name">${t.title!}</div></a>
                 <div class="qcrxq_dy_box">
                     <#--<span class="cn" style="padding-left:0px;" class="jobSalary ellipsis" title="${t.salary!}元">${t.salary!}元</span>-->
-                    <span>${t.workExprience!}年经验</span>
+                    <span>${t.workExperienceRequirement!}年经验</span>
                     <span style="background:none;" class="jobRegion ellipsis" title="<#if t.region??>${t.region.fullname!}</#if>"><#if t.region??>${t.region.fullname!}</#if></span>
                 </div>
                  <#--<div class="pingpai">-->
