@@ -6,7 +6,7 @@ body {font:14px "微软雅黑",Arial,sans-serif; color:#4c4c4c;margin:0px; backg
 form,menu,dir,fieldset,blockquote,p,pre,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6 { padding:0; margin:0;}
 ul,ol,dl { list-style:none; }
 a {color:#666666;;text-decoration: none !important;}
-a:hover, img:hover {color:#666666;text-decoration:none; cursor: pointer;}
+a:hover, img:hover {text-decoration:none; cursor: pointer;}
 a img {border: none;}
 textarea {resize: none;}
 .clear {clear: both;line-height: 0px;font-size:0px;}
@@ -221,7 +221,7 @@ button, input, .borderRadius {
 .jyfw{ line-height:24px; height:24px; color:#9c9c9c; font-weight:100}
 .jyfw a,.jyfw a:hover{color:#9c9c9c;}
 .fl{ }
-.fl span{padding:0px 10px; background:#fff6ee; border:1px solid #ffeddc; margin-right:10px; height:24px; line-height:24px; font-size:12px; color:#ff7d00}
+.fl span{padding:0px 10px; background:#fff6ee; border:1px solid #ffeddc; margin-right:10px; height:24px; line-height:24px; font-size:12px; color:#3e9dcb;}
 .qz, .jz{
 	position: absolute;
 	right: -1px;
@@ -254,7 +254,7 @@ button, input, .borderRadius {
 .qcrxq_qy_l{ width:100px; height:50px; border:1px solid #f0f0f0; padding:2px; }
 .qcrxq_qy_r{ width:365px;}
 .qcrxq_qy_name{ font-size:16px; line-height:24px; height:24px; color:#000; font-weight:100; margin-bottom:4px;}
-.qcrxq_qy_name span{ display:block; float:right; font-size:12px; font-weight:100; padding-right:25px;color:#ff7d00;}
+.qcrxq_qy_name span{ display:block; float:right; font-size:12px; font-weight:100; padding-right:25px;}
 .qcrxq_qy_name span:nth-child(2){color:#ff7d00; float: left;}
 
 
@@ -262,7 +262,7 @@ button, input, .borderRadius {
 .qcrxq_jyfw{ line-height:24px; height:24px; color:#9c9c9c; font-weight:100}
 .qcrxq_jyfw a,.qcrxq_jyfw a:hover{color:#9c9c9c;}
 .qcrxq_fl{     height: 50px;  overflow: hidden;}
-.qcrxq_fl span{padding:0px 10px; background:#e8f6ff; border:1px solid #dceff6; margin-right:10px; height:24px; line-height:24px; font-size:12px; }
+.qcrxq_fl span{padding:0px 10px; background:#e8f6ff; border:1px solid #dceff6; margin-right:10px; height:24px; line-height:24px; font-size:12px; color: #3e9dcb;}
 .qcrxq_fl span a,.qcrxq_fl span a:hover{color:#3e9dcb;}
 
 
@@ -339,7 +339,7 @@ button, input, .borderRadius {
     font-size: 16px;
     line-height: 24px;
     height: 24px;
-    color: #ff7d00;
+    color: #3e9dcb;/*#ff7d00;*/
     font-weight: 700;
     margin-bottom: 8px;
 }
@@ -578,8 +578,14 @@ button, input, .borderRadius {
     cursor: pointer;
 }
 
-.searchBox .filterType .filterItemList span:hover, .searchBox .filterType .filterItemList .checked {
+.searchBox .filterType .filterItemList .checked {
     background: #3689b3;
+    color: #fff;
+    cursor: pointer;
+}
+
+.searchBox .filterType .filterItemList span:hover {
+    background: #3d9ccc;
     color: #fff;
     cursor: pointer;
 }

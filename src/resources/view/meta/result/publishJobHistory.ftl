@@ -16,7 +16,7 @@
             <th>职位名称</th>
             <th>工作地点</th>
             <th>发布日期</th>
-            <th>申请纪录</th>
+            <th style="width: 30%">申请纪录</th>
             <#--<th>操作</th>-->
         </tr>
         <#list jobList as job>

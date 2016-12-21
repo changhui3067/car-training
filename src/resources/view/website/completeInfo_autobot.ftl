@@ -1,6 +1,6 @@
 <form id="form1" xmlns="http://www.w3.org/1999/html">
     <div class="pxshijl">
-        <h4>基本信息</h4><a href="/website/autobotDetail?autobotId=${autobot.id}" target="_blank">查看展示页面</a>
+        <h4>基本信息</h4><a href="/website/autobotDetail?autobotId=${autobot.id}" target="_blank" style="font-size: 14px">查看展示页面</a>
         <div class="pxshijl_box">
             <div class="errMsg"></div>
             <div class="container">
