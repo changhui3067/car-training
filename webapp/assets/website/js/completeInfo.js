@@ -22,24 +22,24 @@ function submitTrainerInfo() {
     $("input[name='executionCategory']").val(executionCategory);
 
     var regVideoInput = /http:\/\/player\.youku.com\/player\.php\/sid\/[^\/]+\/v.swf/;
-    var videoInput1 = $("#videoURL1").val();
+    var videoInput1 = $("#videoUrl1").val();
     if(videoInput1.match(regVideoInput)){
-        $("#videoURL1").val(videoInput1.match(regVideoInput)[0]);
+        $("#videoUrl1").val(videoInput1.match(regVideoInput)[0]);
     } else {
         $('.errMsg')[0].innerHTML = '视频地址格式不对';
         return;
     }
 
-    var videoInput2 = $("#videoURL2").val();
+    var videoInput2 = $("#videoUrl2").val();
     if(videoInput2.match(regVideoInput)){
-        $("#videoURL2").val(videoInput1.match(regVideoInput)[0]);
+        $("#videoUrl2").val(videoInput1.match(regVideoInput)[0]);
     } else {
         $('.errMsg')[0].innerHTML = '视频地址格式不对';
         return;
     }
 
-    // var url = "/backend/autobotCompleteResume/save";
-    var url = "/backend/saveInfo";
+    // var Url = "/backend/autobotCompleteResume/save";
+    var Url = "/backend/saveInfo";
     var form_data = $("#form1").serialize();
 
     //validate if any required field is null
@@ -53,11 +53,11 @@ function submitTrainerInfo() {
     var introduction = $("#introduction").val();
     var mainCourse = $("#mainCourse").val();
     form_data = form_data + "&introduction="+introduction + "&mainCourse="+mainCourse
-                + "&videoURL1=" + $("#videoURL1").val() + "&videoURL2=" + $("#videoURL2").val();
+                + "&videoUrl1=" + $("#videoUrl1").val() + "&videoUrl2=" + $("#videoUrl2").val();
 
     $.ajax({
         type: "POST",
-        url: url,
+        Url: Url,
         data: form_data,
         error: function (request) {
             Util.msgToast({
@@ -90,8 +90,8 @@ function submitAutobotInfo() {
     });
     $("input[name='executionCategory']").val(executionCategory);
 
-    // var url = "/backend/autobotCompleteResume/save";
-    var url = "/backend/saveInfo";
+    // var Url = "/backend/autobotCompleteResume/save";
+    var Url = "/backend/saveInfo";
     var form_data1 = $("#form1").serialize();
 
     //validate if any required field is null
@@ -108,7 +108,7 @@ function submitAutobotInfo() {
 
     $.ajax({
         type: "POST",
-        url: url,
+        Url: Url,
         data: form_data,
         error: function (request) {
             Util.msgToast({
@@ -134,7 +134,7 @@ function submitCompanyInfo() {
     });
     $("input[name='welfare']").val(welfareValue);
 
-    var url = "/backend/saveInfo";
+    var Url = "/backend/saveInfo";
     var form_data = $("#form1").serialize();
 
     if (form_data.indexOf('=&') > 0) {
@@ -149,7 +149,7 @@ function submitCompanyInfo() {
 
     $.ajax({
         type: "POST",
-        url: url,
+        Url: Url,
         data: form_data,
         error: function (error) {
             //alert("网络出错啦！");
