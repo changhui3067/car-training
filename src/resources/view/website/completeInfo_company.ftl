@@ -134,7 +134,7 @@
                                             </#if>
                                             </ul>
                                         </div>
-                                        <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${2}</#if>">
+                                        <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${3264}</#if>">
                                         <input id="companyAddress" type="text" class="form-control"
                                                placeholder="请填入具体地址"
                                                name="address"
