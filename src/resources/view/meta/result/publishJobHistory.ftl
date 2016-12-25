@@ -2,12 +2,12 @@
   <!-- Default panel contents -->
     <div class="panel-heading">
         <h4 class="inline">职位列表</h4>
-        <#assign keys = jobApplyMap?keys>
-        <#if (keys?size < 10)>
+        <#--<#assign keys = jobApplyMap?keys>-->
+        <#--<#if (keys?size < 10)>-->
             <button class="btn btn-primary right" data-toggle="modal" data-target="#newJob">发布新职位</button>
-        <#else>
-            <span class="right">发布职位的数量有限,需要扩容请联系培聘网</span>
-        </#if>
+        <#--<#else>-->
+            <#--<span class="right">发布职位的数量有限,需要扩容请联系培聘网</span>-->
+        <#--</#if>-->
         <div class="clear"></div>
       </div>
     <#if jobList?? >
