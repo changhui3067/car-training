@@ -104,7 +104,7 @@
                                         目前地区:</label>
                                     <div class="col-sm-9">
                                         <div class="dropdown" id="province">
-                                            <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${2}</#if>">
+                                            <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${3264}</#if>">
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
