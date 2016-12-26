@@ -61,7 +61,7 @@ function submitTrainerInfo() {
 
     $.ajax({
         type: "POST",
-        Url: Url,
+        url: Url,
         data: form_data,
         error: function (request) {
             Util.msgToast({
