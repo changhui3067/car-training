@@ -61,7 +61,7 @@ function submitTrainerInfo() {
 
     $.ajax({
         type: "POST",
-        Url: Url,
+        url: Url,
         data: form_data,
         error: function (request) {
             Util.msgToast({
@@ -112,7 +112,7 @@ function submitAutobotInfo() {
 
     $.ajax({
         type: "POST",
-        Url: Url,
+        url: Url,
         data: form_data,
         error: function (request) {
             Util.msgToast({
@@ -153,7 +153,7 @@ function submitCompanyInfo() {
 
     $.ajax({
         type: "POST",
-        Url: Url,
+        url: Url,
         data: form_data,
         error: function (error) {
             //alert("网络出错啦！");

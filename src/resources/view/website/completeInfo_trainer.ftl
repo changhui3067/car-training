@@ -1,7 +1,7 @@
 <form id="form1">
     <div class="pxshijl">
         <h4>基本信息</h4><a href="/website/trainerDetail?trainerId=${trainer.id}" target="_blank" style="font-size: 14px">查看展示页面</a>
-        <div class="pxshijl_box">
+        <div class="pxshijl_box companyInfoComplete">
             <div class="errMsg"></div>
             <div class="container">
                 <div class="row">
@@ -281,8 +281,9 @@
     </div>
 
 
-    <div class="tj">
-        <button type="button" class="btn btn-primary" onclick="submitTrainerInfo()" style=""/>
-        保存</button>
-    </div>
+
 </form>
+<div class="tj">
+    <button type="button" class="btn btn-primary" onclick="submitTrainerInfo()" style=""/>
+    保存</button>
+</div>
