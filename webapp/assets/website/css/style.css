@@ -5,7 +5,7 @@ html,body {height:100%; background:#f3f1f1;  }
 body {font:14px "微软雅黑",Arial,sans-serif; color:#4c4c4c;margin:0px; background: none !important;}
 form,menu,dir,fieldset,blockquote,p,pre,ul,ol,dl,dd,h1,h2,h3,h4,h5,h6 { padding:0; margin:0;}
 ul,ol,dl { list-style:none; }
-a {color:#666666;;text-decoration: none !important;}
+a {text-decoration: none !important;}
 a:hover, img:hover {text-decoration:none; cursor: pointer;}
 a img {border: none;}
 textarea {resize: none;}

@@ -21,21 +21,25 @@ function submitTrainerInfo() {
     });
     $("input[name='executionCategory']").val(executionCategory);
 
-    var regVideoInput = /http:\/\/player\.youku.com\/player\.php\/sid\/[^\/]+\/v.swf/;
+    var regVideoInput = /http:\/\/player\.youku.com\/player\.php\/[\S]+\/v.swf/;
     var videoInput1 = $("#videoUrl1").val();
-    if(videoInput1.match(regVideoInput)){
-        $("#videoUrl1").val(videoInput1.match(regVideoInput)[0]);
-    } else {
-        $('.errMsg')[0].innerHTML = '视频地址格式不对';
-        return;
+    if(videoInput1.trim() !== "") {
+        if(videoInput1.match(regVideoInput)){
+            $("#videoUrl1").val(videoInput1.match(regVideoInput)[0]);
+        } else {
+            $('.errMsg')[0].innerHTML = '视频地址格式不对';
+            return;
+        }
     }
 
     var videoInput2 = $("#videoUrl2").val();
-    if(videoInput2.match(regVideoInput)){
-        $("#videoUrl2").val(videoInput1.match(regVideoInput)[0]);
-    } else {
-        $('.errMsg')[0].innerHTML = '视频地址格式不对';
-        return;
+    if(videoInput2.trim() !== "") {
+        if(videoInput2.match(regVideoInput)){
+            $("#videoUrl2").val(videoInput1.match(regVideoInput)[0]);
+        } else {
+            $('.errMsg')[0].innerHTML = '视频地址格式不对';
+            return;
+        }
     }
 
     // var Url = "/backend/autobotCompleteResume/save";
