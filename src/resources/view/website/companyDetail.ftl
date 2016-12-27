@@ -47,7 +47,7 @@
             	<div class="company_other_info_box">
                     <div class="company_other_info_bar"><h4>公司简介</h4></div>
                 	<div class="company_other_info_text">
-    	                 ${company.introduction!}
+    	                 <pre>${company.introduction!}</pre>
                	    </div>
                 </div>
             	<div class="company_other_info_box">

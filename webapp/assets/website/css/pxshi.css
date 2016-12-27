@@ -87,6 +87,10 @@ span.paddingLeftNull { padding-left: 0!important;}
     margin: 10px;
 }  
 
+.people_other_info_box pre, .company_other_info_box pre {
+    background: none;
+    border: none;
+}
 .people_comments {
 	margin-bottom: 30px;
 	width: 260px;

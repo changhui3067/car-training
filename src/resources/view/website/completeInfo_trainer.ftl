@@ -263,7 +263,7 @@
     <div class="pxshijl">
         <h5>个人介绍</h5>
         <div class="pxshijl_box">
-            <textarea style="width:800px;margin-left:15px;resize:none" id="introduction" cols="45" rows="5" placeholder="请输入个人介绍"
+            <textarea style="width:800px;margin-left:15px;resize:none" id="introduction" cols="45" rows="5" placeholder="请输入个人介绍,最多500字"
                     value="<#if trainer?? && trainer.introduction??> ${trainer.introduction!}</#if>">
             <#if trainer?? && trainer.introduction??> ${trainer.introduction!}</#if>
             </textarea>
@@ -273,7 +273,7 @@
     <div class="pxshijl">
         <h5>课程介绍</h5>
         <div class="pxshijl_box">
-            <textarea style="width:800px;margin-left:15px;resize:none" id="mainCourse" cols="45" rows="5" placeholder="请输入课程介绍"
+            <textarea style="width:800px;margin-left:15px;resize:none" id="mainCourse" cols="45" rows="5" placeholder="请输入课程介绍,最多500字"
                       value="<#if trainer?? && trainer.mainCourse??> ${trainer.mainCourse!}</#if>">
             <#if trainer?? && trainer.mainCourse??> ${trainer.mainCourse!}</#if>
             </textarea>

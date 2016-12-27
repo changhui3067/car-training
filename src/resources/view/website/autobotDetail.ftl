@@ -68,19 +68,19 @@
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>培训经历</h4></div>
                 <div class="people_other_info_list">
-                ${autobot.trainingHistory!}
+                    <pre>${autobot.trainingHistory!}</pre>
                 </div>
             </div>
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>所获认证</h4></div>
                 <div class="people_other_info_list">
-                ${autobot.certRecords!}
+                <pre>${autobot.certRecords!}</pre>
                 </div>
             </div>
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>工作经历</h4></div>
                 <div class="people_other_info_list">
-                ${autobot.workingHistory!}
+                <pre>${autobot.workingHistory!}</pre>
                 </div>
             </div>
 

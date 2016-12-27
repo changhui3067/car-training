@@ -202,7 +202,7 @@
     <div class="pxshijl mt30">
         <h5>企业介绍</h5>
         <div class="pxshijl_box">
-            <textarea style="width:800px;margin-left:15px;resize:none" id="introduction" cols="45" rows="5" placeholder="请输入企业介绍">
+            <textarea style="width:800px;margin-left:15px;resize:none" id="introduction" cols="45" rows="5" placeholder="请输入企业介绍,最多500字">
                 ${companyInfo.introduction!}
             </textarea>
         </div>

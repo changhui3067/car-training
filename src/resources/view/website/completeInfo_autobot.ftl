@@ -225,7 +225,7 @@
     <div class="pxshijl">
         <h5>所获认证</h5>
         <div class="pxshijl_box">
-            <textarea style="width:800px;margin-left:15px;resize:none" id="certRecords" cols="45" rows="5" placeholder="请输入所获认证"
+            <textarea style="width:800px;margin-left:15px;resize:none" id="certRecords" cols="45" rows="5" placeholder="请输入所获认证,最多500字"
                     value="<#if autobot?? && autobot.certRecords??> ${autobot.certRecords!}</#if>">
             <#if autobot?? && autobot.certRecords??> ${autobot.certRecords!}</#if>
             </textarea>
@@ -234,7 +234,7 @@
     <div class="pxshijl">
         <h5>工作经历</h5>
         <div class="pxshijl_box">
-            <textarea style="width:800px;margin-left:15px;resize:none" id="workingHistory" cols="45"rows="5" placeholder="请输入工作经历"
+            <textarea style="width:800px;margin-left:15px;resize:none" id="workingHistory" cols="45"rows="5" placeholder="请输入工作经历,最多500字"
                     value="<#if autobot?? && autobot.workingHistory??> ${autobot.workingHistory!}</#if>">
             <#if autobot?? && autobot.workingHistory??> ${autobot.workingHistory!}</#if>
             </textarea>

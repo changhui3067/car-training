@@ -157,13 +157,13 @@
                         <div class="form-group">
                             <label for="inputJobDescription" class="col-sm-2 control-label">职位介绍</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="4" name="jobDescription" value="" id="inputJobDescription" placeholder=""></textarea>
+                                <textarea class="form-control" rows="4" name="jobDescription" value="" id="inputJobDescription" placeholder="最多500字"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputRequirement" class="col-sm-2 control-label">职位要求</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="4" name="jobRequirement" value="" id="inputRequirement" placeholder=""></textarea>
+                                <textarea class="form-control" rows="4" name="jobRequirement" value="" id="inputRequirement" placeholder="最多500字"></textarea>
                             </div>
                         </div>
                         <div class="form-group">

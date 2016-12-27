@@ -72,14 +72,14 @@
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>个人介绍</h4></div>
                 <div class="people_other_info_list">
-                <#if trainer.introduction??>${trainer.introduction!}</#if>
+                <pre><#if trainer.introduction??>${trainer.introduction!}</#if></pre>
                 </div>
             </div>
 
             <div class="people_other_info_box">
                 <div class="people_other_info_bar"><h4>课程介绍</h4></div>
                 <div class="people_other_info_list">
-                <#if trainer.mainCourse??>${trainer.mainCourse!}</#if>
+                <pre><#if trainer.mainCourse??>${trainer.mainCourse!}</#if></pre>
                 </div>
             </div>
 

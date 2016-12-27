@@ -35,7 +35,7 @@ function submitTrainerInfo() {
     var videoInput2 = $("#videoUrl2").val();
     if(videoInput2.trim() !== "") {
         if(videoInput2.match(regVideoInput)){
-            $("#videoUrl2").val(videoInput1.match(regVideoInput)[0]);
+            $("#videoUrl2").val(videoInput2.match(regVideoInput)[0]);
         } else {
             $('.errMsg')[0].innerHTML = '视频地址格式不对';
             return;
