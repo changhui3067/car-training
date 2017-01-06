@@ -6,6 +6,7 @@ import com.car.training.utils.PaginationUtil;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,6 +50,9 @@ public class HibernateAutobotDAO implements AutobotDAO {
         if (!StringUtils.isEmpty(keyword)) {
             criteria.add(Restrictions.like("personInfo.name", "%" + keyword + "%"));
         }
+        criteria.addOrder(Order.desc("Autobot.rank"));
+        criteria.addOrder(Order.desc("Autobot.rank2"));
+        criteria.addOrder(Order.desc("Autobot.rank3"));
         return criteria;
     }
 
