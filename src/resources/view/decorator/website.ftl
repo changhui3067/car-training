@@ -2,19 +2,13 @@
 <html>
 <#compress><#escape x as x?html>
 <head>
-<title><#noescape>${title}</#noescape></title>
 <meta charset="utf-8">
 <link rel="shortcut icon" href="/assets/website/images/favicon.png" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="UTF-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
-<#if request.requestURI?starts_with('/website/index')>
-<meta name="keyword" content="培聘网-汽车、招聘、培训一站式的服务网站"/>
-<#else>
-<meta name="keyword" content=""/>
-<meta name="Description" content=""/>
-</#if>
-
+<meta name="keyword" content="培聘网 www.peipin.net -汽车、招聘、培训一站式的服务网站"/>
+<meta name="Description" content="培聘网 www.peipin.net 汽车、招聘、培训一站式的服务网站"/>
 <title>培聘网-专业的汽车培训招聘平台</title>
 <#noescape>${head}</#noescape>
 </head>

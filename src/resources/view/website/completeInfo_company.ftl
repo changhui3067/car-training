@@ -179,18 +179,22 @@
                         <div class="col-sm-5">
                             <ul class="list-group">
                                 <li class="list-group-item pxshijl_li mb0">
-                                    <div class="form-group photo"><img id="logo_show" src="${companyInfo.logoUrl!}"></div>
+                                    <div class="form-group">
+                                        <div class="photo"><img id="logo_show" src="${companyInfo.logoUrl!}"></div>
                                     <button id="logo_btn" type="button" class="btn btn-primary btn-lg adminPageBtn">
                                         上传公司LOGO
                                     </button>
+                                        <p>支持大小不超过3M,格式为.jpg/.png/.bmp的图片</p>
                                 </li>
 
                                 <li class="list-group-item pxshijl_li mb0">
-                                    <div class="form-group photo"><img id="photo_show" src="${companyInfo.photoUrl!}"></div>
+                                    <div class="form-group">
+                                        <div class="photo"><img id="photo_show" src="${companyInfo.photoUrl!}"></div>
                     <!-- 将有效的工商营业执照副本原件或加盖红色单位公章的复印件拍照或扫描后在此上传，由客服人员认证审核。必须上传与公司名称一致，已年检通过的证照。 -->
                                     <button id="photo_btn" type="button"
                                             class="btn btn-primary btn-lg adminPageBtn">上传工商营业执照副本
                                     </button>
+                                        <p>支持大小不超过3M,格式为.jpg/.png/.bmp的图片</p>
                                 </li>
                             </ul>
                         </div>

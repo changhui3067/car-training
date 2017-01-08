@@ -51,7 +51,6 @@ public class UserCenterAction extends SimpleAction {
 
     private String vercode;
 
-
     private String defaultAvatar = "http://obu3flkwk.bkt.clouddn.com/car/training/upload/1480767851719.png";
 
     @JsonConfig(root = "data")

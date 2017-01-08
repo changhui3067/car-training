@@ -108,7 +108,8 @@ function submitAutobotInfo() {
 
     var certRecords = document.getElementById("certRecords").value;
     var workingHistory = document.getElementById("workingHistory").value;
-    var form_data = form_data1 + "&certRecords="+certRecords + "&workingHistory="+workingHistory;
+    var trainingHistory = document.getElementById("trainingHistory").value;
+    var form_data = form_data1 + "&trainingHistory=" + trainingHistory + "&certRecords="+certRecords + "&workingHistory="+workingHistory;
 
     $.ajax({
         type: "POST",

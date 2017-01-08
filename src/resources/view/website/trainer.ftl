@@ -23,7 +23,7 @@
     <div class="ny">
         <div class="searchBox">
             <div class="filterType">
-                <div class="filterName">领域类型:</div>
+                <div class="filterName">领域类型[多选]:</div>
                 <div class="filterItemList">
                     <span onclick="filterClicked(this,'businessCategory')">销售</span>
                     <span onclick="filterClicked(this,'businessCategory')">产品</span>
@@ -54,7 +54,7 @@
                 <div class="clear"></div>
             </div>
             <div class="filterType">
-                <div class="filterName">执行类型:</div>
+                <div class="filterName">执行类型[多选]:</div>
                 <div class="filterItemList">
                     <span onclick="filterClicked(this, 'executionCategory')">开发</span>
                     <span onclick="filterClicked(this, 'executionCategory')">培训</span>

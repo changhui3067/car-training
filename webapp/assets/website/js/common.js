@@ -224,14 +224,23 @@ function addNewJob(e) {
     if(!$('#inputTitle').val()) {
         $('#newJobErr').css('display','inline-block');
         return;
+    } else {
+        $('#newJobErr').css('display','none');
     }
     //var reg = /^\d+$/;
     //if($('#inputExperienceRequirement').val() &&){
     //
     //}
     var form_data = $("#newJobForm").serialize();
-    console.log(form_data);
-    var url = "/backend/publishJobHistory/add"
+
+    if(form_data.indexOf("regionId=&")) {
+        $('#newJobErr').css('display','inline-block');
+        return;
+    } else {
+        $('#newJobErr').css('display','none');
+    }
+    //console.log(form_data);
+    var url = "/backend/publishJobHistory/add";
 
     $.ajax({
         type: "POST",

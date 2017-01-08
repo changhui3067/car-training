@@ -21,7 +21,7 @@
     <div class="ny autobotSearchColor">
      	<div class="searchBox">
         	<div class="filterType">
-            	<div class="filterName">领域类型:</div>
+            	<div class="filterName">领域类型[多选]:</div>
                 <div class="filterItemList">
                     <span onclick="filterClicked(this,'businessCategory')">内训</span>
                     <span onclick="filterClicked(this,'businessCategory')">销售市场</span>

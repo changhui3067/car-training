@@ -20,7 +20,7 @@
     <div class="ny">
      	<div class="searchBox">
         	<div class="filterType">
-            	<div class="filterName"><#if jobType=="TRAINER">培训类型:<#elseif jobType=="AUTOBOT">职位类型:</#if></div>
+            	<div class="filterName"><#if jobType=="TRAINER">培训类型[多选]:<#elseif jobType=="AUTOBOT">职位类型[多选]:</#if></div>
                 <div class="filterItemList">
                     <#if jobType=="TRAINER">
                         <span onclick="filterClicked(this,'businessCategory')">销售</span>

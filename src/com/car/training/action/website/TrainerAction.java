@@ -148,10 +148,6 @@ public class TrainerAction extends SimpleAction {
         this.totalPage = totalPage;
     }
 
-    public void setExecutionCategory(Set<String> executionCategory) {
-        this.executionCategory = executionCategory;
-    }
-
     public int getPn() {
         return pn;
     }

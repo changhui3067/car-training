@@ -29,9 +29,9 @@
             <td>
                 <#list jobApplyMap.get(job) as apply>
                   <#if apply?? && apply.trainer??>
-                  <a href="/website/trainerDetail?trainerId=${apply.trainer.id}"><span>${apply.trainer.personInfo.name}</span></a>
+                  <a href="/website/trainerDetail?trainerId=${apply.trainer.id}"><span>${apply.trainer.personInfo.name!}</span></a>
                   <#elseif apply?? && apply.autobot??>
-                  <a href="/website/autobotDetail?autobotId=${apply.autobot.id}"><span>${apply.autobot.personInfo.name}</span></a>
+                  <a href="/website/autobotDetail?autobotId=${apply.autobot.id}"><span>${apply.autobot.personInfo.name!}</span></a>
                   </#if>
                 </#list>
             </td>
@@ -84,12 +84,12 @@
                                     </select>
                                 <#elseif Session["loginVO"].userType=='STORE'>
                                     <select class="form-control" id="inputType" name="businessCategory">
-                                        <option value="产品">内训</option>
-                                        <option value="销售">销售市场</option>
-                                        <option value="产品">售后客服</option>
-                                        <option value="技术">高级管理</option>
-                                        <option value="管理">人事财务</option>
-                                        <option value="财务">生产研发</option>
+                                        <option value="内训">内训</option>
+                                        <option value="销售市场">销售市场</option>
+                                        <option value="售后客服">售后客服</option>
+                                        <option value="高级管理">高级管理</option>
+                                        <option value="人事财务">人事财务</option>
+                                        <option value="生产研发">生产研发</option>
                                     </select>
                                 </#if>
                             </div>
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputAddress" class="col-sm-2 control-label">工作地点</label>
+                            <label for="inputAddress" class="col-sm-2 control-label"><span style="color: red">*</span>工作地点</label>
                             <div class="col-sm-10">
                                 <div class="dropdown" id="province">
                                     <button class="btn btn-default dropdown-toggle" type="button"
@@ -145,7 +145,8 @@
                                         </#if>
                                     </ul>
                                 </div>
-                                <input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${1}</#if>">
+                                <#--<input name="regionId" type="hidden" value="<#if userRegion?? >${userRegion.id}<#else>${1}</#if>">-->
+                                <input name="regionId" type="hidden" value="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -169,7 +170,7 @@
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-primary" onclick="addNewJob(event)">发布</button>
-                              <span class="errMsg" id="newJobErr">请输入职位名称</span>
+                              <span class="errMsg" id="newJobErr">请输入必填项 职位名称 和 职位地址</span>
                           </div>
                         </div>
                     </form>

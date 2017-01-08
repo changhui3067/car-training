@@ -36,7 +36,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
             if (time != null) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(time);
-                calendar.add(Calendar.MINUTE, 30);
+                calendar.add(Calendar.MINUTE, 5);
                 Calendar c2 = Calendar.getInstance();
                 c2.setTime(new Date());
                 if (calendar.after(c2)) {
@@ -131,7 +131,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                        FROM `Like`\n" +
                 "                        GROUP BY targetUserId) lk ON lk.targetUserId = login.id)\n" +
                 "         WHERE login.type = 'AUTOBOT'\n" +
-                "         ORDER BY weight\n" +
+                "         ORDER BY weight DESC\n" +
                 "         LIMIT 20) t, (SELECT @rownum\\:=0) r;";
 
         String company = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +

@@ -6,13 +6,13 @@
                     <a :href="person.homepageUrl"><img :src="person.avatarUrl"/></a></div>
                 <div class="intro">
                     <div>
-                        <div class="name">{{person.personName}}</div>
+                        <div class="name ellipsis">{{person.personName}}</div>
                         <div class="right"><i class="iconfont" title="评论">&#xe69b;</i>{{person.commentNumber}}</div>
                         <div class="right"><i class="iconfont" title="点赞">&#xe717;</i>{{person.likeNumber}}</div>
                         <div class="clear"></div>
                     </div>
                     <#--<div class="clear"></div>-->
-                    <div>{{person.currentPosition}}</div>
+                    <div class="ellipsis">{{person.currentPosition}}</div>
                 </div>
             </li>
             <div class="clear"></div>

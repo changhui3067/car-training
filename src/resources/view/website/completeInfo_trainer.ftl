@@ -241,11 +241,12 @@
                     <div class="col-sm-5">
                         <ul class="list-group">
                             <li class="list-group-item pxshijl_li">
-                                <div class="form-group photo">
-                                    <img id="avatar_show" src="${trainer.personInfo.avatarUrl!}">
+                                <div class="form-group">
+                                    <div class="photo"><img id="avatar_show" src="${trainer.personInfo.avatarUrl!}"></div>
                                     <button id="avatar_btn" type="button" class="btn btn-primary btn-lg adminPageBtn">
                                         上传照片
                                     </button>
+                                    <p>支持大小不超过3M,格式为.jpg/.png/.bmp的图片</p>
                                 </div>
                             </li>
                             <li class="list-group-item pxshijl_li trainerVideoExample">

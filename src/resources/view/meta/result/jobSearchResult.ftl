@@ -7,7 +7,7 @@
                 </a>
                 <div class="dy_box">
                     <#--<span class="cn jobSalary ellipsis" style="padding-left:0px;" :title="job.salary+'元'">{{job.salary}}元</span>-->
-                    <span>{{job.workExperienceRequirement}}年经验</span>
+                    <span style="padding-left:0px;">{{job.workExperienceRequirement}}年经验</span>
                     <span style="background:none;" class="jobRegion ellipsis" :title="!!job.region ? job.region.fullname : ''">{{!!job.region ? job.region.fullname : ""}}</span>
                 </div>
                 <div class="fb_box">

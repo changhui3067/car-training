@@ -50,7 +50,7 @@
                     <div class="zwyq">
                         <ul>
                             <li>学历要求: ${job.educationRequirement!}</li>
-                            <li>经验要求: <#if job.workExperienceRequirement=0 > 应界毕业生 <#else> ${job.workExperienceRequirement!}
+                            <li>经验要求: <#if job.workExperienceRequirement=0 >0<#else> ${job.workExperienceRequirement!}
                                 年以上经验</#if></li>
                             <li>工作类型: ${job.businessCategory!}</li>
                         </ul>
@@ -71,7 +71,7 @@
                 <div class="people_other_info_box">
                     <div class="people_other_info_bar"><h4>岗位介绍</h4></div>
                     <div class="people_other_info_list">
-                    ${job.jobDescription!}
+                    <pre>${job.jobDescription!}</pre>
                     </div>
                 </div>
             <#--<div class="gwms">-->
@@ -84,7 +84,7 @@
                 <div class="people_other_info_box">
                     <div class="people_other_info_bar"><h4>岗位要求</h4></div>
                     <div class="people_other_info_list">
-                    ${job.jobRequirement!}
+                    <pre>${job.jobRequirement!}</pre>
                     </div>
                     <#--<div class="rzyq_box">-->
                         <#--<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">-->
