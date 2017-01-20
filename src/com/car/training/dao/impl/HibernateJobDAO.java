@@ -6,10 +6,7 @@ import com.car.training.enums.JobType;
 import com.car.training.utils.PaginationUtil;
 import com.car.training.vo.JobFilter;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Conjunction;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Disjunction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 import org.ironrhino.common.model.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -75,7 +72,7 @@ public class HibernateJobDAO implements JobDAO {
     private DetachedCriteria getCriteria(JobType jobType, Iterable<String> businessCategories, Region region,
                                          Date minPublishTime, Date maxPublishTime,
                                          Integer minWorkExperienceRequirement, Integer maxWorkExperienceRequirement, String keyword) {
-        DetachedCriteria criteria = DetachedCriteria.forClass(Job.class);
+        DetachedCriteria criteria = DetachedCriteria.forClass(Job.class,"job");
         criteria.add(Restrictions.eq("type", jobType));
         Disjunction disjunction = Restrictions.or();
         for (String businessCategory : businessCategories) {
@@ -100,6 +97,7 @@ public class HibernateJobDAO implements JobDAO {
         if (!StringUtils.isEmpty(keyword)) {
             criteria.add(Restrictions.like("title", "%" + keyword + "%"));
         }
+        criteria.addOrder(Order.desc("job.createDate"));
         return criteria;
     }
 }

@@ -481,6 +481,7 @@ button, input, .borderRadius {
 
 .oneBox .intro {
     width: 100%;
+    height: 77px;
     vertical-align: bottom;
     padding: 5px 5px;
 }

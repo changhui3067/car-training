@@ -50,8 +50,7 @@
                     <div class="zwyq">
                         <ul>
                             <li>学历要求: ${job.educationRequirement!}</li>
-                            <li>经验要求: <#if job.workExperienceRequirement=0 >0<#else> ${job.workExperienceRequirement!}
-                                年以上经验</#if></li>
+                            <li>经验要求: <#if job.workExperienceRequirement=0 >0<#else> ${job.workExperienceRequirement!}</#if>年以上经验</li>
                             <li>工作类型: ${job.businessCategory!}</li>
                         </ul>
                         <div class="clear"></div>

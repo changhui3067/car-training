@@ -84,7 +84,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "    @rownum\\:=@rownum + 1 AS ord\n" +
                 "  FROM (\n" +
                 "         SELECT\n" +
-                "           IFNULL(cmt_num, 0) * IFNULL(cmt_num, 0) + IFNULL(lk_num, 0) * IFNULL(lk_num, 0) AS weight,\n" +
+                "           IFNULL(cmt_num, 0) + IFNULL(lk_num, 0) AS weight, IFNULL(cmt_num, 0) as weight2 ,\n" +
                 "           login.id                                                                           id,\n" +
                 "           login.type                                                                         type\n" +
                 "         FROM\n" +
@@ -102,7 +102,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                        FROM `Like`\n" +
                 "                        GROUP BY targetUserId) lk ON lk.targetUserId = login.id)\n" +
                 "         WHERE login.type = 'TRAINER'\n" +
-                "         ORDER BY weight DESC\n" +
+                "         ORDER BY weight DESC,weight2 DESC\n" +
                 "         LIMIT 20) t, (SELECT @rownum\\:=0) r;";
 
         String autobot = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
@@ -113,7 +113,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "    @rownum\\:=@rownum + 1 AS ord\n" +
                 "  FROM (\n" +
                 "         SELECT\n" +
-                "           IFNULL(cmt_num, 0) * IFNULL(cmt_num, 0) + IFNULL(lk_num, 0) * IFNULL(lk_num, 0) AS weight,\n" +
+                "           IFNULL(cmt_num, 0) + IFNULL(lk_num, 0) AS weight, IFNULL(cmt_num, 0) as weight2 ,\n" +
                 "           login.id                                                                           id,\n" +
                 "           login.type                                                                         type\n" +
                 "         FROM\n" +
@@ -131,7 +131,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                        FROM `Like`\n" +
                 "                        GROUP BY targetUserId) lk ON lk.targetUserId = login.id)\n" +
                 "         WHERE login.type = 'AUTOBOT'\n" +
-                "         ORDER BY weight DESC\n" +
+                "         ORDER BY weight DESC,weight2 DESC\n" +
                 "         LIMIT 20) t, (SELECT @rownum\\:=0) r;";
 
         String company = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +
@@ -152,7 +152,7 @@ public class HibernatePromotionDAO implements PromotionDAO {
                 "                     FROM Guarantee\n" +
                 "                     GROUP BY companyId) gua ON com.id = gua.companyId\n" +
                 "        WHERE login.type = \"COMPANY\"\n" +
-                "        ORDER BY g_num\n" +
+                "        ORDER BY g_num DESC\n" +
                 "        LIMIT 20) t, (SELECT @rownum\\:=0) r;";
 
         String store = "INSERT INTO Promotion (entityId, entityType, updateDate, ord)\n" +

@@ -97,8 +97,8 @@
 
         </div>
         <div class="ny_pxshi_r right">
-            <div class="people_comments people_other_info_bar">
-                <h4>评论列表</h4>
+            <div class="people_comments ">
+                <h4 class="people_other_info_bar">评论列表</h4>
                 <div class="people_comments_list">
                     <#include "/resources/view/meta/result/commentListResult.ftl">
                 </div>

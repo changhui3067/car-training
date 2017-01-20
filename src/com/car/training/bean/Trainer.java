@@ -61,6 +61,14 @@ public class Trainer {
     @UIField
     private String videoUrl2;
 
+    @Column(columnDefinition = "Integer default '0'")
+    private int rank = 0;
+    
+    @Column(columnDefinition = "Integer default '0'")
+    private int rank2 = 0;
+
+    @Column(columnDefinition = "Integer default '0'")
+    private int rank3 = 0;
 
     public int getId() {
         return id;
@@ -158,5 +166,29 @@ public class Trainer {
 
     public void setBusinessCategory(Set<String> businessCategory) {
         this.businessCategory = businessCategory;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public int getRank2() {
+        return rank2;
+    }
+
+    public void setRank2(int rank2) {
+        this.rank2 = rank2;
+    }
+
+    public int getRank3() {
+        return rank3;
+    }
+
+    public void setRank3(int rank3) {
+        this.rank3 = rank3;
     }
 }

@@ -36,7 +36,7 @@ span.paddingLeftNull { padding-left: 0!important;}
 .people_detail_basic_info span.alignCenter{ border-right: solid 1px #ff7f00!important;}
 
 .people_other_info_box{ width: 860px; border-bottom:1px dotted #ccc; padding:20px 15px 20px 15px; margin-bottom:30px;}
-.people_other_info_bar{ background:#f0f8fc; height:40px;   padding:0px 15px;}
+.people_other_info_bar{ background:#f0f8fc; height:40px;   padding:12px 15px;}
 .people_other_info_bar h4{ display:block;height:40px; line-height:40px; padding-left:40px; font-size:16px; color:#000; font-weight:100; }
 .people_other_info_video {
 	padding: 20px 0px 0px 50px;

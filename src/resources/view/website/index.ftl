@@ -129,7 +129,7 @@
              <#if trainerJob??>
              <div class="qz"></div>
                  <div class="left zp_box_l">
-                    <a href="/website/jobDetail?jobId=${trainerJob.id!}"> <div class="zw_name">${trainerJob.title!}</div></a>
+                    <a href="/website/jobDetail?jobId=${trainerJob.id!}"> <div class="zw_name ellipsis">${trainerJob.title!}</div></a>
                     <div class="dy_box">
                         <#--<span class="cn jobSalary ellipsis" style="padding-left:0px;" title="${trainerJob.salary!}元">${trainerJob.salary!}元</span>-->
                         <span style="padding-left:0px;"><#if trainerJob.workExperienceRequirement??>${trainerJob.workExperienceRequirement}<#else>0</#if>年经验</span>
@@ -180,7 +180,7 @@
          <li class="zp_box">
              <#if t?? && t.company??>
              <div class="qcrxq_l left zp_box_l">
-                 <a href="/website/jobDetail?jobId=${t.id!}"><div class="qcrxq_zw_name">${t.title!}</div></a>
+                 <a href="/website/jobDetail?jobId=${t.id!}"><div class="qcrxq_zw_name ellipsis">${t.title!}</div></a>
                 <div class="qcrxq_dy_box">
                     <#--<span class="cn" style="padding-left:0px;" class="jobSalary ellipsis" title="${t.salary!}元">${t.salary!}元</span>-->
                     <span style="padding-left:0px;"><#if t.workExperienceRequirement??>${t.workExperienceRequirement}<#else>0</#if>年经验</span>
